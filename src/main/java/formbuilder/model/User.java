@@ -1,31 +1,24 @@
-package formgenerator.model;
+package formbuilder.model;
 
 import java.util.List;
-import java.util.Set;
-import javax.persistence.*;
 
-@Entity
-@Table(name = "users")
 public class User {
 	
-	@Id
-    @GeneratedValue
-    @Column(name = "user_id")
 	private Integer id;
-	
-	@Column(name = "last_name")
 	private String userLastName;
-	@Column(name = "first_name")
 	private String userFirstName;
-	@Column(name = "email")
 	private String email;
-	@Embedded
 	private UserAddress address;
-	@Column(name = "role")
-	private Set<String> roles; 
+	private boolean role;  //admin:0, user:1
+	private List<DocForm> docs;
 	
+	public User(Integer id, String lname, String fname, String email){
+		this.id = id;
+		this.userLastName = lname;
+		this.userFirstName = fname;
+		this.email = email;
+	}
 	
-    
 	public Integer getId() {
 		return id;
 	}
@@ -56,13 +49,17 @@ public class User {
 	public void setAddress(UserAddress address) {
 		this.address = address;
 	}
-
-	public Set<String> getRoles() {
-		return roles;
+	public boolean isRole() {
+		return role;
 	}
-
-	public void setRoles(Set<String> roles) {
-		this.roles = roles;
+	public void setRole(boolean role) {
+		this.role = role;
+	}
+	public List<DocForm> getDocs() {
+		return docs;
+	}
+	public void setDocs(List<DocForm> docs) {
+		this.docs = docs;
 	}
 	
 	

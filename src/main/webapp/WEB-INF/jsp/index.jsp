@@ -1,7 +1,7 @@
 <html>
-<head><title>Form Generator</title></head>
+<head><title>Form Builder</title></head>
 <body>
-<p>Welcome Form Generator.</p>
+<p>Welcome to Form Builder.</p>
 <ul>
   <li><a href="users.html">Users</a></li>
 </ul>
