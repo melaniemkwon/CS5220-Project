@@ -9,7 +9,7 @@ public class User {
 	private String userFirstName;
 	private String email;
 	private UserAddress address;
-	private List<String> roles;  //admin:0, user:1
+	private List<String> roles;
 	
 	public Integer getId() {
 		return id;
@@ -41,12 +41,11 @@ public class User {
 	public void setAddress(UserAddress address) {
 		this.address = address;
 	}
-	public boolean isRole() {
-		return role;
+	public List<String> getRoles() {
+		return roles;
 	}
-	public void setRole(boolean role) {
-		this.role = role;
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
-	
 	
 }
