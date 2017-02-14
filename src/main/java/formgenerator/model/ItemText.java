@@ -1,13 +1,15 @@
-package formbuilder.model;
+package formgenerator.model;
 
 public class ItemText extends Item{
 	
-	public ItemText(Integer id, String name, String desc) {
-		super(id, name, desc);
+
+	public ItemText(Integer id, String name, String desc, Integer pid) {
+		super(id, name, desc, pid);
 	}
+
 	private String type;
 	private String inputText; 
-	private Integer textLength;
+	private int textLength;
 
 	public String getType() {
 		return type;

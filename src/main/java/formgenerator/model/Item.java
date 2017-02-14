@@ -1,16 +1,20 @@
-package formbuilder.model;
+package formgenerator.model;
 
 import java.util.List;
 
 public class Item {
-	private Integer itemId;
+	private int itemId;
 	private String itemName;
 	private String description;
+	private Integer parentItemId;
+	private boolean isRequired;
+	private int orderid;  // in which order this item should be shown, when only by itself the default is 0
 	
-	public Item(Integer id, String name, String desc){
+	public Item(Integer id, String name, String desc, Integer pid){
 		itemId = id;
 		itemName = name;
 		description = desc;
+		parentItemId = pid;
 	}
 
 	public Integer getItemId() {

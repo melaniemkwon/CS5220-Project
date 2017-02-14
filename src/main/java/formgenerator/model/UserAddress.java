@@ -1,5 +1,8 @@
-package formbuilder.model;
+package formgenerator.model;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class UserAddress {
 	
 	private String address1;
