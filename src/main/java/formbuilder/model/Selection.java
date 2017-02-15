@@ -1,6 +1,5 @@
 package formbuilder.model;
- 
- public class Selection {
+public class Selection {
  	private int selectionId;
  	private int orderId;
  	private String name;
@@ -64,5 +63,4 @@ package formbuilder.model;
  	public void setParentId(int parentId) {
  		this.parentId = parentId;
  	}
- 	
  }
