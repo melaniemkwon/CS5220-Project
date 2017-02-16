@@ -5,11 +5,15 @@ import java.util.List;
 public class User {
 	
 	private Integer id;
-	private String userLastName;
-	private String userFirstName;
+	private String lastName;
+	private String firstName;
 	private String email;
 	private UserAddress address;
-	private List<String> roles;
+	public enum Role {
+	    ADMIN,
+	    USER
+	}
+	public Role roleTypes;
 	
 	public Integer getId() {
 		return id;
@@ -17,17 +21,17 @@ public class User {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getUserLastName() {
-		return userLastName;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setUserLastName(String userLastName) {
-		this.userLastName = userLastName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public String getUserFirstName() {
-		return userFirstName;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setUserFirstName(String userFirstName) {
-		this.userFirstName = userFirstName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	public String getEmail() {
 		return email;
@@ -41,11 +45,11 @@ public class User {
 	public void setAddress(UserAddress address) {
 		this.address = address;
 	}
-	public List<String> getRoles() {
-		return roles;
+	public Role getRoleTypes() {
+		return roleTypes;
 	}
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
+	public void setRoleTypes(Role roleTypes) {
+		this.roleTypes = roleTypes;
 	}
 	
 }

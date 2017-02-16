@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: cowboyuniverse
+=======
+Built-By: melaniekwon
+Build-Jdk: 1.8.0_91
+>>>>>>> ce7b48d62b3293dd846fb163e5673a8eacd11766
 Build-Jdk: 1.8.0_121
 Created-By: Maven Integration for Eclipse
 
