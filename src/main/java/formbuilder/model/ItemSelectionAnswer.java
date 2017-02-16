@@ -1,19 +1,21 @@
 package formbuilder.model;
 
-import org.springframework.expression.spel.ast.Selection;
-
 public class ItemSelectionAnswer {
 	private Integer id;
 	private Selection selection;
-	private boolean value; //true : selected -- we just need to know which option are selected
+	private boolean value; // true : selected -- we just need to know which
+							// option are selected
 	private User user;
-	
-	public ItemSelectionAnswer(Integer id, Selection selection, boolean value, User user) {
+	private ItemSelectionAnswer matchItem;
+
+	public ItemSelectionAnswer(Integer id, Selection selection, boolean value, User user,
+			ItemSelectionAnswer matchItem) {
 		super();
 		this.id = id;
 		this.selection = selection;
 		this.value = value;
 		this.user = user;
+		this.matchItem = matchItem;
 	}
 
 	public Integer getId() {
@@ -46,5 +48,13 @@ public class ItemSelectionAnswer {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public ItemSelectionAnswer getMatchItem() {
+		return matchItem;
+	}
+
+	public void setMatchItem(ItemSelectionAnswer matchItem) {
+		this.matchItem = matchItem;
 	}
 }
