@@ -5,19 +5,15 @@ import java.util.List;
 public class User {
 	
 	private Integer id;
-	private String userLastName;
-	private String userFirstName;
+	private String lastName;
+	private String firstName;
 	private String email;
 	private UserAddress address;
-	private boolean role;  //admin:0, user:1
-	private List<DocForm> docs;
-	
-	public User(Integer id, String lname, String fname, String email){
-		this.id = id;
-		this.userLastName = lname;
-		this.userFirstName = fname;
-		this.email = email;
+	public enum Role {
+	    ADMIN,
+	    USER
 	}
+	public Role roleTypes;
 	
 	public Integer getId() {
 		return id;
@@ -25,17 +21,17 @@ public class User {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getUserLastName() {
-		return userLastName;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setUserLastName(String userLastName) {
-		this.userLastName = userLastName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public String getUserFirstName() {
-		return userFirstName;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setUserFirstName(String userFirstName) {
-		this.userFirstName = userFirstName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	public String getEmail() {
 		return email;
@@ -49,18 +45,11 @@ public class User {
 	public void setAddress(UserAddress address) {
 		this.address = address;
 	}
-	public boolean isRole() {
-		return role;
+	public Role getRoleTypes() {
+		return roleTypes;
 	}
-	public void setRole(boolean role) {
-		this.role = role;
+	public void setRoleTypes(Role roleTypes) {
+		this.roleTypes = roleTypes;
 	}
-	public List<DocForm> getDocs() {
-		return docs;
-	}
-	public void setDocs(List<DocForm> docs) {
-		this.docs = docs;
-	}
-	
 	
 }

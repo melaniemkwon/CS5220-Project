@@ -1,40 +1,8 @@
-package formbuilder.model;
-
-import java.util.List;
-
 public class Item {
-	private Integer itemId;
-	private String itemName;
+	private int id;
+	private String name;
 	private String description;
-	
-	public Item(Integer id, String name, String desc){
-		itemId = id;
-		itemName = name;
-		description = desc;
-	}
-
-	public Integer getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(Integer itemId) {
-		this.itemId = itemId;
-	}
-
-	public String getItemName() {
-		return itemName;
-	}
-
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
+	private int orderid;  // in which order this item should be shown, when only by itself the default is 0
+	private Block block;
+	private boolean isRequired;
 }
