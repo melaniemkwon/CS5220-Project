@@ -8,16 +8,6 @@ public class ItemSelectionAnswer {
 	private User user;
 	private ItemSelectionAnswer matchItem;
 
-	public ItemSelectionAnswer(Integer id, Selection selection, boolean value, User user,
-			ItemSelectionAnswer matchItem) {
-		super();
-		this.id = id;
-		this.selection = selection;
-		this.value = value;
-		this.user = user;
-		this.matchItem = matchItem;
-	}
-
 	public Integer getId() {
 		return id;
 	}
