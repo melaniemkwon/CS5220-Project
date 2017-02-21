@@ -4,14 +4,11 @@ import java.util.List;
 
 public class ItemSelection extends Item {
 
-	public ItemSelection(Integer id, String name, String description, int orderid, Block block, boolean isRequired) {
-		super(id, name, description, orderid, block, isRequired);
-	}
-
 	private String type;
 	private List<Selection> selections;
-	private Integer minRequirements; // (ex. Needs to pick at lease 1)
-
+	private int minRequirements; // (ex. Needs to pick at lease 1)
+	private int maxSelectionNum; //(ex. maximum number to select, can be select 2 out of 5, so max=2)}
+	
 	public String getType() {
 		return type;
 	}
