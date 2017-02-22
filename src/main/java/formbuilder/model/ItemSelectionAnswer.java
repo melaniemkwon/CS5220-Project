@@ -1,11 +1,25 @@
 package formbuilder.model;
 
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity(name = "selection_answer")
 public class ItemSelectionAnswer {
+	@Id
+    @GeneratedValue
 	private Integer id;
-	private Selection selection;
-	private boolean value; // true : selected -- we just need to know which
-							// option are selected
+	@OneToMany
+	private Set<Selection> selection;
+	
+	@ManyToOne
 	private User user;
+	@OneToOne
 	private ItemSelectionAnswer matchItem;
 
 	public Integer getId() {
@@ -15,21 +29,13 @@ public class ItemSelectionAnswer {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public Selection getSelection() {
+	
+	public Set<Selection> getSelection() {
 		return selection;
 	}
 
-	public void setSelection(Selection selection) {
+	public void setSelection(Set<Selection> selection) {
 		this.selection = selection;
-	}
-
-	public boolean isValue() {
-		return value;
-	}
-
-	public void setValue(boolean value) {
-		this.value = value;
 	}
 
 	public User getUser() {
