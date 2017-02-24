@@ -11,13 +11,13 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "Item")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Item implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
     @GeneratedValue
-	private int id;
+	private double id;
 	private String name;
 	private String description;
 	
@@ -42,11 +42,11 @@ public class Item implements Serializable{
 	@ManyToOne
 	private PDField matchField;
 
-	public int getId() {
+	public double getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(double id) {
 		this.id = id;
 	}
 
