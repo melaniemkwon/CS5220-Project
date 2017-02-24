@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -33,6 +35,7 @@ public class Item implements Serializable{
 	    CHECKBOX,
 	    PULLDOWN
 	}
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "type")
 	private Type itemTypes;
 	
