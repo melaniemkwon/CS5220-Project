@@ -1,34 +1,30 @@
 package formbuilder.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-@Entity(name = "pdf")
-public class PDF implements Serializable{
+@Entity(name = "pdf_field")
+public class PDField implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
     @GeneratedValue
 	private int id;
 	private String name;
-	
-	@Column(name = "upload_date")
-	private Date uploadDate;
-	
-	@ManyToOne
-	private User user;
+	private String description;
 	
 	@OneToMany
-	List<PDField> fields;
+	private List<Item> items;
 	
+	@ManyToOne
+	private PDF pdf;
+
 	public int getId() {
 		return id;
 	}
@@ -45,19 +41,28 @@ public class PDF implements Serializable{
 		this.name = name;
 	}
 
-	public Date getUploadDate() {
-		return uploadDate;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setUploadDate(Date uploadDate) {
-		this.uploadDate = uploadDate;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public User getUser() {
-		return user;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
+
+	public PDF getPdf() {
+		return pdf;
+	}
+
+	public void setPdf(PDF pdf) {
+		this.pdf = pdf;
+	}
+
 }
