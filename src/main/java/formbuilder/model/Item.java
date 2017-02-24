@@ -8,16 +8,7 @@ public class Item {
 							// by itself the default is 0
 	private Block block;
 	private boolean isRequired;
-
-	public Item(int id, String name, String description, int orderid, Block block, boolean isRequired) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.orderid = orderid;
-		this.block = block;
-		this.isRequired = isRequired;
-	}
+	private Item item;
 
 	public int getId() {
 		return id;
