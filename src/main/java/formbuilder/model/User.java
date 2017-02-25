@@ -1,8 +1,11 @@
 package formbuilder.model;
 import java.io.Serializable;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,9 +34,10 @@ public class User implements Serializable {
 	private String email;
 	
 	@Column(name = "address")
-	private UserAddress address;	
+	private UserAddress address;
 	
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Role role;
 	
 	public Integer getId() {
