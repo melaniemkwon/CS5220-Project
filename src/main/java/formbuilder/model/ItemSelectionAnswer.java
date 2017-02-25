@@ -1,12 +1,27 @@
 package formbuilder.model;
 
-public class ItemSelectionAnswer {
+import java.io.Serializable;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity(name = "selection_answer")
+public class ItemSelectionAnswer implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+    @GeneratedValue
 	private Integer id;
-	private Selection selection;
-	private boolean value; // true : selected -- we just need to know which
-							// option are selected
+
+	@OneToMany
+	private Set<Selection> selection;
+	
+	@ManyToOne
 	private User user;
-	private ItemSelectionAnswer matchItem;
 
 	public Integer getId() {
 		return id;
@@ -16,20 +31,12 @@ public class ItemSelectionAnswer {
 		this.id = id;
 	}
 
-	public Selection getSelection() {
+	public Set<Selection> getSelection() {
 		return selection;
 	}
 
-	public void setSelection(Selection selection) {
+	public void setSelection(Set<Selection> selection) {
 		this.selection = selection;
-	}
-
-	public boolean isValue() {
-		return value;
-	}
-
-	public void setValue(boolean value) {
-		this.value = value;
 	}
 
 	public User getUser() {
@@ -38,13 +45,5 @@ public class ItemSelectionAnswer {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public ItemSelectionAnswer getMatchItem() {
-		return matchItem;
-	}
-
-	public void setMatchItem(ItemSelectionAnswer matchItem) {
-		this.matchItem = matchItem;
 	}
 }
