@@ -3,6 +3,8 @@ package formbuilder.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,8 +14,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "Item")
+@Entity(name = "item")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="item_type")
+@DiscriminatorValue("item")
 public class Item implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -43,7 +47,7 @@ public class Item implements Serializable{
 	private boolean isRequired;
 	
 	@ManyToOne
-	private PDField matchField;
+	private PdfField matchField;
 
 	public double getId() {
 		return id;
@@ -101,11 +105,11 @@ public class Item implements Serializable{
 		this.itemTypes = itemTypes;
 	}
 
-	public PDField getMatchField() {
+	public PdfField getMatchField() {
 		return matchField;
 	}
 
-	public void setMatchField(PDField matchField) {
+	public void setMatchField(PdfField matchField) {
 		this.matchField = matchField;
 	}
 	
