@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity(name = "pdf")
-public class PDF implements Serializable{
+public class Pdf implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -27,7 +27,7 @@ public class PDF implements Serializable{
 	private User user;
 	
 	@OneToMany
-	List<PDField> fields;
+	List<PdfField> fields;
 	
 	public int getId() {
 		return id;

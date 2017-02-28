@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity(name = "pdf_field")
-public class PDField implements Serializable{
+public class PdfField implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -23,7 +23,7 @@ public class PDField implements Serializable{
 	private List<Item> items;
 	
 	@ManyToOne
-	private PDF pdf;
+	private Pdf pdf;
 
 	public int getId() {
 		return id;
@@ -57,11 +57,11 @@ public class PDField implements Serializable{
 		this.items = items;
 	}
 
-	public PDF getPdf() {
+	public Pdf getPdf() {
 		return pdf;
 	}
 
-	public void setPdf(PDF pdf) {
+	public void setPdf(Pdf pdf) {
 		this.pdf = pdf;
 	}
 
