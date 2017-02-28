@@ -18,6 +18,6 @@ public class Block {
 	private int pid; // parent form page id
 	
 	@OneToMany
-	@Column(name="selection")
+	@Column(name="item")
 	private List<Item> items;
 }
