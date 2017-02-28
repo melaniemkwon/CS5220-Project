@@ -47,7 +47,7 @@ public class Item implements Serializable{
 	private boolean isRequired;
 	
 	@ManyToOne
-	private PDField matchField;
+	private PdfField matchField;
 
 	public double getId() {
 		return id;
@@ -105,11 +105,11 @@ public class Item implements Serializable{
 		this.itemTypes = itemTypes;
 	}
 
-	public PDField getMatchField() {
+	public PdfField getMatchField() {
 		return matchField;
 	}
 
-	public void setMatchField(PDField matchField) {
+	public void setMatchField(PdfField matchField) {
 		this.matchField = matchField;
 	}
 	
