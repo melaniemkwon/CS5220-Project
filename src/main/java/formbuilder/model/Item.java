@@ -3,6 +3,8 @@ package formbuilder.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,6 +16,8 @@ import javax.persistence.ManyToOne;
 
 @Entity(name = "Item")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="item_type")
+@DiscriminatorValue("item")
 public class Item implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
