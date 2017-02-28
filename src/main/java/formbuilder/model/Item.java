@@ -14,7 +14,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "Item")
+@Entity(name = "item")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="item_type")
 @DiscriminatorValue("item")

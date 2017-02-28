@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity
+@Entity(name = "form")
 public class Form {
 	@Id
     @GeneratedValue
