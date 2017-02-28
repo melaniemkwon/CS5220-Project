@@ -12,23 +12,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity(name = "pdf")
-public class Pdf implements Serializable{
+public class Pdf implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-    @GeneratedValue
+	@GeneratedValue
 	private int id;
 	private String name;
-	
+
 	@Column(name = "upload_date")
 	private Date uploadDate;
-	
+
 	@ManyToOne
 	private User user;
-	
+
 	@OneToMany
 	List<PdfField> fields;
-	
+
 	public int getId() {
 		return id;
 	}
