@@ -1,21 +1,23 @@
 package formbuilder.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity(name = "text_answer")
 public class ItemTextAnswer {
 
+	@Id
+	@GeneratedValue
 	private Integer id;
-	private String answer; // text input from the user
-	private Item item; // match to the items which the answer belongs to
-	private User user;
-	private ItemTextAnswer matchItem;
 
-	public ItemTextAnswer(Integer id, String answer, Item item, User user, ItemTextAnswer matchItem) {
-		super();
-		this.id = id;
-		this.answer = answer;
-		this.item = item;
-		this.user = user;
-		this.matchItem = matchItem;
-	}
+	private String answer; // text input from the user
+
+	private Item item; // match to the items which the answer belongs to
+
+	private User user;
+
+	private ItemTextAnswer matchItem;
 
 	public Integer getId() {
 		return id;

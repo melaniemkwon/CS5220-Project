@@ -1,12 +1,36 @@
 package formbuilder.model;
- 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "selections")
  public class Selection {
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "selection_id")
  	private int selectionId;
+	
+	@Column(name = "order_id")
  	private int orderId;
+	
+	@Column(name = "name")
  	private String name;
+	
+	@Column(name = "value")
  	private String value;
+	
+	@Column(name = "description")
  	private String description;
+	
+	@Column(name = "parent_id")
  	private int parentId;
+ 	
+ 	public Selection(){}
  	
  	public Selection(int order,String name, String value, int pid){
  		this.orderId = order; //order to be shown in the parent item

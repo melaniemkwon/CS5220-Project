@@ -1,22 +1,29 @@
 package formbuilder.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ItemSelection extends Item {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-	private String type;
+@Entity(name = "item_selection")
+public class ItemSelection extends Item implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+	@OneToMany
+	@Column(name="selection")
 	private List<Selection> selections;
+	
+	@OneToOne
+	private ItemSelectionAnswer answer;
+	
+	@Column(name="min")
 	private int minRequirements; // (ex. Needs to pick at lease 1)
+	@Column(name="max")
 	private int maxSelectionNum; //(ex. maximum number to select, can be select 2 out of 5, so max=2)}
 	
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public List<Selection> getSelections() {
 		return selections;
 	}
@@ -32,5 +39,27 @@ public class ItemSelection extends Item {
 	public void setMinRequirements(Integer minRequirements) {
 		this.minRequirements = minRequirements;
 	}
+
+	public ItemSelectionAnswer getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(ItemSelectionAnswer answer) {
+		this.answer = answer;
+	}
+
+	public int getMaxSelectionNum() {
+		return maxSelectionNum;
+	}
+
+	public void setMaxSelectionNum(int maxSelectionNum) {
+		this.maxSelectionNum = maxSelectionNum;
+	}
+
+	public void setMinRequirements(int minRequirements) {
+		this.minRequirements = minRequirements;
+	}
+	
+	
 
 }

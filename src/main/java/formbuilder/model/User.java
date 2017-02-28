@@ -1,19 +1,44 @@
 package formbuilder.model;
+import java.io.Serializable;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 
-import java.util.List;
 
-public class User {
-	
+
+@Entity
+@Table(name = "users")
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "user_id")
 	private Integer id;
+	
+	@Column(name = "last_name")
 	private String lastName;
+	
+	@Column(name = "first_name")
 	private String firstName;
+	
+	@Column(name = "email", unique = true)
 	private String email;
+	
+	@Column(name = "address")
 	private UserAddress address;
-	public enum Role {
-	    ADMIN,
-	    USER
-	}
-	public Role roleTypes;
+	
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
 	
 	public Integer getId() {
 		return id;
@@ -39,17 +64,20 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public UserAddress getAddress() {
 		return address;
 	}
+	
 	public void setAddress(UserAddress address) {
 		this.address = address;
 	}
-	public Role getRoleTypes() {
-		return roleTypes;
-	}
-	public void setRoleTypes(Role roleTypes) {
-		this.roleTypes = roleTypes;
-	}
 	
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 }
