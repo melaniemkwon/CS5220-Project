@@ -1,7 +1,12 @@
 package formbuilder.model;
 
-public class UserAddress {
+import java.io.Serializable;
+
+import javax.persistence.Embeddable;
+@Embeddable
+public class UserAddress implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private String address1;
 	private String address2;
 	private String city;
@@ -11,6 +16,7 @@ public class UserAddress {
 	private String phoneHome;
 	private String phoneWork;
 	private String phoneCell;
+	
 	
 	public String getAddress1() {
 		return address1;
