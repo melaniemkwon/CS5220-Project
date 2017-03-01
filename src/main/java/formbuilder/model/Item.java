@@ -20,20 +20,19 @@ import javax.persistence.Table;
 public class Item implements Serializable{
     private static final long serialVersionUID = 1L;
     
-    @Id
-    @GeneratedValue
     private double id;
     private String name;
     private String description;
     
+    @Id
+    @GeneratedValue
     @Column(name = "order_id")
     private int orderId; // in which order this item should be shown, when only
                             // by itself the default is 0
     @ManyToOne
     @JoinColumn(name = "block_id")
     private Block block_mapped;
-    
-
+   
     
     public enum Type {
         TEXT,
@@ -41,6 +40,8 @@ public class Item implements Serializable{
         CHECKBOX,
         PULLDOWN
     }
+    
+    
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "type")
     private Type itemTypes;

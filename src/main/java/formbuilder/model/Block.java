@@ -17,6 +17,7 @@ import javax.persistence.CascadeType;
 @Entity
 @Table(name = "block")
 public class Block {
+    
 	@Id
 	@Column(name = "block_id")
     @GeneratedValue
@@ -34,8 +35,6 @@ public class Block {
 	@OneToMany(mappedBy = "block_mapped", cascade = CascadeType.ALL)
 	@OrderBy("item_id")
 	private List<Item> items;
-
-	
     
     @OneToMany(mappedBy = "block_mapped_pages", cascade = CascadeType.ALL)
     @OrderBy("page_id")

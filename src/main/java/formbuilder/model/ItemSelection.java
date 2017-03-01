@@ -8,19 +8,23 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-@Entity(name = "item_selection")
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "item_selection")
 public class ItemSelection extends Item implements Serializable{
-    private static final long serialVersionUID = 1L;
+
 
     @OneToMany
     @Column(name="selection")
     private List<Selection> selections;
     
     @OneToOne
-    private ItemSelectionAnswer answer;
+    private ItemSelectionAnswer answer_mapped;
     
     @Column(name="min")
     private int minRequirements; // (ex. Needs to pick at least 1)
+    
     @Column(name="max")
     private int maxSelectionNum; //(ex. maximum number to select, can be select 2 out of 5, so max=2)}
     
@@ -41,11 +45,11 @@ public class ItemSelection extends Item implements Serializable{
     }
 
     public ItemSelectionAnswer getAnswer() {
-        return answer;
+        return answer_mapped;
     }
 
     public void setAnswer(ItemSelectionAnswer answer) {
-        this.answer = answer;
+        this.answer_mapped = answer;
     }
 
     public int getMaxSelectionNum() {
