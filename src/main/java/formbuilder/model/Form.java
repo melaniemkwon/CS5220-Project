@@ -20,9 +20,13 @@ public class Form {
 	@OneToMany
 	@Column(name="page")
 	private List<Page> pages;
+	@Column(name = "create_date")
 	private Date createDate;
+	@Column(name = "update_date")
 	private Date updateDate;
+	@Column(name = "submit_date")
 	private Date submitDate;
 	private boolean available; 	// form can be disabled for example if the admin wants to make changes
+	@Column(name = "finished")
 	private boolean isfinished;
 }
