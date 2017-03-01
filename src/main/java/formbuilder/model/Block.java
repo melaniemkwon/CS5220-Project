@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 import javax.persistence.CascadeType;
 
-
 @Entity
 @Table(name = "block")
 public class Block {
@@ -41,7 +40,6 @@ public class Block {
     @OneToMany(mappedBy = "block_mapped_pages", cascade = CascadeType.ALL)
     @OrderBy("page_id")
     private List<Page> pages;
-
 
 	
 	public int getId() {

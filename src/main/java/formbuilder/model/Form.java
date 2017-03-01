@@ -13,15 +13,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
-
 @Entity
 @Table(name = "form")
 public class Form {
 	
 
-    
-	
+   
     @Id
     @GeneratedValue
     @Column(name = "form_id")

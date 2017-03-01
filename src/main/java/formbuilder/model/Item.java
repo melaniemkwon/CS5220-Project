@@ -1,7 +1,6 @@
 package formbuilder.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,8 +11,11 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-@Entity(name = "Item")
+
+@Entity
+@Table(name = "Item")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Item implements Serializable{
     private static final long serialVersionUID = 1L;
