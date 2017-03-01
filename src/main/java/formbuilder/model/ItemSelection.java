@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity(name = "item_selection")
+@DiscriminatorValue("selection")
 public class ItemSelection extends Item implements Serializable{
 	private static final long serialVersionUID = 1L;
 
