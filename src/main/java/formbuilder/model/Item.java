@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "Item")
@@ -27,7 +28,10 @@ public class Item implements Serializable{
     private int orderId; // in which order this item should be shown, when only
                             // by itself the default is 0
     @ManyToOne
-    private Block block;
+    @JoinColumn(name = "block_id")
+    private Block block_mapped;
+    
+
     
     public enum Type {
         TEXT,
@@ -78,11 +82,11 @@ public class Item implements Serializable{
     }
 
     public Block getBlock() {
-        return block;
+        return block_mapped;
     }
 
     public void setBlock(Block block) {
-        this.block = block;
+        this.block_mapped = block;
     }
 
     public boolean isRequired() {
