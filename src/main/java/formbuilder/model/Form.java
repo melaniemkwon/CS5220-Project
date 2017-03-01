@@ -16,22 +16,17 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "form")
 public class Form {
-	
-
-   
+		
     @Id
     @GeneratedValue
     @Column(name = "form_id")
 	private Integer id;
 	private String name;
 	private String description;
-
-
 	
     @OneToMany(mappedBy = "form_mapped", cascade = CascadeType.ALL)
     @OrderBy("page_id")
     private List<Page> pages;
-	
 	
 	@Column(name = "create_date")
 	private Date createDate;
