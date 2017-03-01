@@ -6,6 +6,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+<<<<<<< HEAD
+=======
+import javax.persistence.Embedded;
+>>>>>>> master
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -33,7 +37,11 @@ public class User implements Serializable {
 	@Column(name = "email", unique = true)
 	private String email;
 	
+<<<<<<< HEAD
 	@Column(name = "address")
+=======
+	@Embedded
+>>>>>>> master
 	private UserAddress address;
 	
     @Enumerated(EnumType.STRING)
