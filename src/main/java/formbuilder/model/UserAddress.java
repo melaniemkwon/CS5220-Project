@@ -2,6 +2,7 @@ package formbuilder.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 @Embeddable
 public class UserAddress implements Serializable {
@@ -13,8 +14,11 @@ public class UserAddress implements Serializable {
 	private String state;
 	private String zip;
 	private String country;
+	@Column(name = "phone_home")
 	private String phoneHome;
+	@Column(name = "phone_work")
 	private String phoneWork;
+	@Column(name = "phone_cell")
 	private String phoneCell;
 	
 	
