@@ -23,7 +23,7 @@ public class Item implements Serializable{
     private String name;
     private String description;
     
-    @Column(name = "orderId")
+    @Column(name = "order_id")
     private int orderId; // in which order this item should be shown, when only
                             // by itself the default is 0
     @ManyToOne
