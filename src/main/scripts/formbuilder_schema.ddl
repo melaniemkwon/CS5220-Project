@@ -22,6 +22,7 @@ create sequence hibernate_sequence start 1 increment 1
         name varchar(255),
         submit_date timestamp,
         update_date timestamp,
+        user_user_id int4,
         primary key (id)
     )
 
@@ -177,6 +178,11 @@ create sequence hibernate_sequence start 1 increment 1
         add constraint FKq7svhnssptjhtm31leqlh8m6i 
         foreign key (block_id) 
         references block
+
+    alter table form 
+        add constraint FKufiw1a83lvh6jbanfipamllb 
+        foreign key (user_user_id) 
+        references users
 
     alter table form_page 
         add constraint FK93jc8qgbfmjo0fx9m0medag92 
