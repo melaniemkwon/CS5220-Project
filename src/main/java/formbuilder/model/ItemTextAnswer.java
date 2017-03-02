@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity(name = "text_answer")
 public class ItemTextAnswer {
@@ -14,7 +15,7 @@ public class ItemTextAnswer {
 
 	private String answer; // text input from the user
 
-	@ManyToOne
+	@OneToOne
 	private Item item; // match to the items which the answer belongs to
 
 	@ManyToOne
