@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,17 +28,8 @@ import javax.persistence.Table;
 	@Column(name = "description")
  	private String description;
 	
-	@Column(name = "parent_id")
- 	private int parentId;
- 	
- 	public Selection(){}
- 	
- 	public Selection(int order,String name, String value, int pid){
- 		this.orderId = order; //order to be shown in the parent item
- 		this.name = name;
- 		this.value = value;  //default: false, when get selected then turn into true
- 		this.parentId = pid; //parent selection item id
- 	}
+	@ManyToOne
+	private ItemSelection item;
  	
  	public int getId() {
  		return selectionId;
@@ -80,13 +72,12 @@ import javax.persistence.Table;
  	public void setSelectionId(int selectionId) {
  		this.selectionId = selectionId;
  	}
- 
- 	public int getParentId() {
- 		return parentId;
- 	}
- 
- 	public void setParentId(int parentId) {
- 		this.parentId = parentId;
- 	}
  	
+	public ItemSelection getItem() {
+		return item;
+	}
+	public void setItem(ItemSelection item) {
+		this.item = item;
+	}
+	
  }
