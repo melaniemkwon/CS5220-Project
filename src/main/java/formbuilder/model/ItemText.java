@@ -12,8 +12,6 @@ public class ItemText extends Item {
 	@Column(name="textLength")
 	private int textLength;
 	
-	
-	
 	public String getType() {
 		return type;
 	}
@@ -32,8 +30,5 @@ public class ItemText extends Item {
 	public void setTextLength(int textLength) {
 		this.textLength = textLength;
 	}
-	
-	
-	
 }
 

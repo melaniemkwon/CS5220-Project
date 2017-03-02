@@ -22,4 +22,36 @@ public class Page {
 	@OneToMany
 	@Column(name="block")
 	private List<Block> block;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+
+	public Form getForm() {
+		return form;
+	}
+
+	public void setForm(Form form) {
+		this.form = form;
+	}
+
+	public List<Block> getBlock() {
+		return block;
+	}
+
+	public void setBlock(List<Block> block) {
+		this.block = block;
+	}
 }
