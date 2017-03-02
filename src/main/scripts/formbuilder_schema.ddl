@@ -10,7 +10,7 @@ create sequence hibernate_sequence start 1 increment 1
 
     create table block_Item (
         block_id int4 not null,
-        items_id float8 not null
+        items_id int4 not null
     )
 
     create table form (
@@ -33,16 +33,17 @@ create sequence hibernate_sequence start 1 increment 1
 
     create table Item (
         DTYPE varchar(31) not null,
-        id float8 not null,
+        id int4 not null,
         description varchar(255),
         required boolean,
-        type int4,
+        item_type int4,
         name varchar(255),
         order_id int4,
         max int4,
         min int4,
         input_text varchar(255),
         textLength int4,
+        type varchar(255),
         block_id int4,
         matchField_id int4,
         answer_id int4,
@@ -50,7 +51,7 @@ create sequence hibernate_sequence start 1 increment 1
     )
 
     create table Item_selections (
-        item_selection_id float8 not null,
+        item_selection_id int4 not null,
         selections_selection_id int4 not null
     )
 
@@ -84,7 +85,7 @@ create sequence hibernate_sequence start 1 increment 1
 
     create table pdf_field_Item (
         pdf_field_id int4 not null,
-        items_id float8 not null
+        items_id int4 not null
     )
 
     create table pdf_pdf_field (
@@ -110,14 +111,14 @@ create sequence hibernate_sequence start 1 increment 1
         name varchar(255),
         order_id int4,
         value varchar(255),
-        item_id float8,
+        item_id int4,
         primary key (selection_id)
     )
 
     create table text_answer (
         id int4 not null,
         answer varchar(255),
-        item_id float8,
+        item_id int4,
         user_user_id int4,
         primary key (id)
     )
