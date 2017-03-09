@@ -2,12 +2,14 @@ package formbuilder.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity(name = "page")
 public class Page {
@@ -19,7 +21,8 @@ public class Page {
 	@ManyToOne
 	private Form form; // parent form
 	
-	@OneToMany
+	@OneToMany(mappedBy="page",cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@OrderBy("blockOrder")
 	@Column(name="block")
 	private List<Block> block;
 

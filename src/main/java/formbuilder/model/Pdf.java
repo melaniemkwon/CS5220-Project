@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Pdf implements Serializable {
 	@ManyToOne
 	private User user;
 
-	@OneToMany
+	@OneToMany(mappedBy="pdf",cascade={CascadeType.PERSIST, CascadeType.MERGE}) //only for saving, not for deleting 
 	List<PdfField> fields;
 
 	public int getId() {

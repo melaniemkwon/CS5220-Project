@@ -3,6 +3,7 @@ package formbuilder.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,7 +19,8 @@ public class ItemSelectionAnswer implements Serializable{
 	private Integer id;
 
 	@OneToMany
-	private Set<Selection> selection;
+	@Column(name="selected")
+	private Set<Selection> selection;   //a list of selected options' id
 	
 	@ManyToOne
 	private User user;
