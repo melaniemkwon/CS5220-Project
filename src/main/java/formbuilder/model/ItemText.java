@@ -1,34 +1,31 @@
 package formbuilder.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 @Entity(name = "item_text")
 public class ItemText extends Item {
-
-	private String type;
-	@Column(name="input_text")
-	private String inputText; 
-	@Column(name="textLength")
+	
+	@Column(name="text_length")
 	private int textLength;
 	
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getInputText() {
-		return inputText;
-	}
-	public void setInputText(String inputText) {
-		this.inputText = inputText;
-	}
+	@OneToOne(mappedBy="item",cascade=CascadeType.ALL)
+	private ItemTextAnswer answer;
+	
 	public int getTextLength() {
 		return textLength;
 	}
 	public void setTextLength(int textLength) {
 		this.textLength = textLength;
 	}
+	public ItemTextAnswer getTextAnswer() {
+		return answer;
+	}
+	public void setTextAnswer(ItemTextAnswer textAnswer) {
+		this.answer = textAnswer;
+	}
+	
 }
 
