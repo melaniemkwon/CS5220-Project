@@ -3,6 +3,7 @@ package formbuilder.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -12,11 +13,11 @@ import javax.persistence.OneToOne;
 public class ItemSelection extends Item implements Serializable{
     private static final long serialVersionUID = 1L;
 
-    @OneToMany
+    @OneToMany(mappedBy="item",cascade=CascadeType.ALL)
     @Column(name="selection")
     private List<Selection> selections;
     
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private ItemSelectionAnswer answer;
     
     @Column(name="min")

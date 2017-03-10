@@ -19,7 +19,7 @@ public class Item implements Serializable{
     
     @Id
     @GeneratedValue
-    private double id;
+    private int id;
     private String name;
     private String description;
     
@@ -45,15 +45,15 @@ public class Item implements Serializable{
     @ManyToOne
     private PdfField matchField;
 
-    public double getId() {
-        return id;
-    }
+    public int getId() {
+		return id;
+	}
 
-    public void setId(double id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getName() {
+	public String getName() {
         return name;
     }
 

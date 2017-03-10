@@ -3,6 +3,7 @@ package formbuilder.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class Form {
 	private String description;
 	@ManyToOne
 	private User user;
-	@OneToMany
+	@OneToMany(mappedBy="form",cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@Column(name="page")
 	private List<Page> pages;
 	@Column(name = "create_date")

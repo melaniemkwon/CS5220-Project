@@ -15,7 +15,7 @@ public class ItemTextAnswer {
 
 	private String answer; // text input from the user
 
-	@OneToOne
+	@OneToOne        //no cascade, since we don't want to delete the item when deleting the answer
 	private Item item; // match to the items which the answer belongs to
 
 	@ManyToOne
