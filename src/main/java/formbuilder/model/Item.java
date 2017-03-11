@@ -38,7 +38,7 @@ public class Item implements Serializable{
     }
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "type")
-    private Type itemTypes;
+    private Type itemType;
     
     @Column(name = "required")
     private boolean isRequired;
@@ -94,12 +94,12 @@ public class Item implements Serializable{
         this.isRequired = isRequired;
     }
 
-    public Type getItemTypes() {
-        return itemTypes;
+    public Type getItemType() {
+        return itemType;
     }
 
-    public void setItemTypes(Type itemTypes) {
-        this.itemTypes = itemTypes;
+    public void setItemType(Type itemType) {
+        this.itemType = itemType;
     }
 
     public PdfField getMatchField() {
