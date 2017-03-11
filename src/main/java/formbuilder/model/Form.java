@@ -18,9 +18,10 @@ public class Form {
 	private Integer id;
 	private String name;
 	private String description;
+	private boolean available; 	// form can be disabled for example if the admin wants to make changes
 	@ManyToOne
 	private User user;
-	@OneToMany(mappedBy="form",cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(mappedBy="form",cascade=CascadeType.ALL)
 	@Column(name="page")
 	private List<Page> pages;
 	@Column(name = "create_date")
@@ -29,7 +30,6 @@ public class Form {
 	private Date updateDate;
 	@Column(name = "submit_date")
 	private Date submitDate;
-	private boolean available; 	// form can be disabled for example if the admin wants to make changes
 	@Column(name = "finished")
 	private boolean isfinished;
 	

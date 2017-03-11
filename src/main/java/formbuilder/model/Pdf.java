@@ -23,11 +23,13 @@ public class Pdf implements Serializable {
 
 	@Column(name = "upload_date")
 	private Date uploadDate;
+	
+	private boolean available; //pdf document can be disabled instead of delete
 
 	@ManyToOne
 	private User user;
 
-	@OneToMany(mappedBy="pdf",cascade={CascadeType.PERSIST, CascadeType.MERGE}) //only for saving, not for deleting 
+	@OneToMany(mappedBy="pdf",cascade=CascadeType.ALL) 
 	List<PdfField> fields;
 
 	public int getId() {

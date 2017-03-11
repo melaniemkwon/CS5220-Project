@@ -40,6 +40,8 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
+    
+    private boolean active;  //user account can be disabled
 	
 	public Integer getId() {
 		return id;
