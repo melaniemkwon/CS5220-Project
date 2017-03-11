@@ -18,12 +18,13 @@ public class Block {
 	private Integer id;
 	private String name;
 	private String description;
+	private boolean available; //block can be disabled
 	@Column(name = "block_order")
     private int blockOrder;
 	@ManyToOne
 	private Page page; // parent page
 	
-	@OneToMany(mappedBy="block",cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(mappedBy="block",cascade=CascadeType.ALL)
 	@OrderBy("orderId")
 	@Column(name="item")
 	private List<Item> items;

@@ -18,6 +18,7 @@ public class PdfField implements Serializable{
 	private Integer id;
 	private String name;
 	private String description;
+	private boolean available;  // fields can be disabled
 	
 	@OneToMany
 	private List<Item> items;

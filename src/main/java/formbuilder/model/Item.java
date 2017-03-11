@@ -22,6 +22,7 @@ public class Item implements Serializable{
     private Integer id;
     private String name;
     private String description;
+    private boolean available;  //block can be disabled
     
     @Column(name = "order_id")
     private int orderId; // in which order this item should be shown, when only
