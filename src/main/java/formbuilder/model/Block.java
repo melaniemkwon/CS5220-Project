@@ -15,7 +15,7 @@ import javax.persistence.OrderBy;
 public class Block {
 	@Id
     @GeneratedValue
-	private int id;
+	private Integer id;
 	private String name;
 	private String description;
 	@Column(name = "block_order")
@@ -28,11 +28,11 @@ public class Block {
 	@Column(name="item")
 	private List<Item> items;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

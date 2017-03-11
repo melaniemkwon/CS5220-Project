@@ -14,7 +14,7 @@ import javax.persistence.Table;
 	@Id
 	@GeneratedValue
 	@Column(name = "selection_id")
- 	private int selectionId;
+ 	private Integer selectionId;
 	
 	@Column(name = "order_id")
  	private int orderId;
@@ -31,10 +31,10 @@ import javax.persistence.Table;
 	@ManyToOne
 	private ItemSelection item;
  	
- 	public int getId() {
+ 	public Integer getId() {
  		return selectionId;
  	}
- 	public void setId(int id) {
+ 	public void setId(Integer id) {
  		this.selectionId = id;
  	}
  	public int getOrderId() {
