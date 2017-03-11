@@ -21,7 +21,9 @@ public class Page {
 	@ManyToOne
 	private Form form; // parent form
 	
-	@OneToMany(mappedBy="page",cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	private boolean available; //page can be disabled
+	
+	@OneToMany(mappedBy="page",cascade=CascadeType.ALL)
 	@OrderBy("blockOrder")
 	@Column(name="block")
 	private List<Block> block;
