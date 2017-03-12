@@ -15,7 +15,7 @@ import javax.persistence.GeneratedValue;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "users" , schema="public")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,8 +41,9 @@ public class User implements Serializable {
     @Column(name = "role")
     private Role role;
     
-    private boolean active;  //user account can be disabled
-	
+//    @Column(name = "active")
+//    private boolean active;  //user account can be disabled
+//	
 	public Integer getId() {
 		return id;
 	}
@@ -82,5 +83,8 @@ public class User implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	
+	
+	
 
 }
