@@ -18,7 +18,7 @@ public class Pdf implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	private String name;
 
 	@Column(name = "upload_date")
@@ -32,11 +32,11 @@ public class Pdf implements Serializable {
 	@OneToMany(mappedBy="pdf",cascade=CascadeType.ALL) 
 	List<PdfField> fields;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
