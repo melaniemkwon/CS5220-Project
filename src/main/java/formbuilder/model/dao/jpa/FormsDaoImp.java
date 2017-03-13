@@ -18,4 +18,9 @@ public class FormsDaoImp implements FormsDao {
         return entityManager.createQuery( "from Form order by id", Form.class )
             .getResultList();
     }
+	
+	@Override
+	public Form getForm( Integer id ) {
+		return entityManager.find(Form.class, id);
+	}
 }
