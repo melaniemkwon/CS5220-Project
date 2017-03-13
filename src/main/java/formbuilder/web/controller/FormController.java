@@ -30,4 +30,18 @@ public class FormController {
 		
 		return "admin/formView.html";
 	}
+	
+	@RequestMapping("/admin/formAdd.html")
+	public String add( @RequestParam Integer id, ModelMap models ) {
+		models.put("form", form.getForm( id ));
+		
+		return "admin/formAdd.html";
+	}
+	
+	@RequestMapping("/admin/formEdit.html")
+	public String edit( @RequestParam Integer id, ModelMap models ) {
+		models.put("form", form.getForm( id ));
+		
+		return "admin/formEdit.html";
+	}
 }
