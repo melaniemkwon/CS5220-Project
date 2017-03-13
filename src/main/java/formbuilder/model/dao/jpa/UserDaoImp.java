@@ -1,4 +1,4 @@
-package formbuilder.model.userDao.jpa;
+package formbuilder.model.dao.jpa;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import formbuilder.model.User;
-import formbuilder.userDao.UsersDao;
+import formbuilder.model.dao.UsersDao;
 
 @Repository
-public class UserDaoImp implements UsersDao{
+public class UserDaoImp implements UsersDao {
 	
 	
 	@PersistenceContext
