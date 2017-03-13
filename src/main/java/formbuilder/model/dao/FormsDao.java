@@ -8,4 +8,6 @@ public interface FormsDao {
 	List<Form> getForms();
 	
 	Form getForm( Integer id );
+	
+	Form saveForm( Form form );
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import formbuilder.model.Form;
 import formbuilder.model.dao.FormsDao;
 
@@ -22,5 +24,11 @@ public class FormsDaoImp implements FormsDao {
 	@Override
 	public Form getForm( Integer id ) {
 		return entityManager.find(Form.class, id);
+	}
+	
+	@Override
+	@Transactional
+	public Form saveForm( Form form ) {
+		return entityManager.merge(form);
 	}
 }
