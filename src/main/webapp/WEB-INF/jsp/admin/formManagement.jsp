@@ -66,9 +66,9 @@ body {
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../navbar/">Default</a></li>
-					<li><a href="../navbar-static-top/">Static top</a></li>
-					<li class="active"><a href="./">Fixed top <span
+					<li><a href="#">Menu1</a></li>
+					<li><a href="#">Menu2</a></li>
+					<li class="active"><a href="./">Menu3<span
 							class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
@@ -86,13 +86,19 @@ body {
 				<tr>
 					<th>ID</th>
 					<th>Form Name</th>
-					<th>UserID</th>
+					<th>Creator (user)</th>
+					<th>Actions</th>
 				</tr>
 				<c:forEach items="${forms}" var="form">
 					<tr>
-						<td>${form.id}</td>
+						<td><a href="#">${form.id}</a></td>
 						<td>${form.name}</td>
-						<td>${form.user}</td>
+						<td><a href="#">${form.user.email}</a></td>
+						<td><button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-pencil"></span> Edit 
+        </button><button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-remove"></span> Remove 
+        </button></td>
 					</tr>
 				</c:forEach>
 			</table>
