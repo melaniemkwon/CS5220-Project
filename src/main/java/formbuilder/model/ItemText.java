@@ -1,12 +1,14 @@
 package formbuilder.model;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 @Entity(name = "item_text")
-public class ItemText extends Item {
+public class ItemText extends Item implements Serializable {
 	
 	@Column(name="text_length")
 	private int textLength;

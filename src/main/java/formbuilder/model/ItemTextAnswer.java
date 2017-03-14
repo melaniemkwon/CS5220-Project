@@ -1,5 +1,7 @@
 package formbuilder.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity(name = "text_answer")
-public class ItemTextAnswer {
+public class ItemTextAnswer implements Serializable{
 
 	@Id
 	@GeneratedValue
