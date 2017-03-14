@@ -1,5 +1,6 @@
 package formbuilder.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
 @Entity(name = "page")
-public class Page {
+public class Page implements Serializable {
 	@Id
     @GeneratedValue
 	private Integer id;

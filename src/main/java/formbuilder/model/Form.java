@@ -1,5 +1,6 @@
 package formbuilder.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity(name = "form")
-public class Form {
+public class Form implements Serializable {
+	
 	@Id
     @GeneratedValue
 	private Integer id;
