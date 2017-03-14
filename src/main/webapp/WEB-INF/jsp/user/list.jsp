@@ -9,15 +9,17 @@
 </head>
 <body>
 <table border=1>
-<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Operations</th></tr>
+<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Operations</th><th>Operations1</th></tr>
 <c:forEach items="${users}" var="user">
 <tr><td>${user.id}</td><td>${user.firstName}</td><td>${user.lastName}</td>
 <td><a href='view.html?id=${user.id}'>View</a></td>
+<td><a href='view/${user.id}.html'>View1</a></td>
+<td><a href='edit.html?id=${user.id}'>Edit</a></td>
 </tr>
 
 </c:forEach>
 
 </table>
-
+<a href="add.html">Add new User</a>
 </body>
 </html>

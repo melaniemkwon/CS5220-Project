@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import formbuilder.model.User;
 import formbuilder.model.dao.UserDao;
@@ -32,8 +33,9 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
+	@Transactional
 	public User saveUser(User user) {
-		return null;
+		return entityManager.merge(user);
 	}
 
 	@Override
