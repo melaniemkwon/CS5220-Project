@@ -3,7 +3,8 @@
 <body>
 <p>Welcome to Form Builder.</p>
 <ul>
-  <li><a href="userList.html"> Users </a></li>
+  <li><a href="userList.html"> User Management </a></li>
+  <li><a href="admin/formManagement.html"> Form Management </a></li>
 </ul>
 </body>
 </html>
