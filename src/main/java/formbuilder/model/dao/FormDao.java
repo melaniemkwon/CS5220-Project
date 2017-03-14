@@ -11,8 +11,6 @@ public interface FormDao {
 	List<Form> getForms();
 	Form saveForm(Form form);
 	
-	Page getPage(Form form, Integer pageNum);
-	List<Page> getPages(Form form);
 	Page savePage(Page page);
 
 }

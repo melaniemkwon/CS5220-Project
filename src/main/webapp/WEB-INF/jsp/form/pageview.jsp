@@ -10,17 +10,10 @@
 <body>
 <table border=1>
 <a href="block/add_block.html">Add New Block</a>
-<tr><th>Name</th><td>${form.name}</td></tr>
+<tr><th>Form: </th><td>${form.name}</td></tr>
 <tr><th>Page Number</th><td>${page.pageNumber}</td></tr>
 <tr><th>Available</th><td>
-<c:choose>
-  <c:when test="${form.available==true}">
-  Yes
-  </c:when>
-  <c:otherwise>
-  No
-  </c:otherwise>
-</c:choose>
+
 </td></tr>
 </table>
 </body>

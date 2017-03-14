@@ -76,7 +76,7 @@ public class FormController {
 		
 		Form form = formDao.getForm(id);
 		//find next page number
-		List<Page> pages = formDao.getPages(form);
+		List<Page> pages = form.getPages();
 		int nextPageNum = pages.size() + 1;
 		
 		//create new page and save to db
@@ -93,8 +93,16 @@ public class FormController {
 	@RequestMapping(value="/form/page_view.html", method=RequestMethod.GET)
 	public String viewPage(@RequestParam Integer id, @RequestParam Integer p, ModelMap models){
 		Form form = formDao.getForm(id);
-		Page page = formDao.getPage(form, p);
+		List<Page> pages = form.getPages();
+		Page page = null;
+		if(p >= 1){
+			page = pages.get(p-1);
+		}else{
+			page = pages.get(0);
+		}
+		
 		models.put("page", page);
+		models.put("form", form);
 		
 		return "form/pageview";
 	}

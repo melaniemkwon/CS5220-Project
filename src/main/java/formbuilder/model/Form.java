@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 
 @Entity(name = "form")
 public class Form {
@@ -23,6 +24,7 @@ public class Form {
 	private User user;
 	@OneToMany(mappedBy="form",cascade=CascadeType.ALL)
 	@Column(name="page")
+	@OrderColumn(name="page_number")
 	private List<Page> pages;
 	@Column(name = "create_date")
 	private Date createDate;
