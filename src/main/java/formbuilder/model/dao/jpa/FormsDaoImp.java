@@ -5,11 +5,16 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+
+import org.springframework.stereotype.Repository;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import formbuilder.model.Form;
 import formbuilder.model.dao.FormsDao;
 
+
+@Repository
 public class FormsDaoImp implements FormsDao {
 	@PersistenceContext
     private EntityManager entityManager;
@@ -17,7 +22,7 @@ public class FormsDaoImp implements FormsDao {
 	@Override
     public List<Form> getForms(){
 		
-        return entityManager.createQuery( "from Form order by id", Form.class )
+        return entityManager.createQuery( "from form order by id", Form.class )
             .getResultList();
     }
 	
