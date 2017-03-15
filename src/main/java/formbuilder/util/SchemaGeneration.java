@@ -20,11 +20,12 @@ public class SchemaGeneration {
         // Write the generated schema to a string
         StringWriter stringWriter = new StringWriter();
         Map<String, Object> properties = new HashMap<>();
-        properties.put( "javax.persistence.schema-generation.scripts.action",
-            "create" );
-        properties.put(
-            "javax.persistence.schema-generation.scripts.create-target",
-            stringWriter );
+        
+        
+        properties.put( "javax.persistence.schema-generation.scripts.action","create" );
+        
+        properties.put("javax.persistence.schema-generation.scripts.create-target",stringWriter );
+        
         Persistence.generateSchema( "formbuilder", properties );
 
         // If there is a command line argument, consider it the output file name
@@ -37,7 +38,7 @@ public class SchemaGeneration {
         Scanner scanner = new Scanner( stringWriter.toString() );
         while( scanner.hasNextLine() )
         {
-            String line = formatter.format( scanner.nextLine() );
+            String line = formatter.format( scanner.nextLine() + ";");
             System.out.println( line );
             if( out != null )
             {

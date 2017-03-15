@@ -1,5 +1,6 @@
 package formbuilder.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,10 +13,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
 @Entity(name = "block")
-public class Block {
+public class Block implements Serializable{
 	@Id
     @GeneratedValue
-	private int id;
+	private Integer id;
 	private String name;
 	private String description;
 	private boolean available; //block can be disabled
@@ -29,11 +30,11 @@ public class Block {
 	@Column(name="item")
 	private List<Item> items;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
