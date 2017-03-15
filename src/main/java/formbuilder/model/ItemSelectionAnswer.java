@@ -24,7 +24,7 @@ public class ItemSelectionAnswer implements Serializable{
 	
 	@ManyToOne
 	private User user;
-
+	
 	public Integer getId() {
 		return id;
 	}

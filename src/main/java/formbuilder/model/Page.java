@@ -1,5 +1,6 @@
 package formbuilder.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,25 +13,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
 @Entity(name = "page")
-public class Page {
+public class Page implements Serializable {
 	@Id
     @GeneratedValue
-	private int id;
+	private Integer id;
 	@Column(name="page_number")
 	private int pageNumber;
 	@ManyToOne
 	private Form form; // parent form
 	
-	@OneToMany(mappedBy="page",cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	private boolean available; //page can be disabled
+	
+	@OneToMany(mappedBy="page",cascade=CascadeType.ALL)
 	@OrderBy("blockOrder")
 	@Column(name="block")
 	private List<Block> block;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

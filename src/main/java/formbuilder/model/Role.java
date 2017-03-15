@@ -1,5 +1,5 @@
 package formbuilder.model;
 
 public enum Role {
-	USER, ADMIN
+	USER, ADMIN, STAFF
 }

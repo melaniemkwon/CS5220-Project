@@ -29,11 +29,7 @@ create sequence hibernate_sequence start 1 increment 1;
         name varchar(255),
         page_id int4,
         primary key (id)
-<<<<<<< HEAD
-    )
-=======
     );
->>>>>>> master
 
     create table form (
         id int4 not null,
@@ -46,11 +42,7 @@ create sequence hibernate_sequence start 1 increment 1;
         update_date timestamp,
         user_user_id int4,
         primary key (id)
-<<<<<<< HEAD
-    )
-=======
     );
->>>>>>> master
 
     create table Item (
         DTYPE varchar(31) not null,
@@ -68,11 +60,7 @@ create sequence hibernate_sequence start 1 increment 1;
         matchField_id int4,
         answer_id int4,
         primary key (id)
-<<<<<<< HEAD
-    )
-=======
     );
->>>>>>> master
 
     create table page (
         id int4 not null,
@@ -80,11 +68,7 @@ create sequence hibernate_sequence start 1 increment 1;
         page_number int4,
         form_id int4,
         primary key (id)
-<<<<<<< HEAD
-    )
-=======
     );
->>>>>>> master
 
     create table pdf (
         id int4 not null,
@@ -107,11 +91,7 @@ create sequence hibernate_sequence start 1 increment 1;
     create table pdf_field_Item (
         pdf_field_id int4 not null,
         items_id int4 not null
-<<<<<<< HEAD
-    )
-=======
     );
->>>>>>> master
 
     create table selection_answer (
         id int4 not null,
@@ -141,36 +121,10 @@ create sequence hibernate_sequence start 1 increment 1;
         item_id int4,
         user_user_id int4,
         primary key (id)
-<<<<<<< HEAD
-    )
-
-    create table users (
-        user_id int4 not null,
-        active boolean not null,
-        address1 varchar(255),
-        address2 varchar(255),
-        city varchar(255),
-        country varchar(255),
-        phone_cell varchar(255),
-        phone_home varchar(255),
-        phone_work varchar(255),
-        state varchar(255),
-        zip varchar(255),
-        email varchar(255),
-        first_name varchar(255),
-        last_name varchar(255),
-        role varchar(255),
-        primary key (user_id)
-    )
-
-    alter table pdf_field_Item 
-        add constraint UK_b425yubpwrfa9magjw5nq4pi8 unique (items_id)
-=======
     );
 
     alter table pdf_field_Item 
         add constraint UK_b425yubpwrfa9magjw5nq4pi8 unique (items_id);
->>>>>>> master
 
     alter table selection_answer_selections 
         add constraint UK_5vre6vj11mq5q7lek9a5hw8ka unique (selection_selection_id);
@@ -178,20 +132,12 @@ create sequence hibernate_sequence start 1 increment 1;
     alter table block 
         add constraint FKe3nwc03y9f19kvqltc9ss3nar 
         foreign key (page_id) 
-<<<<<<< HEAD
-        references page
-=======
         references page;
->>>>>>> master
 
     alter table form 
         add constraint FKufiw1a83lvh6jbanfipamllb 
         foreign key (user_user_id) 
-<<<<<<< HEAD
-        references users
-=======
         references public.users;
->>>>>>> master
 
     alter table Item 
         add constraint FK66635usqnh41ur8dkkgjg5d4w 
@@ -206,20 +152,12 @@ create sequence hibernate_sequence start 1 increment 1;
     alter table Item 
         add constraint FKax808cyt2vg5qx0fnsegv7ywn 
         foreign key (answer_id) 
-<<<<<<< HEAD
-        references selection_answer
-=======
         references selection_answer;
->>>>>>> master
 
     alter table page 
         add constraint FKe927owsiu7yiit9nmohw42a60 
         foreign key (form_id) 
-<<<<<<< HEAD
-        references form
-=======
         references form;
->>>>>>> master
 
     alter table pdf 
         add constraint FKb7u3htpvu7ft2ykeagfx9xudi 
@@ -239,11 +177,7 @@ create sequence hibernate_sequence start 1 increment 1;
     alter table pdf_field_Item 
         add constraint FK5g8n72xoowa3ndd69pob3ekd5 
         foreign key (pdf_field_id) 
-<<<<<<< HEAD
-        references pdf_field
-=======
         references pdf_field;
->>>>>>> master
 
     alter table selection_answer 
         add constraint FK8007vyi4sxourjr1em4w45gt9 
