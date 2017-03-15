@@ -83,9 +83,12 @@ public class User implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	
-	
-	
+
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 
 }
