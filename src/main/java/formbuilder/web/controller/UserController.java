@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import formbuilder.model.User;
-import formbuilder.model.dao.UsersDao;
+import formbuilder.model.dao.UserDao;
 
 
 @Controller
 public class UserController {
 
 	@Autowired
-    private UsersDao userDao;
+    private UserDao userDao;
 	
 	@RequestMapping("/user/list.html")
     public String list( ModelMap models ){
