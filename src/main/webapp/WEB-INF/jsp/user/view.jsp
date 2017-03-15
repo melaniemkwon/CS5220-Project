@@ -4,13 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User View</title>
+<title>Insert title here</title>
 </head>
 <body>
-<table border=1>
+
+<table border="1">
 <tr><th>ID</th><td>${user.id}</td></tr>
-<tr><th>Name</th><td>${user.firstName}</td></tr>
-<tr><th>Name</th><td>${user.lastName}</td></tr>
+<tr><th>Username</th><td>${user.firstName}</td></tr>
+<tr><th>Password</th><td>${user.lastName}</td></tr>
+<tr><th>Enabled</th><td>${user.email}</td></tr>
 
 </table>
 
