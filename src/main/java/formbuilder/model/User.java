@@ -41,9 +41,9 @@ public class User implements Serializable {
     @Column(name = "role")
     private Role role;
     
-//    @Column(name = "active")
-//    private boolean active;  //user account can be disabled
-//	
+    @Column(name = "active")
+    private boolean active;  //user account can be disabled
+	
 	public Integer getId() {
 		return id;
 	}
