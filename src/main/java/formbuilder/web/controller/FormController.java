@@ -17,7 +17,7 @@ import formbuilder.model.Form;
 import formbuilder.model.Page;
 import formbuilder.model.User;
 import formbuilder.model.dao.FormDao;
-import formbuilder.model.dao.UsersDao;
+import formbuilder.model.dao.UserDao;
 
 
 @Controller
@@ -27,7 +27,7 @@ public class FormController {
     @Autowired
     private FormDao formDao;
     @Autowired
-    private UsersDao userDao;
+    private UserDao userDao;
     
     @RequestMapping("/form/list.html")
     public String listForm(ModelMap models){
