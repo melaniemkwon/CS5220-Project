@@ -18,10 +18,12 @@ public class UserDaoImpl implements UserDao{
     private EntityManager entityManager;
 	
 	@Override
-    public User getUser(Integer id){
-		
-        return entityManager.find( User.class, id );
-    }
+	public User getUser(Integer id) {
+        
+		return entityManager.createQuery("from User where user_id = :userid", User.class)
+				.setParameter("userid", id)
+				.getSingleResult();
+	}
 
 	@Override
 	public List<User> getUsers() {
@@ -35,5 +37,25 @@ public class UserDaoImpl implements UserDao{
 	public User saveUser(User user) {
 		return entityManager.merge(user);
 	}
+
+	@Override
+	public User getUserByUsername(String name) {
+		return null;
+	}
+	
+
+    @Override
+    @Transactional
+    public void delete( User user ) {
+
+    	entityManager.remove( user );
+    }
+    
+    @Override
+    @Transactional
+    public void delete(int id){
+    	User user = entityManager.find( User.class, id );
+    	entityManager.remove( user );
+    }
 
 }
