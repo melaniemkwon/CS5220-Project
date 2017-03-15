@@ -19,10 +19,8 @@ public class FormDaoImpl implements FormDao {
     private EntityManager entityManager;
 
 	@Override
-	public Form getForm(Integer id) {
-		return entityManager.createQuery("from form where id = :formid",Form.class)
-				.setParameter("formid", id)
-				.getSingleResult();
+	public Form getForm( Integer id ) {
+		return entityManager.find(Form.class, id);
 	}
 
 	@Override
