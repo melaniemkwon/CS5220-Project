@@ -11,11 +11,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import formbuilder.model.Form;
-import formbuilder.model.dao.FormsDao;
+import formbuilder.model.Page;
+import formbuilder.model.dao.FormDao;
 
 
 @Repository
-public class FormsDaoImp implements FormsDao {
+public class FormDaoImp implements FormDao {
 	@PersistenceContext
     private EntityManager entityManager;
 	
@@ -35,5 +36,11 @@ public class FormsDaoImp implements FormsDao {
 	@Transactional
 	public Form saveForm( Form form ) {
 		return entityManager.merge(form);
+	}
+
+	@Override
+	public Page savePage(Page page) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

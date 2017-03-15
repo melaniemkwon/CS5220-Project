@@ -1,6 +1,6 @@
-
     create table public.users (
         user_id int4 not null,
+        active boolean,
         address1 varchar(255),
         address2 varchar(255),
         city varchar(255),
