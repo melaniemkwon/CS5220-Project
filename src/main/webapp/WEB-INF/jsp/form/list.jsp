@@ -5,20 +5,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>User list</title>
 </head>
 <body>
-<h1>List of Forms</h1>
-<a href="add.html">Add New Form</a>
 <table border=1>
-<tr><th>ID</th><th>Name</th><th>Description</th><th><br/></th></tr>
-<c:forEach items="${forms}" var="form">
-<tr><td>${form.id}</td><td>${form.name}</td><td>${form.description}</td>
-<td><a href="view/${form.id}.html">View</a></td>
-
+<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Operations</th><th>Operations1</th></tr>
+<c:forEach items="${users}" var="user">
+<tr><td>${user.id}</td><td>${user.firstName}</td><td>${user.lastName}</td>
+<td><a href='view.html?id=${user.id}'>View</a></td>
+<!-- <td><a href='view/${user.id}.html'>View1</a></td> -->
+<td><a href='edit.html?id=${user.id}'>Edit</a></td>
+<td><a href='delete.html?id=${user.id}'>Delete</a></td>
 </tr>
 </c:forEach>
 </table>
-
+<a href="add.html">Add new User</a>
 </body>
 </html>

@@ -42,5 +42,20 @@ public class UserDaoImpl implements UserDao{
 	public User getUserByUsername(String name) {
 		return null;
 	}
+	
+
+    @Override
+    @Transactional
+    public void delete( User user ) {
+
+    	entityManager.remove( user );
+    }
+    
+    @Override
+    @Transactional
+    public void delete(int id){
+    	User user = entityManager.find( User.class, id );
+    	entityManager.remove( user );
+    }
 
 }
