@@ -18,12 +18,10 @@ public class UserDaoImpl implements UserDao{
     private EntityManager entityManager;
 	
 	@Override
-	public User getUser(Integer id) {
-        
-		return entityManager.createQuery("from User where user_id = :userid", User.class)
-				.setParameter("userid", id)
-				.getSingleResult();
-	}
+    public User getUser(Integer id){
+		
+        return entityManager.find( User.class, id );
+    }
 
 	@Override
 	public List<User> getUsers() {
@@ -36,11 +34,6 @@ public class UserDaoImpl implements UserDao{
 	@Transactional
 	public User saveUser(User user) {
 		return entityManager.merge(user);
-	}
-
-	@Override
-	public User getUserByUsername(String name) {
-		return null;
 	}
 
 }
