@@ -41,4 +41,11 @@ public class FormDaoImpl implements FormDao {
 		return entityManager.merge(page);
 	}
 
+	@Override
+	@Transactional
+	public void deleteForm(Form form) {
+		entityManager.remove(form);
+		
+	}
+
 }

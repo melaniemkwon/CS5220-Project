@@ -8,9 +8,13 @@ import formbuilder.model.Page;
 public interface FormDao {
 	
 	Form getForm(Integer id);
+	
 	List<Form> getForms();
+	
 	Form saveForm(Form form);
 	
 	Page savePage(Page page);
+	
+	void deleteForm(Form form);
 
 }
