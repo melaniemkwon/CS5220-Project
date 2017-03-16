@@ -20,5 +20,6 @@
 </c:forEach>
 </table>
 <a href="add.html">Add new User</a>
+<a href="/formbuilder">Main</a>
 </body>
 </html>

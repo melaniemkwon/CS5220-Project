@@ -91,6 +91,9 @@ public class UserController {
     @RequestMapping(value = "/user/add.html", method = RequestMethod.GET)
     public String add( ModelMap models ){
     	
+    	models.put("role", role.values());
+    	
+    	
         models.put( "user", new User() );
         models.put( "users", userDao.getUsers() );
         return "user/add";
