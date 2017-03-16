@@ -114,7 +114,7 @@ public class FormController {
     }
 
     @RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.GET)
-    public String edit( @RequestParam Integer id, ModelMap models ) {
+    public String edit( @PathVariable Integer id, ModelMap models ) {
         models.put("form", formDao.getForm( id ));
         models.put("forms", formDao.getForms());
         
@@ -130,10 +130,10 @@ public class FormController {
         form = formDao.saveForm( form );
         sessionStatus.setComplete();
         
-        return "redirect:form/list.html";
+        return "form/edit";
     }
     
-    @RequestMapping(value = "/form/remove/{id}.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/form/remove/{id}.html", method = RequestMethod.GET)
     public String remove( @ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus ) {
         
         // TODO: need to implement delete function user FormDao
