@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:url value="/" var="docroot" />
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Title</title>
+<title>Insert title here</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -25,16 +26,31 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-
 <style>
 body {
 	min-height: 2000px;
 	padding-top: 70px;
 }
+
+.form-box {
+padding: 15px;
+cursor: pointer;
+overflow: hidden;
+background: #FFF;
+border: 1px solid #CACACA;
+}
 </style>
 </head>
 <body>
-<!-- Fixed navbar -->
+	<%-- 	<h1>Add New Form</h1>
+	<form name="addform" method="post">
+		Form Name: <input type="text" name="name" /> <br /> Form Description:
+		<input type="text" name="description" /> <br /> Available: <input
+			type="checkbox" name="available" value="available" checked="checked" />Available
+		<br /> <input type="submit" name="add" value="Add" />
+	</form> --%>
+
+	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -45,13 +61,13 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/formbuilder/">Formbuilder</a>
+				<a class="navbar-brand" href="#">Formbuilder</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="/formbuilder/">Home</a></li>
-					<li><a href="/formbuilder/user/list.html">Users</a></li>
-					<li class="active"><a href="/formbuilder/form/list.html">Forms</a></li>
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -75,20 +91,55 @@ body {
 		</div>
 	</nav>
 
-<div class="container">
-	<a href="${docroot}form/add_item.html?id=${block.id}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> ADD NEW ITEM </button></a>
-	<table border=1>
-	<tr><th>Form: </th><td>${block.page.form.name}</td></tr>
-	<tr><th>Page: </th><td>${block.page.pageNumber}</td></tr>
-	<tr><th>Name: </th><td>${block.name}</td></tr>
-	<tr><th>Description: </th><td>${block.description}</td></tr>
-	<tr><th>Status</th><td>
-	<c:choose>
-	  <c:when test="${block.available==true}">Available</c:when>
-	  <c:otherwise>Unavailable</c:otherwise>
-	</c:choose>
-	</td></tr>
-	</table>
-</div>
+	<div class="container">
+	
+	<div class="block-box">
+
+		<form modelAttribute="form" action="${docroot}form/add_item.html" method="post">
+			<div class="form-group">
+				<h1>Add Item</h1>
+				<input type="hidden" name="id" value="${id}" />
+				How many options do you have?
+				<select name="total_opt">
+				<c:forEach begin="1" end="10" varStatus="loop">
+					<option value="${loop.index}">${loop.index}</option>
+				</c:forEach>
+				<option value="11">more than 10</option>
+				</select> <br/>
+				
+				Minimum number of options user should choose:
+				<select name="min">
+				<option value="0">Not required to choose any</option>
+				<option value="1">only 1</option>
+				<option value="2">more than 1</option>
+				</select> <br/>
+				
+				Maximum number of options user should choose:
+				<select name="max">
+				<option value="1">only 1</option>
+				<option value="2">more than 1</option>
+				</select> <br/>
+				
+				Item Name:
+				<input type="text" name="name" />
+				Item Description:
+				<input type="text" name="description" />
+				
+				<input type="checkbox" name="available" value="1"
+					checked="checked" />Available <br />
+				
+				Selection Option:<br/>
+				Option Name<input type="text" name="selection_name"><br />
+				Description<input type="text" name="selection_description">
+				
+				<input type="submit" class="btn btn-info" name="add" value="Add" />
+			</div>
+		</form>
+
+		</div>
+	</div>
+
+
+
 </body>
 </html>

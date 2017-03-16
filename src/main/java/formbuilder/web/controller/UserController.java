@@ -21,7 +21,6 @@ import formbuilder.model.User;
 import formbuilder.model.dao.UserDao;
 import formbuilder.web.validator.UserValidator;
 
-
 @Controller
 @SessionAttributes({ "user", "users" })
 public class UserController {

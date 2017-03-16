@@ -50,7 +50,8 @@ border: 1px solid #CACACA;
 		<br /> <input type="submit" name="add" value="Add" />
 	</form> --%>
 
-<!-- Fixed navbar -->
+
+	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -67,7 +68,6 @@ border: 1px solid #CACACA;
 				<ul class="nav navbar-nav">
 					<li><a href="/formbuilder/">Home</a></li>
 					<li><a href="/formbuilder/user/list.html">Users</a></li>
-					<li class="active"><a href="/formbuilder/form/list.html">Forms</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Dropdown <span class="caret"></span></a>

@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import formbuilder.model.Block;
 import formbuilder.model.Form;
+import formbuilder.model.Item;
 import formbuilder.model.Page;
+import formbuilder.model.Selection;
 import formbuilder.model.dao.FormDao;
 
 @Repository
@@ -62,6 +64,23 @@ public class FormDaoImpl implements FormDao {
 	@Override
 	public Block getBlockById(Integer id) {
 		return entityManager.find(Block.class, id);
+	}
+
+	@Override
+	@Transactional
+	public Item saveItem(Item item) {
+		return entityManager.merge(item);
+	}
+
+	@Override
+	@Transactional
+	public Selection saveSelection(Selection selection) {
+		return entityManager.merge(selection);
+	}
+
+	@Override
+	public Item getItemById(Integer id) {
+		return entityManager.find(Item.class, id);
 	}
 
 	@Override

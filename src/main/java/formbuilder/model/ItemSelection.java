@@ -33,15 +33,23 @@ public class ItemSelection extends Item implements Serializable{
         this.selections = selections;
     }
 
-    public Integer getMinRequirements() {
-        return minRequirements;
-    }
+    public int getMinRequirements() {
+		return minRequirements;
+	}
 
-    public void setMinRequirements(Integer minRequirements) {
-        this.minRequirements = minRequirements;
-    }
+	public void setMinRequirements(int minRequirements) {
+		this.minRequirements = minRequirements;
+	}
 
-    public ItemSelectionAnswer getAnswer() {
+	public int getMaxSelectionNum() {
+		return maxSelectionNum;
+	}
+
+	public void setMaxSelectionNum(int maxSelectionNum) {
+		this.maxSelectionNum = maxSelectionNum;
+	}
+
+	public ItemSelectionAnswer getAnswer() {
         return answer;
     }
 
@@ -49,16 +57,6 @@ public class ItemSelection extends Item implements Serializable{
         this.answer = answer;
     }
 
-    public int getMaxSelectionNum() {
-        return maxSelectionNum;
-    }
-
-    public void setMaxSelectionNum(int maxSelectionNum) {
-        this.maxSelectionNum = maxSelectionNum;
-    }
-
-    public void setMinRequirements(int minRequirements) {
-        this.minRequirements = minRequirements;
-    }
+    
     
 }
