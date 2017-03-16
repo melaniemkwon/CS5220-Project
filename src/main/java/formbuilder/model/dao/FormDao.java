@@ -9,12 +9,16 @@ import formbuilder.model.Page;
 public interface FormDao {
 	
 	Form getForm(Integer id);
+	
 	List<Form> getForms();
+	
 	Form saveForm(Form form);
 	
 	Page getPageById(Integer id);
 	Page savePage(Page page);
 	
+	void deleteForm(Form form);
+
 	List<Block> getBlocks();
 	Block getBlockById(Integer id);
 	Block saveBlock(Block block);

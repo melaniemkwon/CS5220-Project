@@ -77,7 +77,7 @@ public class FormController {
 
 		// TODO: This should actually be redirecting the the form details page
 		// to create the form specifics
-		return "redirect:form/list.html";
+		return "redirect:/form/list.html";
 	}
 
 	@RequestMapping(value = "/form/add_page.html", method = RequestMethod.GET)
@@ -136,11 +136,12 @@ public class FormController {
 		return "redirect:/form/list.html";
 	}
 
-	@RequestMapping(value = "/form/remove/{id}.html", method = RequestMethod.POST)
-	public String remove(@ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
+	@RequestMapping(value = "/form/remove/{id}.html", method = RequestMethod.GET)
+    public String deleteForm(  @PathVariable Integer id ) {
+        
+        formDao.deleteForm(formDao.getForm(id));
+        
+        return "redirect:../list.html";
+    }
 
-		// TODO: need to implement delete function user FormDao
-
-		return "redirect:form/list.html";
-	}
 }
