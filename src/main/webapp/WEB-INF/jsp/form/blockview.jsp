@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:url value="/" var="docroot" />
 
 <!DOCTYPE html>
@@ -76,7 +77,7 @@ body {
 	</nav>
 
 <div class="container">
-	<a href="${docroot}form/add_item.html?id=${block.id}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> ADD NEW ITEM </button></a>
+	<a href="${docroot}form/choose_item.html?id=${block.id}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> ADD NEW ITEM </button></a>
 	<table border=1>
 	<tr><th>Form: </th><td>${block.page.form.name}</td></tr>
 	<tr><th>Page: </th><td>${block.page.pageNumber}</td></tr>
@@ -89,6 +90,12 @@ body {
 	</c:choose>
 	</td></tr>
 	</table>
+	Items: total -- ${fn:length(block.items)} <br/>
+	<a href="${docroot}form/item.html?id=${item.id}">${item.name}</a>
+	<c:forEach items="${block.items}" var="item">
+		<a href="${docroot}form/item.html?id=${item.id}">${item.name}</a>
+	</c:forEach>
+	
 </div>
 </body>
 </html>
