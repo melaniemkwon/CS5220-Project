@@ -115,9 +115,9 @@ public class FormController {
         List<Page> pages = form.getPages();
         Page page = null;
         if (p >= 1) {
-            page = pages.get(p - 1);
+            page = pages.get(p);
         } else {
-            page = pages.get(0);
+            page = pages.get(1);
         }
 
         models.put("page", page);

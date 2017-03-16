@@ -91,11 +91,22 @@ body {
 	  </c:otherwise>
 	</c:choose>
 	<tr><th>User</th><td><a href="user/view/${form.user.id}.html">${form.user.id}</a></td></tr>
-	<tr><th>Page Number</th><td>Total: ${fn:length(form.pages)} 
-	<c:forEach begin="1" end="${fn:length(form.pages)}" varStatus="loop">
+	
+	<c:choose>
+	<c:when test="${(fn:length(form.pages)) <1}">
+		<tr><th>Page Number</th><td>Total: ${fn:length(form.pages)} Pages
+	</c:when>
+	<c:when test="${(fn:length(form.pages)) ==1}">
+		<tr><th>Page Number</th><td>Total: ${fn:length(form.pages)} Pages
+		<a href="${docroot}form/page_view.html?id=${form.id}&p=1">1</a>
+	</c:when>
+	<c:otherwise>
+		<tr><th>Page Number</th><td>Total: ${fn:length(form.pages)-1} Pages
+		<c:forEach begin="1" end="${fn:length(form.pages)-1}" varStatus="loop">
 		<a href="${docroot}form/page_view.html?id=${form.id}&p=${loop.index}">${loop.index}</a>
 	</c:forEach>
-	</td></tr>
+	</c:otherwise>
+	</c:choose>
 	
 	</table>
 	<a href="${docroot}form/edit_form.html?id=${form.id}">Edit Form</a><br/>
