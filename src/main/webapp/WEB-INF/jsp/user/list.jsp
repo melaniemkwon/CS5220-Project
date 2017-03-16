@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Form List</title>
+<title>Title</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -43,7 +43,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Formbuilder</a>
+				<a class="navbar-brand" href="/formbuilder/">Formbuilder</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -72,19 +72,20 @@ body {
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-<table class="table table-striped">
-<tr><th >ID</th><th>First Name</th><th>Last Name</th><th>Role</th><th>Operations</th><th>Delete</th></tr>
-<c:forEach items="${users}" var="user">
-<tr><td  class="col-md-1" >${user.id}</td>
-	<td  class="col-md-2">${user.firstName}</td>
-	<td  class="col-md-2">${user.lastName}</td>
-<td  class="col-md-1"><a href='view.html?id=${user.id}'>${user.role}</a></td>
-<td  class="col-md-1"><a href='edit.html?id=${user.id}'>Edit</a></td>
-<td  class="col-md-1"><a href='delete.html?id=${user.id}'>Delete</a></td>
-</tr>
-</c:forEach>
-</table>
-<a href="add.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> ADD NEW USER </button></a>  				
-
+	<div class="container">
+		<table class="table table-striped table-hover">
+		<tr><th >ID</th><th>First Name</th><th>Last Name</th><th>Role</th><th>Operations</th><th>Delete</th></tr>
+		<c:forEach items="${users}" var="user">
+		<tr><td  class="col-md-1" >${user.id}</td>
+			<td  class="col-md-2">${user.firstName}</td>
+			<td  class="col-md-2">${user.lastName}</td>
+		<td  class="col-md-1"><a href='view.html?id=${user.id}'>${user.role}</a></td>
+		<td  class="col-md-1"><a href='edit.html?id=${user.id}'>Edit</a></td>
+		<td  class="col-md-1"><a href='delete.html?id=${user.id}'>Delete</a></td>
+		</tr>
+		</c:forEach>
+		</table>
+		<a href="add.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> ADD NEW USER </button></a>  				
+	</div>
 </body>
 </html>

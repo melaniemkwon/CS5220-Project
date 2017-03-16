@@ -65,9 +65,14 @@ public class FormController {
 		} else {
 			form.setAvailable(false);
 		}
-
-		// TODO: for testing before we have user login, this should be replaced
-		// later by userId in the session
+		
+		/* ------------------------------------------
+		 * 
+		 * TODO: for testing before we have user login, this should be replaced
+		 * later by userId in the session
+		 * 
+		 * ------------------------------------------
+		 */
 		int id = 2;
 		form.setUser(userDao.getUser(id));
 
@@ -95,6 +100,7 @@ public class FormController {
 		formDao.savePage(page);
 
 		// show form view again
+//		models.put("page", page);
 		models.put("form", form);
 		return viewForm(id, models);
 	}
@@ -142,6 +148,71 @@ public class FormController {
         formDao.deleteForm(formDao.getForm(id));
         
         return "redirect:../list.html";
+    }
+	
+	@RequestMapping(value = "/form/add_block.html", method = RequestMethod.GET)
+    public String addBlock(@RequestParam Integer id, @RequestParam Integer p, ModelMap models){
+    	Form form = formDao.getForm(id);
+        List<Page> pages = form.getPages();
+        Page page = null;
+        if(p >= 1){
+            page = pages.get(p);
+        }else{
+            page = pages.get(1);
+        }
+    	models.put("page", page);
+    	
+    	//show form for adding blocks
+    	
+    	return "form/addblock";
+    }
+    
+    @RequestMapping(value = "/form/add_block_model.html", method = RequestMethod.POST)
+    public String addBlock(@ModelAttribute Block block, BindingResult result, SessionStatus sessionStatus, HttpSession session, @RequestParam Integer pid, ModelMap models){
+    	
+    	Page page =(Page) session.getAttribute("page");
+    	block.setPage(page);
+    	
+    	List<Block> blocks = page.getBlock();
+    	block.setBlockOrder(blocks.size());
+    	
+    	block = formDao.saveBlock(block);
+    	
+    	//show page view again
+    	return "form/pageview";
+    }
+    
+    @RequestMapping(value = "/form/add_block.html", method = RequestMethod.POST)
+    public String addBlock(@RequestParam String name, @RequestParam String description,@RequestParam String available, @RequestParam Integer pid, ModelMap models){
+    	
+    	Block block = new Block();
+    	block.setName(name);
+    	block.setDescription(description);
+    	if(available.equals("avaiable")){
+    		block.setAvailable(true);
+    	}else{
+    		block.setAvailable(false);
+    	}
+    	
+    	Page page = formDao.getPageById(pid);
+    	block.setPage(page);
+    	
+    	List<Block> blocks = page.getBlock();
+    	block.setBlockOrder(blocks.size());
+    	
+    	block = formDao.saveBlock(block);
+    	
+    	//show block view
+    	models.put("block", block);
+    	return "form/blockview";
+    }
+    
+    @RequestMapping(value = "/form/block/{id}.html", method = RequestMethod.GET)
+    public String blockView(@PathVariable Integer id, ModelMap models){
+    	
+    	Block block = formDao.getBlockById(id);
+    	models.put("block", block);
+    	return "form/blockview";
     }
 
 }
