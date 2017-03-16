@@ -18,7 +18,10 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import formbuilder.model.Block;
 import formbuilder.model.Form;
+import formbuilder.model.Item;
+import formbuilder.model.ItemSelection;
 import formbuilder.model.Page;
+import formbuilder.model.Selection;
 import formbuilder.model.User;
 import formbuilder.model.dao.FormDao;
 import formbuilder.model.dao.UserDao;
@@ -209,6 +212,110 @@ public class FormController {
     	Block block = formDao.getBlockById(id);
     	models.put("block", block);
     	return "form/blockview";
+    }
+    
+    @RequestMapping(value = "/form/choose_item.html", method = RequestMethod.GET)
+    public String chooseItem(@RequestParam Integer id, ModelMap models){
+    	models.put("id", id);
+    	
+    	return "form/chooseitem";
+    }
+    
+    @RequestMapping(value = "/form/choose_item.html", method = RequestMethod.POST)
+    public String chooseItem(@RequestParam Integer id, @RequestParam String itemtype, ModelMap models){
+    	//pass block id
+    	models.put("id", id);
+    	
+    	if(itemtype.equals("text")){
+    		return "form/addtextitem";
+    	}else{
+    		return "form/additem";
+    	}
+    	
+    }
+    
+    @RequestMapping(value = "/form/add_item.html", method = RequestMethod.POST)
+    public String addItem(@RequestParam Integer id, @RequestParam Integer total_opt, @RequestParam Integer min, @RequestParam Integer max, @RequestParam String name, @RequestParam String description, @RequestParam String available, @RequestParam String selection_name, @RequestParam String selection_description,ModelMap models){
+    	
+    	Block block = formDao.getBlockById(id);
+    	ItemSelection item = new ItemSelection();
+    	
+    	//check box with 1 option
+    	if(total_opt==1 && min == 0){
+    		item.setItemType(item.getItemType().CHECKBOX);
+    	}
+    	//radio button
+    	if(total_opt > 1 && max == 1){
+    		item.setItemType(item.getItemType().RADIOBUTTON);
+    	}
+    	//checkbox
+    	if(total_opt > 1 && total_opt < 10 && max > 1){
+    		item.setItemType(item.getItemType().CHECKBOX);
+    	}
+    	//pull down
+    	if(total_opt > 10 && max == 1){
+    		item.setItemType(item.getItemType().PULLDOWN);
+    	}
+    	
+    	item.setName(name);
+    	item.setDescription(description);
+    	item.setAvailable(true);
+    	item.setRequired(true);
+    	item.setBlock(block);
+    	item.setOrderId(block.getItems().size());
+    	item.setMinRequirements(min);
+    	item.setMaxSelectionNum(max);
+    	
+    	item = (ItemSelection) formDao.saveItem(item);
+    	
+    	if(total_opt==1){
+    		Selection selection_checked = new Selection();
+    		selection_checked.setName("SYS_CHECKED");
+        	selection_checked.setDescription(description);
+        	selection_checked.setValue("1");
+        	selection_checked.setOrderId(0);
+        	selection_checked.setItem(item);
+        	
+        	Selection selection_unchecked = new Selection();
+        	selection_unchecked.setName("SYS_UNCHECKED");
+        	selection_unchecked.setDescription(description);
+        	selection_unchecked.setValue("0");
+        	selection_unchecked.setOrderId(0);
+        	selection_unchecked.setItem(item);
+        	
+        	selection_checked = formDao.saveSelection(selection_checked);
+        	selection_unchecked = formDao.saveSelection(selection_unchecked);
+    	}else{
+    		Selection selection = new Selection();
+    		selection.setName(selection_name);
+    		selection.setDescription(selection_description);
+    		selection.setValue(Integer.toString(item.getSelections().size()));
+        	selection.setOrderId(item.getSelections().size());
+        	selection.setItem(item);
+        	
+        	selection = formDao.saveSelection(selection);
+    	}
+    	
+    	models.put("block", block);
+    	
+    	return "form/blockview";
+    }
+    
+    @RequestMapping(value = "/form/item/${id}.html", method = RequestMethod.GET)
+    public String viewItem1(@PathVariable Integer id, ModelMap models){
+    	
+    	Item item = formDao.getItemById(id);
+    	models.put("item", item);
+    	
+    	return "form/itemview";
+    }
+    @RequestMapping(value = "/form/item.html", method = RequestMethod.GET)
+    public String viewItem(@RequestParam Integer id, ModelMap models){
+    	
+    	Item item = formDao.getItemById(id);
+    	models.put("item", item);
+    	
+    	return "form/itemview";
     }
     
 }

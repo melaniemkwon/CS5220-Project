@@ -109,4 +109,14 @@ public class Item implements Serializable{
     public void setMatchField(PdfField matchField) {
         this.matchField = matchField;
     }
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+    
+    
 }

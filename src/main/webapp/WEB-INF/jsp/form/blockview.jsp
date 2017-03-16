@@ -9,7 +9,7 @@
 <title>Page View</title>
 </head>
 <body>
-<a href="${docroot}form/add_item.html?id=${block.id}">Add New Item</a>
+<a href="${docroot}form/choose_item.html?id=${block.id}">Add New Item</a>
 <table border=1>
 <tr><th>Form: </th><td>${block.page.form.name}</td></tr>
 <tr><th>Page: </th><td>${block.page.pageNumber}</td></tr>
@@ -22,5 +22,9 @@
 </c:choose>
 </td></tr>
 </table>
+Items:<br/>
+<c:forEach items="${block.items}" var="item">
+	<a href="${docroot}form/item.html?id=${item.id}">${item.name}</a><br/></a>
+</c:forEach>
 </body>
 </html>

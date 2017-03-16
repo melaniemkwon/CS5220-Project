@@ -20,14 +20,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import formbuilder.model.Form;
 import formbuilder.model.Page;
 import formbuilder.model.User;
-<<<<<<< HEAD
-import formbuilder.model.dao.UserDao;
-=======
 import formbuilder.model.dao.FormDao;
 import formbuilder.model.dao.UserDao;
 import formbuilder.web.validator.UserValidator;
->>>>>>> master
-
 
 @Controller
 @SessionAttributes({ "user", "users" })
