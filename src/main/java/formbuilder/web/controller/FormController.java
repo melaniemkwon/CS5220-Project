@@ -2,6 +2,8 @@ package formbuilder.web.controller;
 
 import java.util.List;
 
+
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,13 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import formbuilder.model.Block;
 import formbuilder.model.Form;
 import formbuilder.model.Page;
 import formbuilder.model.dao.FormDao;
 import formbuilder.model.dao.UserDao;
 
 @Controller
-@SessionAttributes({ "forms", "form" })
+@SessionAttributes({ "forms", "form","page" })
 public class FormController {
 
 	@Autowired
