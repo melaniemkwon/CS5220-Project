@@ -1,7 +1,6 @@
 package formbuilder.web.controller;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +90,7 @@ public class UserController {
     @RequestMapping(value = "/user/add.html", method = RequestMethod.GET)
     public String add( ModelMap models ){
     	
+    	  models.put("role", role.values());
         models.put( "user", new User() );
         models.put( "users", userDao.getUsers() );
         return "user/add";
@@ -100,8 +100,8 @@ public class UserController {
     @RequestMapping(value = "/user/add.html", method = RequestMethod.POST)
     public String add( @ModelAttribute User user, BindingResult result )
     {
-//        userValidator.validate( user, result );
-//        if( result.hasErrors() ) return "user/add";
+        userValidator.validate( user, result );
+        if( result.hasErrors() ) return "user/add";
 
         user = userDao.saveUser( user );
         return "redirect:list.html";
@@ -115,5 +115,4 @@ public class UserController {
 		return "redirect:list.html";
     }    
  
-	
 }

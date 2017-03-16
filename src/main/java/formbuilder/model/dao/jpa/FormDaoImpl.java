@@ -64,4 +64,10 @@ public class FormDaoImpl implements FormDao {
 		return entityManager.find(Block.class, id);
 	}
 
+	@Override
+	@Transactional
+	public void deleteForm(Form form) {
+		entityManager.remove(form);
+		
+	}
 }

@@ -85,5 +85,6 @@ body {
 </c:forEach>
 </table>
 <a href="add.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> ADD NEW USER </button></a>  				
+
 </body>
 </html>

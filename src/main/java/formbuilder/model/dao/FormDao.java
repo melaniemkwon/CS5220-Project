@@ -8,15 +8,16 @@ import formbuilder.model.Page;
 
 public interface FormDao {
 	
-	Form getForm(Integer id);
+	Form getForm(Integer id);	
 	List<Form> getForms();
-	Form saveForm(Form form);
+  Form saveForm(Form form);
+  void deleteForm(Form form);
 	
 	Page getPageById(Integer id);
-	Page savePage(Page page);
+  Page savePage(Page page);
 	
-	List<Block> getBlocks();
-	Block getBlockById(Integer id);
-	Block saveBlock(Block block);
-
+	List<Block> getBlocks();	
+  Block getBlockById(Integer id);
+  Block saveBlock(Block block);
+  
 }
