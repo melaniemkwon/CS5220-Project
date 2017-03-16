@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:url value="/" var="docroot" />
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Title</title>
+<title>Form List</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -31,9 +31,11 @@ body {
 	min-height: 2000px;
 	padding-top: 70px;
 }
+
 </style>
 </head>
 <body>
+
 <!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -76,19 +78,44 @@ body {
 	</nav>
 
 <div class="container">
-	<a href="${docroot}form/add_item.html?id=${block.id}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> ADD NEW ITEM </button></a>
-	<table border=1>
-	<tr><th>Form: </th><td>${block.page.form.name}</td></tr>
-	<tr><th>Page: </th><td>${block.page.pageNumber}</td></tr>
-	<tr><th>Name: </th><td>${block.name}</td></tr>
-	<tr><th>Description: </th><td>${block.description}</td></tr>
-	<tr><th>Status</th><td>
-	<c:choose>
-	  <c:when test="${block.available==true}">Available</c:when>
-	  <c:otherwise>Unavailable</c:otherwise>
-	</c:choose>
-	</td></tr>
-	</table>
-</div>
+<form:form modelAttribute="form">
+<h1>Edit Form</h1>
+	<div class="row form-group">
+            <label for="name" class="col-md-2 control-label">Form Name </label>
+
+            <div class="col-md-5">
+                <form:input path="name"/>
+            </div>
+    </div>
+    <div class="row form-group">
+            <label for="description" class="col-md-2 control-label">Form Description </label>
+
+            <div class="col-md-5">
+                <form:input path="description"/>
+            </div>
+    </div>
+    <div class="row form-group">
+    	<label for="available" class="col-md-2 control-label">Available </label>
+    	<form:radiobutton path="available" value="true" label="Available" /> 
+        <form:radiobutton path="available" value="false" label="Unavailable" />
+	</div>
+    <div class="row form-group">
+    	<label for="available" class="col-md-2 control-label">User </label>
+    	<div class="col-md-5">
+        	<a href="user/view/${form.user.id}.html">${form.user.id}</a>
+        </div>
+	</div>
+	<div class="row form-group">
+            <label for="description" class="col-md-2 control-label">Page Number </label>
+
+            <div class="col-md-5">
+                <c:forEach begin="1" end="${fn:length(form.pages)}" varStatus="loop">
+					<a href="${docroot}form/page_view.html?id=${form.id}&p=${loop.index}">${loop.index}</a>
+				</c:forEach>
+            </div>
+    </div>
+    <input type="submit" name="edit" value="Save Changes" /> 
+</form:form>
+</div>      
 </body>
 </html>

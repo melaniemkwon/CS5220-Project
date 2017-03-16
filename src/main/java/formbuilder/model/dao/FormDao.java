@@ -10,9 +10,10 @@ import formbuilder.model.Selection;
 
 public interface FormDao {
 	
-	Form getForm(Integer id);
+	Form getForm(Integer id);	
 	List<Form> getForms();
-	Form saveForm(Form form);
+  Form saveForm(Form form);
+  void deleteForm(Form form);
 	
 	Page getPageById(Integer id);
 	Page savePage(Page page);
@@ -25,5 +26,4 @@ public interface FormDao {
 	Item saveItem(Item item);
 	
 	Selection saveSelection(Selection selection);
-
 }
