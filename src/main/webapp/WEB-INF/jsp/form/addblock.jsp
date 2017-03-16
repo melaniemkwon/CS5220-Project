@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:url value="/" var="docroot" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Form List</title>
+<title>Insert title here</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -23,15 +26,30 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-
 <style>
 body {
 	min-height: 2000px;
 	padding-top: 70px;
 }
+
+.form-box {
+padding: 15px;
+cursor: pointer;
+overflow: hidden;
+background: #FFF;
+border: 1px solid #CACACA;
+}
 </style>
 </head>
 <body>
+	<%-- 	<h1>Add New Form</h1>
+	<form name="addform" method="post">
+		Form Name: <input type="text" name="name" /> <br /> Form Description:
+		<input type="text" name="description" /> <br /> Available: <input
+			type="checkbox" name="available" value="available" checked="checked" />Available
+		<br /> <input type="submit" name="add" value="Add" />
+	</form> --%>
+
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -72,54 +90,29 @@ body {
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
+
 	<div class="container">
-		<h1>List of Forms</h1>
-
-		<c:if test="${empty forms}">
-			<h4>There are no forms to display.</h4>
-		</c:if>
-
-		<c:if test="${not empty forms}">
-			<table class="table table-striped">
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Available</th>
-					<th>Action</th>
-				</tr>
-				<c:forEach items="${forms}" var="form">
-					<tr>
-						<td class="col-md-1">${form.id}</td>
-						<td class="col-md-3">${form.name}</td>
-						<td class="col-md-3">${form.description}</td>
-						<c:choose>
-  							<c:when test="${form.available}">
-								<td class="col-md-2">YES</td>
-							</c:when>
-							<c:otherwise>
-								<td class="col-md-2">NO</td>
-							</c:otherwise>
-						</c:choose>	
-						
-						<td class="col-md-3">
-						<a href="view/${form.id}.html"><button type="button" class="btn btn-info btn-sm">View</button></a>
-						<a href="edit/${form.id}.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edit </button></a>
-    					<a href="remove/${form.id}.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span> Remove </button></a>
-        				</td>
-
-					</tr>
-				</c:forEach>
-			</table>
-
-		</c:if>
-	</div>
 	
-	<div class="container">
-		<a href="add.html" class="btn btn-info btn-lg"> <span
-			class="glyphicon glyphicon-plus"></span> Add a new form
-		</a>
+	<div class="block-box">
+
+		<form modelAttribute="form" action="${docroot}form/add_block.html" method="post">
+			<div class="form-group">
+				<h1>Add Block</h1>
+				Block name:
+				<input type="text" name="name"/>
+				<br /> Description:
+				<input type="text" name="description" />
+				<input type="checkbox" name="available" value="available"
+					checked="checked" />Available <br />
+				<input type="submit" class="btn btn-info" name="add" value="Add Block" />
+				<input type="hidden" name="pid" value="${page.id}" />
+			</div>
+		</form>
+
+		</div>
 	</div>
+
+
 
 </body>
 </html>

@@ -2,6 +2,7 @@ package formbuilder.model.dao;
 
 import java.util.List;
 
+import formbuilder.model.Block;
 import formbuilder.model.Form;
 import formbuilder.model.Page;
 
@@ -13,8 +14,13 @@ public interface FormDao {
 	
 	Form saveForm(Form form);
 	
+	Page getPageById(Integer id);
 	Page savePage(Page page);
 	
 	void deleteForm(Form form);
+
+	List<Block> getBlocks();
+	Block getBlockById(Integer id);
+	Block saveBlock(Block block);
 
 }
