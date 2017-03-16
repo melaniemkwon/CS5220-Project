@@ -137,7 +137,8 @@ public class FormController {
     public String remove( @ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus ) {
         
         // TODO: need to implement delete function user FormDao
+    	
         
-        return "redirect:form/list.html";
+        return "form/edit";
     }
 }
