@@ -17,7 +17,7 @@ import javax.persistence.OrderColumn;
 public class Form implements Serializable {
 	
 	@Id
-    @GeneratedValue
+  @GeneratedValue
 	private Integer id;
 	private String name;
 	private String description;
@@ -99,4 +99,3 @@ public class Form implements Serializable {
 		this.isfinished = isfinished;
 	}
 }
-

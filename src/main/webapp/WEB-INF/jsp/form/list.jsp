@@ -85,6 +85,7 @@ body {
 					<th>ID</th>
 					<th>Name</th>
 					<th>Description</th>
+
 					<th>Available</th>
 					<th>Action</th>
 				</tr>
@@ -92,6 +93,7 @@ body {
 					<tr>
 						<td class="col-md-1">${form.id}</td>
 						<td class="col-md-3">${form.name}</td>
+
 						<td class="col-md-3">${form.description}</td>
 						<c:choose>
   							<c:when test="${form.available}">
