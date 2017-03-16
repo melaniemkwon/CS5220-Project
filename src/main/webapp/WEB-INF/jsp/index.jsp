@@ -1,8 +1,8 @@
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,13 +74,17 @@ body {
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-<div class="row">
+	<div class="container">
+		<div class="jumbotron">
+			<h2>Welcome to Formbuilder</h2>
+<!-- 			<ul>
+			<li><h4><a href="user/list.html">Users</a></h4></li>
+			<li><h4><a href="form/list.html">Forms</a></h4></li>
+			</ul> -->		
+		</div>
+	</div>
 
-  		<div class="col-sm-10"><h4><a href="user/list.html">Users</a> </h4></div>
-  		<div class="col-sm-10"><h4><a href="form/list.html">Forms</a> </h4></div>
-  	
-</ul>
-</div>
+
 </body>
 </html>
 

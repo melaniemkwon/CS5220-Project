@@ -54,8 +54,8 @@ body {
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/formbuilder/">Home</a></li>
-					<li><a href="/formbuilder/user/list.html">Users</a></li>
+					<li ><a href="/formbuilder/">Home</a></li>
+					<li class="active"><a href="/formbuilder/user/list.html">Users</a></li>
 					<li><a href="/formbuilder/form/list.html">Forms</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
