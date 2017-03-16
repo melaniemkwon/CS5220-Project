@@ -43,13 +43,13 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Formbuilder</a>
+				<a class="navbar-brand" href="/formbuilder/">Formbuilder</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li><a href="/formbuilder/">Home</a></li>
+					<li><a href="/formbuilder/user/list.html">Users</a></li>
+					<li class="active"><a href="/formbuilder/form/list.html">Forms</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -73,14 +73,13 @@ body {
 		</div>
 	</nav>
 	<div class="container">
-		<h1>List of Forms</h1>
 
 		<c:if test="${empty forms}">
 			<h4>There are no forms to display.</h4>
 		</c:if>
 
 		<c:if test="${not empty forms}">
-			<table class="table table-striped">
+			<table class="table table-striped table-hover">
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
@@ -105,7 +104,7 @@ body {
 						</c:choose>	
 						
 						<td class="col-md-3">
-						<a href="view/${form.id}.html"><button type="button" class="btn btn-info btn-sm">View</button></a>
+						<a href="view/${form.id}.html"><button type="button" class="btn btn-info btn-sm">View Details</button></a>
 						<a href="edit/${form.id}.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edit </button></a>
     					<a href="remove/${form.id}.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span> Remove </button></a>
         				</td>
@@ -118,8 +117,8 @@ body {
 	</div>
 	
 	<div class="container">
-		<a href="add.html" class="btn btn-info btn-lg"> <span
-			class="glyphicon glyphicon-plus"></span> Add a new form
+		<a href="add.html" class="btn btn-info"> <span
+			class="glyphicon glyphicon-plus"></span> ADD NEW FORM
 		</a>
 	</div>
 
