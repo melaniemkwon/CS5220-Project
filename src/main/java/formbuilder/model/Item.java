@@ -40,7 +40,7 @@ public abstract class Item implements Serializable {
     
     protected boolean available;
 
-    private int index; 	
+    protected int index; 	
     
     @Enumerated(EnumType.ORDINAL)	// TODO: check this
     @Column(name = "type")
@@ -91,9 +91,7 @@ public abstract class Item implements Serializable {
         this.isRequired = isRequired;
     }
 
-    public ItemType getItemType() {
-        return itemType;
-    }
+    public abstract ItemType getItemType();
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
