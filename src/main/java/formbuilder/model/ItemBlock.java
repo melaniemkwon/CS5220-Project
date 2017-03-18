@@ -16,6 +16,9 @@ import javax.persistence.OrderBy;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
+/*
+ * A form block that contains a list of generic form Items
+ */
 @Entity
 @Table(name = "item_blocks")
 public class ItemBlock implements Serializable {
@@ -24,29 +27,20 @@ public class ItemBlock implements Serializable {
 	
 	@Id
     @GeneratedValue
-	private Integer id;
+	protected int id;
 	
-	private String name;
+	protected String name;
 	
-	private String description;
+	protected String description;
 	
-	private boolean available;
+	protected boolean available;
 	
-	/*
-	 * block_order renamed to index
-	 */
-    private int index;
+    protected int index;
 	
-//	@ManyToOne
-//	private Page page;
-	
-//	@OneToMany(mappedBy="block",cascade=CascadeType.ALL)
-//	@OrderBy("index")
-//	@Column(name="item")
 	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })	
 	@JoinColumn(name = "item_block_id")
     @OrderColumn(name = "item_index")
-	private List<Item> items;
+	protected List<Item> items;
 	
 	public ItemBlock() {
 		items = new ArrayList<Item>();
@@ -65,12 +59,32 @@ public class ItemBlock implements Serializable {
 		
 		return newItemBlock;
 	}
+	
+	public Item getItem( int itemId ) {
+		for ( Item item : items ) {
+			if ( item.getId() == itemId ) {
+				return item;
+			}
+		}
+		return null;
+	}
+	
+	public Item deleteItem( int itemId ) {
+		for (int i = 0; i < items.size(); i++) {
+			if ( items.get(i).getId() == itemId ) {
+				return items.remove( i );
+			}
+		}
+		return null;
+	}
+	
+	// TODO: void replaceItem( Item item )
 
 	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -89,14 +103,6 @@ public class ItemBlock implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-//	public Page getPage() {
-//		return page;
-//	}
-//
-//	public void setPage(Page page) {
-//		this.page = page;
-//	}
 
 	public List<Item> getItems() {
 		return items;

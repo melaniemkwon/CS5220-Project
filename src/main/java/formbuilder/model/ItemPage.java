@@ -1,18 +1,21 @@
 package formbuilder.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
+/*
+ * A form page that contains a list of form blocks
+ */
 @Entity
 @Table(name = "item_pages")
 public class ItemPage implements Serializable {
@@ -21,51 +24,42 @@ public class ItemPage implements Serializable {
 	
 	@Id
     @GeneratedValue
-	private Integer id;
+	protected int id;
 	
-	@Column(name="page_number")
-	private int pageNumber;
+	protected String description;
 	
-	@ManyToOne
-	private Form form; // parent form
-	
-	private boolean available; //page can be disabled
-	
-//	@OneToMany(mappedBy="page",cascade=CascadeType.ALL)
-//	@OrderBy("blockOrder")
-//	@Column(name="block")
-	private List<ItemBlock> blocks;
+	protected int index;
 
-	public Integer getId() {
+	protected boolean available;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_page_id")
+    @OrderColumn(name = "block_index")
+	protected List<ItemBlock> blocks;
+	
+	public ItemPage() {
+		blocks = new ArrayList<ItemBlock>();
+		blocks.add( new ItemBlock() );	
+	}
+	
+	public ItemPage duplicate() {
+		ItemPage newItemPage = new ItemPage();
+		
+		newItemPage.index = index;
+		newItemPage.available = available;
+		for ( ItemBlock block : blocks ) {
+			newItemPage.blocks.add(block);
+		}
+		
+		return newItemPage;
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getPageNumber() {
-		return pageNumber;
-	}
-
-	public void setPageNumber(int pageNumber) {
-		this.pageNumber = pageNumber;
-	}
-
-	public Form getForm() {
-		return form;
-	}
-
-	public void setForm(Form form) {
-		this.form = form;
-	}
-
-	public List<ItemBlock> getBlock() {
-		return block;
-	}
-
-	public void setBlock(List<ItemBlock> block) {
-		this.block = block;
 	}
 
 	public boolean isAvailable() {
@@ -74,5 +68,13 @@ public class ItemPage implements Serializable {
 
 	public void setAvailable(boolean available) {
 		this.available = available;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
 }

@@ -13,8 +13,14 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 /*
- * A generic form item that contains properties common to all items
+ * A generic form item that contains properties common to all items.
+ * Item subclasses for form elements are: 
+ * 		CheckboxItem, DropdownListItem, MultipleChoiceItem, 
+ * 		TextItem, TextParagraphItem, DateItem, TimeItem
+ * Item subclasses for non-form elements are:
+ * 		ImageItem, PageBreakItem, SectionHeaderItem
  */
 @Entity
 @Table(name = "items")
@@ -26,48 +32,29 @@ public abstract class Item implements Serializable {
     
     @Id
     @GeneratedValue
-    private Integer id;
+    protected int id;
     
-    private String name;
+    protected String name;
     
-    private String description;
+    protected String description;
     
-    private boolean available;
-    
-    /*
-     * Renamed from orderId
-     * The order this item should be shown. Default is 0
-     */
+    protected boolean available;
+
     private int index; 	
-    
-    /*
-     * Class Block has been renamed to ItemBlock
-     */
-//    @ManyToOne
-//    private Block block;
-    
-    /*
-     * Type has been moved out of Item class and remamed ItemType
-     */
-//    public enum Type {
-//        TEXT,
-//        RADIOBUTTON,
-//        CHECKBOX,
-//        PULLDOWN
-//    }
     
     @Enumerated(EnumType.ORDINAL)	// TODO: check this
     @Column(name = "type")
-    private ItemType itemType;
+    protected ItemType itemType;
     
     @Column(name = "required")
-    private boolean isRequired;
+    protected boolean isRequired;
     
 //    @ManyToOne
 //    private PdfField matchField;
     
     public Item() {
-    	
+    	this.available = true;
+    	this.isRequired = false;
     }
     
     public abstract Item duplicate();
@@ -95,14 +82,6 @@ public abstract class Item implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-//    public Block getBlock() {
-//        return block;
-//    }
-//
-//    public void setBlock(Block block) {
-//        this.block = block;
-//    }
 
     public boolean isRequired() {
         return isRequired;

@@ -19,26 +19,34 @@ public class Pdf implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private long id;
 	
 	private String name;
 
 	@Column(name = "upload_date")
 	private Date uploadDate;
 	
-	private boolean available; //pdf document can be disabled instead of delete
+	private boolean available;
 
 	@ManyToOne
 	private User user;
 
 	@OneToMany(mappedBy="pdf",cascade=CascadeType.ALL) 
 	List<PdfField> fields;
+	
+	@ManyToOne
+	private Form form;
+	
+	public Pdf() {
+		this.uploadDate = new Date();
+		this.available = true;
+	}
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

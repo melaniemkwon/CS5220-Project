@@ -3,37 +3,46 @@ package formbuilder.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
-
-@Entity(name = "form")
+import javax.persistence.Table;
+/*
+ * Form is the main data structure that contains question pages... UNDER CONSTRUCTION
+ */
+@Entity
+@Table(name = "forms")
 public class Form implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private long id;
 	
 	private String name;
 	
 	private String description;
 	
-	private boolean available; 	// form can be disabled for example if the admin wants to make changes
+	private boolean available; 
 	
 	@ManyToOne
 	private User user;
 	
-	@OneToMany(mappedBy="form",cascade=CascadeType.ALL)
-	@Column(name="page")
-	@OrderColumn(name="page_number")
+	@ManyToOne
+	protected User creator;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_page_id")
+    @OrderColumn(name = "page_index")
 	private List<ItemPage> pages;
 	
 	@Column(name = "create_date")
@@ -48,11 +57,21 @@ public class Form implements Serializable {
 	@Column(name = "finished")
 	private boolean isfinished;
 	
-	public Integer getId() {
+	@OneToMany(mappedBy = "form")	//double check this...
+	private Set<Pdf> pdfs;
+	
+	public Form() {
+		this.available = false;
+		this.createDate = new Date();
+		this.updateDate = createDate;
+		this.isfinished = false;
+	}
+	
+	public long getId() {
 		return id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
