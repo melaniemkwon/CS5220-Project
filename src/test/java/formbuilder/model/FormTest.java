@@ -59,18 +59,18 @@ public class FormTest {
 		
 		// We'll test just one Block and one Page for now...
 		// Will need to test for multiple Blocks and multiple Pages in future.
-		List<Page> pages = new ArrayList<Page>();
-		List<Block> blocks = new ArrayList<Block>();
+		List<ItemPage> pages = new ArrayList<ItemPage>();
+		List<ItemBlock> blocks = new ArrayList<ItemBlock>();
 		List<Item> formItems = new ArrayList<Item>();
 		
-		Page page01 = new Page();
+		ItemPage page01 = new ItemPage();
 		page01.setBlock(blocks);
 		page01.setForm(form);
 		page01.setPageNumber(1);
 		pages.add(page01);		// add to pages list
 		form.setPages(pages);
 		
-		Block block01 = new Block();
+		ItemBlock block01 = new ItemBlock();
 		block01.setName("block1");
 		block01.setDescription("block1 description");
 		block01.setPage(page01);

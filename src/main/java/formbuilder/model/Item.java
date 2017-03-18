@@ -3,6 +3,7 @@ package formbuilder.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,10 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
-
-@Entity(name = "Item")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Item implements Serializable {
+import javax.persistence.Table;
+/*
+ * A generic form item that contains properties common to all items
+ */
+@Entity
+@Table(name = "items")
+@Inheritance
+@DiscriminatorColumn(name = "item_type")
+public abstract class Item implements Serializable {
 	
     private static final long serialVersionUID = 1L;
     
@@ -26,30 +32,45 @@ public class Item implements Serializable {
     
     private String description;
     
-    private boolean available;  //block can be disabled
+    private boolean available;
     
-    @Column(name = "order_id")
-    private int orderId; 	// in which order this item should be shown, when only
-                            // by itself the default is 0
-    @ManyToOne
-    private Block block;
+    /*
+     * Renamed from orderId
+     * The order this item should be shown. Default is 0
+     */
+    private int index; 	
     
-    public enum Type {
-        TEXT,
-        RADIOBUTTON,
-        CHECKBOX,
-        PULLDOWN
-    }
+    /*
+     * Class Block has been renamed to ItemBlock
+     */
+//    @ManyToOne
+//    private Block block;
     
-    @Enumerated(EnumType.ORDINAL)
+    /*
+     * Type has been moved out of Item class and remamed ItemType
+     */
+//    public enum Type {
+//        TEXT,
+//        RADIOBUTTON,
+//        CHECKBOX,
+//        PULLDOWN
+//    }
+    
+    @Enumerated(EnumType.ORDINAL)	// TODO: check this
     @Column(name = "type")
-    private Type itemType;
+    private ItemType itemType;
     
     @Column(name = "required")
     private boolean isRequired;
     
-    @ManyToOne
-    private PdfField matchField;
+//    @ManyToOne
+//    private PdfField matchField;
+    
+    public Item() {
+    	
+    }
+    
+    public abstract Item duplicate();
 
     public int getId() {
 		return id;
@@ -75,21 +96,13 @@ public class Item implements Serializable {
         this.description = description;
     }
 
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    public Block getBlock() {
-        return block;
-    }
-
-    public void setBlock(Block block) {
-        this.block = block;
-    }
+//    public Block getBlock() {
+//        return block;
+//    }
+//
+//    public void setBlock(Block block) {
+//        this.block = block;
+//    }
 
     public boolean isRequired() {
         return isRequired;
@@ -99,21 +112,21 @@ public class Item implements Serializable {
         this.isRequired = isRequired;
     }
 
-    public Type getItemType() {
+    public ItemType getItemType() {
         return itemType;
     }
 
-    public void setItemType(Type itemType) {
+    public void setItemType(ItemType itemType) {
         this.itemType = itemType;
     }
 
-    public PdfField getMatchField() {
-        return matchField;
-    }
-
-    public void setMatchField(PdfField matchField) {
-        this.matchField = matchField;
-    }
+//    public PdfField getMatchField() {
+//        return matchField;
+//    }
+//
+//    public void setMatchField(PdfField matchField) {
+//        this.matchField = matchField;
+//    }
 
 	public boolean isAvailable() {
 		return available;
@@ -121,5 +134,13 @@ public class Item implements Serializable {
 
 	public void setAvailable(boolean available) {
 		this.available = available;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
 }

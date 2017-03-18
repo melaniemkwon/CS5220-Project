@@ -8,10 +8,10 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import formbuilder.model.Block;
+import formbuilder.model.ItemBlock;
 import formbuilder.model.Form;
 import formbuilder.model.Item;
-import formbuilder.model.Page;
+import formbuilder.model.ItemPage;
 import formbuilder.model.Selection;
 import formbuilder.model.dao.FormDao;
 
@@ -37,33 +37,33 @@ public class FormDaoImpl implements FormDao {
 		return entityManager.merge(form);
 	}
 
-	public Page getPageById(Integer id){
-		return entityManager.find(Page.class, id);
+	public ItemPage getPageById(Integer id){
+		return entityManager.find(ItemPage.class, id);
 	}
 	
 	@Override
 	@Transactional
-	public Page savePage(Page page) {
+	public ItemPage savePage(ItemPage page) {
 		
 		return entityManager.merge(page);
 	}
 	
 	@Override
 	@Transactional
-	public Block saveBlock(Block block) {
+	public ItemBlock saveBlock(ItemBlock block) {
 		
 		return entityManager.merge(block);
 	}
 
 	@Override
-	public List<Block> getBlocks() {
+	public List<ItemBlock> getBlocks() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Block getBlockById(Integer id) {
-		return entityManager.find(Block.class, id);
+	public ItemBlock getBlockById(Integer id) {
+		return entityManager.find(ItemBlock.class, id);
 	}
 
 	@Override

@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import formbuilder.model.Block;
+import formbuilder.model.ItemBlock;
 import formbuilder.model.Form;
 import formbuilder.model.Item;
 import formbuilder.model.ItemSelection;
-import formbuilder.model.Page;
+import formbuilder.model.ItemPage;
 import formbuilder.model.Selection;
 import formbuilder.model.User;
 import formbuilder.model.dao.FormDao;
@@ -94,11 +94,11 @@ public class FormController {
         
         Form form = formDao.getForm(id);
         //find next page number
-        List<Page> pages = form.getPages();
+        List<ItemPage> pages = form.getPages();
         int nextPageNum = pages.size() + 1;
         
         //create new page and save to db
-        Page page = new Page();
+        ItemPage page = new ItemPage();
         page.setForm(form);
         page.setPageNumber(nextPageNum);
         formDao.savePage(page);
@@ -112,8 +112,8 @@ public class FormController {
       @RequestMapping(value = "/form/page_view.html", method = RequestMethod.GET)
     public String viewPage(@RequestParam Integer id, @RequestParam Integer p, ModelMap models) {
         Form form = formDao.getForm(id);
-        List<Page> pages = form.getPages();
-        Page page = null;
+        List<ItemPage> pages = form.getPages();
+        ItemPage page = null;
         if (p >= 1) {
             page = pages.get(p);
         } else {
@@ -157,8 +157,8 @@ public class FormController {
       @RequestMapping(value = "/form/add_block.html", method = RequestMethod.GET)
     public String addBlock(@RequestParam Integer id, @RequestParam Integer p, ModelMap models){
         Form form = formDao.getForm(id);
-        List<Page> pages = form.getPages();
-        Page page = null;
+        List<ItemPage> pages = form.getPages();
+        ItemPage page = null;
         if(p >= 1){
             page = pages.get(p);
         }else{
@@ -172,13 +172,13 @@ public class FormController {
     }
     
     @RequestMapping(value = "/form/add_block_model.html", method = RequestMethod.POST)
-    public String addBlock(@ModelAttribute Block block, BindingResult result, SessionStatus sessionStatus, HttpSession session, @RequestParam Integer pid, ModelMap models){
+    public String addBlock(@ModelAttribute ItemBlock block, BindingResult result, SessionStatus sessionStatus, HttpSession session, @RequestParam Integer pid, ModelMap models){
         
-        Page page =(Page) session.getAttribute("page");
+        ItemPage page =(ItemPage) session.getAttribute("page");
         block.setPage(page);
         
-        List<Block> blocks = page.getBlock();
-        block.setBlockOrder(blocks.size());
+        List<ItemBlock> blocks = page.getBlock();
+        block.setIndex(blocks.size());
         
         block = formDao.saveBlock(block);
         
@@ -189,7 +189,7 @@ public class FormController {
     @RequestMapping(value = "/form/add_block.html", method = RequestMethod.POST)
     public String addBlock(@RequestParam String name, @RequestParam String description,@RequestParam String available, @RequestParam Integer pid, ModelMap models){
         
-        Block block = new Block();
+        ItemBlock block = new ItemBlock();
         block.setName(name);
         block.setDescription(description);
         if(available.equals("avaiable")){
@@ -198,11 +198,11 @@ public class FormController {
             block.setAvailable(false);
         }
         
-        Page page = formDao.getPageById(pid);
+        ItemPage page = formDao.getPageById(pid);
         block.setPage(page);
         
-        List<Block> blocks = page.getBlock();
-        block.setBlockOrder(blocks.size());
+        List<ItemBlock> blocks = page.getBlock();
+        block.setIndex(blocks.size());
         
         block = formDao.saveBlock(block);
         
@@ -214,7 +214,7 @@ public class FormController {
       @RequestMapping(value = "/form/block/{id}.html", method = RequestMethod.GET)
     public String blockView(@PathVariable Integer id, ModelMap models){
         
-        Block block = formDao.getBlockById(id);
+        ItemBlock block = formDao.getBlockById(id);
         models.put("block", block);
         return "form/blockview";
     }
@@ -242,7 +242,7 @@ public class FormController {
     @RequestMapping(value = "/form/add_item.html", method = RequestMethod.POST)
     public String addItem(@RequestParam Integer id, @RequestParam Integer total_opt, @RequestParam Integer min, @RequestParam Integer max, @RequestParam String name, @RequestParam String description, @RequestParam String available, @RequestParam String selection_name, @RequestParam String selection_description,ModelMap models){
         
-        Block block = formDao.getBlockById(id);
+        ItemBlock block = formDao.getBlockById(id);
         ItemSelection item = new ItemSelection();
         
         //check box with 1 option
@@ -251,7 +251,7 @@ public class FormController {
         }
         //radio button
         if(total_opt > 1 && max == 1){
-            item.setItemType(item.getItemType().RADIOBUTTON);
+            item.setItemType(item.getItemType().MULTIPLE_CHOICE);
         }
         //checkbox
         if(total_opt > 1 && total_opt < 10 && max > 1){
@@ -259,15 +259,15 @@ public class FormController {
         }
         //pull down
         if(total_opt > 10 && max == 1){
-            item.setItemType(item.getItemType().PULLDOWN);
+            item.setItemType(item.getItemType().DROPDOWN_LIST);
         }
         
         item.setName(name);
         item.setDescription(description);
         item.setAvailable(true);
         item.setRequired(true);
-        item.setBlock(block);
-        item.setOrderId(block.getItems().size());
+        //item.setBlock(block);
+        item.setIndex(block.getItems().size());
         item.setMinRequirements(min);
         item.setMaxSelectionNum(max);
         

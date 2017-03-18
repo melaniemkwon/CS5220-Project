@@ -34,7 +34,7 @@ public class Form implements Serializable {
 	@OneToMany(mappedBy="form",cascade=CascadeType.ALL)
 	@Column(name="page")
 	@OrderColumn(name="page_number")
-	private List<Page> pages;
+	private List<ItemPage> pages;
 	
 	@Column(name = "create_date")
 	private Date createDate;
@@ -80,11 +80,11 @@ public class Form implements Serializable {
 		this.user = user;
 	}
 	
-	public List<Page> getPages() {
+	public List<ItemPage> getPages() {
 		return pages;
 	}
 	
-	public void setPages(List<Page> pages) {
+	public void setPages(List<ItemPage> pages) {
 		this.pages = pages;
 	}
 	

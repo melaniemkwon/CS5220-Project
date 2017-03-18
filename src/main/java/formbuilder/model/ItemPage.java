@@ -11,9 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.Table;
 
-@Entity(name = "page")
-public class Page implements Serializable {
+@Entity
+@Table(name = "item_pages")
+public class ItemPage implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -29,10 +31,10 @@ public class Page implements Serializable {
 	
 	private boolean available; //page can be disabled
 	
-	@OneToMany(mappedBy="page",cascade=CascadeType.ALL)
-	@OrderBy("blockOrder")
-	@Column(name="block")
-	private List<Block> block;
+//	@OneToMany(mappedBy="page",cascade=CascadeType.ALL)
+//	@OrderBy("blockOrder")
+//	@Column(name="block")
+	private List<ItemBlock> blocks;
 
 	public Integer getId() {
 		return id;
@@ -58,11 +60,11 @@ public class Page implements Serializable {
 		this.form = form;
 	}
 
-	public List<Block> getBlock() {
+	public List<ItemBlock> getBlock() {
 		return block;
 	}
 
-	public void setBlock(List<Block> block) {
+	public void setBlock(List<ItemBlock> block) {
 		this.block = block;
 	}
 
