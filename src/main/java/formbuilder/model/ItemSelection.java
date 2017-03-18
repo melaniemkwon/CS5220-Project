@@ -57,5 +57,17 @@ public class ItemSelection extends Item implements Serializable {
 
     public void setAnswer(ItemSelectionAnswer answer) {
         this.answer = answer;
-    } 
+    }
+
+	@Override
+	public Item duplicate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ItemType getItemType() {
+		// TODO Auto-generated method stub
+		return null;
+	} 
 }

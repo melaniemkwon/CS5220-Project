@@ -1,6 +1,7 @@
 package formbuilder.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /*
@@ -51,6 +54,12 @@ public abstract class Item implements Serializable {
     
 //    @ManyToOne
 //    private PdfField matchField;
+    
+    @ManyToOne
+    protected ItemBlock block;
+    
+    @OneToMany(mappedBy="item")		// TODO: check this.. if correct logic
+    protected List<ItemResponse> responses;
     
     public Item() {
     	this.available = true;
@@ -119,5 +128,13 @@ public abstract class Item implements Serializable {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public ItemBlock getBlock() {
+		return block;
+	}
+
+	public void setBlock(ItemBlock block) {
+		this.block = block;
 	}
 }

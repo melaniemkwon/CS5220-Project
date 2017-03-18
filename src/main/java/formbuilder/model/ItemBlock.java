@@ -37,10 +37,13 @@ public class ItemBlock implements Serializable {
 	
     protected int index;
 	
-	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })	
+	@OneToMany(mappedBy="block", cascade = { CascadeType.MERGE, CascadeType.PERSIST })	
 	@JoinColumn(name = "item_block_id")
     @OrderColumn(name = "item_index")
 	protected List<Item> items;
+	
+	@ManyToOne
+	protected ItemPage page;
 	
 	public ItemBlock() {
 		items = new ArrayList<Item>();
@@ -127,4 +130,14 @@ public class ItemBlock implements Serializable {
 	public void setIndex(int index) {
 		this.index = index;
 	}
+
+	public ItemPage getPage() {
+		return page;
+	}
+
+	public void setPage(ItemPage page) {
+		this.page = page;
+	}
+	
+	
 }

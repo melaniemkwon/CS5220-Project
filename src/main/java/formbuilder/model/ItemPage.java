@@ -32,7 +32,7 @@ public class ItemPage implements Serializable {
 
 	protected boolean available;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="page", cascade = CascadeType.ALL)
     @JoinColumn(name = "item_page_id")
     @OrderColumn(name = "block_index")
 	protected List<ItemBlock> blocks;
@@ -77,4 +77,21 @@ public class ItemPage implements Serializable {
 	public void setIndex(int index) {
 		this.index = index;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<ItemBlock> getBlocks() {
+		return blocks;
+	}
+
+	public void setBlocks(List<ItemBlock> blocks) {
+		this.blocks = blocks;
+	}
+	
 }

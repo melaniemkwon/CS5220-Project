@@ -51,8 +51,8 @@ public class Form implements Serializable {
 	@Column(name = "update_date")
 	private Date updateDate;
 	
-	@Column(name = "submit_date")
-	private Date submitDate;
+//	@Column(name = "submit_date") //moved to FormResponse
+//	private Date submitDate;
 	
 	@Column(name = "finished")
 	private boolean isfinished;
