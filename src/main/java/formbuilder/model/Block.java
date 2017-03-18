@@ -13,15 +13,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
 @Entity(name = "block")
-public class Block implements Serializable{
+public class Block implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
     @GeneratedValue
 	private Integer id;
+	
 	private String name;
+	
 	private String description;
+	
 	private boolean available; //block can be disabled
+	
 	@Column(name = "block_order")
     private int blockOrder;
+	
 	@ManyToOne
 	private Page page; // parent page
 	
@@ -85,6 +93,4 @@ public class Block implements Serializable{
 	public void setBlockOrder(int blockOrder) {
 		this.blockOrder = blockOrder;
 	}
-	
-	
 }

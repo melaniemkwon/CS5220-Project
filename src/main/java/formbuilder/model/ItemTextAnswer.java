@@ -9,7 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity(name = "text_answer")
-public class ItemTextAnswer implements Serializable{
+public class ItemTextAnswer implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -54,5 +56,4 @@ public class ItemTextAnswer implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 }

@@ -10,6 +10,8 @@ import javax.persistence.OneToOne;
 @Entity(name = "item_text")
 public class ItemText extends Item implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+	
 	@Column(name="text_length")
 	private int textLength;
 	
@@ -27,7 +29,6 @@ public class ItemText extends Item implements Serializable {
 	}
 	public void setTextAnswer(ItemTextAnswer textAnswer) {
 		this.answer = textAnswer;
-	}
-	
+	}	
 }
 

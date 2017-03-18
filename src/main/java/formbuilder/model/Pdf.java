@@ -14,11 +14,13 @@ import javax.persistence.OneToMany;
 
 @Entity(name = "pdf")
 public class Pdf implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
 	private String name;
 
 	@Column(name = "upload_date")
@@ -62,5 +64,13 @@ public class Pdf implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 }

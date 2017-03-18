@@ -11,7 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity(name = "selection_answer")
-public class ItemSelectionAnswer implements Serializable{
+public class ItemSelectionAnswer implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id

@@ -14,11 +14,16 @@ import javax.persistence.OrderBy;
 
 @Entity(name = "page")
 public class Page implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
     @GeneratedValue
 	private Integer id;
+	
 	@Column(name="page_number")
 	private int pageNumber;
+	
 	@ManyToOne
 	private Form form; // parent form
 	
@@ -59,5 +64,13 @@ public class Page implements Serializable {
 
 	public void setBlock(List<Block> block) {
 		this.block = block;
+	}
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 }

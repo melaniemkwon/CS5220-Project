@@ -10,14 +10,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity(name = "pdf_field")
-public class PdfField implements Serializable{
+public class PdfField implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
     @GeneratedValue
 	private Integer id;
+	
 	private String name;
+	
 	private String description;
+	
 	private boolean available;  // fields can be disabled
 	
 	@OneToMany
@@ -66,4 +70,11 @@ public class PdfField implements Serializable{
 		this.pdf = pdf;
 	}
 
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
 }

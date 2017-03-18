@@ -14,18 +14,22 @@ import javax.persistence.ManyToOne;
 
 @Entity(name = "Item")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Item implements Serializable{
+public class Item implements Serializable {
+	
     private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue
     private Integer id;
+    
     private String name;
+    
     private String description;
+    
     private boolean available;  //block can be disabled
     
     @Column(name = "order_id")
-    private int orderId; // in which order this item should be shown, when only
+    private int orderId; 	// in which order this item should be shown, when only
                             // by itself the default is 0
     @ManyToOne
     private Block block;
@@ -36,6 +40,7 @@ public class Item implements Serializable{
         CHECKBOX,
         PULLDOWN
     }
+    
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "type")
     private Type itemType;
@@ -117,6 +122,4 @@ public class Item implements Serializable{
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
-    
-    
 }

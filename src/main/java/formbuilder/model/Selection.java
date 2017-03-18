@@ -13,6 +13,8 @@ import javax.persistence.Table;
 @Table(name = "selections")
  public class Selection implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "selection_id")
@@ -36,18 +38,23 @@ import javax.persistence.Table;
  	public Integer getId() {
  		return selectionId;
  	}
+ 	
  	public void setId(Integer id) {
  		this.selectionId = id;
  	}
+ 	
  	public int getOrderId() {
  		return orderId;
  	}
+ 	
  	public void setOrderId(int orderId) {
  		this.orderId = orderId;
  	}
+ 	
  	public String getName() {
  		return name;
  	}
+ 	
  	public void setName(String name) {
  		this.name = name;
  	}
@@ -63,6 +70,7 @@ import javax.persistence.Table;
  	public String getDescription() {
  		return description;
  	}
+ 	
  	public void setDescription(String description) {
  		this.description = description;
  	}
@@ -78,6 +86,7 @@ import javax.persistence.Table;
 	public ItemSelection getItem() {
 		return item;
 	}
+	
 	public void setItem(ItemSelection item) {
 		this.item = item;
 	}
