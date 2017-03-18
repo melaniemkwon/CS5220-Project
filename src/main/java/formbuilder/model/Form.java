@@ -17,6 +17,7 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 /*
  * Form is the main data structure that contains question pages... UNDER CONSTRUCTION
+ * Form responses can be created or accessed from a Form.
  */
 @Entity
 @Table(name = "forms")
@@ -34,11 +35,11 @@ public class Form implements Serializable {
 	
 	private boolean available; 
 	
-	@ManyToOne
-	private User user;
+	@OneToMany(mappedBy="form")
+	private List<FormResponse> formResponses;
 	
 	@ManyToOne
-	protected User creator;
+	private User creator;	//ADMIN or STAFF that creates the form
 	
 	@OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_page_id")
@@ -50,9 +51,6 @@ public class Form implements Serializable {
 	
 	@Column(name = "update_date")
 	private Date updateDate;
-	
-//	@Column(name = "submit_date") //moved to FormResponse
-//	private Date submitDate;
 	
 	@Column(name = "finished")
 	private boolean isfinished;
@@ -90,15 +88,15 @@ public class Form implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	public User getUser() {
-		return user;
+
+	public User getCreator() {
+		return creator;
 	}
-	
-	public void setUser(User user) {
-		this.user = user;
+
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
-	
+
 	public List<ItemPage> getPages() {
 		return pages;
 	}
@@ -123,14 +121,6 @@ public class Form implements Serializable {
 		this.updateDate = updateDate;
 	}
 	
-	public Date getSubmitDate() {
-		return submitDate;
-	}
-	
-	public void setSubmitDate(Date submitDate) {
-		this.submitDate = submitDate;
-	}
-	
 	public boolean isAvailable() {
 		return available;
 	}
@@ -146,4 +136,21 @@ public class Form implements Serializable {
 	public void setIsfinished(boolean isfinished) {
 		this.isfinished = isfinished;
 	}
+
+	public List<FormResponse> getFormResponses() {
+		return formResponses;
+	}
+
+	public void setFormResponses(List<FormResponse> formResponse) {
+		this.formResponses = formResponse;
+	}
+
+	public Set<Pdf> getPdfs() {
+		return pdfs;
+	}
+
+	public void setPdfs(Set<Pdf> pdfs) {
+		this.pdfs = pdfs;
+	}
+	
 }

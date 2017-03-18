@@ -1,9 +1,12 @@
 package formbuilder.model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -45,6 +48,12 @@ public class User implements Serializable {
     
     @Column(name = "active")
     private boolean active;  //user account can be disabled
+    
+    @OneToMany(mappedBy="creator")
+    private List<Form> forms;					// if STAFF or ADMIN, the forms user has created
+    
+    @OneToMany(mappedBy="respondent")
+    private List<FormResponse> formResponses;	// if regular User, the responses to particular forms
 	
 	public Integer getId() {
 		return id;

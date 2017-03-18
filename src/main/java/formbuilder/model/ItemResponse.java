@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/*
+ * A response to one question item within a form.
+ */
 @Entity
 @Table(name = "item_responses")
 public class ItemResponse implements Serializable {

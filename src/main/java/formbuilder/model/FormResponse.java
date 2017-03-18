@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /*
- * A response to the form as a whole. Contains answers.
+ * A response to the form as a whole. Contains answers for a defined user.
  */
 @Entity
 @Table(name = "form_responses")
@@ -26,6 +25,9 @@ public class FormResponse implements Serializable  {
     @Id
 	@GeneratedValue
 	private long id;
+    
+    @ManyToOne
+    private Form form;
     
     @ManyToOne
     private User respondent;
@@ -62,6 +64,14 @@ public class FormResponse implements Serializable  {
 
 	public void setItemResponses(List<ItemResponse> itemResponses) {
 		this.itemResponses = itemResponses;
+	}
+
+	public Date getSubmitDate() {
+		return submitDate;
+	}
+
+	public void setSubmitDate(Date submitDate) {
+		this.submitDate = submitDate;
 	}
 
 }
