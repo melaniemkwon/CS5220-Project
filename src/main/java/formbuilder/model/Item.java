@@ -3,6 +3,7 @@ package formbuilder.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -60,7 +61,7 @@ public abstract class Item implements Serializable {
     @ManyToOne
 	protected Form form;
     
-	@OneToMany(mappedBy="item")
+	@OneToMany(mappedBy="item", cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	protected List<Selection> selections;
     
     @OneToMany(mappedBy="item")		// TODO: check this.. if correct logic
@@ -74,6 +75,18 @@ public abstract class Item implements Serializable {
     public abstract Item duplicate();
     public abstract ItemType getItemType();
 	public abstract String getHelpText();
+	
+	public Selection createSelection( String text, int orderNum ) {
+		Selection selection = new Selection();
+		selection.setItem(this);
+		selection.setValue(text);
+		selection.setIndex(orderNum);
+		return selection;
+	}
+	
+	public void addSelection( Selection selection ) {
+		selections.add( selection );
+	}
 
     public int getId() {
 		return id;
