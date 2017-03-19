@@ -63,8 +63,7 @@ public class Form implements Serializable {
 		this.available = false;
 		this.createDate = new Date();
 		this.updateDate = createDate;
-		this.isfinished = false;
-		
+		this.isfinished = false;	
 	}
 	
 	public Item getItem(int itemId) {
@@ -86,6 +85,57 @@ public class Form implements Serializable {
 	}
 
 	// TODO: void replaceItem( Item item )
+	
+	/*
+	 * Open a form by ID and add a new item.
+	 */
+	public CheckboxItem addCheckboxItem() {
+		CheckboxItem item = new CheckboxItem();
+		item.form = this;
+		return item;
+	}
+	
+	public DateItem addDateItem() {
+		DateItem item = new DateItem();
+		item.form = this;
+		return item;
+	}
+	
+	public DropdownListItem addDropdownListItem() {
+		DropdownListItem item = new DropdownListItem();
+		item.form = this;
+		return item;
+	}
+	
+	public ImageItem addImageItem() {
+		ImageItem item = new ImageItem();
+		item.form = this;
+		return item;
+	}
+	
+	public SectionHeaderItem addSectionHeaderItem() {
+		SectionHeaderItem item = new SectionHeaderItem();
+		item.form = this;
+		return item;
+	}
+	
+	public TextItem addTextItem() {
+		TextItem item = new TextItem();
+		item.form = this;
+		return item;
+	}
+	
+	public TextParagraphItem addTextParagraphItem() {
+		TextParagraphItem item = new TextParagraphItem();
+		item.form = this;
+		return item;
+	}
+	
+	public TimeItem addTimeItem() {
+		TimeItem item = new TimeItem();
+		item.form = this;
+		return item;
+	}
 	
 	public long getId() {
 		return id;
