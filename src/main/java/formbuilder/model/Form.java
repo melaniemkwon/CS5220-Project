@@ -107,6 +107,18 @@ public class Form implements Serializable {
 		return item;
 	}
 	
+	public MultipleChoiceItem addMultipleChoiceITem() {
+		MultipleChoiceItem item = new MultipleChoiceItem();
+		item.form = this;
+		return item;
+	}
+	
+	public PageBreakItem addPageBreakItem() {
+		PageBreakItem item = new PageBreakItem();
+		item.form = this;
+		return item;
+	}
+	
 	public ImageItem addImageItem() {
 		ImageItem item = new ImageItem();
 		item.form = this;
