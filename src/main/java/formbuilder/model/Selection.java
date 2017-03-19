@@ -17,46 +17,30 @@ import javax.persistence.Table;
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "selection_id")
- 	private Integer selectionId;
+ 	private int id;
 	
-	@Column(name = "order_id")
- 	private int orderId;
-	
-	@Column(name = "name")
- 	private String name;
+ 	private int index;
 	
 	@Column(name = "value")
  	private String value;
 	
-	@Column(name = "description")
- 	private String description;
-	
 	@ManyToOne
-	private ItemSelection item;
+	private Item item;
  	
  	public Integer getId() {
- 		return selectionId;
+ 		return id;
  	}
  	
- 	public void setId(Integer id) {
- 		this.selectionId = id;
+ 	public void setId(int id) {
+ 		this.id = id;
  	}
  	
- 	public int getOrderId() {
- 		return orderId;
+ 	public int getIndex() {
+ 		return index;
  	}
  	
- 	public void setOrderId(int orderId) {
- 		this.orderId = orderId;
- 	}
- 	
- 	public String getName() {
- 		return name;
- 	}
- 	
- 	public void setName(String name) {
- 		this.name = name;
+ 	public void setIndex(int index) {
+ 		this.index = index;
  	}
  	
  	public String getValue() {
@@ -66,28 +50,12 @@ import javax.persistence.Table;
  	public void setValue(String value) {
  		this.value = value;
  	}
- 
- 	public String getDescription() {
- 		return description;
- 	}
  	
- 	public void setDescription(String description) {
- 		this.description = description;
- 	}
- 
- 	public int getSelectionId() {
- 		return selectionId;
- 	}
- 
- 	public void setSelectionId(int selectionId) {
- 		this.selectionId = selectionId;
- 	}
- 	
-	public ItemSelection getItem() {
+	public Item getItem() {
 		return item;
 	}
 	
-	public void setItem(ItemSelection item) {
+	public void setItem(Item item) {
 		this.item = item;
 	}
 	

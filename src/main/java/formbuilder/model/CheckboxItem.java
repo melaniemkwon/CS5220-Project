@@ -8,16 +8,13 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("CHECKBOX")
 public class CheckboxItem extends Item {
 	
 	private static final long serialVersionUID = 1L;
-	
-	// TODO: customize?
-    @ElementCollection
-	protected List<String> choices;
 	
 	@Column(name = "min_selections")
     protected int minSelections;
@@ -26,7 +23,7 @@ public class CheckboxItem extends Item {
     protected int maxSelections;
     
     public CheckboxItem() {
-    	choices = new ArrayList<String>();
+    	selections = new ArrayList<Selection>();
     }
 
 	@Override
@@ -44,8 +41,8 @@ public class CheckboxItem extends Item {
 		
 		newCheckboxItem.minSelections = this.minSelections;
 		newCheckboxItem.maxSelections = this.maxSelections;
-		for ( String choice : choices) {
-			newCheckboxItem.choices.add( choice );
+		for ( Selection selection : selections) {
+			newCheckboxItem.selections.add( selection );
 		}
 		
 		return newCheckboxItem;
@@ -67,12 +64,12 @@ public class CheckboxItem extends Item {
 		return newItemResponse;
 	}
 
-	public List<String> getChoices() {
-		return choices;
+	public List<Selection> getSelections() {
+		return selections;
 	}
 
-	public void setChoices(List<String> choices) {
-		this.choices = choices;
+	public void setSelections(List<Selection> selections) {
+		this.selections = selections;
 	}
 
 	public int getMinSelections() {

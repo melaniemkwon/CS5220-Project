@@ -14,7 +14,7 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 /*
- * A form page that contains a list of form blocks
+ * A form page contains a list of form blocks
  */
 @Entity
 @Table(name = "item_pages")
