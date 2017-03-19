@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
@@ -24,22 +25,25 @@ public class ItemPage implements Serializable {
 	
 	@Id
     @GeneratedValue
-	protected int id;
+    private int id;
 	
-	protected String description;
+	private String description;
 	
-	protected int index;
+	private int index;
 
-	protected boolean available;
+	private boolean available;
+	
+	@ManyToOne
+	private Form form;
 	
 	@OneToMany(mappedBy="page", cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_page_id")
-    @OrderColumn(name = "block_index")
-	protected List<ItemBlock> blocks;
+//    @JoinColumn(name = "item_page_id")
+//    @OrderColumn(name = "block_index")
+	private List<ItemBlock> blocks;
 	
 	public ItemPage() {
 		blocks = new ArrayList<ItemBlock>();
-		blocks.add( new ItemBlock() );	
+		blocks.add( new ItemBlock() );  // Add Block to new Page
 	}
 	
 	public ItemPage duplicate() {
@@ -92,6 +96,14 @@ public class ItemPage implements Serializable {
 
 	public void setBlocks(List<ItemBlock> blocks) {
 		this.blocks = blocks;
+	}
+
+	public Form getForm() {
+		return form;
+	}
+
+	public void setForm(Form form) {
+		this.form = form;
 	}
 	
 }

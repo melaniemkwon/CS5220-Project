@@ -1,6 +1,7 @@
 package formbuilder.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -41,9 +42,9 @@ public class Form implements Serializable {
 	@ManyToOne
 	private User creator;	//ADMIN or STAFF that creates the form
 	
-	@OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_page_id")
-    @OrderColumn(name = "page_index")
+	@OneToMany(mappedBy="form", cascade = CascadeType.ALL)
+//    @JoinColumn(name = "item_page_id")
+//    @OrderColumn(name = "page_index")
 	private List<ItemPage> pages;
 	
 	@Column(name = "create_date")
@@ -63,6 +64,9 @@ public class Form implements Serializable {
 		this.createDate = new Date();
 		this.updateDate = createDate;
 		this.isfinished = false;
+		
+		this.pages = new ArrayList<ItemPage>();
+		pages.add(new ItemPage()); // Automatically create a Page for new Form
 	}
 	
 	public long getId() {

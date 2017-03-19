@@ -1,5 +1,107 @@
+create sequence hibernate_sequence start 1 increment 1;
 
-    create table public.users (
+    create table form_responses (
+        id int8 not null,
+        submit_date timestamp,
+        form_id int8,
+        respondent_user_id int4,
+        primary key (id)
+    );
+
+    create table form_responses_item_responses (
+        FormResponse_id int8 not null,
+        itemResponses_id int8 not null
+    );
+
+    create table forms (
+        id int8 not null,
+        available boolean not null,
+        create_date timestamp,
+        description varchar(255),
+        finished boolean,
+        name varchar(255),
+        update_date timestamp,
+        creator_user_id int4,
+        primary key (id)
+    );
+
+    create table item_blocks (
+        id int4 not null,
+        available boolean not null,
+        description varchar(255),
+        index int4 not null,
+        name varchar(255),
+        page_id int4,
+        primary key (id)
+    );
+
+    create table item_pages (
+        id int4 not null,
+        available boolean not null,
+        description varchar(255),
+        index int4 not null,
+        form_id int8,
+        primary key (id)
+    );
+
+    create table item_responses (
+        id int8 not null,
+        item_id int4,
+        primary key (id)
+    );
+
+    create table ItemResponse_responses (
+        ItemResponse_id int8 not null,
+        responses varchar(255)
+    );
+
+    create table items (
+        item_type varchar(31) not null,
+        id int4 not null,
+        available boolean not null,
+        description varchar(255),
+        index int4 not null,
+        required boolean,
+        type int4,
+        name varchar(255),
+        num_checkboxes int4,
+        block_id int4,
+        primary key (id)
+    );
+
+    create table pdf (
+        id int8 not null,
+        available boolean not null,
+        name varchar(255),
+        upload_date timestamp,
+        form_id int8,
+        user_user_id int4,
+        primary key (id)
+    );
+
+    create table pdf_field (
+        id int4 not null,
+        available boolean not null,
+        description varchar(255),
+        name varchar(255),
+        pdf_id int8,
+        primary key (id)
+    );
+
+    create table pdf_field_items (
+        pdf_field_id int4 not null,
+        items_id int4 not null
+    );
+
+    create table selections (
+        id int4 not null,
+        index int4 not null,
+        value varchar(255),
+        item_id int4,
+        primary key (id)
+    );
+
+    create table users (
         user_id int4 not null,
         active boolean,
         address1 varchar(255),
@@ -18,194 +120,91 @@
         primary key (user_id)
     );
 
-    alter table public.users 
+    alter table form_responses_item_responses 
+        add constraint UK_dbp70abaivtg94nmqv7xcsvst unique (itemResponses_id);
+
+    alter table pdf_field_items 
+        add constraint UK_jw5f2efelj8pytn4qik64wtca unique (items_id);
+
+    alter table users 
         add constraint UK_6dotkott2kjsp8vw4d0m25fb7 unique (email);
-create sequence hibernate_sequence start 1 increment 1;
 
-    create table block (
-        id int4 not null,
-        available boolean not null,
-        block_order int4,
-        description varchar(255),
-        name varchar(255),
-        page_id int4,
-        primary key (id)
-    );
-
-    create table form (
-        id int4 not null,
-        available boolean not null,
-        create_date timestamp,
-        description varchar(255),
-        finished boolean,
-        name varchar(255),
-        submit_date timestamp,
-        update_date timestamp,
-        user_user_id int4,
-        primary key (id)
-    );
-
-    create table Item (
-        DTYPE varchar(31) not null,
-        id int4 not null,
-        available boolean not null,
-        description varchar(255),
-        required boolean,
-        type int4,
-        name varchar(255),
-        order_id int4,
-        max int4,
-        min int4,
-        text_length int4,
-        block_id int4,
-        matchField_id int4,
-        answer_id int4,
-        primary key (id)
-    );
-
-    create table page (
-        id int4 not null,
-        available boolean not null,
-        page_number int4,
-        form_id int4,
-        primary key (id)
-    );
-
-    create table pdf (
-        id int4 not null,
-        available boolean not null,
-        name varchar(255),
-        upload_date timestamp,
-        user_user_id int4,
-        primary key (id)
-    );
-
-    create table pdf_field (
-        id int4 not null,
-        available boolean not null,
-        description varchar(255),
-        name varchar(255),
-        pdf_id int4,
-        primary key (id)
-    );
-
-    create table pdf_field_Item (
-        pdf_field_id int4 not null,
-        items_id int4 not null
-    );
-
-    create table selection_answer (
-        id int4 not null,
-        user_user_id int4,
-        primary key (id)
-    );
-
-    create table selection_answer_selections (
-        selection_answer_id int4 not null,
-        selection_selection_id int4 not null,
-        primary key (selection_answer_id, selection_selection_id)
-    );
-
-    create table selections (
-        selection_id int4 not null,
-        description varchar(255),
-        name varchar(255),
-        order_id int4,
-        value varchar(255),
-        item_id int4,
-        primary key (selection_id)
-    );
-
-    create table text_answer (
-        id int4 not null,
-        answer varchar(255),
-        item_id int4,
-        user_user_id int4,
-        primary key (id)
-    );
-
-    alter table pdf_field_Item 
-        add constraint UK_b425yubpwrfa9magjw5nq4pi8 unique (items_id);
-
-    alter table selection_answer_selections 
-        add constraint UK_5vre6vj11mq5q7lek9a5hw8ka unique (selection_selection_id);
-
-    alter table block 
-        add constraint FKe3nwc03y9f19kvqltc9ss3nar 
-        foreign key (page_id) 
-        references page;
-
-    alter table form 
-        add constraint FKufiw1a83lvh6jbanfipamllb 
-        foreign key (user_user_id) 
-        references public.users;
-
-    alter table Item 
-        add constraint FK66635usqnh41ur8dkkgjg5d4w 
-        foreign key (block_id) 
-        references block;
-
-    alter table Item 
-        add constraint FKffffx1tdy9t70hepd0rm6sg99 
-        foreign key (matchField_id) 
-        references pdf_field;
-
-    alter table Item 
-        add constraint FKax808cyt2vg5qx0fnsegv7ywn 
-        foreign key (answer_id) 
-        references selection_answer;
-
-    alter table page 
-        add constraint FKe927owsiu7yiit9nmohw42a60 
+    alter table form_responses 
+        add constraint FKfbepy10fuom3c3u41cr547u7d 
         foreign key (form_id) 
-        references form;
+        references forms;
+
+    alter table form_responses 
+        add constraint FKdbfwpfafu547awgk1umxx5s38 
+        foreign key (respondent_user_id) 
+        references users;
+
+    alter table form_responses_item_responses 
+        add constraint FKb8bvwxf53vdwhjtapg0ia26ri 
+        foreign key (itemResponses_id) 
+        references item_responses;
+
+    alter table form_responses_item_responses 
+        add constraint FKpdg6dlctqsx0cwowysk8j3qlf 
+        foreign key (FormResponse_id) 
+        references form_responses;
+
+    alter table forms 
+        add constraint FKjwe1e9anrosok8cchhxt0a5r1 
+        foreign key (creator_user_id) 
+        references users;
+
+    alter table item_blocks 
+        add constraint FK3qvug8t5aelr32omq5ak25yxv 
+        foreign key (page_id) 
+        references item_pages;
+
+    alter table item_pages 
+        add constraint FKb15y6hy6chussaebv5niti0e 
+        foreign key (form_id) 
+        references forms;
+
+    alter table item_responses 
+        add constraint FKmt96s2icfrnypa3yixh23jxtb 
+        foreign key (item_id) 
+        references items;
+
+    alter table ItemResponse_responses 
+        add constraint FKsw3i2edyrsvtcaol2ha8197p5 
+        foreign key (ItemResponse_id) 
+        references item_responses;
+
+    alter table items 
+        add constraint FKgrxhdt3yutuxk5b1ck0pfnfq8 
+        foreign key (block_id) 
+        references item_blocks;
+
+    alter table pdf 
+        add constraint FK1dmiu50tta5rhde5jdh1xyqn3 
+        foreign key (form_id) 
+        references forms;
 
     alter table pdf 
         add constraint FKb7u3htpvu7ft2ykeagfx9xudi 
         foreign key (user_user_id) 
-        references public.users;
+        references users;
 
     alter table pdf_field 
         add constraint FKn4gis1mi2hmn14uuipt141fwg 
         foreign key (pdf_id) 
         references pdf;
 
-    alter table pdf_field_Item 
-        add constraint FKd0i6b9iojnngwettsrmdwcq9v 
+    alter table pdf_field_items 
+        add constraint FKfs3qj8cr54r2k4mb4nx5vfavj 
         foreign key (items_id) 
-        references Item;
+        references items;
 
-    alter table pdf_field_Item 
-        add constraint FK5g8n72xoowa3ndd69pob3ekd5 
+    alter table pdf_field_items 
+        add constraint FKj5x1egbklrktxcuwl0knxmo84 
         foreign key (pdf_field_id) 
         references pdf_field;
 
-    alter table selection_answer 
-        add constraint FK8007vyi4sxourjr1em4w45gt9 
-        foreign key (user_user_id) 
-        references public.users;
-
-    alter table selection_answer_selections 
-        add constraint FKih5a4d2ujckabyxheukw17wwy 
-        foreign key (selection_selection_id) 
-        references selections;
-
-    alter table selection_answer_selections 
-        add constraint FKtfgcswe88v572x62ma7bv759j 
-        foreign key (selection_answer_id) 
-        references selection_answer;
-
     alter table selections 
-        add constraint FK3da1thhy273hdum4tgxv1quan 
+        add constraint FK3e4bb6tdn617kgnv324pcc0pn 
         foreign key (item_id) 
-        references Item;
-
-    alter table text_answer 
-        add constraint FKoox2vkrjr61wwj6gspib07043 
-        foreign key (item_id) 
-        references Item;
-
-    alter table text_answer 
-        add constraint FKocu1tjt99nv7budo1bsxcigur 
-        foreign key (user_user_id) 
-        references public.users;
+        references items;

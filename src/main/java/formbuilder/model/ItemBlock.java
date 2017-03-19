@@ -27,23 +27,23 @@ public class ItemBlock implements Serializable {
 	
 	@Id
     @GeneratedValue
-	protected int id;
+	private int id;
 	
-	protected String name;
+	private String name;
 	
-	protected String description;
+	private String description;
 	
-	protected boolean available;
+	private boolean available;
 	
-    protected int index;
+	private int index;
 	
 	@OneToMany(mappedBy="block", cascade = { CascadeType.MERGE, CascadeType.PERSIST })	
-	@JoinColumn(name = "item_block_id")
-    @OrderColumn(name = "item_index")
-	protected List<Item> items;
+//	@JoinColumn(name = "item_block_id")
+//    @OrderColumn(name = "item_index")
+	private List<Item> items;
 	
 	@ManyToOne
-	protected ItemPage page;
+	private ItemPage page;
 	
 	public ItemBlock() {
 		items = new ArrayList<Item>();
@@ -137,7 +137,5 @@ public class ItemBlock implements Serializable {
 
 	public void setPage(ItemPage page) {
 		this.page = page;
-	}
-	
-	
+	}	
 }
