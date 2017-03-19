@@ -57,6 +57,7 @@ public class Form implements Serializable {
 	private Set<Pdf> pdfs;
 	
 	public Form() {
+		items = new ArrayList<Item>();
 		this.available = false;
 		this.createDate = new Date();
 		this.updateDate = createDate;	
@@ -78,6 +79,10 @@ public class Form implements Serializable {
 			}
 		}
 		return null;
+	}
+	
+	public void addItem( Item item ) {
+		items.add( item );
 	}
 
 	// TODO: void replaceItem( Item item )

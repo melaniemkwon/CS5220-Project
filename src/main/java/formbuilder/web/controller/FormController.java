@@ -16,10 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import formbuilder.model.ItemBlock;
 import formbuilder.model.Form;
 import formbuilder.model.Item;
-import formbuilder.model.ItemPage;
 import formbuilder.model.Selection;
 import formbuilder.model.User;
 import formbuilder.model.dao.FormDao;
@@ -60,7 +58,7 @@ public class FormController {
 
 		// TODO: instead of creating new, use form object in session scope
 		Form form = new Form();
-		form.setName(name);
+		form.setTitle(name);
 		form.setDescription(description);
 
 		if (available.equals("available")) {
@@ -89,42 +87,42 @@ public class FormController {
 		return "redirect:/form/list.html";
 	}
 
-	@RequestMapping(value = "/form/add_page.html", method = RequestMethod.GET)
-	public String addPage(@RequestParam Integer id, ModelMap models) {
+//	@RequestMapping(value = "/form/add_page.html", method = RequestMethod.GET)
+//	public String addPage(@RequestParam Integer id, ModelMap models) {
+//
+//		Form form = formDao.getForm(id);
+//		// find next page number
+//		List<ItemPage> pages = form.getPages();
+//		int nextPageNum = pages.size() + 1;
+//
+//		// create new page and save to db
+//		ItemPage page = new ItemPage();
+//		page.setForm(form);
+////		page.setPageNumber(nextPageNum);
+//		formDao.savePage(page);
+//
+//		models.put("page", page);
+//		models.put("form", form);
+//
+//		return "form/pageview";
+//	}
 
-		Form form = formDao.getForm(id);
-		// find next page number
-		List<ItemPage> pages = form.getPages();
-		int nextPageNum = pages.size() + 1;
-
-		// create new page and save to db
-		ItemPage page = new ItemPage();
-		page.setForm(form);
-//		page.setPageNumber(nextPageNum);
-		formDao.savePage(page);
-
-		models.put("page", page);
-		models.put("form", form);
-
-		return "form/pageview";
-	}
-
-	@RequestMapping(value = "/form/page_view.html", method = RequestMethod.GET)
-	public String viewPage(@RequestParam Integer id, @RequestParam Integer p, ModelMap models) {
-		Form form = formDao.getForm(id);
-		List<ItemPage> pages = form.getPages();
-		ItemPage page = null;
-		if (p >= 1) {
-			page = pages.get(p);
-		} else {
-			page = pages.get(1);
-		}
-
-		models.put("page", page);
-		models.put("form", form);
-
-		return "form/pageview";
-	}
+//	@RequestMapping(value = "/form/page_view.html", method = RequestMethod.GET)
+//	public String viewPage(@RequestParam Integer id, @RequestParam Integer p, ModelMap models) {
+//		Form form = formDao.getForm(id);
+//		List<ItemPage> pages = form.getPages();
+//		ItemPage page = null;
+//		if (p >= 1) {
+//			page = pages.get(p);
+//		} else {
+//			page = pages.get(1);
+//		}
+//
+//		models.put("page", page);
+//		models.put("form", form);
+//
+//		return "form/pageview";
+//	}
 
 	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.GET)
 	public String edit(@PathVariable Integer id, ModelMap models) {

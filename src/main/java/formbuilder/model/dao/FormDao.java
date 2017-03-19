@@ -2,10 +2,8 @@ package formbuilder.model.dao;
 
 import java.util.List;
 
-import formbuilder.model.ItemBlock;
 import formbuilder.model.Form;
 import formbuilder.model.Item;
-import formbuilder.model.ItemPage;
 import formbuilder.model.Selection;
 
 public interface FormDao {
@@ -19,16 +17,16 @@ public interface FormDao {
 	void deleteForm(Form form);
 	
 	
-	ItemPage getPageById(Integer id);
-	
-	ItemPage savePage(ItemPage page);
-	
-	
-	List<ItemBlock> getBlocks();
-	
-	ItemBlock getBlockById(Integer id);
-	
-	ItemBlock saveBlock(ItemBlock block);
+//	ItemPage getPageById(Integer id);
+//	
+//	ItemPage savePage(ItemPage page);
+//	
+//	
+//	List<ItemBlock> getBlocks();
+//	
+//	ItemBlock getBlockById(Integer id);
+//	
+//	ItemBlock saveBlock(ItemBlock block);
 	
 	Item getItemById(Integer id);
 	

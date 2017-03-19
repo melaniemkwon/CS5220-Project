@@ -8,10 +8,8 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import formbuilder.model.ItemBlock;
 import formbuilder.model.Form;
 import formbuilder.model.Item;
-import formbuilder.model.ItemPage;
 import formbuilder.model.Selection;
 import formbuilder.model.dao.FormDao;
 
@@ -37,34 +35,34 @@ public class FormDaoImpl implements FormDao {
 		return entityManager.merge(form);
 	}
 
-	public ItemPage getPageById(Integer id){
-		return entityManager.find(ItemPage.class, id);
-	}
+//	public ItemPage getPageById(Integer id){
+//		return entityManager.find(ItemPage.class, id);
+//	}
+//	
+//	@Override
+//	@Transactional
+//	public ItemPage savePage(ItemPage page) {
+//		
+//		return entityManager.merge(page);
+//	}
 	
-	@Override
-	@Transactional
-	public ItemPage savePage(ItemPage page) {
-		
-		return entityManager.merge(page);
-	}
-	
-	@Override
-	@Transactional
-	public ItemBlock saveBlock(ItemBlock block) {
-		
-		return entityManager.merge(block);
-	}
-
-	@Override
-	public List<ItemBlock> getBlocks() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ItemBlock getBlockById(Integer id) {
-		return entityManager.find(ItemBlock.class, id);
-	}
+//	@Override
+//	@Transactional
+//	public ItemBlock saveBlock(ItemBlock block) {
+//		
+//		return entityManager.merge(block);
+//	}
+//
+//	@Override
+//	public List<ItemBlock> getBlocks() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public ItemBlock getBlockById(Integer id) {
+//		return entityManager.find(ItemBlock.class, id);
+//	}
 
 	@Override
 	@Transactional
