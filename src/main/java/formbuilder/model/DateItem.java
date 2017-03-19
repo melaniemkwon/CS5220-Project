@@ -15,13 +15,13 @@ public class DateItem extends Item {
 	public Item duplicate() {
 		DateItem newDateItem = new DateItem();
 		
-		newDateItem.name = this.name;
+		newDateItem.title = this.title;
 		newDateItem.description = this.description;
 		newDateItem.available = this.available;
 		newDateItem.index = this.index;
 		newDateItem.isRequired = this.isRequired;
 		newDateItem.itemType = this.itemType;
-		newDateItem.block = this.block;
+		newDateItem.form = this.form;
 		
 		return newDateItem;
 	}
@@ -36,6 +36,12 @@ public class DateItem extends Item {
 		ItemResponse newItemResponse = new ItemResponse();
 		newItemResponse.addResponse(date.toString());
 		return newItemResponse;
+	}
+
+	@Override
+	public String getHelpText() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

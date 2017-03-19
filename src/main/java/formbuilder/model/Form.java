@@ -30,7 +30,7 @@ public class Form implements Serializable {
 	@GeneratedValue
 	private long id;
 	
-	private String name;
+	private String title;
 	
 	private String description;
 	
@@ -42,10 +42,10 @@ public class Form implements Serializable {
 	@ManyToOne
 	private User creator;	//ADMIN or STAFF that creates the form
 	
-	@OneToMany(mappedBy="form", cascade = CascadeType.ALL)
-//    @JoinColumn(name = "item_page_id")
-//    @OrderColumn(name = "page_index")
-	private List<ItemPage> pages;
+	@OneToMany(mappedBy="form", cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+	// @JoinColumn(name = "item_block_id")
+	// @OrderColumn(name = "item_index")
+	private List<Item> items;
 	
 	@Column(name = "create_date")
 	private Date createDate;
@@ -65,13 +65,27 @@ public class Form implements Serializable {
 		this.updateDate = createDate;
 		this.isfinished = false;
 		
-		this.pages = new ArrayList<ItemPage>();
-		pages.add(new ItemPage()); // Automatically create a Page for new Form
 	}
 	
-	public ItemPage createPage() {
-		
+	public Item getItem(int itemId) {
+		for (Item item : items) {
+			if (item.getId() == itemId) {
+				return item;
+			}
+		}
+		return null;
 	}
+
+	public Item deleteItem(int itemId) {
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).getId() == itemId) {
+				return items.remove(i);
+			}
+		}
+		return null;
+	}
+
+	// TODO: void replaceItem( Item item )
 	
 	public long getId() {
 		return id;
@@ -81,12 +95,12 @@ public class Form implements Serializable {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	public String getDescription() {
@@ -103,32 +117,6 @@ public class Form implements Serializable {
 
 	public void setCreator(User creator) {
 		this.creator = creator;
-	}
-
-	public List<ItemPage> getPages() {
-		return pages;
-	}
-	
-	public void setPages(List<ItemPage> pages) {
-		this.pages = pages;
-	}
-	
-	public ItemPage getPageById(int pageId) {
-		for ( ItemPage page : pages ) {
-			if ( page.getId() == pageId ) {
-				return page;
-			}
-		}
-		return null;
-	}
-	
-	public ItemPage deletePageById(int pageId) {
-		for (int i = 0; i < pages.size(); i++) {
-			if (pages.get(i).getId() == pageId) {
-				return pages.remove(i);
-			}
-		}
-		return null;
 	}
 	
 	public Date getCreateDate() {
@@ -178,5 +166,12 @@ public class Form implements Serializable {
 	public void setPdfs(Set<Pdf> pdfs) {
 		this.pdfs = pdfs;
 	}
-	
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
 }

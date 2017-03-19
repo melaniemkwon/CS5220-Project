@@ -14,4 +14,10 @@ public class DropdownListItem extends Item {
 		return null;
 	}
 
+	@Override
+	public String getHelpText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

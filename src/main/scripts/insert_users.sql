@@ -1,2 +1,2 @@
-insert into users (active, address1, address2, city, country, phone_cell, phone_home, phone_work, state, zip, email, first_name, last_name, role, user_id) 
-values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+insert into users (user_id, active, address1, address2, city, country, phone_cell, phone_home, phone_work, state, zip, email, first_name, last_name, role) 
+values (1, true, '123 address1', '123 address2', 'Los Angeles', 'USA', '111-555-8287', '111-555-8287', '111-555-8287', 'CA', '12345', 'STAFF@email.com', 'FirstName', 'LastName', 'STAFF');

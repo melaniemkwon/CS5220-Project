@@ -37,9 +37,11 @@ public abstract class Item implements Serializable {
     @GeneratedValue
     protected int id;
     
-    protected String name;
+    protected String title;
     
     protected String description;
+    
+    protected String helpText;
     
     protected boolean available;
 
@@ -56,7 +58,7 @@ public abstract class Item implements Serializable {
 //    private PdfField matchField;
     
     @ManyToOne
-    protected ItemBlock block;
+	protected Form form;
     
 	@OneToMany(mappedBy="item")
 	protected List<Selection> selections;
@@ -70,6 +72,8 @@ public abstract class Item implements Serializable {
     }
     
     public abstract Item duplicate();
+    public abstract ItemType getItemType();
+	public abstract String getHelpText();
 
     public int getId() {
 		return id;
@@ -79,12 +83,12 @@ public abstract class Item implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-        return name;
+	public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -102,8 +106,6 @@ public abstract class Item implements Serializable {
     public void setRequired(boolean isRequired) {
         this.isRequired = isRequired;
     }
-
-    public abstract ItemType getItemType();
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
@@ -133,11 +135,31 @@ public abstract class Item implements Serializable {
 		this.index = index;
 	}
 
-	public ItemBlock getBlock() {
-		return block;
+	public Form getForm() {
+		return form;
 	}
 
-	public void setBlock(ItemBlock block) {
-		this.block = block;
+	public void setForm(Form form) {
+		this.form = form;
+	}
+
+	public List<Selection> getSelections() {
+		return selections;
+	}
+
+	public void setSelections(List<Selection> selections) {
+		this.selections = selections;
+	}
+
+	public List<ItemResponse> getResponses() {
+		return responses;
+	}
+
+	public void setResponses(List<ItemResponse> responses) {
+		this.responses = responses;
+	}
+
+	public void setHelpText(String helpText) {
+		this.helpText = helpText;
 	}
 }

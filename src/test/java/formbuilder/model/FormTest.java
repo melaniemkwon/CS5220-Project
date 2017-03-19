@@ -43,7 +43,7 @@ public class FormTest {
 //		
 //		// If dummy user already exists, use entityManager to read them in
 //		// In this case, the user has id# 8
-		User user = entityManager.find(User.class, 11);
+		User user = entityManager.find(User.class, 1);
 //		
 //		/* -------------------------
 //		 * Create new dummy Form

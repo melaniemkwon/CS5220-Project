@@ -30,13 +30,13 @@ public class CheckboxItem extends Item {
 		CheckboxItem newCheckboxItem = new CheckboxItem();
 		
 		// repetitive..
-		newCheckboxItem.name = this.name;
+		newCheckboxItem.title = this.title;
 		newCheckboxItem.description = this.description;
 		newCheckboxItem.available = this.available;
 		newCheckboxItem.index = this.index;
 		newCheckboxItem.isRequired = this.isRequired;
 		newCheckboxItem.itemType = this.itemType;
-		newCheckboxItem.block = this.block;
+		newCheckboxItem.form = this.form;
 		
 		newCheckboxItem.numCheckboxes = this.numCheckboxes;
 		for ( Selection selection : selections) {
@@ -81,5 +81,11 @@ public class CheckboxItem extends Item {
 
 	public void setNumCheckboxes(int numCheckboxes) {
 		this.numCheckboxes = numCheckboxes;
+	}
+
+	@Override
+	public String getHelpText() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

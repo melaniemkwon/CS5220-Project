@@ -16,13 +16,13 @@ public class TextItem extends Item {
 		TextItem newTextItem = new TextItem();
 		
 		// repetitive..
-		newTextItem.name = this.name;
+		newTextItem.title = this.title;
 		newTextItem.description = this.description;
 		newTextItem.available = this.available;
 		newTextItem.index = this.index;
 		newTextItem.isRequired = this.isRequired;
 		newTextItem.itemType = this.itemType;
-		newTextItem.block = this.block;
+		newTextItem.form = this.form;
 				
 		return newTextItem;
 	}
@@ -38,6 +38,12 @@ public class TextItem extends Item {
 		ItemResponse newItemResponse = new ItemResponse();
 		newItemResponse.addResponse( response );
 		responses.add(newItemResponse);
+	}
+
+	@Override
+	public String getHelpText() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
