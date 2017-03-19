@@ -69,6 +69,10 @@ public class Form implements Serializable {
 		pages.add(new ItemPage()); // Automatically create a Page for new Form
 	}
 	
+	public ItemPage createPage() {
+		
+	}
+	
 	public long getId() {
 		return id;
 	}
