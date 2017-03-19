@@ -2,6 +2,7 @@ create sequence hibernate_sequence start 1 increment 1;
 
     create table form_responses (
         id int8 not null,
+        completed boolean,
         submit_date timestamp,
         form_id int8,
         respondent_user_id int4,
@@ -18,30 +19,9 @@ create sequence hibernate_sequence start 1 increment 1;
         available boolean not null,
         create_date timestamp,
         description varchar(255),
-        finished boolean,
-        name varchar(255),
+        title varchar(255),
         update_date timestamp,
         creator_user_id int4,
-        primary key (id)
-    );
-
-    create table item_blocks (
-        id int4 not null,
-        available boolean not null,
-        description varchar(255),
-        index int4 not null,
-        name varchar(255),
-        page_id int4,
-        primary key (id)
-    );
-
-    create table item_pages (
-        id int4 not null,
-        available boolean not null,
-        description varchar(255),
-        index int4 not null,
-        name varchar(255),
-        form_id int8,
         primary key (id)
     );
 
@@ -61,12 +41,13 @@ create sequence hibernate_sequence start 1 increment 1;
         id int4 not null,
         available boolean not null,
         description varchar(255),
+        helpText varchar(255),
         index int4 not null,
         required boolean,
         type int4,
-        name varchar(255),
+        title varchar(255),
         num_checkboxes int4,
-        block_id int4,
+        form_id int8,
         primary key (id)
     );
 
@@ -155,16 +136,6 @@ create sequence hibernate_sequence start 1 increment 1;
         foreign key (creator_user_id) 
         references users;
 
-    alter table item_blocks 
-        add constraint FK3qvug8t5aelr32omq5ak25yxv 
-        foreign key (page_id) 
-        references item_pages;
-
-    alter table item_pages 
-        add constraint FKb15y6hy6chussaebv5niti0e 
-        foreign key (form_id) 
-        references forms;
-
     alter table item_responses 
         add constraint FKmt96s2icfrnypa3yixh23jxtb 
         foreign key (item_id) 
@@ -176,9 +147,9 @@ create sequence hibernate_sequence start 1 increment 1;
         references item_responses;
 
     alter table items 
-        add constraint FKgrxhdt3yutuxk5b1ck0pfnfq8 
-        foreign key (block_id) 
-        references item_blocks;
+        add constraint FKs9tppjb3ydx8oy02h4a5h7rpb 
+        foreign key (form_id) 
+        references forms;
 
     alter table pdf 
         add constraint FK1dmiu50tta5rhde5jdh1xyqn3 
