@@ -35,11 +35,15 @@ public class FormResponse implements Serializable  {
     @OneToMany
     private List<ItemResponse> itemResponses;
     
+    @Column(name = "completed")
+	private boolean isComplete;
+    
 	@Column(name = "submit_date")
 	private Date submitDate;
      
     public FormResponse() {
     	itemResponses = new ArrayList<ItemResponse>();
+    	isComplete = false;
     }
 
 	public long getId() {
@@ -72,6 +76,22 @@ public class FormResponse implements Serializable  {
 
 	public void setSubmitDate(Date submitDate) {
 		this.submitDate = submitDate;
+	}
+
+	public Form getForm() {
+		return form;
+	}
+
+	public void setForm(Form form) {
+		this.form = form;
+	}
+
+	public boolean isComplete() {
+		return isComplete;
+	}
+
+	public void setComplete(boolean isComplete) {
+		this.isComplete = isComplete;
 	}
 
 }

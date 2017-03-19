@@ -53,17 +53,13 @@ public class Form implements Serializable {
 	@Column(name = "update_date")
 	private Date updateDate;
 	
-	@Column(name = "finished")
-	private boolean isfinished;
-	
 	@OneToMany(mappedBy = "form")	//double check this...
 	private Set<Pdf> pdfs;
 	
 	public Form() {
 		this.available = false;
 		this.createDate = new Date();
-		this.updateDate = createDate;
-		this.isfinished = false;	
+		this.updateDate = createDate;	
 	}
 	
 	public Item getItem(int itemId) {
@@ -203,14 +199,6 @@ public class Form implements Serializable {
 	
 	public void setAvailable(boolean available) {
 		this.available = available;
-	}
-	
-	public boolean isIsfinished() {
-		return isfinished;
-	}
-	
-	public void setIsfinished(boolean isfinished) {
-		this.isfinished = isfinished;
 	}
 
 	public List<FormResponse> getFormResponses() {
