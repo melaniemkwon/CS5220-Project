@@ -9,18 +9,17 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-
+/*
+ * A question item that allows the respondent to select one or more checkboxes
+ */
 @Entity
 @DiscriminatorValue("CHECKBOX")
 public class CheckboxItem extends Item {
 	
 	private static final long serialVersionUID = 1L;
-	
-	@Column(name = "min_selections")
-    protected int minSelections;
 
-    @Column(name = "max_selections")
-    protected int maxSelections;
+    @Column(name = "num_checkboxes")
+    protected int numCheckboxes;
     
     public CheckboxItem() {
     	selections = new ArrayList<Selection>();
@@ -39,8 +38,7 @@ public class CheckboxItem extends Item {
 		newCheckboxItem.itemType = this.itemType;
 		newCheckboxItem.block = this.block;
 		
-		newCheckboxItem.minSelections = this.minSelections;
-		newCheckboxItem.maxSelections = this.maxSelections;
+		newCheckboxItem.numCheckboxes = this.numCheckboxes;
 		for ( Selection selection : selections) {
 			newCheckboxItem.selections.add( selection );
 		}
@@ -54,13 +52,17 @@ public class CheckboxItem extends Item {
 	}
 	
 	public boolean isSingleSelectOnly() {
-		return maxSelections == 1;
+		return numCheckboxes == 1;
 	}
 	
-	// TODO: Creates a new ItemResponse for this Checkbox item
+	// Creates a new ItemResponse for this Checkbox item
 	public ItemResponse createResponse(ArrayList<String> checkedChoices) {
 		ItemResponse newItemResponse = new ItemResponse();
-//		newItemResponse.addResponse(checkedChoices.toString());
+		
+		for ( String checkedChoice : checkedChoices ) {
+			newItemResponse.addResponse( checkedChoice );
+		}
+		
 		return newItemResponse;
 	}
 
@@ -72,19 +74,11 @@ public class CheckboxItem extends Item {
 		this.selections = selections;
 	}
 
-	public int getMinSelections() {
-		return minSelections;
+	public int getNumCheckboxes() {
+		return numCheckboxes;
 	}
 
-	public void setMinSelections(int minSelections) {
-		this.minSelections = minSelections;
-	}
-
-	public int getMaxSelections() {
-		return maxSelections;
-	}
-
-	public void setMaxSelections(int maxSelections) {
-		this.maxSelections = maxSelections;
+	public void setNumCheckboxes(int numCheckboxes) {
+		this.numCheckboxes = numCheckboxes;
 	}
 }

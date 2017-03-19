@@ -24,7 +24,7 @@ public class ItemResponse implements Serializable {
 	@GeneratedValue
 	private long id;
     
-    @ManyToOne	// TODO: check this.. if correct logic
+    @ManyToOne			// TODO: check this.. if correct logic
     private Item item;	// the question item that this response answers.
     
     // TODO: customize?
@@ -59,7 +59,7 @@ public class ItemResponse implements Serializable {
 		this.responses = responses;
 	}
 	
-	public void addResponse(String response) {
+	public void addResponse( String response ) {
 		this.responses.add( response );
 	}
 }

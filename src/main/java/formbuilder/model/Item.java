@@ -58,7 +58,7 @@ public abstract class Item implements Serializable {
     @ManyToOne
     protected ItemBlock block;
     
-	@OneToMany
+	@OneToMany(mappedBy="item")
 	protected List<Selection> selections;
     
     @OneToMany(mappedBy="item")		// TODO: check this.. if correct logic
