@@ -25,8 +25,11 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "user_id")
+	@Column(name = "user_id", unique = true)
 	private Integer id;
+	
+	@Column(name = "user_name")
+	private String userName;
 
 	@Column(name = "last_name")
 	private String lastName;
@@ -48,7 +51,7 @@ public class User implements Serializable {
 	@Column(name = "active")
 	private boolean active; // user account can be disabled
 
-	@OneToMany(mappedBy = "creator")
+	@OneToMany(mappedBy = "author")
 	private List<Form> forms; // if STAFF or ADMIN, the forms user has created
 
 	@OneToMany(mappedBy = "respondent")
@@ -131,6 +134,14 @@ public class User implements Serializable {
 
 	public void setFormResponses(List<FormResponse> formResponses) {
 		this.formResponses = formResponses;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }

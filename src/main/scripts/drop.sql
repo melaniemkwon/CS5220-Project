@@ -1,7 +1,6 @@
 drop table form_responses cascade;
 drop table form_responses_item_responses cascade;
 drop table forms cascade;
-drop table item_blocks cascade;
 drop table item_responses cascade;
 drop table items cascade;
 drop table pdf cascade;
@@ -9,5 +8,4 @@ drop table pdf_field cascade;
 drop table pdf_field_items cascade;
 drop table selections cascade;
 drop table users cascade;
-drop table item_pages cascade;
 drop table itemresponse_responses cascade;

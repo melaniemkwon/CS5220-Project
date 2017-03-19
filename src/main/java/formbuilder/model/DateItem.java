@@ -18,9 +18,8 @@ public class DateItem extends Item {
 		newDateItem.title = this.title;
 		newDateItem.description = this.description;
 		newDateItem.available = this.available;
-		newDateItem.index = this.index;
+		newDateItem.orderNum = this.orderNum;
 		newDateItem.isRequired = this.isRequired;
-		newDateItem.itemType = this.itemType;
 		newDateItem.form = this.form;
 		
 		return newDateItem;

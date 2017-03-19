@@ -26,13 +26,20 @@ public class FormDaoImpl implements FormDao {
 
 	@Override
 	public List<Form> getForms() {
-		return entityManager.createQuery("from form order by id",Form.class).getResultList();
+		return entityManager.createQuery("from Form order by id",Form.class).getResultList();
 	}
 
 	@Override
 	@Transactional
 	public Form saveForm(Form form) {
 		return entityManager.merge(form);
+	}
+	
+	@Override
+	@Transactional
+	public void deleteForm(Form form) {
+		entityManager.remove(form);
+		
 	}
 
 //	public ItemPage getPageById(Integer id){
@@ -79,12 +86,5 @@ public class FormDaoImpl implements FormDao {
 	@Override
 	public Item getItemById(Integer id) {
 		return entityManager.find(Item.class, id);
-	}
-
-	@Override
-	@Transactional
-	public void deleteForm(Form form) {
-		entityManager.remove(form);
-		
 	}
 }

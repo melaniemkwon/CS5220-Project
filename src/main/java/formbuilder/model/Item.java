@@ -36,7 +36,7 @@ public abstract class Item implements Serializable {
     
     @Id
     @GeneratedValue
-    protected int id;
+    protected long id;
     
     protected String title;
     
@@ -46,11 +46,12 @@ public abstract class Item implements Serializable {
     
     protected boolean available;
 
-    protected int index; 	
+    @Column(name = "order_num")
+    protected int orderNum; 	
     
-    @Enumerated(EnumType.ORDINAL)	// TODO: check this? Don't think needed
-    @Column(name = "type")
-    protected ItemType itemType;
+//    @Enumerated(EnumType.ORDINAL)	// TODO: check this? Don't think needed
+//    @Column(name = "type")
+//    protected ItemType itemType;
     
     @Column(name = "required")
     protected boolean isRequired;
@@ -88,11 +89,20 @@ public abstract class Item implements Serializable {
 		selections.add( selection );
 	}
 
-    public int getId() {
+	public Selection deleteSelection( int selectionId ) {
+		for (int i = 0; i < selections.size(); i++) {
+			if (selections.get(i).getId() == selectionId) {
+				return selections.remove(i);
+			}
+		}
+		return null;
+	}
+	
+    public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -120,9 +130,9 @@ public abstract class Item implements Serializable {
         this.isRequired = isRequired;
     }
 
-    public void setItemType(ItemType itemType) {
-        this.itemType = itemType;
-    }
+//    public void setItemType(ItemType itemType) {
+//        this.itemType = itemType;
+//    }
 
 //    public PdfField getMatchField() {
 //        return matchField;
@@ -140,12 +150,12 @@ public abstract class Item implements Serializable {
 		this.available = available;
 	}
 
-	public int getIndex() {
-		return index;
+	public int getOrderNum() {
+		return orderNum;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
+	public void setOrderNum(int index) {
+		this.orderNum = orderNum;
 	}
 
 	public Form getForm() {

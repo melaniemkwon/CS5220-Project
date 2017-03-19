@@ -82,18 +82,18 @@ body {
 			<table class="table table-striped table-hover">
 				<tr>
 					<th>ID</th>
-					<th>Name</th>
+					<th>Title</th>
 					<th>Description</th>
-
+					<th>Author</th>
 					<th>Available</th>
 					<th>Action</th>
 				</tr>
 				<c:forEach items="${forms}" var="form">
 					<tr>
 						<td class="col-md-1">${form.id}</td>
-						<td class="col-md-3">${form.name}</td>
-
+						<td class="col-md-3">${form.title}</td>
 						<td class="col-md-3">${form.description}</td>
+						<td class="col-md-3">${form.author.userName}</td>
 						<c:choose>
   							<c:when test="${form.available}">
 								<td class="col-md-2">YES</td>

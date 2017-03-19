@@ -33,9 +33,8 @@ public class CheckboxItem extends Item {
 		newCheckboxItem.title = this.title;
 		newCheckboxItem.description = this.description;
 		newCheckboxItem.available = this.available;
-		newCheckboxItem.index = this.index;
+		newCheckboxItem.orderNum = this.orderNum;
 		newCheckboxItem.isRequired = this.isRequired;
-		newCheckboxItem.itemType = this.itemType;
 		newCheckboxItem.form = this.form;
 		
 		newCheckboxItem.numCheckboxes = this.numCheckboxes;
@@ -65,6 +64,23 @@ public class CheckboxItem extends Item {
 		}
 		
 		responses.add(newItemResponse);
+	}
+	
+	@Override
+	public void addSelection( Selection selection ) {
+		selections.add( selection );
+		numCheckboxes++;
+	}
+	
+	@Override
+	public Selection deleteSelection( int selectionId ) {
+		for (int i = 0; i < selections.size(); i++) {
+			if (selections.get(i).getId() == selectionId) {
+				numCheckboxes--;
+				return selections.remove(i);
+			}
+		}
+		return null;
 	}
 
 	public List<Selection> getSelections() {

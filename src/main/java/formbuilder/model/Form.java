@@ -40,7 +40,7 @@ public class Form implements Serializable {
 	private List<FormResponse> formResponses;
 	
 	@ManyToOne
-	private User creator;	//ADMIN or STAFF that creates the form
+	private User author;	//ADMIN or STAFF that creates the form
 	
 	@OneToMany(mappedBy="form", cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	// @JoinColumn(name = "item_block_id")
@@ -174,12 +174,12 @@ public class Form implements Serializable {
 		this.description = description;
 	}
 
-	public User getCreator() {
-		return creator;
+	public User getAuthor() {
+		return author;
 	}
 
-	public void setCreator(User creator) {
-		this.creator = creator;
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 	
 	public Date getCreateDate() {

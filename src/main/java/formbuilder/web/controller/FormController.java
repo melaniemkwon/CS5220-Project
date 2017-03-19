@@ -76,7 +76,7 @@ public class FormController {
 		 * ------------------------------------------
 		 */
 		int id = 2;
-		form.setCreator(userDao.getUser(id));
+		form.setAuthor(userDao.getUser(id));
 
 		form.setCreateDate(new java.sql.Date(new java.util.Date().getTime()));
 

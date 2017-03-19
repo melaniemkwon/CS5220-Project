@@ -19,9 +19,8 @@ public class TextItem extends Item {
 		newTextItem.title = this.title;
 		newTextItem.description = this.description;
 		newTextItem.available = this.available;
-		newTextItem.index = this.index;
+		newTextItem.orderNum = this.orderNum;
 		newTextItem.isRequired = this.isRequired;
-		newTextItem.itemType = this.itemType;
 		newTextItem.form = this.form;
 				
 		return newTextItem;

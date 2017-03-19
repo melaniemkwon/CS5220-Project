@@ -18,6 +18,7 @@ public class FormTest {
 		 * -------------------------
 		 */
 //		User user = new User();
+//		user.setUserName("username001");
 //		user.setFirstName("FirstName3");
 //		user.setLastName("LastName3");
 //		user.setRole(Role.ADMIN);
@@ -51,34 +52,37 @@ public class FormTest {
 //		 */
 
 		Form form = new Form();	//form to be saved to DB
-	
-		form.setTitle("test_form");
-		form.setDescription("A dummy test form.");
-		form.setCreator(user);
 		
-		
-		// Create two dummy text form items		
+//		// Create two dummy text form items	
+//		form.setTitle("test_form_textbox");
+//		form.setDescription("A dummy test form for text questions.");
+//		form.setAuthor(user);
+//		
 //		Item textItem1 = form.addTextItem();
 //		textItem1.setTitle("TextItem TEST");
 //		textItem1.setDescription("This is a description for text form field.");
 //		textItem1.setAvailable(true);
-//		textItem1.setIndex(0);
+//		textItem1.setOrderNum(0);
 //		
 //		Item textItem2 = form.addTextItem();
 //		textItem2.setTitle("TextItem TEST2");
 //		textItem2.setDescription("This is a description for text form field.");
 //		textItem2.setAvailable(true);
-//		textItem2.setIndex(1);
+//		textItem2.setOrderNum(1);
 //		
 //		form.addItem(textItem1);
 //		form.addItem(textItem2);
 		
-		// Create two dummy checkbox form items
+		// Create two dummy checkbox form items		
+		form.setTitle("test_form_checkbox");
+		form.setDescription("A dummy test form for checkboxes.");
+		form.setAuthor(user);
+		
 		Item checkboxItem1 = form.addCheckboxItem();
 		checkboxItem1.setTitle("CheckboxItem TEST1");
 		checkboxItem1.setDescription("This is a description for checkbox form field.");
 		checkboxItem1.setAvailable(true);
-		checkboxItem1.setIndex(0);
+		checkboxItem1.setOrderNum(1);
 		checkboxItem1.addSelection( checkboxItem1.createSelection("Checkbox choice1", 1) );
 		checkboxItem1.addSelection( checkboxItem1.createSelection("Checkbox choice2", 2) );
 		checkboxItem1.addSelection( checkboxItem1.createSelection("Checkbox choice3", 3) );	
@@ -87,7 +91,7 @@ public class FormTest {
 		checkboxItem2.setTitle("CheckboxItem TEST2");
 		checkboxItem2.setDescription("This is a description for checkbox form field.");
 		checkboxItem2.setAvailable(true);
-		checkboxItem2.setIndex(0);
+		checkboxItem2.setOrderNum(2);
 		checkboxItem2.addSelection( checkboxItem2.createSelection("Checkbox choice1", 1) );
 		checkboxItem2.addSelection( checkboxItem2.createSelection("Checkbox choice2", 2) );
 		checkboxItem2.addSelection( checkboxItem2.createSelection("Checkbox choice3", 3) );	
@@ -108,19 +112,19 @@ public class FormTest {
 		entityManager.getTransaction().commit();
 		
 		// Get form and its items from DB
-		long id = 13; //NOTE: this has to be type long, not int.
-		Form getForm = entityManager.find(Form.class, id);	
-		for (Item item : getForm.getItems() ) {
-			System.out.println("\nformId: " + getForm.getTitle());
-			System.out.println("item name: " + item.title);
-			System.out.println("description: " + item.description);
-			System.out.println("type: " + item.getItemType());
-			System.out.println("index: " + item.index);
-			for ( Selection s : item.getSelections()) {
-				System.out.println("Selection: " + s.getValue());
-			}
-		}
-				
+//		long id = 13; //NOTE: this has to be type long, not int.
+//		Form getForm = entityManager.find(Form.class, id);	
+//		for (Item item : getForm.getItems() ) {
+//			System.out.println("\nformId: " + getForm.getTitle());
+//			System.out.println("item name: " + item.title);
+//			System.out.println("description: " + item.description);
+//			System.out.println("type: " + item.getItemType());
+//			System.out.println("index: " + item.index);
+//			for ( Selection s : item.getSelections()) {
+//				System.out.println("Selection: " + s.getValue());
+//			}
+//		}
+//				
 		entityManager.close();
 		entityManagerFactory.close();
 		

@@ -21,13 +21,13 @@ create sequence hibernate_sequence start 1 increment 1;
         description varchar(255),
         title varchar(255),
         update_date timestamp,
-        creator_user_id int4,
+        author_user_id int4,
         primary key (id)
     );
 
     create table item_responses (
         id int8 not null,
-        item_id int4,
+        item_id int8,
         primary key (id)
     );
 
@@ -38,13 +38,12 @@ create sequence hibernate_sequence start 1 increment 1;
 
     create table items (
         item_type varchar(31) not null,
-        id int4 not null,
+        id int8 not null,
         available boolean not null,
         description varchar(255),
         helpText varchar(255),
-        index int4 not null,
         required boolean,
-        type int4,
+        order_num int4,
         title varchar(255),
         num_checkboxes int4,
         form_id int8,
@@ -72,14 +71,14 @@ create sequence hibernate_sequence start 1 increment 1;
 
     create table pdf_field_items (
         pdf_field_id int4 not null,
-        items_id int4 not null
+        items_id int8 not null
     );
 
     create table selections (
         id int4 not null,
         index int4 not null,
         value varchar(255),
-        item_id int4,
+        item_id int8,
         primary key (id)
     );
 
@@ -99,6 +98,7 @@ create sequence hibernate_sequence start 1 increment 1;
         first_name varchar(255),
         last_name varchar(255),
         role varchar(255),
+        user_name varchar(255),
         primary key (user_id)
     );
 
@@ -132,8 +132,8 @@ create sequence hibernate_sequence start 1 increment 1;
         references form_responses;
 
     alter table forms 
-        add constraint FKjwe1e9anrosok8cchhxt0a5r1 
-        foreign key (creator_user_id) 
+        add constraint FKhbsm1uwxudupkqv948k2msjb9 
+        foreign key (author_user_id) 
         references users;
 
     alter table item_responses 
