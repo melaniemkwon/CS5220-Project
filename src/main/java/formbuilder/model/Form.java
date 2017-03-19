@@ -109,6 +109,24 @@ public class Form implements Serializable {
 		this.pages = pages;
 	}
 	
+	public ItemPage getPageById(int pageId) {
+		for ( ItemPage page : pages ) {
+			if ( page.getId() == pageId ) {
+				return page;
+			}
+		}
+		return null;
+	}
+	
+	public ItemPage deletePageById(int pageId) {
+		for (int i = 0; i < pages.size(); i++) {
+			if (pages.get(i).getId() == pageId) {
+				return pages.remove(i);
+			}
+		}
+		return null;
+	}
+	
 	public Date getCreateDate() {
 		return createDate;
 	}

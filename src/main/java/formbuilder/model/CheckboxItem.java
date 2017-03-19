@@ -56,14 +56,15 @@ public class CheckboxItem extends Item {
 	}
 	
 	// Creates a new ItemResponse for this Checkbox item
-	public ItemResponse createResponse(ArrayList<String> checkedChoices) {
+	// and adds it to list of ItemResponses
+	public void createResponse(ArrayList<String> checkedChoices) {
 		ItemResponse newItemResponse = new ItemResponse();
 		
 		for ( String checkedChoice : checkedChoices ) {
 			newItemResponse.addResponse( checkedChoice );
 		}
 		
-		return newItemResponse;
+		responses.add(newItemResponse);
 	}
 
 	public List<Selection> getSelections() {

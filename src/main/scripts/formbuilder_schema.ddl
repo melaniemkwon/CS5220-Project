@@ -40,6 +40,7 @@ create sequence hibernate_sequence start 1 increment 1;
         available boolean not null,
         description varchar(255),
         index int4 not null,
+        name varchar(255),
         form_id int8,
         primary key (id)
     );

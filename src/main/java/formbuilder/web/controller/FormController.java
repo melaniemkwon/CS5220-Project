@@ -100,7 +100,7 @@ public class FormController {
 		// create new page and save to db
 		ItemPage page = new ItemPage();
 		page.setForm(form);
-		page.setPageNumber(nextPageNum);
+//		page.setPageNumber(nextPageNum);
 		formDao.savePage(page);
 
 		models.put("page", page);

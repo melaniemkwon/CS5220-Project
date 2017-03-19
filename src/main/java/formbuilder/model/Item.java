@@ -45,7 +45,7 @@ public abstract class Item implements Serializable {
 
     protected int index; 	
     
-    @Enumerated(EnumType.ORDINAL)	// TODO: check this
+    @Enumerated(EnumType.ORDINAL)	// TODO: check this? Don't think needed
     @Column(name = "type")
     protected ItemType itemType;
     

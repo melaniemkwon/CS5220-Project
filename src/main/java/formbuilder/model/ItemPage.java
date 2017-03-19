@@ -27,6 +27,8 @@ public class ItemPage implements Serializable {
     @GeneratedValue
     private int id;
 	
+	private String name;
+	
 	private String description;
 	
 	private int index;
@@ -43,7 +45,7 @@ public class ItemPage implements Serializable {
 	
 	public ItemPage() {
 		blocks = new ArrayList<ItemBlock>();
-		blocks.add( new ItemBlock() );  // Add Block to new Page
+		blocks.add( new ItemBlock() );  // Automatically add Block to new Page
 	}
 	
 	public ItemPage duplicate() {
@@ -97,6 +99,24 @@ public class ItemPage implements Serializable {
 	public void setBlocks(List<ItemBlock> blocks) {
 		this.blocks = blocks;
 	}
+	
+	public ItemBlock getBlockById( int blockId ) {
+		for ( ItemBlock block : blocks ) {
+			if ( block.getId() == blockId ) {
+				return block;
+			}
+		}
+		return null;
+	}
+	
+	public ItemBlock deleteBlockById( int blockId ) {
+		for (int i = 0; i < blocks.size(); i++) {
+			if (blocks.get(i).getId() == blockId) {
+				return blocks.remove(i);
+			}
+		}
+		return null;
+	}
 
 	public Form getForm() {
 		return form;
@@ -104,6 +124,14 @@ public class ItemPage implements Serializable {
 
 	public void setForm(Form form) {
 		this.form = form;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

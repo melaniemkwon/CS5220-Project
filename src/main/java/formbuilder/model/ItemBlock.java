@@ -22,65 +22,65 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "item_blocks")
 public class ItemBlock implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-    @GeneratedValue
+	@GeneratedValue
 	private int id;
-	
+
 	private String name;
-	
+
 	private String description;
-	
+
 	private boolean available;
-	
+
 	private int index;
-	
-	@OneToMany(mappedBy="block", cascade = { CascadeType.MERGE, CascadeType.PERSIST })	
-//	@JoinColumn(name = "item_block_id")
-//    @OrderColumn(name = "item_index")
+
+	@OneToMany(mappedBy = "block", cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+	// @JoinColumn(name = "item_block_id")
+	// @OrderColumn(name = "item_index")
 	private List<Item> items;
-	
+
 	@ManyToOne
 	private ItemPage page;
-	
+
 	public ItemBlock() {
 		items = new ArrayList<Item>();
 	}
-	
+
 	public ItemBlock duplicate() {
 		ItemBlock newItemBlock = new ItemBlock();
-		
+
 		newItemBlock.name = name;
 		newItemBlock.description = description;
 		newItemBlock.available = available;
 		newItemBlock.index = index;
-		for ( Item item : items ) {
-			newItemBlock.items.add( item.duplicate() );
+		for (Item item : items) {
+			newItemBlock.items.add(item.duplicate());
 		}
-		
+
 		return newItemBlock;
 	}
-	
-	public Item getItem( int itemId ) {
-		for ( Item item : items ) {
-			if ( item.getId() == itemId ) {
+
+	public Item getItem(int itemId) {
+		for (Item item : items) {
+			if (item.getId() == itemId) {
 				return item;
 			}
 		}
 		return null;
 	}
-	
-	public Item deleteItem( int itemId ) {
+
+	public Item deleteItem(int itemId) {
 		for (int i = 0; i < items.size(); i++) {
-			if ( items.get(i).getId() == itemId ) {
-				return items.remove( i );
+			if (items.get(i).getId() == itemId) {
+				return items.remove(i);
 			}
 		}
 		return null;
 	}
-	
+
 	// TODO: void replaceItem( Item item )
 
 	public Integer getId() {
@@ -114,6 +114,11 @@ public class ItemBlock implements Serializable {
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
+	
+	public List<Item> addItem( Item item ) {
+		items.add(item);
+		return items;
+	}
 
 	public boolean isAvailable() {
 		return available;
@@ -137,5 +142,5 @@ public class ItemBlock implements Serializable {
 
 	public void setPage(ItemPage page) {
 		this.page = page;
-	}	
+	}
 }

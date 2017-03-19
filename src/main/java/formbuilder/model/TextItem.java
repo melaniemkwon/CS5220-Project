@@ -33,10 +33,11 @@ public class TextItem extends Item {
 	}
 	
 	// Creates a new ItemResponse for this date item
-	public ItemResponse createResponse(String response) {
+	// and adds it to list of ItemResponses
+	public void createResponse(String response) {
 		ItemResponse newItemResponse = new ItemResponse();
 		newItemResponse.addResponse( response );
-		return newItemResponse;
+		responses.add(newItemResponse);
 	}
 
 }
