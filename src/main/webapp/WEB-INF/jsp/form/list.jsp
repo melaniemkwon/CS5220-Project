@@ -91,15 +91,15 @@ body {
 				<c:forEach items="${forms}" var="form">
 					<tr>
 						<td class="col-md-1">${form.id}</td>
-						<td class="col-md-3">${form.title}</td>
+						<td class="col-md-2">${form.title}</td>
 						<td class="col-md-3">${form.description}</td>
-						<td class="col-md-3">${form.author.userName}</td>
+						<td class="col-md-2">${form.author.userName}</td>
 						<c:choose>
   							<c:when test="${form.available}">
-								<td class="col-md-2">YES</td>
+								<td class="col-md-1">YES</td>
 							</c:when>
 							<c:otherwise>
-								<td class="col-md-2">NO</td>
+								<td class="col-md-1">NO</td>
 							</c:otherwise>
 						</c:choose>	
 						

@@ -1,5 +1,6 @@
 package formbuilder.web.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -38,12 +39,12 @@ public class FormController {
 		return "form/list";
 	}
 
-	@RequestMapping("/form/view/{id}.html")
-	public String viewForm(@PathVariable Integer id, ModelMap models) {
-		Form form = formDao.getForm(id);
-		models.put("form", form);
-		return "form/view";
-	}
+//	@RequestMapping("/form/view/{id}.html")
+//	public String viewForm(@PathVariable Integer id, ModelMap models) {
+//		Form form = formDao.getForm(id);
+//		models.put("form", form);
+//		return "form/view";
+//	}
 
 	@RequestMapping(value = "/form/add.html", method = RequestMethod.GET)
 	public String addForm(ModelMap models) {
@@ -61,30 +62,17 @@ public class FormController {
 		form.setTitle(name);
 		form.setDescription(description);
 
-		if (available.equals("available")) {
-			form.setAvailable(true);
-		} else {
-			form.setAvailable(false);
-		}
-
-		/*
-		 * ------------------------------------------
-		 * 
-		 * TODO: for testing before we have user login, this should be replaced
-		 * later by userId in the session
-		 * 
-		 * ------------------------------------------
-		 */
-		int id = 2;
+		int id = 1;	//TODO: REPLACE WITH CURRENT USER
 		form.setAuthor(userDao.getUser(id));
 
-		form.setCreateDate(new java.sql.Date(new java.util.Date().getTime()));
+		Date date = new Date();
+		form.setCreateDate( date );
+		form.setUpdateDate( date );
 
+		// SAVE THE FORM TO DB
 		formDao.saveForm(form);
 
-		// TODO: This should actually be redirecting the the form details page
-		// to create the form specifics
-		return "redirect:/form/list.html";
+		return "form/add";
 	}
 
 //	@RequestMapping(value = "/form/add_page.html", method = RequestMethod.GET)
@@ -124,33 +112,33 @@ public class FormController {
 //		return "form/pageview";
 //	}
 
-	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.GET)
-	public String edit(@PathVariable Integer id, ModelMap models) {
-		models.put("form", formDao.getForm(id));
-		// models.put("forms", formDao.getForms());
+//	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.GET)
+//	public String edit(@PathVariable Integer id, ModelMap models) {
+//		models.put("form", formDao.getForm(id));
+//		// models.put("forms", formDao.getForms());
+//
+//		return "form/edit";
+//	}
+//
+//	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.POST)
+//	public String edit(@ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
+//
+//		// TODO: add formValidator here
+//		// if (result.hasErrors() ) return "admin/formEdit";
+//
+//		form = formDao.saveForm(form);
+//		sessionStatus.setComplete();
+//
+//		return "redirect:/form/list.html";
+//	}
 
-		return "form/edit";
-	}
-
-	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.POST)
-	public String edit(@ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
-
-		// TODO: add formValidator here
-		// if (result.hasErrors() ) return "admin/formEdit";
-
-		form = formDao.saveForm(form);
-		sessionStatus.setComplete();
-
-		return "redirect:/form/list.html";
-	}
-
-	@RequestMapping(value = "/form/remove/{id}.html", method = RequestMethod.GET)
-	public String deleteForm(@PathVariable Integer id) {
-
-		formDao.deleteForm(formDao.getForm(id));
-
-		return "redirect:../list.html";
-	}
+//	@RequestMapping(value = "/form/remove/{id}.html", method = RequestMethod.GET)
+//	public String deleteForm(@PathVariable long id) {
+//
+//		formDao.deleteForm(formDao.getForm(id));
+//
+//		return "redirect:../list.html";
+//	}
 
 //	@RequestMapping(value = "/form/add_block.html", method = RequestMethod.GET)
 //	public String addBlock(@RequestParam Integer id, @RequestParam Integer p, ModelMap models) {

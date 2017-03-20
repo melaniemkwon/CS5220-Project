@@ -8,7 +8,7 @@ import formbuilder.model.Selection;
 
 public interface FormDao {
 	
-	Form getForm(Integer id);	
+	Form getForm(long id);	
 	
 	List<Form> getForms();
 	
@@ -28,7 +28,7 @@ public interface FormDao {
 //	
 //	ItemBlock saveBlock(ItemBlock block);
 	
-	Item getItemById(Integer id);
+	Item getItemById(long id);
 	
 	
 	Item saveItem(Item item);

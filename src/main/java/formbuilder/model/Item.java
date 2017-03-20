@@ -49,10 +49,6 @@ public abstract class Item implements Serializable {
     @Column(name = "order_num")
     protected int orderNum; 	
     
-//    @Enumerated(EnumType.ORDINAL)	// TODO: check this? Don't think needed
-//    @Column(name = "type")
-//    protected ItemType itemType;
-    
     @Column(name = "required")
     protected boolean isRequired;
     

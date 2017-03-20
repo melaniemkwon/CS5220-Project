@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
@@ -39,13 +40,6 @@ border: 1px solid #CACACA;
 </style>
 </head>
 <body>
-	<%-- 	<h1>Add New Form</h1>
-	<form name="addform" method="post">
-		Form Name: <input type="text" name="name" /> <br /> Form Description:
-		<input type="text" name="description" /> <br /> Available: <input
-			type="checkbox" name="available" value="available" checked="checked" />Available
-		<br /> <input type="submit" name="add" value="Add" />
-	</form> --%>
 
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -93,18 +87,29 @@ border: 1px solid #CACACA;
 	<div class="form-box">
 
 		<form:form modelAttribute="form">
-			<div class="form-group">
-
-				Form name:
-				<form:input path="name" />
-				<form:errors path="name" />
-				<br /> Description:
-				<form:input path="description" />
-				<form:errors path="description" />
-				<br /> <input type="checkbox" name="available" value="available"
-					checked="checked" />Available <br /> <input type="submit"
-					class="btn btn-info" name="add" value="Add Form" />
-			</div>
+			Form name: <form:input path="title" /><br> 
+			Description: <form:input path="description" /><br>
+			Available: <form:checkbox path="available"/><br>
+			
+			<c:if test="${empty items}">
+				<h4>Use the right-hand buttons to create your first question.</h4>
+			</c:if>
+			<c:if test="${not empty items}">
+			
+				<c:forEach items="${items}" var="item">
+					Question: <form:input path="item.title" /><br>
+					Description: <form:input path="item.description" /><br>
+					Order#: <form:input path="item.orderNum" /><br>
+					Available: <form:checkbox path="item.available"/><br>
+					Required: <form:checkbox path="item.isRequired"/><br>
+					
+				</c:forEach>
+			
+			</c:if>
+			
+			
+			
+			<input type="submit" class="btn btn-info" name="add" value="Add Form" />
 		</form:form>
 
 		</div>

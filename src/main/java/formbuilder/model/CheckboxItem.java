@@ -18,8 +18,8 @@ public class CheckboxItem extends Item {
 	
 	private static final long serialVersionUID = 1L;
 
-    @Column(name = "num_checkboxes")
-    protected int numCheckboxes;
+    @Column(name = "single_response")
+	protected boolean singleResponse;
     
     public CheckboxItem() {
     	selections = new ArrayList<Selection>();
@@ -37,7 +37,6 @@ public class CheckboxItem extends Item {
 		newCheckboxItem.isRequired = this.isRequired;
 		newCheckboxItem.form = this.form;
 		
-		newCheckboxItem.numCheckboxes = this.numCheckboxes;
 		for ( Selection selection : selections) {
 			newCheckboxItem.selections.add( selection );
 		}
@@ -51,7 +50,7 @@ public class CheckboxItem extends Item {
 	}
 	
 	public boolean isSingleSelectOnly() {
-		return numCheckboxes == 1;
+		return selections.size() == 1;
 	}
 	
 	// Creates a new ItemResponse for this Checkbox item
@@ -66,21 +65,19 @@ public class CheckboxItem extends Item {
 		responses.add(newItemResponse);
 	}
 	
-	@Override
-	public void addSelection( Selection selection ) {
-		selections.add( selection );
-		numCheckboxes++;
-	}
-	
-	@Override
-	public Selection deleteSelection( int selectionId ) {
-		for (int i = 0; i < selections.size(); i++) {
-			if (selections.get(i).getId() == selectionId) {
-				numCheckboxes--;
-				return selections.remove(i);
-			}
+	// For single-selection checkbox scenarios
+	// Creates a new ItemResponse for this Checkbox item and 
+	// adds TRUE or FALSE to list of ItemResponses
+	public void createResponse() {
+		ItemResponse newItemResponse = new ItemResponse();
+		
+		if (singleResponse) {
+			newItemResponse.addResponse( "TRUE" );
+		} else if (!singleResponse) {
+			newItemResponse.addResponse( "FALSE" );
 		}
-		return null;
+				
+		responses.add(newItemResponse);
 	}
 
 	public List<Selection> getSelections() {
@@ -91,17 +88,17 @@ public class CheckboxItem extends Item {
 		this.selections = selections;
 	}
 
-	public int getNumCheckboxes() {
-		return numCheckboxes;
-	}
-
-	public void setNumCheckboxes(int numCheckboxes) {
-		this.numCheckboxes = numCheckboxes;
-	}
-
 	@Override
 	public String getHelpText() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public boolean isSingleResponse() {
+		return singleResponse;
+	}
+
+	public void setSingleResponse(boolean singleResponse) {
+		this.singleResponse = singleResponse;
 	}
 }

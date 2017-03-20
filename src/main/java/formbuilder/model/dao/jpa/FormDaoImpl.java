@@ -20,7 +20,7 @@ public class FormDaoImpl implements FormDao {
     private EntityManager entityManager;
 
 	@Override
-	public Form getForm( Integer id ) {
+	public Form getForm( long id ) {
 		return entityManager.find(Form.class, id);
 	}
 
@@ -84,7 +84,7 @@ public class FormDaoImpl implements FormDao {
 	}
 
 	@Override
-	public Item getItemById(Integer id) {
+	public Item getItemById(long id) {
 		return entityManager.find(Item.class, id);
 	}
 }
