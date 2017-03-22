@@ -19,15 +19,14 @@ public class DateItem extends Item {
 		newDateItem.description = this.description;
 		newDateItem.available = this.available;
 		newDateItem.orderNum = this.orderNum;
-		newDateItem.isRequired = this.isRequired;
+		newDateItem.required = this.required;
 		newDateItem.form = this.form;
 		
 		return newDateItem;
 	}
 
-	@Override
 	public ItemType getItemType() {
-		return ItemType.DATE;
+		return itemType;
 	}
 	
 	// Creates a new ItemResponse for this date item
@@ -37,7 +36,6 @@ public class DateItem extends Item {
 		return newItemResponse;
 	}
 
-	@Override
 	public String getHelpText() {
 		// TODO Auto-generated method stub
 		return null;

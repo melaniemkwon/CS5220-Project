@@ -103,13 +103,19 @@ border: 1px solid #CACACA;
 					Available: <form:checkbox path="item.available"/><br>
 					Required: <form:checkbox path="item.isRequired"/><br>
 					
+					ItemType: "${item.getItemType}" <br>
+					
+					<%-- <c:forEach items="${item.selections}" var="selection">
+						Selection: 
+					</c:forEach> --%>
+					
 				</c:forEach>
 			
 			</c:if>
 			
 			
 			
-			<input type="submit" class="btn btn-info" name="add" value="Add Form" />
+			<input type="submit" class="btn btn-info" name="Save Form" value="save" />
 		</form:form>
 
 		</div>

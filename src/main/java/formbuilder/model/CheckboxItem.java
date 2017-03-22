@@ -20,9 +20,22 @@ public class CheckboxItem extends Item {
 
     @Column(name = "single_response")
 	protected boolean singleResponse;
-    
+       
     public CheckboxItem() {
+    	super();
+    	itemType = ItemType.CHECKBOX;
     	selections = new ArrayList<Selection>();
+    }
+    
+    public CheckboxItem( Item item ) {
+    	itemType = ItemType.CHECKBOX;
+    	selections = new ArrayList<Selection>();
+    	
+    	this.title = item.title;
+    	this.description = item.description;
+    	this.available =  item.available;
+    	this.orderNum = item.orderNum;
+    	this.required = item.required;
     }
 
 	@Override
@@ -34,7 +47,7 @@ public class CheckboxItem extends Item {
 		newCheckboxItem.description = this.description;
 		newCheckboxItem.available = this.available;
 		newCheckboxItem.orderNum = this.orderNum;
-		newCheckboxItem.isRequired = this.isRequired;
+		newCheckboxItem.required = this.required;
 		newCheckboxItem.form = this.form;
 		
 		for ( Selection selection : selections) {
@@ -43,10 +56,26 @@ public class CheckboxItem extends Item {
 		
 		return newCheckboxItem;
 	}
+	
+	public Selection createSelection( String text, int orderNum ) {
+		Selection selection = new Selection();
+		selection.setItem(this);
+		selection.setValue(text);
+		selection.setIndex(orderNum);
+		return selection;
+	}
+	
+	public void addSelection( Selection selection ) {
+		selections.add( selection );
+	}
 
-	@Override
-	public ItemType getItemType() {
-		return ItemType.CHECKBOX;
+	public Selection deleteSelection( int selectionId ) {
+		for (int i = 0; i < selections.size(); i++) {
+			if (selections.get(i).getId() == selectionId) {
+				return selections.remove(i);
+			}
+		}
+		return null;
 	}
 	
 	public boolean isSingleSelectOnly() {
@@ -88,7 +117,6 @@ public class CheckboxItem extends Item {
 		this.selections = selections;
 	}
 
-	@Override
 	public String getHelpText() {
 		// TODO Auto-generated method stub
 		return null;
@@ -101,4 +129,5 @@ public class CheckboxItem extends Item {
 	public void setSingleResponse(boolean singleResponse) {
 		this.singleResponse = singleResponse;
 	}
+	
 }

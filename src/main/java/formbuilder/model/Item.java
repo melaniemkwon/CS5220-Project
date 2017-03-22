@@ -29,8 +29,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "items")
 @Inheritance
-@DiscriminatorColumn(name = "item_type")
-public abstract class Item implements Serializable {
+@DiscriminatorColumn(name = "item_discriminator")
+public class Item implements Serializable {
 	
     private static final long serialVersionUID = 1L;
     
@@ -42,6 +42,9 @@ public abstract class Item implements Serializable {
     
     protected String description;
     
+    @Column(name = "item_type")
+    protected ItemType itemType;
+    
     protected String helpText;
     
     protected boolean available;
@@ -49,8 +52,7 @@ public abstract class Item implements Serializable {
     @Column(name = "order_num")
     protected int orderNum; 	
     
-    @Column(name = "required")
-    protected boolean isRequired;
+    protected boolean required;
     
 //    @ManyToOne
 //    private PdfField matchField;
@@ -58,20 +60,22 @@ public abstract class Item implements Serializable {
     @ManyToOne
 	protected Form form;
     
+//    @Column(name = "selection_count")
+//    protected int selectionCount;
+    
 	@OneToMany(mappedBy="item", cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	protected List<Selection> selections;
-    
+	
     @OneToMany(mappedBy="item")		// TODO: check this.. if correct logic
     protected List<ItemResponse> responses;
     
     public Item() {
     	this.available = true;
-    	this.isRequired = false;
+    	this.required = false;
     }
     
-    public abstract Item duplicate();
-    public abstract ItemType getItemType();
-	public abstract String getHelpText();
+//  public abstract ItemType getItemType();
+//	public abstract String getHelpText();
 	
 	public Selection createSelection( String text, int orderNum ) {
 		Selection selection = new Selection();
@@ -93,6 +97,60 @@ public abstract class Item implements Serializable {
 		}
 		return null;
 	}
+	
+	public Item duplicate() {
+		Item item = new Item();
+		
+		// repetitive..
+		item.title = this.title;
+		item.description = this.description;
+		item.available = this.available;
+		item.orderNum = this.orderNum;
+		item.required = this.required;
+		item.form = this.form;
+		
+		return item;
+	}
+	
+	public CheckboxItem asCheckboxItem() {
+		return new CheckboxItem( this );
+	}
+//	
+//	public DropdownListItem asDropdownListItem() {
+//		return new DropdownListItem( this );
+//	}
+//	
+//	public MultipleChoiceItem asMultipleChoiceItem() {
+//		return new MultipleChoiceItem( this );
+//	}
+	
+	public TextItem asTextItem() {
+		return new TextItem( this );
+	}
+//	
+//	public TextParagraphItem asTextParagraphItem() {
+//		return new TextParagraphItem( this );
+//	}
+//	
+//	public DateItem asDateItem() {
+//		return new DateItem( this );
+//	}
+//	
+//	public TimeItem asTimeItem() {
+//		return new TimeItem( this );
+//	}
+//	
+//	public ImageItem asImageItem() {
+//		return new ImageItem( this );
+//	}
+//	
+//	public PageBreakItem asPageBreakItem() {
+//		return new PageBreakItem( this );
+//	}
+//	
+//	public SectionHeaderItem asSectionHeaderItem() {
+//		return new SectionHeaderItem( this );
+//	}
 	
     public long getId() {
 		return id;
@@ -119,16 +177,20 @@ public abstract class Item implements Serializable {
     }
 
     public boolean isRequired() {
-        return isRequired;
+        return required;
     }
 
-    public void setRequired(boolean isRequired) {
-        this.isRequired = isRequired;
+    public void setRequired(boolean required) {
+        this.required = required;
     }
 
-//    public void setItemType(ItemType itemType) {
-//        this.itemType = itemType;
-//    }
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
+    }
+    
+    public ItemType getItemType() {
+    	return itemType;
+    }
 
 //    public PdfField getMatchField() {
 //        return matchField;
@@ -169,6 +231,14 @@ public abstract class Item implements Serializable {
 	public void setSelections(List<Selection> selections) {
 		this.selections = selections;
 	}
+
+//	public int getSelectionCount() {
+//		return selectionCount;
+//	}
+//
+//	public void setSelectionCount(int selectionCount) {
+//		this.selectionCount = selectionCount;
+//	}
 
 	public List<ItemResponse> getResponses() {
 		return responses;

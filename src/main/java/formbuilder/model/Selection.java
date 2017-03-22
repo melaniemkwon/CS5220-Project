@@ -19,7 +19,7 @@ import javax.persistence.Table;
 	@GeneratedValue
  	private int id;
 	
- 	private int index;
+ 	private int index; //TODO: CHANGE TO ORDERNUM
 	
 	@Column(name = "value")
  	private String value;

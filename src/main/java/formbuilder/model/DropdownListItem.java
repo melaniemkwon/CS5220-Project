@@ -1,5 +1,7 @@
 package formbuilder.model;
 
+import javax.persistence.Column;
+
 public class DropdownListItem extends Item {
 
 	@Override
@@ -8,16 +10,17 @@ public class DropdownListItem extends Item {
 		return null;
 	}
 
-	@Override
-	public ItemType getItemType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String getHelpText() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+//	public int getSelectionCount() {
+//		return selectionCount;
+//	}
+//
+//	public void setSelectionCount(int selectionCount) {
+//		this.selectionCount = selectionCount;
+//	}
 
 }

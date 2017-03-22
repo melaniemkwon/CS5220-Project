@@ -8,13 +8,11 @@ public class TimeItem extends Item {
 		return null;
 	}
 
-	@Override
 	public ItemType getItemType() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public String getHelpText() {
 		// TODO Auto-generated method stub
 		return null;

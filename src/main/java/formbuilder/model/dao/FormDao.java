@@ -17,19 +17,7 @@ public interface FormDao {
 	void deleteForm(Form form);
 	
 	
-//	ItemPage getPageById(Integer id);
-//	
-//	ItemPage savePage(ItemPage page);
-//	
-//	
-//	List<ItemBlock> getBlocks();
-//	
-//	ItemBlock getBlockById(Integer id);
-//	
-//	ItemBlock saveBlock(ItemBlock block);
-	
 	Item getItemById(long id);
-	
 	
 	Item saveItem(Item item);
 	

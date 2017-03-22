@@ -1,5 +1,6 @@
 package formbuilder.web.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import formbuilder.model.CheckboxItem;
 import formbuilder.model.Form;
 import formbuilder.model.Item;
+import formbuilder.model.ItemType;
 import formbuilder.model.Selection;
+import formbuilder.model.TextItem;
 import formbuilder.model.User;
 import formbuilder.model.dao.FormDao;
 import formbuilder.model.dao.UserDao;
@@ -48,8 +52,10 @@ public class FormController {
 
 	@RequestMapping(value = "/form/add.html", method = RequestMethod.GET)
 	public String addForm(ModelMap models) {
-		models.put("form", new Form());
-		models.put("forms", formDao.getForms());
+//		models.put("forms", formDao.getForms());
+		
+		models.put( "form", new Form() );
+		models.put( "items", new ArrayList<Item>() );
 
 		return "form/add";
 	}
@@ -62,7 +68,7 @@ public class FormController {
 		form.setTitle(name);
 		form.setDescription(description);
 
-		int id = 1;	//TODO: REPLACE WITH CURRENT USER
+		int id = 1;	//TODO: REPLACE WITH CURRENT USER FROM SESSION
 		form.setAuthor(userDao.getUser(id));
 
 		Date date = new Date();
@@ -75,138 +81,97 @@ public class FormController {
 		return "form/add";
 	}
 
-//	@RequestMapping(value = "/form/add_page.html", method = RequestMethod.GET)
-//	public String addPage(@RequestParam Integer id, ModelMap models) {
-//
-//		Form form = formDao.getForm(id);
-//		// find next page number
-//		List<ItemPage> pages = form.getPages();
-//		int nextPageNum = pages.size() + 1;
-//
-//		// create new page and save to db
-//		ItemPage page = new ItemPage();
-//		page.setForm(form);
-////		page.setPageNumber(nextPageNum);
-//		formDao.savePage(page);
-//
-//		models.put("page", page);
-//		models.put("form", form);
-//
-//		return "form/pageview";
-//	}
+	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.GET)
+	public String edit(@PathVariable Integer id, ModelMap models) {
+		Form form = formDao.getForm(id);
+		
+		models.put( "form", form );
+		models.put( "items", form.getItems() );
+		
+		models.put( "itemTypes", ItemType.values() );
+		
+		models.put( "newItem", new Item() );
+//		models.put( "newTextItem", new TextItem());
+//		models.put( "newCheckboxItem", new CheckboxItem());
 
-//	@RequestMapping(value = "/form/page_view.html", method = RequestMethod.GET)
-//	public String viewPage(@RequestParam Integer id, @RequestParam Integer p, ModelMap models) {
-//		Form form = formDao.getForm(id);
-//		List<ItemPage> pages = form.getPages();
-//		ItemPage page = null;
-//		if (p >= 1) {
-//			page = pages.get(p);
-//		} else {
-//			page = pages.get(1);
-//		}
-//
-//		models.put("page", page);
-//		models.put("form", form);
-//
-//		return "form/pageview";
-//	}
+		return "form/edit";
+	}
 
-//	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.GET)
-//	public String edit(@PathVariable Integer id, ModelMap models) {
-//		models.put("form", formDao.getForm(id));
-//		// models.put("forms", formDao.getForms());
-//
-//		return "form/edit";
-//	}
-//
-//	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.POST)
-//	public String edit(@ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
-//
-//		// TODO: add formValidator here
-//		// if (result.hasErrors() ) return "admin/formEdit";
-//
-//		form = formDao.saveForm(form);
+	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.POST)
+	public String edit(@PathVariable Integer id, ModelMap models, @ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
+
+		// TODO: add formValidator here
+
+		form = formDao.saveForm(form);
+		models.put( "form", form );
+		models.put( "items", form.getItems() );
+//		models.put( "newItem", item );
 //		sessionStatus.setComplete();
-//
-//		return "redirect:/form/list.html";
-//	}
 
-//	@RequestMapping(value = "/form/remove/{id}.html", method = RequestMethod.GET)
-//	public String deleteForm(@PathVariable long id) {
-//
-//		formDao.deleteForm(formDao.getForm(id));
-//
-//		return "redirect:../list.html";
-//	}
+		return "form/edit";
+	}
+	
+	// EDIT EACH QUESTION ITEM BY ID
+	@RequestMapping(value = "/form/edit/addQuestion/{id}.html", method = RequestMethod.POST)
+	public String editQuestion(@PathVariable Integer id, ModelMap models, @ModelAttribute Form form, @ModelAttribute Item item, BindingResult result, SessionStatus sessionStatus) {
+		
+		// Create specific subclass Item object and add to 'List<Item> items' inside Form object 
+		switch ( item.getItemType() ) {
+			case CHECKBOX: 			form.addItem( form.addCheckboxItem() );
+									break;
+			case DROPDOWN_LIST: 	form.addItem( form.addDropdownListItem() );
+									break;
+			case MULTIPLE_CHOICE:	form.addItem( form.addMultipleChoiceItem() );
+									break;
+			case TEXT: 				form.addItem( form.addTextItem() );
+									break;
+			case TEXT_PARAGRAPH: 	form.addItem( form.addTextParagraphItem() );
+									break;
+			case DATE: 				form.addItem( form.addDateItem() );
+									break;
+			case TIME: 				form.addItem( form.addTimeItem() );
+									break;
+			case IMAGE: 			form.addItem( form.addImageItem() );
+									break;
+			case PAGE_BREAK: 		form.addItem( form.addPageBreakItem() );
+									break;
+			case SECTION_HEADER: 	form.addItem( form.addSectionHeaderItem() );
+									break;
+			default:				break;
+		}
+		
+		form = formDao.saveForm(form);
+		models.put( "form", form );
+		models.put( "items", form.getItems() );
+		
+//		sessionStatus.setComplete();
 
-//	@RequestMapping(value = "/form/add_block.html", method = RequestMethod.GET)
-//	public String addBlock(@RequestParam Integer id, @RequestParam Integer p, ModelMap models) {
-//		Form form = formDao.getForm(id);
-//		List<ItemPage> pages = form.getPages();
-//		ItemPage page = null;
-//		if (p >= 1) {
-//			page = pages.get(p);
-//		} else {
-//			page = pages.get(1);
-//		}
-//		models.put("page", page);
-//
-//		// show form for adding blocks
-//
-//		return "form/addblock";
-//	}
-//
-//	@RequestMapping(value = "/form/add_block_model.html", method = RequestMethod.POST)
-//	public String addBlock(@ModelAttribute ItemBlock block, BindingResult result, SessionStatus sessionStatus,
-//			HttpSession session, @RequestParam Integer pid, ModelMap models) {
-//
-//		ItemPage page = (ItemPage) session.getAttribute("page");
-//		block.setPage(page);
-//
-//		List<ItemBlock> blocks = page.getBlock();
-//		block.setIndex(blocks.size());
-//
-//		block = formDao.saveBlock(block);
-//
-//		// show page view again
-//		return "form/pageview";
-//	}
-//
-//	@RequestMapping(value = "/form/add_block.html", method = RequestMethod.POST)
-//	public String addBlock(@RequestParam String name, @RequestParam String description, @RequestParam String available,
-//			@RequestParam Integer pid, ModelMap models) {
-//
-//		ItemBlock block = new ItemBlock();
-//		block.setName(name);
-//		block.setDescription(description);
-//		if (available.equals("avaiable")) {
-//			block.setAvailable(true);
-//		} else {
-//			block.setAvailable(false);
-//		}
-//
-//		ItemPage page = formDao.getPageById(pid);
-//		block.setPage(page);
-//
-//		List<ItemBlock> blocks = page.getBlock();
-//		block.setIndex(blocks.size());
-//
-//		block = formDao.saveBlock(block);
-//
-//		// show block view
-//		models.put("block", block);
-//		return "form/blockview";
-//	}
-//
-//	@RequestMapping(value = "/form/block/{id}.html", method = RequestMethod.GET)
-//	public String blockView(@PathVariable Integer id, ModelMap models) {
-//
-//		ItemBlock block = formDao.getBlockById(id);
-//		models.put("block", block);
-//		return "form/blockview";
-//	}
-//
+		return "form/edit";
+	}
+	
+	// EDIT EACH SELECTION BY ID
+	@RequestMapping(value = "/form/editSelection/{id}.html", method = RequestMethod.POST)
+	public String editSelection(@PathVariable Integer id, ModelMap models, @ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
+
+
+		form = formDao.saveForm(form);
+		models.put( "form", form );
+		models.put( "items", form.getItems() );
+//		sessionStatus.setComplete();
+
+		return "form/edit";
+	}
+	
+
+	@RequestMapping(value = "/form/remove/{id}.html", method = RequestMethod.GET)
+	public String deleteForm(@PathVariable long id) {
+
+		formDao.deleteForm(formDao.getForm(id));
+
+		return "redirect:../list.html";
+	}
+
+
 //	@RequestMapping(value = "/form/choose_item.html", method = RequestMethod.GET)
 //	public String chooseItem(@RequestParam Integer id, ModelMap models) {
 //		models.put("id", id);

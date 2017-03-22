@@ -37,15 +37,16 @@ create sequence hibernate_sequence start 1 increment 1;
     );
 
     create table items (
-        item_type varchar(31) not null,
+        item_discriminator varchar(31) not null,
         id int8 not null,
         available boolean not null,
         description varchar(255),
         helpText varchar(255),
-        required boolean,
+        item_type int4,
         order_num int4,
+        required boolean not null,
         title varchar(255),
-        num_checkboxes int4,
+        single_response boolean,
         form_id int8,
         primary key (id)
     );

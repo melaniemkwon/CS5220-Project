@@ -1,5 +1,7 @@
 package formbuilder.model;
 
+import java.util.ArrayList;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 /*
@@ -10,6 +12,11 @@ import javax.persistence.Entity;
 public class TextItem extends Item {
 	
 	private static final long serialVersionUID = 1L;
+	
+	public TextItem() {
+		super();
+		itemType = ItemType.TEXT;
+	}
 
 	@Override
 	public Item duplicate() {
@@ -20,15 +27,25 @@ public class TextItem extends Item {
 		newTextItem.description = this.description;
 		newTextItem.available = this.available;
 		newTextItem.orderNum = this.orderNum;
-		newTextItem.isRequired = this.isRequired;
+		newTextItem.required = this.required;
 		newTextItem.form = this.form;
 				
 		return newTextItem;
 	}
 
-	@Override
+    public TextItem( Item item ) {
+    	itemType = ItemType.TEXT;
+    	selections = new ArrayList<Selection>();
+    	
+    	this.title = item.title;
+    	this.description = item.description;
+    	this.available =  item.available;
+    	this.orderNum = item.orderNum;
+    	this.required = item.required;
+    }
+    
 	public ItemType getItemType() {
-		return ItemType.TEXT;
+		return itemType;
 	}
 	
 	// Creates a new ItemResponse for this date item
@@ -39,7 +56,6 @@ public class TextItem extends Item {
 		responses.add(newItemResponse);
 	}
 
-	@Override
 	public String getHelpText() {
 		// TODO Auto-generated method stub
 		return null;

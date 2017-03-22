@@ -108,7 +108,7 @@ public class Form implements Serializable {
 		return item;
 	}
 	
-	public MultipleChoiceItem addMultipleChoiceITem() {
+	public MultipleChoiceItem addMultipleChoiceItem() {
 		MultipleChoiceItem item = new MultipleChoiceItem();
 		item.form = this;
 		return item;
