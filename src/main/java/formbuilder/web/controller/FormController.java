@@ -82,7 +82,20 @@ public class FormController {
 	}
 
 	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.GET)
-	public String edit(@PathVariable long id, ModelMap models) {
+	public String edit1(@PathVariable long id, ModelMap models) {
+		
+		Form form = formDao.getForm(id);
+		models.put( "form", form );
+		models.put( "items", form.getItems() );
+		
+		models.put( "itemTypes", ItemType.values() );
+//		models.put( "newItem", new Item() );
+
+		return "form/edit";
+	}
+	
+	@RequestMapping(value = "/form/edit.html", method = RequestMethod.GET)
+	public String edit2(@RequestParam long id, ModelMap models) {
 		
 		Form form = formDao.getForm(id);
 		models.put( "form", form );
@@ -148,7 +161,22 @@ public class FormController {
 		newItem = new Item();
 		models.put( "newItem", newItem );
 		
-		return "form/addQuestion";	//Maybe just redirect back to Form edit view
+		return "redirect:../edit/" + form.getId() + ".html";	//Maybe just redirect back to Form edit view
+	}
+	
+	@RequestMapping(value = "/form/deleteQuestion/{id}.html", method = RequestMethod.GET)
+	public String deleteQuestion( @PathVariable long id, ModelMap models ) {
+		
+		Item item = formDao.getItemById(id);
+		Form form = formDao.getForm( item.getForm().getId() );
+		
+		formDao.deleteItem(item);
+		
+		models.put( "form", form );
+		models.put( "items", form.getItems() );
+		models.put( "itemTypes", ItemType.values() );
+		
+		return "redirect:../edit/" + form.getId() + ".html";
 	}
 	
 	@RequestMapping(value = "/form/editQuestion/{id}.html", method = RequestMethod.GET)
@@ -161,8 +189,8 @@ public class FormController {
 		Form form = item.getForm();
 		
 		// DEBUGGING
-		System.out.println("ITEM: " + item.getId());
-		System.out.println("FORM: " + form.getId());
+//		System.out.println("ITEM: " + item.getId());
+//		System.out.println("FORM: " + form.getId());
 
 		models.put( "item", item );
 		models.put( "form", form );
@@ -208,6 +236,34 @@ public class FormController {
 		models.put( "itemTypes", ItemType.values() );
 		
 		return "form/editQuestion";
+	}
+	
+	@RequestMapping(value = "/form/addSelection/{id}.html", method = RequestMethod.POST)
+	public String addSelection(@PathVariable Integer id, ModelMap models, @ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
+
+//		// Get the form by ID
+//		Form form = formDao.getForm(id);
+//		models.put( "form", form );
+//		models.put( "itemTypes", ItemType.values() );
+//		
+//		// Create new generic item for the form
+//		Item newItem = new Item();
+//		newItem.setForm(form);
+//		models.put( "newItem", newItem );
+		
+		// get item by id
+		Item item = formDao.getItemById(id);
+		
+		if (item.getItemType() == ItemType.CHECKBOX) {
+			
+		}
+		
+		form = formDao.saveForm(form);
+		models.put( "form", form );
+		models.put( "items", form.getItems() );
+//		sessionStatus.setComplete();
+
+		return "form/edit";
 	}
 	
 	// EDIT EACH SELECTION BY ID

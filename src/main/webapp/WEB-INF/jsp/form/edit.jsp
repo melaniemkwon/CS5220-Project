@@ -140,6 +140,7 @@ body {
 				<br><br>
 				# ${item.orderNum} <br>
 				<a href="/formbuilder/form/editQuestion/${item.id}.html">Edit this Question</a><br>
+				<a href="/formbuilder/form/deleteQuestion/${item.id}.html">Delete this Question</a><br>
 				Title: ${item.title} <br>
 				Description: ${item.description} <br>
 				Type: ${item.itemType} <br>

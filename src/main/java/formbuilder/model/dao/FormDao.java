@@ -21,5 +21,9 @@ public interface FormDao {
 	
 	Item saveItem(Item item);
 	
+	void deleteItem(Item item);
+	
 	Selection saveSelection(Selection selection);
+
+	
 }

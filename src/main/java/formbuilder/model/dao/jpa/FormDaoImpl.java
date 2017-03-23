@@ -46,6 +46,12 @@ public class FormDaoImpl implements FormDao {
 	public Item saveItem(Item item) {
 		return entityManager.merge(item);
 	}
+	
+	@Override
+	@Transactional
+	public void deleteItem(Item item) {
+		entityManager.remove(item);
+	}
 
 	@Override
 	@Transactional
