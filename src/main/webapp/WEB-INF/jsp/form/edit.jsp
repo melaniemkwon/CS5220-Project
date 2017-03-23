@@ -122,7 +122,7 @@ body {
 		<form:form modelAttribute="form">
 			Form name: <form:input path="title" />
 			<br> 
-			Description: <form:textarea path="description" rows="3" cols="20"/>
+			Description: <form:textarea path="description" rows="3" cols="30"/>
 			<br>
 			Available: <form:checkbox path="available" />
 			<br>
@@ -139,7 +139,7 @@ body {
 			<c:forEach items="${items}" var="item">
 				<br><br>
 				# ${item.orderNum} <br>
-				<a href="editQuestion/${item.id}.html">Edit this Question</a><br>
+				<a href="/editQuestion/${item.id}.html">Edit this Question</a><br>
 				Title: ${item.title} <br>
 				Description: ${item.description} <br>
 				Type: ${item.itemType} <br>
@@ -147,98 +147,23 @@ body {
 				Required: ${item.required} <br>
 				Available: ${item.available} <br>
 				
-				Selections: 
-				<c:forEach items="${item.selections}" var="selection">
+				<c:if test="${item.itemType == 'CHECKBOX' || item.itemType == 'DROPDOWN_LIST' || item.itemType == 'MULTIPLE_CHOICE' }">
+					Selections: 
 					<ul>
-						<li>${selection.value}</li><a href="../editSelection/${selection.id}.html"> Edit this Selection</a>
+						<c:forEach items="${item.selections}" var="selection">
+							<li>${selection.value}</li><a href="../editSelection/${selection.id}.html"> Edit this Selection</a>
+						</c:forEach>
+							<li><a href="../addSelection/${item.id}">ADD A NEW SELECTION</a>
 					</ul>
-				</c:forEach>		
+				</c:if>							
 			</c:forEach>
 		</c:if>
-		
-		<h3>Add a question</h3>
-		
-		Choose question type:
-		<select id="selectedItemType"> 
-              <c:forEach items="${itemTypes}" var="type">
-              	<option value="${type}">${type}</option>
-              </c:forEach>
-        </select> <br />
-        
-        <!-- IF 'TEXT' IS SELECTED, DISPLAY FORM FOR CHECKBOX ITEM -->
-        <div class="newTextItemForm">
-	        <form:form modelAttribute="newTextItem" action="/form/edit/addQuestion/${newTextItem.id}.html">
-	
-				Question: <form:input path="title" />
-				<br> 
-				Description: <form:textarea path="description" rows="3" cols="20"/>
-				<br>
-				Available: <form:checkbox path="available" />
-				<br>
-				Required: <form:checkbox path="required" />
-				<br>
-				Order #: <form:input path="orderNum" />
-				<br>
-	
-				<input type="submit" class="btn btn-info" name="add" value="Add Question" />
-			</form:form>
-		</div>
-            
-        <!-- IF 'CHECKBOX' IS SELECTED, DISPLAY FORM FOR CHECKBOX ITEM -->
-        <div class="newCheckboxItemForm">
-	        <form:form modelAttribute="newCheckboxItem" action="/form/edit/addQuestion/${newItem.id}.html">
-	
-				Question: <form:input path="title" />
-				<br> 
-				Description: <form:textarea path="description" rows="3" cols="20"/>
-				<br>
-				Available: <form:checkbox path="available" />
-				<br>
-				Required: <form:checkbox path="required" />
-				<br>
-				Order #: <form:input path="orderNum" />
-				<br>
-	
-				<input type="submit" class="btn btn-info" name="add" value="Add Question" />
-			</form:form>  
-		</div>
+		<br>
+		<br>
+		<a href="/formbuilder/form/addQuestion/${form.id}.html" class="btn btn-info"> <span
+			class="glyphicon glyphicon-plus"></span> ADD NEW QUESTION
+		</a>
 
-		
-	</div>
-	
-	<script>
-	
-		/* $( '.all-forms' ).hide();  */
- 		$( '.newTextItemForm' ).hide();
-		/* $( '.newCheckboxItemForm' ).hide();  */
-	
-		/* $('#selectedItemType').on('change', function(){
-			const selection = $(this).val();
-			$( '.newTextItemForm' ).toggle( selection == "TEXT" );
-			$( '.newCheckboxItemForm' ).toggle( selection == "CHECKBOX" );
-		}); */
-		
-		$('#selectedItemType').on( 'change', function() {
-			const selection = $(this).val();
-			
- 			switch( selection ) {
-		    case "TEXT":
-		    	$( '.newTextItemForm' ).show();
-				$( '.newCheckboxItemForm' ).hide(); 
-		        break;
-		    case "CHECKBOX":
-		    	$( '.newTextItemForm' ).hide();
-				$( '.newCheckboxItemForm' ).show(); 
-		        break;
-		    default:
-		    	$( '.newTextItemForm' ).hide();
-				$( '.newCheckboxItemForm' ).hide(); 
-			} 
-			
-/* 			$( '.newTextItemForm' ).toggle( selection == "TEXT" );
-			$( '.newCheckboxItemForm' ).toggle( selection == "CHECKBOX" ); */
-		});
-		
 	</script>
 </body>
 </html>

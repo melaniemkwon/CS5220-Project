@@ -28,9 +28,9 @@ public class CheckboxItem extends Item {
     }
     
     public CheckboxItem( Item item ) {
+    	this.form = item.form;
     	itemType = ItemType.CHECKBOX;
     	selections = new ArrayList<Selection>();
-    	
     	this.title = item.title;
     	this.description = item.description;
     	this.available =  item.available;

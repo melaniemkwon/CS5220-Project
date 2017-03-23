@@ -82,77 +82,85 @@ public class FormController {
 	}
 
 	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.GET)
-	public String edit(@PathVariable Integer id, ModelMap models) {
-		Form form = formDao.getForm(id);
+	public String edit(@PathVariable long id, ModelMap models) {
 		
+		Form form = formDao.getForm(id);
 		models.put( "form", form );
 		models.put( "items", form.getItems() );
 		
 		models.put( "itemTypes", ItemType.values() );
-		
-		models.put( "newItem", new Item() );
-//		models.put( "newTextItem", new TextItem());
-//		models.put( "newCheckboxItem", new CheckboxItem());
+//		models.put( "newItem", new Item() );
 
 		return "form/edit";
 	}
 
 	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.POST)
-	public String edit(@PathVariable Integer id, ModelMap models, @ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
-
-		// TODO: add formValidator here
+	public String edit(@PathVariable long id, ModelMap models, @ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
 
 		form = formDao.saveForm(form);
+		
 		models.put( "form", form );
 		models.put( "items", form.getItems() );
-//		models.put( "newItem", item );
-//		sessionStatus.setComplete();
+		models.put( "itemTypes", ItemType.values() );
+//		models.put( "newItem", new Item() );
 
 		return "form/edit";
 	}
 	
-	// EDIT EACH QUESTION ITEM BY ID
-	@RequestMapping(value = "/form/edit/addQuestion/{id}.html", method = RequestMethod.POST)
-	public String editQuestion(@PathVariable Integer id, ModelMap models, @ModelAttribute Form form, @ModelAttribute Item item, BindingResult result, SessionStatus sessionStatus) {
+	@RequestMapping(value = "/form/addQuestion/{id}.html", method = RequestMethod.GET)
+	public String addQuestion( @PathVariable long id, ModelMap models ) {
 		
-		// Create specific subclass Item object and add to 'List<Item> items' inside Form object 
-		switch ( item.getItemType() ) {
-			case CHECKBOX: 			form.addItem( form.addCheckboxItem() );
-									break;
-			case DROPDOWN_LIST: 	form.addItem( form.addDropdownListItem() );
-									break;
-			case MULTIPLE_CHOICE:	form.addItem( form.addMultipleChoiceItem() );
-									break;
-			case TEXT: 				form.addItem( form.addTextItem() );
-									break;
-			case TEXT_PARAGRAPH: 	form.addItem( form.addTextParagraphItem() );
-									break;
-			case DATE: 				form.addItem( form.addDateItem() );
-									break;
-			case TIME: 				form.addItem( form.addTimeItem() );
-									break;
-			case IMAGE: 			form.addItem( form.addImageItem() );
-									break;
-			case PAGE_BREAK: 		form.addItem( form.addPageBreakItem() );
-									break;
-			case SECTION_HEADER: 	form.addItem( form.addSectionHeaderItem() );
-									break;
-			default:				break;
+		// Get the form by ID
+		Form form = formDao.getForm(id);
+		models.put( "form", form );
+		models.put( "itemTypes", ItemType.values() );
+		
+		// Create new generic item for the form
+		Item newItem = new Item();
+		newItem.setForm(form);
+		models.put( "newItem", newItem );
+		
+		// DEBUGGING
+		System.out.println("addQuestion GET - FORM ID:" + form.getId());
+		
+		return "form/addQuestion";
+	}
+	
+	@RequestMapping(value = "/form/addQuestion/{id}.html", method = RequestMethod.POST)
+	public String addQuestion(@PathVariable long id, ModelMap models, @ModelAttribute Item newItem, BindingResult result, SessionStatus sessionStatus) {
+		
+		// Get the form by ID
+		Form form = formDao.getForm(id);
+		newItem.setForm(form);
+		
+		// Convert generic Item to subclass item type, and add to form's list of items
+		if ( newItem.getItemType() == ItemType.CHECKBOX ) {
+			form.addItem( newItem.asCheckboxItem() );
+		} else if ( newItem.getItemType() == ItemType.TEXT ) {
+			form.addItem( newItem.asTextItem() );
 		}
 		
-		form = formDao.saveForm(form);
+		// DEBUGGING
+		System.out.println("addQuestion POST - FORM ID:" + form.getId());
+		System.out.println("addQuestion POST - newItem FORM ID:" + newItem.getForm().getId()); //THIS RETURNS NULL
+		
+		// Save form to DB
+		form = formDao.saveForm( form );
+		
 		models.put( "form", form );
 		models.put( "items", form.getItems() );
+		models.put( "itemTypes", ItemType.values() );
 		
-//		sessionStatus.setComplete();
-
-		return "form/edit";
+		// refresh..
+		newItem = new Item();
+		models.put( "newItem", newItem );
+		
+		return "form/addQuestion";
 	}
 	
 	// EDIT EACH SELECTION BY ID
 	@RequestMapping(value = "/form/editSelection/{id}.html", method = RequestMethod.POST)
 	public String editSelection(@PathVariable Integer id, ModelMap models, @ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
-
 
 		form = formDao.saveForm(form);
 		models.put( "form", form );

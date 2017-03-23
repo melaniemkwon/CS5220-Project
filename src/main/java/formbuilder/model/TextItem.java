@@ -34,9 +34,9 @@ public class TextItem extends Item {
 	}
 
     public TextItem( Item item ) {
+    	this.form = item.form;
     	itemType = ItemType.TEXT;
     	selections = new ArrayList<Selection>();
-    	
     	this.title = item.title;
     	this.description = item.description;
     	this.available =  item.available;
