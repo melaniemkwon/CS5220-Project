@@ -119,6 +119,8 @@ body {
     <input type="submit" name="edit" value="Save Changes" /> 
 </form:form> --%>
 
+		<a href="/formbuilder/form/add_UI-preview.html">Preview of UI Concept. (unfinished static page)</a><br><br>
+
 		<form:form modelAttribute="form">
 			Form name: <form:input path="title" />
 			<br> 
@@ -154,8 +156,8 @@ body {
 						<c:forEach items="${item.selections}" var="selection">
 							<li>${selection.value}</li>
 								<ul>
-								<a href="../editSelection/${selection.id}.html"> Edit this Selection</a>
-								<a href="../deleteSelection/${selection.id}.html"> Delete this Selection</a>
+								<li><a href="../editSelection/${selection.id}.html"> Edit this Selection</a></li>
+								<li><a href="../deleteSelection/${selection.id}.html"> Delete this Selection</a></li>
 								</ul>
 						</c:forEach>
 							<li><a href="../addSelection/${item.id}.html">ADD A NEW SELECTION</a>

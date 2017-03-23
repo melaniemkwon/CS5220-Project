@@ -43,12 +43,13 @@ public class FormController {
 		return "form/list";
 	}
 
-//	@RequestMapping("/form/view/{id}.html")
-//	public String viewForm(@PathVariable Integer id, ModelMap models) {
-//		Form form = formDao.getForm(id);
-//		models.put("form", form);
-//		return "form/view";
-//	}
+    @RequestMapping("/form/view/{id}.html")
+    public String viewForm(@PathVariable Integer id, ModelMap models) {
+        Form form = formDao.getForm(id);
+        models.put("form", form);
+        models.put( "items", form.getItems() );
+        return "form/view";
+    }
 
 	@RequestMapping(value = "/form/add.html", method = RequestMethod.GET)
 	public String addForm(ModelMap models) {
@@ -61,11 +62,11 @@ public class FormController {
 	}
 
 	@RequestMapping(value = "/form/add.html", method = RequestMethod.POST)
-	public String addForm(@RequestParam String name, @RequestParam String description, @RequestParam String available) {
+	public String addForm(@RequestParam String title, @RequestParam String description, @RequestParam String available) {
 
 		// TODO: instead of creating new, use form object in session scope
 		Form form = new Form();
-		form.setTitle(name);
+		form.setTitle(title);
 		form.setDescription(description);
 
 		int id = 1;	//TODO: REPLACE WITH CURRENT USER FROM SESSION
@@ -78,7 +79,7 @@ public class FormController {
 		// SAVE THE FORM TO DB
 		formDao.saveForm(form);
 
-		return "form/add";
+		return "form/edit/" + form.getId() + ".html";
 	}
 
 	@RequestMapping(value = "/form/edit/{id}.html", method = RequestMethod.GET)
@@ -130,6 +131,7 @@ public class FormController {
 		
 		// Create new generic item for the form
 		Item newItem = new Item();
+		System.out.println("1. item ID" + newItem.getId());
 		newItem.setForm(form);
 		models.put( "newItem", newItem );
 		
@@ -142,17 +144,22 @@ public class FormController {
 		// Get the form by ID and set it to the Item
 		Form form = formDao.getForm(id);
 		newItem.setForm(form);
-		
+		System.out.println("2. item ID" + newItem.getId());
+//		newItem.setId(null);
 		// Convert generic Item to subclass item type, and add to form's list of items
 		if ( newItem.getItemType() == ItemType.CHECKBOX ) {
-			form.addItem( newItem.asCheckboxItem() );
+			Item savedItem = formDao.saveItem(newItem.asCheckboxItem());
+//			form.addItem( newItem.asCheckboxItem() );
 		} else if ( newItem.getItemType() == ItemType.TEXT ) {
-			form.addItem( newItem.asTextItem() );
+//			form.addItem( newItem.asTextItem() );
+			Item savedItem = formDao.saveItem(newItem.asCheckboxItem());
 		}
 		
 		// Save form to DB
-		form = formDao.saveForm( form );
+//		form = formDao.saveForm( form );
+//		Item savedItem = formDao.saveItem(item);
 		
+		form = formDao.getForm(id);
 		models.put( "form", form );
 		models.put( "items", form.getItems() );
 		models.put( "itemTypes", ItemType.values() );
@@ -247,9 +254,10 @@ public class FormController {
 		Item item = formDao.getItemById(id);
 		
 		selection.setItem(item);
-		item.addSelection(selection);
+//		item.addSelection(selection);
 		
-		formDao.saveItem(item);
+		formDao.saveSelection(selection);
+//		formDao.saveItem(item);
 
 		return "redirect:../editQuestion/" + item.getId() + ".html";	
 	}
@@ -259,8 +267,9 @@ public class FormController {
 
 		Selection selection = formDao.getSelectionById(id);
 		formDao.deleteSelection(selection);
+		long formId = selection.getItem().getForm().getId();
 		
-		return "redirect:../editQuestion/" + selection.getItem().getId() + ".html";
+		return "redirect:../edit/" + formId + ".html";
 	}
 	
 	@RequestMapping(value = "/form/editSelection/{id}.html", method = RequestMethod.GET)
@@ -269,15 +278,16 @@ public class FormController {
 		Selection selection = formDao.getSelectionById(id);
 		models.put( "selection", selection );
 
-		return "redirect:../editQuestion/" + selection.getItem().getId() + ".html";	
+		return "redirect:../editSelection/" + selection.getItem().getId() + ".html";	
 	}
 	
 	@RequestMapping(value = "/form/editSelection/{id}.html", method = RequestMethod.POST)
 	public String editSelection(@PathVariable Integer id, ModelMap models, @ModelAttribute Selection selection, BindingResult result, SessionStatus sessionStatus) {
 		
 		formDao.saveSelection(selection);
+		long formId = selection.getItem().getForm().getId();
 
-		return "redirect:../editQuestion/" + selection.getItem().getId() + ".html";	//TODO: redirect to edit question
+		return "redirect:../edit/" + formId + ".html";	//TODO: redirect to edit question
 	}
 	
 
@@ -397,4 +407,11 @@ public class FormController {
 //
 //		return "form/itemview";
 //	}
+	
+	@RequestMapping(value = "/form/add_UI-preview.html", method = RequestMethod.GET)
+	public String UI() {
+		
+		
+		return "/form/add_UI-preview";
+	}
 }
