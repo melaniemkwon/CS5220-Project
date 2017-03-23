@@ -120,16 +120,13 @@ public class FormController {
 		newItem.setForm(form);
 		models.put( "newItem", newItem );
 		
-		// DEBUGGING
-		System.out.println("addQuestion GET - FORM ID:" + form.getId());
-		
 		return "form/addQuestion";
 	}
 	
 	@RequestMapping(value = "/form/addQuestion/{id}.html", method = RequestMethod.POST)
 	public String addQuestion(@PathVariable long id, ModelMap models, @ModelAttribute Item newItem, BindingResult result, SessionStatus sessionStatus) {
 		
-		// Get the form by ID
+		// Get the form by ID and set it to the Item
 		Form form = formDao.getForm(id);
 		newItem.setForm(form);
 		
@@ -139,10 +136,6 @@ public class FormController {
 		} else if ( newItem.getItemType() == ItemType.TEXT ) {
 			form.addItem( newItem.asTextItem() );
 		}
-		
-		// DEBUGGING
-		System.out.println("addQuestion POST - FORM ID:" + form.getId());
-		System.out.println("addQuestion POST - newItem FORM ID:" + newItem.getForm().getId()); //THIS RETURNS NULL
 		
 		// Save form to DB
 		form = formDao.saveForm( form );
@@ -155,7 +148,66 @@ public class FormController {
 		newItem = new Item();
 		models.put( "newItem", newItem );
 		
-		return "form/addQuestion";
+		return "form/addQuestion";	//Maybe just redirect back to Form edit view
+	}
+	
+	@RequestMapping(value = "/form/editQuestion/{id}.html", method = RequestMethod.GET)
+	public String editQuestion(@PathVariable long id, ModelMap models) {
+		
+		// Get the question Item by ID
+		Item item = formDao.getItemById(id);
+		
+		// Get the Form to which this Item belongs
+		Form form = item.getForm();
+		
+		// DEBUGGING
+		System.out.println("ITEM: " + item.getId());
+		System.out.println("FORM: " + form.getId());
+
+		models.put( "item", item );
+		models.put( "form", form );
+//		models.put( "items", form.getItems() );
+		models.put( "itemTypes", ItemType.values() );
+		
+		return "form/editQuestion";
+	}
+	
+	@RequestMapping(value = "/form/editQuestion/{id}.html", method = RequestMethod.POST)
+	public String editQuestion(@PathVariable long id, ModelMap models, @ModelAttribute Item item, BindingResult result, SessionStatus sessionStatus) {
+		// Get the OLD question Item by ID
+		Item oldItem = formDao.getItemById(id);	
+		
+		// Get the Form to which this Item belongs
+//		Form form = oldItem.getForm();
+		Form form = formDao.getForm(oldItem.getForm().getId());
+		
+		item.setForm(form);
+		
+		// DEBUGGING
+		System.out.println("OLD ITEM: " + oldItem.getId());
+		System.out.println("NEW ITEM: " + item.getId());
+		System.out.println("FORM: " + form.getId());
+		
+		// Replace old item with new item
+		if ( item.getItemType() == ItemType.CHECKBOX ) {
+			form.replaceItem( item.asCheckboxItem() );
+//			form.deleteItem( item.getId() );
+//			form.addItem( item.asCheckboxItem() );
+		} else if ( item.getItemType() == ItemType.TEXT ) {
+			form.replaceItem( item.asTextItem() );
+//			form.deleteItem( item.getId() );
+//			form.addItem( item.asTextItem() );
+		}
+		
+		// Save form to DB
+		form = formDao.saveForm( form );
+		
+		models.put( "item", item );
+		models.put( "form", form );
+		models.put( "items", form.getItems() );
+		models.put( "itemTypes", ItemType.values() );
+		
+		return "form/editQuestion";
 	}
 	
 	// EDIT EACH SELECTION BY ID

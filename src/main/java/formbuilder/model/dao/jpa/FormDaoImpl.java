@@ -39,37 +39,7 @@ public class FormDaoImpl implements FormDao {
 	@Transactional
 	public void deleteForm(Form form) {
 		entityManager.remove(form);
-		
 	}
-
-//	public ItemPage getPageById(Integer id){
-//		return entityManager.find(ItemPage.class, id);
-//	}
-//	
-//	@Override
-//	@Transactional
-//	public ItemPage savePage(ItemPage page) {
-//		
-//		return entityManager.merge(page);
-//	}
-	
-//	@Override
-//	@Transactional
-//	public ItemBlock saveBlock(ItemBlock block) {
-//		
-//		return entityManager.merge(block);
-//	}
-//
-//	@Override
-//	public List<ItemBlock> getBlocks() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public ItemBlock getBlockById(Integer id) {
-//		return entityManager.find(ItemBlock.class, id);
-//	}
 
 	@Override
 	@Transactional

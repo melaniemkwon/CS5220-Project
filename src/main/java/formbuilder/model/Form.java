@@ -63,7 +63,7 @@ public class Form implements Serializable {
 		this.updateDate = createDate;	
 	}
 	
-	public Item getItem(int itemId) {
+	public Item getItem(long itemId) {
 		for (Item item : items) {
 			if (item.getId() == itemId) {
 				return item;
@@ -72,7 +72,7 @@ public class Form implements Serializable {
 		return null;
 	}
 
-	public Item deleteItem(int itemId) {
+	public Item deleteItem(long itemId) {
 		for (int i = 0; i < items.size(); i++) {
 			if (items.get(i).getId() == itemId) {
 				return items.remove(i);
@@ -85,7 +85,15 @@ public class Form implements Serializable {
 		items.add( item );
 	}
 
-	// TODO: void replaceItem( Item item )
+	public void replaceItem( Item item ) {
+		for (int i = 0; i < items.size(); i++) {
+
+			if (items.get(i).getId() == item.getId()) {
+				items.set(i, item);
+				break;
+			}
+		}
+	}
 	
 	/*
 	 * Open a form by ID and add a new item.

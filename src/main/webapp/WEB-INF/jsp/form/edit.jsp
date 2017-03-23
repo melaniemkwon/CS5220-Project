@@ -139,7 +139,7 @@ body {
 			<c:forEach items="${items}" var="item">
 				<br><br>
 				# ${item.orderNum} <br>
-				<a href="/editQuestion/${item.id}.html">Edit this Question</a><br>
+				<a href="/formbuilder/form/editQuestion/${item.id}.html">Edit this Question</a><br>
 				Title: ${item.title} <br>
 				Description: ${item.description} <br>
 				Type: ${item.itemType} <br>

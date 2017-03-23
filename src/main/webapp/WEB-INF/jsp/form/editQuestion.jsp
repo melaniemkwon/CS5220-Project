@@ -14,7 +14,7 @@
 	
 	<h4>Add new question</h4>
 
-	        <form:form modelAttribute="newItem">
+	        <form:form modelAttribute="item">
 	
 				Choose question type:
 				<form:select path="itemType" id="selectedItemType"> 
@@ -43,7 +43,7 @@
 					</ul>
 				</c:if>	
 	
-				<input type="submit" class="btn btn-info" name="add" value="Add Question" />
+				<input type="submit" class="btn btn-info" name="add" value="Save Changes" />
 			</form:form>
 
 	<h5><a href="../edit/${form.id}.html">Go back to main form</a></h5>
