@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -10,18 +10,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h4>Edit selection</h4>
 
-	<h4>Add new selection</h4>
+	<form:form modelAttribute="selection">
+		Selection: <form:input path="value" />
+		<input type="submit" class="btn btn-info" name="add" value="Edit Selection" />
+	</form:form>
 
-	        <form:form modelAttribute="selection">
-
-				Selection: <form:input path="value" />
-				<br> 
-	
-				<input type="submit" class="btn btn-info" name="add" value="Add Selection" />
-			</form:form>
-
-	<h5><a href="../edit/${form.id}.html">Go back to main form</a></h5>
-
+	<h5>
+		<a href="../edit/${form.id}.html">Go back to main form</a>
+	</h5>
 </body>
 </html>

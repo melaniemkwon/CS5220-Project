@@ -161,7 +161,7 @@ public class FormController {
 		newItem = new Item();
 		models.put( "newItem", newItem );
 		
-		return "redirect:../edit/" + form.getId() + ".html";	//Maybe just redirect back to Form edit view
+		return "redirect:../edit/" + form.getId() + ".html";	
 	}
 	
 	@RequestMapping(value = "/form/deleteQuestion/{id}.html", method = RequestMethod.GET)
@@ -187,10 +187,7 @@ public class FormController {
 		
 		// Get the Form to which this Item belongs
 		Form form = item.getForm();
-		
-		// DEBUGGING
-//		System.out.println("ITEM: " + item.getId());
-//		System.out.println("FORM: " + form.getId());
+//		Form form = formDao.getForm(item.getForm().getId());
 
 		models.put( "item", item );
 		models.put( "form", form );
@@ -206,25 +203,20 @@ public class FormController {
 		Item oldItem = formDao.getItemById(id);	
 		
 		// Get the Form to which this Item belongs
-//		Form form = oldItem.getForm();
-		Form form = formDao.getForm(oldItem.getForm().getId());
+		Form form = oldItem.getForm();
+//		Form form = formDao.getForm(oldItem.getForm().getId());
 		
 		item.setForm(form);
-		
-		// DEBUGGING
-		System.out.println("OLD ITEM: " + oldItem.getId());
-		System.out.println("NEW ITEM: " + item.getId());
-		System.out.println("FORM: " + form.getId());
 		
 		// Replace old item with new item
 		if ( item.getItemType() == ItemType.CHECKBOX ) {
 			form.replaceItem( item.asCheckboxItem() );
-//			form.deleteItem( item.getId() );
-//			form.addItem( item.asCheckboxItem() );
+
+			formDao.saveItem( item.asCheckboxItem() );
 		} else if ( item.getItemType() == ItemType.TEXT ) {
 			form.replaceItem( item.asTextItem() );
-//			form.deleteItem( item.getId() );
-//			form.addItem( item.asTextItem() );
+
+			formDao.saveItem( item.asTextItem() );
 		}
 		
 		// Save form to DB
@@ -235,47 +227,49 @@ public class FormController {
 		models.put( "items", form.getItems() );
 		models.put( "itemTypes", ItemType.values() );
 		
-		return "form/editQuestion";
+		return "redirect:../edit/" + form.getId() + ".html";
+	}
+	
+	@RequestMapping(value = "/form/addSelection/{id}.html", method = RequestMethod.GET)
+	public String addSelection(@PathVariable Integer id, ModelMap models) {
+
+		Item item = formDao.getItemById(id);
+		
+		models.put( "item", item);
+		models.put( "selection", new Selection());
+
+		return "form/addSelection";
 	}
 	
 	@RequestMapping(value = "/form/addSelection/{id}.html", method = RequestMethod.POST)
-	public String addSelection(@PathVariable Integer id, ModelMap models, @ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
+	public String addSelection(@PathVariable Integer id, ModelMap models, @ModelAttribute Selection selection, BindingResult result, SessionStatus sessionStatus) {
 
-//		// Get the form by ID
-//		Form form = formDao.getForm(id);
-//		models.put( "form", form );
-//		models.put( "itemTypes", ItemType.values() );
-//		
-//		// Create new generic item for the form
-//		Item newItem = new Item();
-//		newItem.setForm(form);
-//		models.put( "newItem", newItem );
-		
-		// get item by id
 		Item item = formDao.getItemById(id);
 		
-		if (item.getItemType() == ItemType.CHECKBOX) {
-			
-		}
+		selection.setItem(item);
+		item.addSelection(selection);
 		
-		form = formDao.saveForm(form);
-		models.put( "form", form );
-		models.put( "items", form.getItems() );
-//		sessionStatus.setComplete();
+		formDao.saveItem(item);
 
-		return "form/edit";
+		return "redirect:../editQuestion/" + item.getId() + ".html";	
+	}
+	
+	// EDIT EACH SELECTION BY ID
+	@RequestMapping(value = "/form/editSelection/{id}.html", method = RequestMethod.GET)
+	public String editSelection(@PathVariable Integer id, ModelMap models) {
+		Item item = formDao.getItemById(id);
+
+
+		return "redirect:../editQuestion/" + item.getId() + ".html";	
 	}
 	
 	// EDIT EACH SELECTION BY ID
 	@RequestMapping(value = "/form/editSelection/{id}.html", method = RequestMethod.POST)
-	public String editSelection(@PathVariable Integer id, ModelMap models, @ModelAttribute Form form, BindingResult result, SessionStatus sessionStatus) {
+	public String editSelection(@PathVariable Integer id, ModelMap models, @ModelAttribute Selection selection, BindingResult result, SessionStatus sessionStatus) {
+		Item item = formDao.getItemById(id);
 
-		form = formDao.saveForm(form);
-		models.put( "form", form );
-		models.put( "items", form.getItems() );
-//		sessionStatus.setComplete();
 
-		return "form/edit";
+		return "redirect:../editQuestion/" + item.getId() + ".html";	//TODO: redirect to edit question
 	}
 	
 

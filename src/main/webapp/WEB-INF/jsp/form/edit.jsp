@@ -154,7 +154,7 @@ body {
 						<c:forEach items="${item.selections}" var="selection">
 							<li>${selection.value}</li><a href="../editSelection/${selection.id}.html"> Edit this Selection</a>
 						</c:forEach>
-							<li><a href="../addSelection/${item.id}">ADD A NEW SELECTION</a>
+							<li><a href="../addSelection/${item.id}.html">ADD A NEW SELECTION</a>
 					</ul>
 				</c:if>							
 			</c:forEach>

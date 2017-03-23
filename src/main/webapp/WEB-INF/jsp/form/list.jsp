@@ -106,7 +106,7 @@ body {
 						<td class="col-md-3">
 						<a href="view/${form.id}.html"><button type="button" class="btn btn-info btn-sm">View</button></a>
 						<a href="edit/${form.id}.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edit </button></a>
-    					<%-- <a href="remove/${form.id}.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span> Remove </button></a> --%>
+    					<a href="remove/${form.id}.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span> Remove </button></a>
         				</td>
 
 					</tr>

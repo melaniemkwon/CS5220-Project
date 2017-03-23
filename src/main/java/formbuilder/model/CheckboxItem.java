@@ -19,7 +19,7 @@ public class CheckboxItem extends Item {
 	private static final long serialVersionUID = 1L;
 
     @Column(name = "single_response")
-	protected boolean singleResponse;
+	protected boolean singleResponse;		//remove this field?
        
     public CheckboxItem() {
     	super();

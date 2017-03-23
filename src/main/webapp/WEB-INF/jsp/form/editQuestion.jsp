@@ -12,10 +12,9 @@
 <body>
 	<h2>${form.title}</h2>
 	
-	<h4>Add new question</h4>
+	<h4>Edit question</h4>
 
 	        <form:form modelAttribute="item">
-	
 				Choose question type:
 				<form:select path="itemType" id="selectedItemType"> 
 	              <c:forEach items="${itemTypes}" var="type">
