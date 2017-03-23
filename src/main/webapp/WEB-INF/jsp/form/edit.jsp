@@ -152,7 +152,11 @@ body {
 					Selections: 
 					<ul>
 						<c:forEach items="${item.selections}" var="selection">
-							<li>${selection.value}</li><a href="../editSelection/${selection.id}.html"> Edit this Selection</a>
+							<li>${selection.value}</li>
+								<ul>
+								<a href="../editSelection/${selection.id}.html"> Edit this Selection</a>
+								<a href="../deleteSelection/${selection.id}.html"> Delete this Selection</a>
+								</ul>
 						</c:forEach>
 							<li><a href="../addSelection/${item.id}.html">ADD A NEW SELECTION</a>
 					</ul>

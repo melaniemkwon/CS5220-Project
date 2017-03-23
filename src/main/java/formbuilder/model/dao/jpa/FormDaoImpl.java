@@ -63,4 +63,15 @@ public class FormDaoImpl implements FormDao {
 	public Item getItemById(long id) {
 		return entityManager.find(Item.class, id);
 	}
+
+	@Override
+	public Selection getSelectionById(int id) {
+		return entityManager.find(Selection.class, id);
+	}
+
+	@Override
+	@Transactional
+	public void deleteSelection(Selection selection) {
+		entityManager.remove(selection);
+	}
 }

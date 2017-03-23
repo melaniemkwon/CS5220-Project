@@ -29,7 +29,7 @@ import formbuilder.model.dao.FormDao;
 import formbuilder.model.dao.UserDao;
 
 @Controller
-@SessionAttributes({ "forms", "form", "page" })
+@SessionAttributes({ "forms", "form", "selection", "item", "newItem"  })
 public class FormController {
 
 	@Autowired
@@ -254,22 +254,30 @@ public class FormController {
 		return "redirect:../editQuestion/" + item.getId() + ".html";	
 	}
 	
-	// EDIT EACH SELECTION BY ID
-	@RequestMapping(value = "/form/editSelection/{id}.html", method = RequestMethod.GET)
-	public String editSelection(@PathVariable Integer id, ModelMap models) {
-		Item item = formDao.getItemById(id);
+	@RequestMapping(value = "/form/deleteSelection/{id}.html", method = RequestMethod.GET)
+	public String deleteSelection( @PathVariable int id, ModelMap models ) {
 
-
-		return "redirect:../editQuestion/" + item.getId() + ".html";	
+		Selection selection = formDao.getSelectionById(id);
+		formDao.deleteSelection(selection);
+		
+		return "redirect:../editQuestion/" + selection.getItem().getId() + ".html";
 	}
 	
-	// EDIT EACH SELECTION BY ID
+	@RequestMapping(value = "/form/editSelection/{id}.html", method = RequestMethod.GET)
+	public String editSelection(@PathVariable Integer id, ModelMap models) {
+		
+		Selection selection = formDao.getSelectionById(id);
+		models.put( "selection", selection );
+
+		return "redirect:../editQuestion/" + selection.getItem().getId() + ".html";	
+	}
+	
 	@RequestMapping(value = "/form/editSelection/{id}.html", method = RequestMethod.POST)
 	public String editSelection(@PathVariable Integer id, ModelMap models, @ModelAttribute Selection selection, BindingResult result, SessionStatus sessionStatus) {
-		Item item = formDao.getItemById(id);
+		
+		formDao.saveSelection(selection);
 
-
-		return "redirect:../editQuestion/" + item.getId() + ".html";	//TODO: redirect to edit question
+		return "redirect:../editQuestion/" + selection.getItem().getId() + ".html";	//TODO: redirect to edit question
 	}
 	
 
