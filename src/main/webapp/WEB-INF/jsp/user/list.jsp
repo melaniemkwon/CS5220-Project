@@ -1,91 +1,80 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Title</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>List Form</title>
+  		<link rel="stylesheet" href="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css' />">
+ 		<link rel="stylesheet" href="<c:url value='/assets/vendors/DataTables-1.10.13/css/dataTables.bootstrap.css' />">
+		<style>
+			body {
+				padding-top: 70px;
+			}
+		</style>  
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/formcreator/">Formbuilder</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="/formcreator/">Home</a></li>
+						<li class="active"><a href="/formcreator/user/list.html">Users</a></li>
+						<li><a href="/formcreator/form/listForm.html">Forms</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	crossorigin="anonymous"></script>
-
-<style>
-body {
-	min-height: 2000px;
-	padding-top: 70px;
-}
-</style>
-</head>
-<body>
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/formbuilder/">Formbuilder</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="/formbuilder/">Home</a></li>
-					<li class="active"><a href="/formbuilder/user/list.html">Users</a></li>
-					<li><a href="/formbuilder/form/list.html">Forms</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="		false">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li class="dropdown-header">Nav header</li>
-							<li><a href="#">Separated link</a></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Menu1</a></li>
-					<li><a href="#">Menu2</a></li>
-					<li class="active"><a href="./">Menu3<span class="sr-only">(current)</span></a></li>
-				</ul>
-			</div>
-			<!--/.nav-collapse -->
+			<table id="userTable" class="table table-striped table-bordered">
+				<thead>
+					<tr><th >ID</th><th>First Name</th><th>Last Name</th><th>Role</th><th>Operations</th></tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${users}" var="user">
+						<tr>
+							<td class="col-md-1">${user.id}</td>
+							<td class="col-md-2">${user.firstName}</td>
+							<td class="col-md-2">${user.lastName}</td>
+							<td class="col-md-1">${user.role}</td>
+							<td class="col-md-1">
+								<a class="btn" href="view.html?id=${user.id}" data-toggle="tooltip" title="View User"><i class="glyphicon glyphicon-eye-open"></i></a>
+								<a class="btn" href="edit.html?id=${user.id}" data-toggle="tooltip" title="Edit User Information"><i class="glyphicon glyphicon-pencil"></i></a>
+								<a class="btn" href="delete.html?id=${user.id}" data-toggle="tooltip" title="Delete User"><i class="glyphicon glyphicon-trash"></i></a>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
-	</nav>
-	<div class="container">
-		<table class="table table-striped table-hover">
-		<tr><th >ID</th><th>First Name</th><th>Last Name</th><th>Role</th><th>Operations</th><th>Delete</th></tr>
-		<c:forEach items="${users}" var="user">
-		<tr><td  class="col-md-1" >${user.id}</td>
-			<td  class="col-md-2">${user.firstName}</td>
-			<td  class="col-md-2">${user.lastName}</td>
-		<td  class="col-md-1"><a href='view.html?id=${user.id}'>${user.role}</a></td>
-		<td  class="col-md-1"><a href='edit.html?id=${user.id}'>Edit</a></td>
-		<td  class="col-md-1"><a href='delete.html?id=${user.id}'>Delete</a></td>
-		</tr>
-		</c:forEach>
-		</table>
-		<a href="add.html"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> ADD NEW USER </button></a>  				
-	</div>
-</body>
+		<div class="col-md-offset-10">
+			<a href="add.html" id="popupAddUser"><button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span> ADD NEW USER </button></a>
+		</div>
+	<script src="<c:url value='/assets/vendors/jquery/jquery-3.2.0.min.js' />"></script>
+	<script src="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/js/bootstrap.min.js' />"></script>  
+	<script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/jquery.dataTables.min.js' />"></script>
+	<script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/dataTables.bootstrap.min.js' />"></script>
+	
+	<script>
+	  $(document).ready(function(){
+		    $('#formTable').DataTable();
+		});
+	</script>
+	
+	</body>
 </html>
