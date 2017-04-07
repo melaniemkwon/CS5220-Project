@@ -93,5 +93,10 @@
       	<artifactId>postgresql</artifactId>
       	<version>9.4.1212.jre7</version>
       </dependency>
+      <dependency>
+      	<groupId>org.apache.tiles</groupId>
+      	<artifactId>tiles-jsp</artifactId>
+      	<version>3.0.7</version>
+      </dependency>
   </dependencies>
 </project>
