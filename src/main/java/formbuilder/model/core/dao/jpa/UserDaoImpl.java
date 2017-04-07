@@ -38,5 +38,9 @@ public class UserDaoImpl implements UserDao {
 		entityManager.remove(getUser(id));
 
 	}
-
+	/*
+	 * @Override public Set<Form> getForms() { return
+	 * entityManager.createQuery("from User order by id",
+	 * User.class).getResultList(); }
+	 */
 }

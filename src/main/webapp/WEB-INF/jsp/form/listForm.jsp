@@ -32,9 +32,9 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="/FormBuilder/">Home</a></li>
-						<li><a href="/FormBuilder/user/list.html">Users</a></li>
-						<li class="active"><a href="/FormBuilder/form/listForm.html">Forms</a></li>
+						<li><a href="/formbuilder/">Home</a></li>
+						<li><a href="/formbuilder/user/list.html">Users</a></li>
+						<li class="active"><a href="/formbuilder/form/listForm.html">Forms</a></li>
 					</ul>
 				</div>
 			</div>
@@ -57,7 +57,7 @@
 								<a class="btn" href="viewPage.html?id=${form.id}&pageNum=1" data-toggle="tooltip" title="View Form"><i class="glyphicon glyphicon-eye-open"></i></a>
 								<a class="btn" href="editPage.html?id=${form.id}&pageNum=1" data-toggle="tooltip" title="Edit Form Page"><i class="glyphicon glyphicon-pencil"></i></a>
 								<a class="btn" href="deleteForm.html?id=${form.id}" data-toggle="tooltip" title="Delete Form"><i class="glyphicon glyphicon-trash"></i></a>
-								<a class="btn" href="assignForm.html?id=${form.id}" data-toggle="tooltip" title="Assign Form"><i class="glyphicon glyphicon-open-file"></i></a>
+								<a class="btn" href="listAssignForm.html?id=${form.id}" data-toggle="tooltip" title="Assign Form"><i class="glyphicon glyphicon-open-file"></i></a>
 							</td>
 						</tr>
 					</c:forEach>

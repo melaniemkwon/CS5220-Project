@@ -2,6 +2,7 @@ package formbuilder.web.controller;
 
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
 import formbuilder.model.questionform.ChoiceQuestion;
 import formbuilder.model.questionform.Form;
@@ -78,11 +80,13 @@ public class FormController {
 		return "redirect:listForm.html";
 	}
 
-	@RequestMapping("/form/assignForm.html")
-	public String assignForm(ModelMap models) {
+	@RequestMapping("/form/listAssignForm.html")
+	public String listAssignForm(@RequestParam Integer id, ModelMap models) {
 
-		models.put("users", userDao.getUsers());
-		return "form/assignForm";
+		Form form = formDao.getForm(id);
+		Set<User> users = form.getUsers();
+		models.put("users", users);
+		return "form/listAssignForm";
 	}
 
 	@RequestMapping(value = "/form/viewPage.html")

@@ -32,15 +32,26 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="/FormBuilder/">Home</a></li>
-						<li><a href="/FormBuilder/user/list.html">Users</a></li>
-						<li class="active"><a href="/FormBuilder/form/listForm.html">Forms</a></li>
+						<li><a href="/formbuilder/">Home</a></li>
+						<li><a href="/formbuilder/user/list.html">Users</a></li>
+						<li class="active"><a href="/formbuilder/form/listForm.html">Forms</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 
 		<div class="container">
+		    <div class="row form-group">
+		        <div class="col-md-offset-3 col-md-6">
+		            <label for="search๊หำพ" class="control-label">Search: </label>
+		            <input type="text" name="searchUser" id="searchUser" class="form-control custom-input" placeholder="User Name or Full Name" required/>
+		        </div>
+		    </div>
+			<div class="row form-group" style="text-align: center;">
+		        <input id="clearSearch" type="button" class="btn btn-default" value="Clear" style="padding-left: 3em; padding-right: 3em;">
+		        <input id="choose" type="button" class="btn btn-primary" value="Choose" style="padding-left: 3em; padding-right: 3em;">
+		    </div>
+		
 			<table id="userTable" class="table table-striped table-bordered">
 				<thead>
 					<tr><th >ID</th><th>First Name</th><th>Last Name</th><th>Role</th><th>Operations</th></tr>
@@ -65,6 +76,26 @@
 		<div class="col-md-offset-10">
 			<a href="add.html" id="popupAddUser"><button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span> ADD NEW USER </button></a>
 		</div>
+
+		<!-- Modal -->		
+		<div id="successModal" class="modal fade" tabindex="-1" role="dialog">
+		    <div class="modal-dialog" role="document">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+		                <h4 class="modal-title">Success</h4>
+		            </div>
+		            <div class="modal-body">
+		                <p>Your information is successfully added.</p>
+		            </div>
+		            <div class="modal-footer">
+		                <button id="closeSuccessModal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		
+		
 	<script src="<c:url value='/assets/vendors/jquery/jquery-3.2.0.min.js' />"></script>
 	<script src="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/js/bootstrap.min.js' />"></script>  
 	<script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/jquery.dataTables.min.js' />"></script>
