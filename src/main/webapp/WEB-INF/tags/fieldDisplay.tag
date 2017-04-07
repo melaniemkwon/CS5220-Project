@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="formcreator" uri="http://formcreator.com/formcreator"%>
-<%@ attribute name="question" required="true" type="formcreator.model.questionform.Question"%>
+<%@ attribute name="question" required="true" type="formbuilder.model.questionform.Question"%>
 <%@ tag body-content="scriptless"%>
 
 

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ attribute name="question" required="true" type="formcreator.model.questionform.Question"%>
+<%@ attribute name="question" required="true" type="formbuilder.model.questionform.Question"%>
 <%@ tag body-content="scriptless"%>
 
 <form:form  modelAttribute="question" class = "form" >
