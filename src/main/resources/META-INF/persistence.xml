@@ -4,15 +4,12 @@
         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
     version="2.1">
 
-    <persistence-unit name="formcreator">
+    <persistence-unit name="formbuilder">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="${db.url}" />
-            <property name="javax.persistence.jdbc.user" value="${db.username}" />
-            <property name="javax.persistence.jdbc.password" value="${db.password}" />
-            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.show_sql" value="true" />
         </properties> 
     </persistence-unit>
 

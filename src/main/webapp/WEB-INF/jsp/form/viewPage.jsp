@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="formcreator" uri="http://formcreator.com/formcreator"%>
+<%@ taglib prefix="formbuilder" uri="http://formbuilder.com/formbuilder"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -34,13 +34,13 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/formcreator/">Formbuilder</a>
+					<a class="navbar-brand" href="/formbuilder/">Formbuilder</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="/formcreator/">Home</a></li>
-						<li><a href="/formcreator/user/list.html">Users</a></li>
-						<li class="active"><a href="/formcreator/form/listForm.html">Forms</a></li>
+						<li><a href="/formbuilder/">Home</a></li>
+						<li><a href="/formbuilder/user/list.html">Users</a></li>
+						<li class="active"><a href="/formbuilder/form/listForm.html">Forms</a></li>
 					</ul>
 				</div>
 			</div>
@@ -61,7 +61,7 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${questionsPage}" var="question">
-									<formcreator:fieldDisplay question="${question }"></formcreator:fieldDisplay>
+									<formbuilder:fieldDisplay question="${question }"></formbuilder:fieldDisplay>
 									<div class="btn-group btn-group-sm" role="group"
 										aria-label="..." style="margin-left: 10px;">
 										<a href="copyQuestion.html?qId=${question.id}" class="btn btn-success" data-toggle="tooltip" title="Duplicate this question"><span class="glyphicon glyphicon-plus-sign"></span></a>
