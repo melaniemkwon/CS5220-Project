@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="formcreator" uri="http://formcreator.com/formcreator" %>
+<%@ taglib prefix="formbuilder" uri="http://formbuilder.com/formbuilder" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -36,13 +36,13 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/formcreator/">Formbuilder</a>
+					<a class="navbar-brand" href="/FormBuilder/">Formbuilder</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="/formcreator/">Home</a></li>
-						<li><a href="/formcreator/user/list.html">Users</a></li>
-						<li class="active"><a href="/formcreator/form/listForm.html">Forms</a></li>
+						<li><a href="/FormBuilder/">Home</a></li>
+						<li><a href="/FormBuilder/user/list.html">Users</a></li>
+						<li class="active"><a href="/FormBuilder/form/listForm.html">Forms</a></li>
 					</ul>
 				</div>
 			</div>
@@ -60,12 +60,12 @@
 		            <div class="panel-body">                
 		                <p class="text-center" >Edit the field here.</p>
 		                <c:if test="${question.type eq 'TEXT'}">
-		                	<formcreator:editText></formcreator:editText>	                	
+		                	<formbuilder:editText></formbuilder:editText>	                	
 		                </c:if>
 		                <c:if test="${question.type eq 'CHOICE'}">
-		                	<formcreator:editChoice question="${question }"></formcreator:editChoice>	                	
+		                	<formbuilder:editChoice question="${question }"></formbuilder:editChoice>	                	
 		                </c:if>
-		                <a href="viewPage.html?id=${id}&pageNum=${pageNum}"><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> RETURN TO PAGE</button></a>              
+		                <a href="editPage.html?id=${id}&pageNum=${pageNum}"><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> RETURN TO PAGE</button></a>              
 		            </div>
 		        </div>       
 		    </div>			      	
@@ -81,7 +81,7 @@
 		                </h4>
 		            </div>            
 		            <div class="panel-body">
-		            	<formcreator:fieldDisplay question="${question }"></formcreator:fieldDisplay>		                
+		            	<formbuilder:fieldDisplay question="${question }"></formbuilder:fieldDisplay>		                
 		            </div>
 		        </div>
 		        

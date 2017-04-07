@@ -19,7 +19,7 @@
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="formcreator" />
+        <property name="persistenceUnitName" value="formbuilder" />
         <property name="dataSource" ref="dataSource" />
     </bean>
 
@@ -33,6 +33,6 @@
 
     <tx:annotation-driven />
 
-    <context:component-scan base-package="formcreator.model" />
+    <context:component-scan base-package="formbuilder.model" />
 
 </beans>

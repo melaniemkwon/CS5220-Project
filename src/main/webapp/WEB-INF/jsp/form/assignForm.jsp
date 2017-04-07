@@ -8,7 +8,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>List Form</title>
+		<title>Assign Form</title>
   		<link rel="stylesheet" href="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css' />">
  		<link rel="stylesheet" href="<c:url value='/assets/vendors/DataTables-1.10.13/css/dataTables.bootstrap.css' />">
 		<style>
@@ -33,8 +33,8 @@
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li><a href="/FormBuilder/">Home</a></li>
-						<li class="active"><a href="/FormBuilder/user/list.html">Users</a></li>
-						<li><a href="/FormBuilder/form/listForm.html">Forms</a></li>
+						<li><a href="/FormBuilder/user/list.html">Users</a></li>
+						<li class="active"><a href="/FormBuilder/form/listForm.html">Forms</a></li>
 					</ul>
 				</div>
 			</div>
