@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import formbuilder.model.core.dao.UserDao;
 import formbuilder.model.questionform.ChoiceQuestion;
 import formbuilder.model.questionform.Form;
 import formbuilder.model.questionform.Question;
@@ -26,6 +27,9 @@ public class FormController {
 
 	@Autowired
 	private FormDao formDao;
+
+	@Autowired
+	private UserDao userDao;
 
 	@RequestMapping("/form/listForm.html")
 	public String listForm(ModelMap models) {
@@ -74,27 +78,11 @@ public class FormController {
 		return "redirect:listForm.html";
 	}
 
-	@RequestMapping("/form/deletePage.html")
-	public String deletePage(@RequestParam Integer id, @RequestParam Integer pageNum) {
+	@RequestMapping("/form/assignForm.html")
+	public String assignForm(ModelMap models) {
 
-		Form form = formDao.getForm(id);
-		if (form.getTotalPages() > 1) {
-
-			ListIterator<Question> listIterator = form.getQuestions().listIterator();
-			while (listIterator.hasNext()) {
-				Question question = listIterator.next();
-				if (question.getPageNumber() == pageNum) {
-					listIterator.remove();
-				} else if (question.getPageNumber() > pageNum) {
-					question.setPageNumber(question.getPageNumber() - 1);
-					listIterator.set(question);
-				}
-			}
-			form.setTotalPages(form.getTotalPages() - 1);
-
-			formDao.saveForm(form);
-		}
-		return "redirect:/form/viewPage.html?id=" + id + "&pageNum=1";
+		models.put("users", userDao.getUsers());
+		return "form/assignForm";
 	}
 
 	@RequestMapping(value = "/form/viewPage.html")
@@ -109,6 +97,18 @@ public class FormController {
 		return "form/viewPage";
 	}
 
+	@RequestMapping(value = "/form/editPage.html")
+	public String editPage(@RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models) {
+
+		Form form = formDao.getForm(id);
+		if (pageNum > form.getTotalPages())
+			return "redirect:/form/editPage.html?id=" + id + "&pageNum=1";
+		List<Question> questionsPage = form.getQuestionsPage(pageNum);
+		models.put("form", form);
+		models.put("questionsPage", questionsPage);
+		return "form/editPage";
+	}
+
 	@RequestMapping(value = "/form/addPage.html")
 	public String addPage(@RequestParam Integer id) {
 
@@ -116,7 +116,30 @@ public class FormController {
 		int newPageNum = form.getTotalPages() + 1;
 		form.setTotalPages(newPageNum);
 		formDao.saveForm(form);
-		return "redirect:/form/viewPage.html?id=" + id + "&pageNum=" + newPageNum;
+		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + newPageNum;
+	}
+
+	@RequestMapping("/form/deletePage.html")
+	public String deletePage(@RequestParam Integer id, @RequestParam Integer pageNum) {
+	
+		Form form = formDao.getForm(id);
+		if (form.getTotalPages() > 1) {
+	
+			ListIterator<Question> listIterator = form.getQuestions().listIterator();
+			while (listIterator.hasNext()) {
+				Question question = listIterator.next();
+				if (question.getPageNumber() == pageNum) {
+					listIterator.remove();
+				} else if (question.getPageNumber() > pageNum) {
+					question.setPageNumber(question.getPageNumber() - 1);
+					listIterator.set(question);
+				}
+			}
+			form.setTotalPages(form.getTotalPages() - 1);
+	
+			formDao.saveForm(form);
+		}
+		return "redirect:/form/editPage.html?id=" + id + "&pageNum=1";
 	}
 
 	@RequestMapping(value = "/form/addTextQuestion.html")
@@ -136,7 +159,7 @@ public class FormController {
 
 		formDao.saveForm(form);
 
-		return "redirect:/form/viewPage.html?id=" + id + "&pageNum=" + pageNum;
+		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
 	@RequestMapping(value = "/form/addChoiceQuestion.html")
@@ -157,7 +180,7 @@ public class FormController {
 
 		formDao.saveForm(form);
 
-		return "redirect:/form/viewPage.html?id=" + id + "&pageNum=" + pageNum;
+		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
 	@RequestMapping("/form/deleteQuestion.html")
@@ -179,7 +202,7 @@ public class FormController {
 		}
 		formDao.saveForm(form);
 
-		return "redirect:/form/viewPage.html?id=" + id + "&pageNum=" + pageNum;
+		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
 	@RequestMapping("/form/copyQuestion.html")
@@ -202,7 +225,7 @@ public class FormController {
 		form.addQuestion(newQuestion);
 		formDao.saveForm(form);
 
-		return "redirect:/form/viewPage.html?id=" + id + "&pageNum=" + pageNum;
+		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
 	@RequestMapping("/form/moveUpQuestion.html")
@@ -227,7 +250,7 @@ public class FormController {
 
 			formDao.saveForm(form);
 		}
-		return "redirect:/form/viewPage.html?id=" + id + "&pageNum=" + pageNum;
+		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
 	@RequestMapping("/form/moveDownQuestion.html")
@@ -255,7 +278,7 @@ public class FormController {
 
 			formDao.saveForm(form);
 		}
-		return "redirect:/form/viewPage.html?id=" + id + "&pageNum=" + pageNum;
+		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
 	@RequestMapping(value = "/form/editQuestion.html", method = RequestMethod.GET)

@@ -80,8 +80,7 @@ public class UserController {
 
 	@RequestMapping(value = "/user/delete.html")
 	public String deleteUser(@RequestParam int id, HttpServletResponse response) {
-		User user = userDao.getUser(id);
-		// userDao.delete(user);
+		userDao.delete(id);
 		return "redirect:list.html";
 	}
 
