@@ -10,6 +10,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>List Form</title>
   		<link rel="stylesheet" href="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css' />">
+	    <link rel="stylesheet" href="<c:url value='/assets/vendors/bootstrap-material-design/css/bootstrap-material-design.min.css' />">
+	    <link rel="stylesheet" href="<c:url value='/assets/vendors/bootstrap-material-design/css/ripples.min.css' />">
  		<link rel="stylesheet" href="<c:url value='/assets/vendors/DataTables-1.10.13/css/dataTables.bootstrap.css' />">
 		<style>
 			body {
@@ -72,6 +74,13 @@
 	<script src="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/js/bootstrap.min.js' />"></script>  
 	<script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/jquery.dataTables.min.js' />"></script>
 	<script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/dataTables.bootstrap.min.js' />"></script>
+	
+	<!-- Material Design for Bootstrap -->
+	<script src="<c:url value='/assets/vendors/bootstrap-material-design/js/material.js' />"></script>
+	<script src="<c:url value='/assets/vendors/bootstrap-material-design/js/ripples.min.js' />"></script>
+	<script>
+	  $.material.init();
+	</script>
 	
 	<script>
 	  $(document).ready(function(){
