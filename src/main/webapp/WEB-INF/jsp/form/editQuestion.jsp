@@ -65,7 +65,7 @@
 		                <c:if test="${question.type eq 'CHOICE'}">
 		                	<formbuilder:editChoice question="${question }"></formbuilder:editChoice>	                	
 		                </c:if>
-		                <a href="viewPage.html?id=${id}&pageNum=${pageNum}"><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> RETURN TO PAGE</button></a>              
+		                <a href="editPage.html?id=${id}&pageNum=${pageNum}"><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> RETURN TO PAGE</button></a>              
 		            </div>
 		        </div>       
 		    </div>			      	
