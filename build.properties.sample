@@ -1,4 +1,4 @@
 ## The database for operational use.
-db.url=jdbc:postgresql://localhost:5432/formcreator
+db.url=jdbc:postgresql://localhost:5432/formbuilder
 db.username=formcreator
 db.password=admin
