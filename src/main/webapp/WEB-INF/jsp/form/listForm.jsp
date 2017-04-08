@@ -30,11 +30,12 @@
 			</c:forEach>
 		</tbody>
 	</table>
-</div>
-<div class="col-md-offset-10">
-	<a href="addForm.html" id="popupAddForm"><button type="button" class="btn btn-success btn-sm">
-			<span class="glyphicon glyphicon-plus"></span> ADD NEW FORM
-		</button></a>
+
+	<div class="col-md-offset-10">
+		<a href="addForm.html" id="popupAddForm"><button type="button" class="btn btn-success btn-sm">
+				<span class="glyphicon glyphicon-plus"></span> ADD NEW FORM
+			</button></a>
+	</div>
 </div>
 
 <script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/jquery.dataTables.min.js' />"></script>

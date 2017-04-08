@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<%@ taglib prefix="tilesx" uri="http://tiles.apache.org/tags-tiles-extras" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="tilesx" uri="http://tiles.apache.org/tags-tiles-extras"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,25 +13,26 @@
 <link rel="stylesheet" href="<c:url value='/assets/vendors/bootstrap-material-design/css/ripples.min.css' />">
 <link rel="stylesheet" href="<c:url value='/assets/vendors/DataTables-1.10.13/css/dataTables.bootstrap.css' />">
 <link rel="stylesheet" href="<c:url value='/assets/resources/css/formbuilder.css' />">
+
+<script src="<c:url value='/assets/vendors/jquery/jquery-3.2.0.min.js' />"></script>
+<script src="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/js/bootstrap.min.js' />"></script>
+
+<!-- Material Design for Bootstrap -->
+<script src="<c:url value='/assets/vendors/bootstrap-material-design/js/material.js' />"></script>
+<script src="<c:url value='/assets/vendors/bootstrap-material-design/js/ripples.min.js' />"></script>
+
 </head>
 <body>
 
-	<tiles:insertAttribute name="header" defaultValue="header.jsp" defaultValueType="template" />
+	<tiles:insertAttribute name="header"/>
 	<div id="content">
 		<tiles:insertAttribute name="content" />
 	</div>
-	<tiles:insertAttribute name="footer" defaultValue="footer.jsp" defaultValueType="template" />
+	<tiles:insertAttribute name="footer"/>
 
-	<script src="<c:url value='/assets/vendors/jquery/jquery-3.2.0.min.js' />"></script>
-	<script src="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/js/bootstrap.min.js' />"></script>
-
-
-	<!-- Material Design for Bootstrap -->
-	<script src="<c:url value='/assets/vendors/bootstrap-material-design/js/material.js' />"></script>
-	<script src="<c:url value='/assets/vendors/bootstrap-material-design/js/ripples.min.js' />"></script>
 	<script>
 		$.material.init();
 	</script>
-	
+
 </body>
 </html>
