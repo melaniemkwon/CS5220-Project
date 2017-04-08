@@ -14,6 +14,5 @@ public interface UserDao {
 
 	void delete(int id);
 
-	// Set<Form> getForms();
 
 }
