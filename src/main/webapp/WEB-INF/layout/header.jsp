@@ -10,12 +10,25 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="/formbuilder/">Home</a></li>
-				<c:if test="${true}">
-					<li><a href="/formbuilder/user/list.html">Users</a></li>
-				</c:if>
-				<c:if test="${true}">
-					<li class="active"><a href="/formbuilder/form/listForm.html">Forms</a></li>
-				</c:if>
+				
+				<c:choose>
+				  <c:when test="${false}">
+				    <li class="active"><a href="/formbuilder/user/list.html">Users</a></li>
+				  </c:when>
+				  <c:otherwise>
+				    <li><a href="/formbuilder/user/list.html">Users</a></li>
+				  </c:otherwise>
+				</c:choose>
+				
+				<c:choose>
+				  <c:when test="${false}">
+				    <li class="active"><a href="/formbuilder/form/listForm.html">Forms</a></li>
+				  </c:when>
+				  <c:otherwise>
+				    <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
+				  </c:otherwise>
+				</c:choose>
+
 			</ul>
 		</div>
 	</div>

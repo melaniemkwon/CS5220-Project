@@ -5,6 +5,11 @@
 
 <tiles-definitions>
 
-	<definition name="layout.basic" template="/WEB-INF/layout/template.basic.jsp" />
+	<definition name="template" template="/WEB-INF/layout/template.jsp" />
+	
+	<definition name="form/listForm" extends="template">
+        <put-attribute name="title" value="Form List" />
+        <put-attribute name="content" value="/WEB-INF/jsp/form/listForm.jsp" />
+    </definition>
 	
 </tiles-definitions>

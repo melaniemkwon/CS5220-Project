@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="tilesx" uri="http://tiles.apache.org/tags-tiles-extras" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,15 +24,7 @@
 
 	<script src="<c:url value='/assets/vendors/jquery/jquery-3.2.0.min.js' />"></script>
 	<script src="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/js/bootstrap.min.js' />"></script>
-	<script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/jquery.dataTables.min.js' />"></script>
-	<script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/dataTables.bootstrap.min.js' />"></script>
 
-	<script>
-		$(document).ready(function() {
-			$('#formTable').DataTable();
-			$('#formTable_filter').addClass('form-group');
-		});
-	</script>
 
 	<!-- Material Design for Bootstrap -->
 	<script src="<c:url value='/assets/vendors/bootstrap-material-design/js/material.js' />"></script>
