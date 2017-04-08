@@ -2,7 +2,6 @@ package formbuilder.web.controller;
 
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -83,10 +82,34 @@ public class FormController {
 	@RequestMapping("/form/listAssignForm.html")
 	public String listAssignForm(@RequestParam Integer id, ModelMap models) {
 
-		Form form = formDao.getForm(id);
-		Set<User> users = form.getUsers();
-		models.put("users", users);
+		// Set<User> users = form.getUsers();
+		models.put("form", formDao.getForm(id));
+		models.put("users", userDao.getUsers());
 		return "form/listAssignForm";
+	}
+
+	@RequestMapping(value = "/form/assignForm.html")
+	public String assignForm(@RequestParam Integer id, @RequestParam Integer uId) {
+
+		Form form = formDao.getForm(id);
+		User user = userDao.getUser(uId);
+		form.getUsers().add(user);
+		user.getForms().add(form);
+		formDao.saveForm(form);
+		userDao.saveUser(user);
+		return "redirect:/form/listAssignForm.html?id=" + id;
+	}
+
+	@RequestMapping(value = "/form/deassignForm.html")
+	public String deassignForm(@RequestParam Integer id, @RequestParam Integer uId) {
+
+		Form form = formDao.getForm(id);
+		User user = userDao.getUser(uId);
+		form.getUsers().remove(user);
+		user.getForms().remove(form);
+		formDao.saveForm(form);
+		userDao.saveUser(user);
+		return "redirect:/form/listAssignForm.html?id=" + id;
 	}
 
 	@RequestMapping(value = "/form/viewPage.html")

@@ -41,40 +41,44 @@
 		</nav>
 
 		<div class="container">
-		    <div class="row form-group">
-		        <div class="col-md-offset-3 col-md-6">
-		            <label for="search๊หำพ" class="control-label">Search: </label>
-		            <input type="text" name="searchUser" id="searchUser" class="form-control custom-input" placeholder="User Name or Full Name" required/>
-		        </div>
-		    </div>
-			<div class="row form-group" style="text-align: center;">
-		        <input id="clearSearch" type="button" class="btn btn-default" value="Clear" style="padding-left: 3em; padding-right: 3em;">
-		        <input id="choose" type="button" class="btn btn-primary" value="Choose" style="padding-left: 3em; padding-right: 3em;">
-		    </div>
-		
+			<h2>Form assignment of : ${form.name }</h2>
 			<table id="userTable" class="table table-striped table-bordered">
 				<thead>
-					<tr><th >ID</th><th>First Name</th><th>Last Name</th><th>Role</th><th>Operations</th></tr>
+					<tr><th >ID</th><th>Username</th><th>First Name</th><th>Last Name</th><th>Assign Status</th><th>Operations</th></tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${users}" var="user">
+						<c:set var="contains" value="false" />
+						<c:forEach items="${user.forms}" var="item">
+						  <c:if test="${item eq form}">
+						    <c:set var="contains" value="true" />
+						  </c:if>
+						</c:forEach>
 						<tr>
 							<td class="col-md-1">${user.id}</td>
+							<td class="col-md-1">${user.username}</td>
 							<td class="col-md-2">${user.firstName}</td>
 							<td class="col-md-2">${user.lastName}</td>
-							<td class="col-md-1">${user.role}</td>
-							<td class="col-md-1">
-								<a class="btn" href="view.html?id=${user.id}" data-toggle="tooltip" title="View User"><i class="glyphicon glyphicon-eye-open"></i></a>
-								<a class="btn" href="edit.html?id=${user.id}" data-toggle="tooltip" title="Edit User Information"><i class="glyphicon glyphicon-pencil"></i></a>
-								<a class="btn" href="delete.html?id=${user.id}" data-toggle="tooltip" title="Delete User"><i class="glyphicon glyphicon-trash"></i></a>
-							</td>
+							<c:choose>
+								<c:when test="${contains }">
+									<td class="col-md-1"><div style="text-align:center; color:green" data-toggle="tooltip" title="Assigned" ><i class="glyphicon glyphicon-export" style="font-size:1.5em"></i></div></td>
+									<td class="col-md-1">
+										<a class="btn disabled" href="" data-toggle="tooltip" title="Assign Form"><i class="glyphicon glyphicon-ok"></i></a>
+										<a class="btn" href="deassignForm.html?id=${form.id}&uId=${user.id}" data-toggle="tooltip" title="Deassgin Form" style="color:red"><i class="glyphicon glyphicon-remove"></i></a>
+									</td>
+								</c:when>
+								<c:otherwise>
+									<td class="col-md-1"><div style="text-align:center;" data-toggle="tooltip" title="Not assign" ><i class="glyphicon glyphicon-minus" style="font-size:1.5em"></i></div></td>
+									<td class="col-md-1">
+										<a class="btn" href="assignForm.html?id=${form.id}&uId=${user.id}" data-toggle="tooltip" title="Assign Form" style="color:green"><i class="glyphicon glyphicon-ok"></i></a>
+										<a class="btn disabled" href="" data-toggle="tooltip" title="Deassgin Form"><i class="glyphicon glyphicon-remove"></i></a>
+									</td>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
-		<div class="col-md-offset-10">
-			<a href="add.html" id="popupAddUser"><button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span> ADD NEW USER </button></a>
 		</div>
 
 		<!-- Modal -->		
