@@ -14,11 +14,6 @@
 	    <link rel="stylesheet" href="<c:url value='/assets/vendors/bootstrap-material-design/css/ripples.min.css' />">
  		<link rel="stylesheet" href="<c:url value='/assets/vendors/DataTables-1.10.13/css/dataTables.bootstrap.css' />">
  		<link rel="stylesheet" href="<c:url value='/assets/resources/css/formbuilder.css' />">
-		<style>
-			body {
-				padding-top: 70px;
-			}
-		</style>  
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -81,7 +76,6 @@
 		    $('#formTable').DataTable();
 		    $('#formTable_filter').addClass('form-group');
 		});
-	  
 	</script>
 	
 	<!-- Material Design for Bootstrap -->

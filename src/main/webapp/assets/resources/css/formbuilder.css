@@ -1,6 +1,10 @@
+body {
+	padding-top: 80px;
+}
+
 #formTable_filter {
 	display: inherit;
 	margin-bottom: 0;
-	padding-bottom: 0px; 
+	padding-bottom: 0px;
 	margin: 0 0 0 0;
 }
