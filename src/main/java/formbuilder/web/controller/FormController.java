@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
 import formbuilder.model.questionform.ChoiceQuestion;
 import formbuilder.model.questionform.Form;
@@ -78,11 +79,37 @@ public class FormController {
 		return "redirect:listForm.html";
 	}
 
-	@RequestMapping("/form/assignForm.html")
-	public String assignForm(ModelMap models) {
+	@RequestMapping("/form/listAssignForm.html")
+	public String listAssignForm(@RequestParam Integer id, ModelMap models) {
 
+		// Set<User> users = form.getUsers();
+		models.put("form", formDao.getForm(id));
 		models.put("users", userDao.getUsers());
-		return "form/assignForm";
+		return "form/listAssignForm";
+	}
+
+	@RequestMapping(value = "/form/assignForm.html")
+	public String assignForm(@RequestParam Integer id, @RequestParam Integer uId) {
+
+		Form form = formDao.getForm(id);
+		User user = userDao.getUser(uId);
+		form.getUsers().add(user);
+		user.getForms().add(form);
+		formDao.saveForm(form);
+		userDao.saveUser(user);
+		return "redirect:/form/listAssignForm.html?id=" + id;
+	}
+
+	@RequestMapping(value = "/form/deassignForm.html")
+	public String deassignForm(@RequestParam Integer id, @RequestParam Integer uId) {
+
+		Form form = formDao.getForm(id);
+		User user = userDao.getUser(uId);
+		form.getUsers().remove(user);
+		user.getForms().remove(form);
+		formDao.saveForm(form);
+		userDao.saveUser(user);
+		return "redirect:/form/listAssignForm.html?id=" + id;
 	}
 
 	@RequestMapping(value = "/form/viewPage.html")
