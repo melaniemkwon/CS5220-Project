@@ -30,7 +30,11 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
+<<<<<<< HEAD
 						<li class="active"><a href="/FormBuilder/">Home</a></li>
+=======
+						<li class="active"><a href="/formbuilder/">Home</a></li>
+>>>>>>> 78b66a586d66aff4fc81db61a82d849f7ae229b1
 						<li><a href="/formbuilder/user/list.html">Users</a></li>
 						<li><a href="/formbuilder/form/listForm.html">Forms</a></li>
 					</ul>

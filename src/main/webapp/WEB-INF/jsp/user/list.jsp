@@ -43,12 +43,13 @@
 		<div class="container">
 			<table id="userTable" class="table table-striped table-bordered">
 				<thead>
-					<tr><th >ID</th><th>First Name</th><th>Last Name</th><th>Role</th><th>Operations</th></tr>
+					<tr><th >ID</th><th>Username</th><th>First Name</th><th>Last Name</th><th>Role</th><th>Operations</th></tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${users}" var="user">
 						<tr>
 							<td class="col-md-1">${user.id}</td>
+							<td class="col-md-2">${user.username}</td>
 							<td class="col-md-2">${user.firstName}</td>
 							<td class="col-md-2">${user.lastName}</td>
 							<td class="col-md-1">${user.role}</td>

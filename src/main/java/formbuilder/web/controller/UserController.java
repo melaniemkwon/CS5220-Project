@@ -1,5 +1,7 @@
 package formbuilder.web.controller;
 
+import java.util.Set;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
+import formbuilder.model.questionform.Form;
 import formbuilder.web.validator.UserValidator;
 
 @Controller
@@ -23,6 +26,7 @@ public class UserController {
 
 	@Autowired
 	private UserDao userDao;
+
 
 	@Autowired
 	private UserValidator userValidator;
@@ -38,6 +42,11 @@ public class UserController {
 	public String view(@RequestParam Integer id, ModelMap models) {
 
 		models.put("user", userDao.getUser(id));
+		
+		Set<Form> forms = userDao.getUser(id).getForms();
+		
+		models.put("forms", forms);
+		
 		return "user/view";
 	}
 
