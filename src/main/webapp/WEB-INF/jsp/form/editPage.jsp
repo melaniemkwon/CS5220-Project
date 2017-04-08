@@ -40,11 +40,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="/formbuilder/">Home</a></li>
 						<li><a href="/formbuilder/user/list.html">Users</a></li>
-<<<<<<< HEAD
-						<li class="active"><a href="/FormBuilder/form/listForm.html">Forms</a></li>
-=======
 						<li class="active"><a href="/formbuilder/form/listForm.html">Forms</a></li>
->>>>>>> 78b66a586d66aff4fc81db61a82d849f7ae229b1
 					</ul>
 				</div>
 			</div>
@@ -155,11 +151,11 @@
 				<div class="modal-footer ">
 					<a href="deletePage.html?id=${param.id}&pageNum=${param.pageNum}">
 						<button type="button" class="btn btn-danger">
-							<span class="glyphicon glyphicon-ok-sign"></span> Yes
+							<span class="glyphicon glyphicon-ok-sign"></span> Yes
 						</button>
 					</a>	
 					<button type="button" class="btn btn-default" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove"></span> No
+						<span class="glyphicon glyphicon-remove"></span> No
 					</button>
 				</div>
 			</div>

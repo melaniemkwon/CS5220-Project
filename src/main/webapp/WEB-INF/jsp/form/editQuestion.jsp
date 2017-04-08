@@ -42,11 +42,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="/formbuilder/">Home</a></li>
 						<li><a href="/formbuilder/user/list.html">Users</a></li>
-<<<<<<< HEAD
-						<li class="active"><a href="/FormBuilder/form/listForm.html">Forms</a></li>
-=======
 						<li class="active"><a href="/formbuilder/form/listForm.html">Forms</a></li>
->>>>>>> 78b66a586d66aff4fc81db61a82d849f7ae229b1
 					</ul>
 				</div>
 			</div>
