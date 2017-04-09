@@ -1,25 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<!DOCTYPE html>
-<html lang="en">
 
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>List Users</title>
-  		<link rel="stylesheet" href="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css' />">
- 		<link rel="stylesheet" href="<c:url value='/assets/vendors/DataTables-1.10.13/css/dataTables.bootstrap.css' />">
-		<style>
-			body {
-				padding-top: 70px;
-			}
-		</style>  
-	</head>
-	<body>
 	<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -43,18 +28,12 @@
 		</nav>
 		
 	
-	<div class="container">
+	<div class="container" style="white-space: nowrap;">
 		
 		<table id="userTable" class="table table-striped table-bordered">
-			<tr> <th> Name </th> <th> Email </th> <th> Street </th> <th> Role </th> </tr>
-				<tr>
-			  		<td><div class="col-md-1">${user.firstName} ${user.lastName}</div></td>
-			  		<td><div class="col-md-1">${user.email} </div></td>
-			  		<td><div class="col-md-1">${user.street} </div></td>
-			  		<td><div class="col-md-1">${user.city} </div></td>
-			  		<td><div class="col-md-1">${user.state} </div></td>
-			  		<td><div class="col-md-1">${user.zip} </div></td>
-				</tr>
+			<tr> <th> Name </th>  <td><div class="col-md-1">${user.firstName} ${user.lastName}</div></td> </tr>
+			<tr> <th> Email </th> <td><div class="col-md-1">${user.email} </div></td> </tr>
+			<tr> <th> Address </th> <td><div class="col-md-1">${user.street}, ${user.city} ${user.state}  ${user.zip} </div></td></tr>
 		</table>
 		
 	</div>       
@@ -70,9 +49,7 @@
 	});
 </script>
 
-	</body>
-</html>
-
+<!--  *****************************************  -->
 
 
 
