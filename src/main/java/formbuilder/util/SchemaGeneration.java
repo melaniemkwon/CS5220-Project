@@ -43,6 +43,52 @@ public class SchemaGeneration {
 			}
 		}
 
+		System.out.println();
+
+		System.out.println("insert into users (id, username, password, last_name, first_name, email, enabled) values "
+				+ "(1000, 'admin', 'abcd', 'System', 'Administrator', 'formbuilderadmin@localhost.localdomain', TRUE);");
+
+		System.out.println("insert into authorities (user_id, role) values (1000, 'ROLE_ADMIN');");
+
+		System.out.println("insert into users (id, username, password, last_name, first_name, email, enabled) values "
+				+ "(1001, 'staff', 'abcd', 'System', 'Staff', 'formbuilderstaff@localhost.localdomain', TRUE);");
+
+		System.out.println("insert into authorities (user_id, role) values (1001, 'ROLE_STAFF');");
+
+		System.out.println("insert into users (id, username, password, last_name, first_name, email, enabled) values "
+				+ "(1002, 'user', 'abcd', 'System', 'User', 'formbuilderuser@localhost.localdomain', TRUE);");
+
+		System.out.println("insert into authorities (user_id, role) values (1002, 'ROLE_USER');");
+
+		out.newLine();
+
+		out.write("insert into users (id, username, password, last_name, first_name, email, enabled) values "
+				+ "(1000, 'admin', 'abcd', 'System', 'Administrator', 'formbuilderadmin@localhost.localdomain', TRUE);");
+
+		out.newLine();
+
+		out.write("insert into authorities (user_id, role) values (1000, 'ROLE_ADMIN');");
+
+		out.newLine();
+
+		out.write("insert into users (id, username, password, last_name, first_name, email, enabled) values "
+				+ "(1001, 'staff', 'abcd', 'System', 'Staff', 'formbuilderstaff@localhost.localdomain', TRUE);");
+
+		out.newLine();
+
+		out.write("insert into authorities (user_id, role) values (1001, 'ROLE_STAFF');");
+
+		out.newLine();
+
+		out.write("insert into users (id, username, password, last_name, first_name, email, enabled) values "
+				+ "(1002, 'user', 'abcd', 'System', 'User', 'formbuilderuser@localhost.localdomain', TRUE);");
+
+		out.newLine();
+
+		out.write("insert into authorities (user_id, role) values (1002, 'ROLE_USER');");
+
+		out.newLine();
+
 		scanner.close();
 		if (out != null)
 			out.close();
