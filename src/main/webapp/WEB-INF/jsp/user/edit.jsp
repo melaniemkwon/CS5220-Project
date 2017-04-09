@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<div class="row">
+<%-- <div class="row">
 <div class="col-md-6 col-md-offset-3">
 	<div class="page-header">
 		<h2>Edit User</h2>
@@ -103,3 +103,78 @@
 	</div>
 </div>
 </div>
+
+ --%>
+<!-- ********************************** -->
+
+<div class="container" style="padding-top: 60px;">
+  <h1 class="page-header">Edit User Profile</h1>
+  <div class="row">
+   
+   
+    <!-- left column -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="text-center">
+        <img src="http://sun.calstatela.edu/~cysun/www/img/cysun3.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
+        <h6>Upload a different photo...</h6>
+        <input type="file" class="text-center center-block well well-sm">
+      </div>
+    </div>
+    
+    
+    
+    <!-- edit form column -->
+    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+      
+      <h3>Personal info</h3>
+      
+      
+      <!--  START THE FORM  -->
+      <form:form modelAttribute="user" class="form" cssClass="form-horizontal">
+        
+        <div class="form-group">
+          <label class="col-lg-3 control-label">First name:</label>
+          <div class="col-lg-8">
+            <form:input path="firstName" maxlength="12" cssClass="form-control" required="required" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Last name:</label>
+          <div class="col-lg-8">
+           <form:input path="lastName" maxlength="12" cssClass="form-control" required="required" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Phone Number:</label>
+          <div class="col-lg-8">
+           <form:input path="phoneNumber" maxlength="12" cssClass="form-control" required="required" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:</label>
+          <div class="col-lg-8">
+           <form:input path="email" cssClass="form-control" required="required" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Username:</label>
+          <div class="col-md-8">
+            <form:input path="username" maxlength="12" cssClass="form-control" required="required" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Password:</label>
+          <div class="col-md-8">
+            <form:password path="password" maxlength="12" cssClass="form-control" required="required" />
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-raised btn-primary">
+		<span class="glyphicon glyphicon-floppy-disk"></span> SAVE </button>
+      
+      </form:form>
+    
+    </div>
+    
+  </div>
+
