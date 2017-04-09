@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +20,7 @@ public class UserDaoImpl implements UserDao {
 	private EntityManager entityManager;
 
 	@Override
+	@PostAuthorize("hasRole('ROLE_ADMIN') or returnObject.username")
 	public User getUser(Integer id) {
 		return entityManager.find(User.class, id);
 	}
@@ -29,6 +32,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	@Transactional
+	@PreAuthorize("hasRole('ROLE_ADMIN') or principal.username == #user.username")
 	public User saveUser(User user) {
 		return entityManager.merge(user);
 	}
@@ -39,10 +43,17 @@ public class UserDaoImpl implements UserDao {
 		entityManager.remove(getUser(id));
 	}
 
-	/*
-	 * @Override public Set<Form> getForms() { return
-	 * entityManager.createQuery("from User order by id",
-	 * User.class).getResultList(); }
-	 */
+	@Override
+	public User getUserByUsername(String username) {
+		// This method is mainly used by the security code which usually needs
+		// both the user credentials (i.e. username and password) and the
+		// granted authorities (i.e. roles), so here we load the roles
+		// collection "eagerly" using a join fetch to avoid a second query.
+		String query = "from User user left join fetch user.roles " + "where lower(username) = :username";
+
+		List<User> users = entityManager.createQuery(query, User.class).setParameter("username", username.toLowerCase())
+				.getResultList();
+		return users.size() == 0 ? null : users.get(0);
+	}
 
 }
