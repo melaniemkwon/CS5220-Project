@@ -46,24 +46,24 @@ public class SchemaGeneration {
 		System.out.println();
 
 		System.out.println("insert into users (id, username, password, last_name, first_name, email, enabled) values "
-				+ "(1000, 'admin', md5('abcd'), 'System', 'Administrator', 'formbuilderadmin@localhost.localdomain', TRUE);");
+				+ "(1000, 'admin', 'abcd', 'System', 'Administrator', 'formbuilderadmin@localhost.localdomain', TRUE);");
 
 		System.out.println("insert into authorities (user_id, role) values (1000, 'ROLE_ADMIN');");
 
 		System.out.println("insert into users (id, username, password, last_name, first_name, email, enabled) values "
-				+ "(1001, 'staff', md5('abcd'), 'System', 'Staff', 'formbuilderstaff@localhost.localdomain', TRUE);");
+				+ "(1001, 'staff', 'abcd', 'System', 'Staff', 'formbuilderstaff@localhost.localdomain', TRUE);");
 
 		System.out.println("insert into authorities (user_id, role) values (1001, 'ROLE_STAFF');");
 
 		System.out.println("insert into users (id, username, password, last_name, first_name, email, enabled) values "
-				+ "(1002, 'user', md5('abcd'), 'System', 'User', 'formbuilderuser@localhost.localdomain', TRUE);");
+				+ "(1002, 'user', 'abcd', 'System', 'User', 'formbuilderuser@localhost.localdomain', TRUE);");
 
 		System.out.println("insert into authorities (user_id, role) values (1002, 'ROLE_USER');");
 
 		out.newLine();
 
 		out.write("insert into users (id, username, password, last_name, first_name, email, enabled) values "
-				+ "(1000, 'admin', md5('abcd'), 'System', 'Administrator', 'formbuilderadmin@localhost.localdomain', TRUE);");
+				+ "(1000, 'admin', 'abcd', 'System', 'Administrator', 'formbuilderadmin@localhost.localdomain', TRUE);");
 
 		out.newLine();
 
@@ -72,7 +72,7 @@ public class SchemaGeneration {
 		out.newLine();
 
 		out.write("insert into users (id, username, password, last_name, first_name, email, enabled) values "
-				+ "(1001, 'staff', md5('abcd'), 'System', 'Staff', 'formbuilderstaff@localhost.localdomain', TRUE);");
+				+ "(1001, 'staff', 'abcd', 'System', 'Staff', 'formbuilderstaff@localhost.localdomain', TRUE);");
 
 		out.newLine();
 
@@ -81,7 +81,7 @@ public class SchemaGeneration {
 		out.newLine();
 
 		out.write("insert into users (id, username, password, last_name, first_name, email, enabled) values "
-				+ "(1002, 'user', md5('abcd'), 'System', 'User', 'formbuilderuser@localhost.localdomain', TRUE);");
+				+ "(1002, 'user', 'abcd', 'System', 'User', 'formbuilderuser@localhost.localdomain', TRUE);");
 
 		out.newLine();
 

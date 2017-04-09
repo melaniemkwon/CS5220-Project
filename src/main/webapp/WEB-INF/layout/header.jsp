@@ -30,6 +30,10 @@
 				</c:choose>
 
 			</ul>
+			
+			<form action="<c:url value='/logout'/>" method="POST">
+			  <input name="submit" type="submit" value="Logout" />
+			</form>
 		</div>
 	</div>
 </nav>

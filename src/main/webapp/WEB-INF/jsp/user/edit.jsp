@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<div class="row">
 <div class="col-md-6 col-md-offset-3">
 	<div class="page-header">
 		<h2>Edit User</h2>
@@ -9,16 +10,45 @@
 
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h4 class="panel-title">Enter User Information</h4>
+			<h4 class="panel-title">Edit User Information</h4>
 		</div>
 		<div class="panel-body">
 			<form:form modelAttribute="user" class="form" cssClass="form-horizontal">
-				<div class="col-md-6 col-md-offset-3">
+				<div class="col-md-8 col-md-offset-2">
 					<div class="form-group">
 						<div>
 							<label for="username">Username</label>
 						</div>
 						<form:input path="username" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+
+							<label for="password">Password</label>
+						</div>
+						<form:password path="password" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="">Role</label>
+						</div>
+						<form:select path="role" cssClass="form-control">
+							<form:option selected="selected" value="USER">USER</form:option>
+							<form:option value="STAFF">STAFF</form:option>
+							<form:option value="ADMIN">ADMIN</form:option>
+						</form:select>
+					</div>
+					<div class="form-group">
+						<div class="togglebutton">
+							<form:checkbox path="enabled" label=" Enable" />
+						</div>
+					</div>
+					<hr>
+					<div class="form-group">
+						<div>
+							<label for="email">Email</label>
+						</div>
+						<form:input path="email" cssClass="form-control" required="required" />
 					</div>
 					<div class="form-group">
 						<div>
@@ -28,30 +58,48 @@
 					</div>
 					<div class="form-group">
 						<div>
-							<label for="lastname">Last Name</label>
+							<label for="lastName">Last Name</label>
 						</div>
 						<form:input path="lastName" maxlength="12" cssClass="form-control" required="required" />
 					</div>
 					<div class="form-group">
 						<div>
-							<label for="email">Email</label>
+							<label for="phoneNumber">Phone Number</label>
 						</div>
-						<form:input path="email" cssClass="form-control" required="required" />
+						<form:input path="phoneNumber" maxlength="12" cssClass="form-control" required="required" />
 					</div>
 					<div class="form-group">
 						<div>
-							<label for="role">Role</label>
+							<label for="street">Street</label>
 						</div>
-						<form:select path="" cssClass="form-control">
-							<form:option selected="selected" value="USER">USER</form:option>
-							<form:option value="ADMIN">ADMIN</form:option>
-						</form:select>
+						<form:input path="street" maxlength="12" cssClass="form-control" required="required" />
 					</div>
-					<button type="submit" class="btn btn-primary btn-sm">
+					<div class="form-group">
+						<div>
+							<label for="city">City</label>
+						</div>
+						<form:input path="city" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="state">State</label>
+						</div>
+						<form:input path="state" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="zip">Zipcode</label>
+						</div>
+						<form:input path="zip" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					
+					
+					<button type="submit" class="btn btn-raised btn-primary">
 						<span class="glyphicon glyphicon-floppy-disk"></span> SAVE
 					</button>
 				</div>
 			</form:form>
 		</div>
 	</div>
+</div>
 </div>

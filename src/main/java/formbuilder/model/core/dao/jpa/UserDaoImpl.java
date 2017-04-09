@@ -38,9 +38,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	@Transactional
 	public void delete(int id) {
 		entityManager.remove(getUser(id));
-
 	}
 
 	@Override

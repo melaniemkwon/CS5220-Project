@@ -41,9 +41,7 @@
 		</button></a>
 </div>
 
-<form action="<c:url value='/logout'/>" method="POST">
-  <input name="submit" type="submit" value="Logout" />
-</form>
+
 
 
 <script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/jquery.dataTables.min.js' />"></script>
