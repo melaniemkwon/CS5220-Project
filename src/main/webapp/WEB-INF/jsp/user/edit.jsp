@@ -22,12 +22,6 @@
 					</div>
 					<div class="form-group">
 						<div>
-							<label for="password">Password</label>
-						</div>
-						<form:password path="password" maxlength="12" cssClass="form-control" required="required" />
-					</div>
-					<div class="form-group">
-						<div>
 							<label for="firstName">First Name</label>
 						</div>
 						<form:input path="firstName" maxlength="12" cssClass="form-control" required="required" />
@@ -48,7 +42,7 @@
 						<div>
 							<label for="role">Role</label>
 						</div>
-						<form:select path="role" cssClass="form-control">
+						<form:select path="" cssClass="form-control">
 							<form:option selected="selected" value="USER">USER</form:option>
 							<form:option value="ADMIN">ADMIN</form:option>
 						</form:select>

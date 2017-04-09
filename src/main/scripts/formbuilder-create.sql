@@ -5,11 +5,16 @@ create sequence hibernate_sequence start 1 increment 1;
         id int4 not null,
         enabled boolean not null,
         index int4 not null,
-        text varchar(255),
         selected boolean,
+        text varchar(255),
         question_id int4,
         user_id int4,
         primary key (id)
+    );
+
+    create table authorities (
+        user_id int4 not null,
+        role varchar(255)
     );
 
     create table forms (
@@ -78,7 +83,6 @@ create sequence hibernate_sequence start 1 increment 1;
         last_name varchar(255),
         password varchar(255) not null,
         phoneNumber varchar(255),
-        role varchar(255),
         state varchar(255),
         street varchar(255),
         username varchar(255) not null,
@@ -99,6 +103,11 @@ create sequence hibernate_sequence start 1 increment 1;
 
     alter table answers 
         add constraint FK5bp3d5loftq2vjn683ephn75a 
+        foreign key (user_id) 
+        references users;
+
+    alter table authorities 
+        add constraint FKk91upmbueyim93v469wj7b2qh 
         foreign key (user_id) 
         references users;
 
@@ -131,3 +140,10 @@ create sequence hibernate_sequence start 1 increment 1;
         add constraint FKni5pym5qivhqac03taibcw4dk 
         foreign key (form_id) 
         references forms;
+
+insert into users (id, username, password, last_name, first_name, email, enabled) values (1000, 'admin', md5('abcd'), 'System', 'Administrator', 'formbuilderadmin@localhost.localdomain', TRUE);
+insert into authorities (user_id, role) values (1000, 'ROLE_ADMIN');
+insert into users (id, username, password, last_name, first_name, email, enabled) values (1001, 'staff', md5('abcd'), 'System', 'Staff', 'formbuilderstaff@localhost.localdomain', TRUE);
+insert into authorities (user_id, role) values (1001, 'ROLE_STAFF');
+insert into users (id, username, password, last_name, first_name, email, enabled) values (1002, 'user', md5('abcd'), 'System', 'User', 'formbuilderuser@localhost.localdomain', TRUE);
+insert into authorities (user_id, role) values (1002, 'ROLE_USER');

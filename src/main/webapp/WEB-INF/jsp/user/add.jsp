@@ -48,7 +48,7 @@
 						<div>
 							<label for="role">Role</label>
 						</div>
-						<form:select path="role" cssClass="form-control">
+						<form:select path="" cssClass="form-control">
 							<form:option selected="selected" value="USER">USER</form:option>
 							<form:option selected="selected" value="USER">STAFF</form:option>
 							<form:option value="ADMIN">ADMIN</form:option>

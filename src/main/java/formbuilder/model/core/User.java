@@ -1,21 +1,29 @@
 package formbuilder.model.core;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import formbuilder.model.questionform.Form;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class User implements Serializable, UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +37,10 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private String password;
 
-	private String role;
+	@ElementCollection
+	@CollectionTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"))
+	@Column(name = "role")
+	private Set<String> roles;
 
 	@Column(nullable = false, unique = true)
 	private String email;
@@ -58,7 +69,7 @@ public class User implements Serializable {
 
 	public User() {
 		enabled = true;
-		role = "User";
+		roles = new HashSet<String>();
 		forms = new HashSet<Form>();
 	}
 
@@ -94,12 +105,12 @@ public class User implements Serializable {
 		this.enabled = enabled;
 	}
 
-	public String getRole() {
-		return role;
+	public Set<String> getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(Set<String> roles) {
+		this.roles = roles;
 	}
 
 	public String getEmail() {
@@ -172,6 +183,29 @@ public class User implements Serializable {
 
 	public void setForms(Set<Form> forms) {
 		this.forms = forms;
+	}
+
+	@Override
+	public Collection<GrantedAuthority> getAuthorities() {
+		Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+		for (String role : roles)
+			authorities.add(new SimpleGrantedAuthority(role));
+		return authorities;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
 	}
 
 }
