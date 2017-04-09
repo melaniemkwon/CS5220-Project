@@ -8,3 +8,17 @@ body {
 	padding-bottom: 0px;
 	margin: 0 0 0 0;
 }
+
+#userTable_filter {
+	display: inherit;
+	margin-bottom: 0;
+	padding-bottom: 0px;
+	margin: 0 0 0 0;
+}
+
+/* .custom {
+	width: 100px !important;
+	margin-right: 5px;
+	margin-top: 5px;
+	border-radius: 24px;
+} */
