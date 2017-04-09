@@ -5,7 +5,11 @@
 
 <tiles-definitions>
 
-	<definition name="template" template="/WEB-INF/layout/template.jsp" />
+	<definition name="template" template="/WEB-INF/layout/template.jsp">
+        <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+    </definition>
 	
 	<definition name="form/listForm" extends="template">
         <put-attribute name="title" value="Form List" />
