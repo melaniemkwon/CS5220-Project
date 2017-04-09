@@ -28,26 +28,11 @@
 			</nav>
 		</div>
 
-		<H2>FORM : ${form.name}</H2>
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h4 class="panel-title">PAGE ${param.pageNum}</h4>
-			</div>
-			<div class="panel-body">
-				<c:choose>
-					<c:when test="${empty questionsPage}">
-						<h3 class="text-center">There is no question on this page.</h3>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${questionsPage}" var="question">
-							<formbuilder:fieldDisplay question="${question }"></formbuilder:fieldDisplay>
-							<hr />
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</div>
+	<H2>FORM : ${form.name}</H2>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h4 class="panel-title">PAGE ${param.pageNum}</h4>
 		</div>
-
 		<div class="text-center">
 			<nav aria-label="Page navigation">
 				<ul class="pagination">
