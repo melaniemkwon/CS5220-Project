@@ -39,4 +39,10 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
+	/*
+	 * @Override public Set<Form> getForms() { return
+	 * entityManager.createQuery("from User order by id",
+	 * User.class).getResultList(); }
+	 */
+
 }
