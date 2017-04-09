@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+    "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+    "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="template" template="/WEB-INF/layout/template.jsp">
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+	</definition>
+	
+	<definition name="home" extends="template">
+        <put-attribute name="title" value="FormBuilder" />
+        <put-attribute name="content" value="/WEB-INF/jsp/home.jsp" />
+    </definition>
+	
+	<!-- ======== -->
+    <!--   Form   -->
+    <!-- ======== -->
+
+	<definition name="form/addForm" extends="template">
+		<put-attribute name="title" value="Add Form" />
+		<put-attribute name="content" value="/WEB-INF/jsp/form/addForm.jsp" />
+	</definition>
+
+	<definition name="form/assignForm" extends="template">
+		<put-attribute name="title" value="Assign Form" />
+		<put-attribute name="content" value="/WEB-INF/jsp/form/assignForm.jsp" />
+	</definition>
+
+	<definition name="form/editForm" extends="template">
+		<put-attribute name="title" value="Edit Form" />
+		<put-attribute name="content" value="/WEB-INF/jsp/form/editForm.jsp" />
+	</definition>
+
+	<definition name="form/editPage" extends="template">
+		<put-attribute name="title" value="Edit Page" />
+		<put-attribute name="content" value="/WEB-INF/jsp/form/editPage.jsp" />
+	</definition>
+
+	<definition name="form/editQuestion" extends="template">
+		<put-attribute name="title" value="Edit Question" />
+		<put-attribute name="content" value="/WEB-INF/jsp/form/editQuestion.jsp" />
+	</definition>
+
+	<definition name="form/listForm" extends="template">
+		<put-attribute name="title" value="Form List" />
+		<put-attribute name="content" value="/WEB-INF/jsp/form/listForm.jsp" />
+	</definition>
+	
+	<definition name="form/viewPage" extends="template">
+		<put-attribute name="title" value="View Page" />
+		<put-attribute name="content" value="/WEB-INF/jsp/form/viewPage.jsp" />
+	</definition>
+	
+	<!-- ======== -->
+    <!--   User   -->
+    <!-- ======== -->
+    
+    <definition name="user/add" extends="template">
+		<put-attribute name="title" value="Add User" />
+		<put-attribute name="content" value="/WEB-INF/jsp/user/add.jsp" />
+	</definition>
+	
+	<definition name="user/edit" extends="template">
+		<put-attribute name="title" value="Edit User" />
+		<put-attribute name="content" value="/WEB-INF/jsp/user/edit.jsp" />
+	</definition>
+	
+	<definition name="user/list" extends="template">
+		<put-attribute name="title" value="Users List" />
+		<put-attribute name="content" value="/WEB-INF/jsp/user/list.jsp" />
+	</definition>
+	
+	<definition name="user/view" extends="template">
+		<put-attribute name="title" value="View User" />
+		<put-attribute name="content" value="/WEB-INF/jsp/user/view.jsp" />
+	</definition>
+
+</tiles-definitions>
