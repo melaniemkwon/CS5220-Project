@@ -3,6 +3,7 @@ package formbuilder.web.controller;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -78,8 +79,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/add.html", method = RequestMethod.POST)
-	public String add(@ModelAttribute User user, BindingResult result) {
+	public String add(@ModelAttribute @Valid User user, BindingResult result) {
 		userValidator.validate(user, result);
+
 		if (result.hasErrors())
 			return "user/add";
 

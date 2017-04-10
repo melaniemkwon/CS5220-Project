@@ -144,12 +144,23 @@
 				<div class="alert alert-danger">
 					<span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Page?
 				</div>
+<<<<<<< HEAD
+				<div class="modal-footer ">
+					<a href="deletePage.html?id=${param.id}&pageNum=${param.pageNum}">
+						<button type="button" class="btn btn-danger">
+							<span class="glyphicon glyphicon-ok-sign"></span> Yes
+						</button>
+					</a>	
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span> No
+=======
 
 			</div>
 			<div class="modal-footer ">
 				<a href="deletePage.html?id=${param.id}&pageNum=${param.pageNum}">
 					<button type="button" class="btn btn-danger">
 						<span class="glyphicon glyphicon-ok-sign"></span> Yes
+>>>>>>> 2310b2b7c2fceb2322280d1f2c26e2a0b95e02f0
 					</button>
 				</a>
 				<button type="button" class="btn btn-default" data-dismiss="modal">
