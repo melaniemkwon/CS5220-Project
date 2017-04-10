@@ -32,7 +32,7 @@
 		</tbody>
 	</table>
 	<div class="col-md-offset-10">
-		<a href="addForm.html" id="popupAddForm"><button type="button" class="btn btn-success btn-sm">
+		<a href="addForm.html" id="popupAddForm"><button type="button" class="btn btn-success btn-sm btn-raised">
 				<span class="glyphicon glyphicon-plus"></span> ADD NEW FORM
 			</button></a>
 	</div>

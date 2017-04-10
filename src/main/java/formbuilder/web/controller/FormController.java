@@ -124,10 +124,21 @@ public class FormController {
 		return "form/viewPage";
 	}
 
-	@RequestMapping(value = "/form/editPage.html")
+	@RequestMapping(value = "/form/editPage.html", method = RequestMethod.GET)
 	public String editPage(@RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models) {
 
 		Form form = formDao.getForm(id);
+		if (pageNum > form.getTotalPages())
+			return "redirect:/form/editPage.html?id=" + id + "&pageNum=1";
+		List<Question> questionsPage = form.getQuestionsPage(pageNum);
+		models.put("form", form);
+		models.put("questionsPage", questionsPage);
+		return "form/editPage";
+	}
+	
+	@RequestMapping(value = "/form/editPage.html", method = RequestMethod.POST)
+	public String editPage(@RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models, @ModelAttribute Form form) {
+		formDao.saveForm(form);
 		if (pageNum > form.getTotalPages())
 			return "redirect:/form/editPage.html?id=" + id + "&pageNum=1";
 		List<Question> questionsPage = form.getQuestionsPage(pageNum);
