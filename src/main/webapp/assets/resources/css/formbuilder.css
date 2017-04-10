@@ -16,6 +16,8 @@ body {
 	margin: 0 0 0 0;
 }
 
+#logoutDropdownLink { cursor: pointer; cursor: hand; }
+
 /* .custom {
 	width: 100px !important;
 	margin-right: 5px;

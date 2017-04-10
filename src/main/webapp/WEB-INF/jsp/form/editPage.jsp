@@ -4,8 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="formbuilder" uri="http://formbuilder.com/formbuilder"%>
 
-<div class="row  col-md-offset-1">
-	<div class="col-md-7">
+<div class="row">
+	<div class="col-md-offset-1 col-md-7">
 		<H3>FORM LIVE PREVIEW</H3>
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -35,12 +35,45 @@
 
 	</div>
 
-	<div class="col-md-4" style="position: fixed; right: 0; height: 500px; overflow: auto;">
+	<div class="col-md-4" style="position: fixed; right: 0; height: 90%; overflow: auto;">
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h4 class="panel-title">FORM CONTROL</h4>
 			</div>
 			<div class="panel-body">
+			
+				<a href="#editForm" class="btn btn-raised btn-info btn-sm" data-toggle="collapse">Edit Form Properties</a>
+				<div id="editForm" class="collapse">
+
+				<form:form modelAttribute="form" class="form">
+					<div class="form-group">
+						<div>
+							<label>Form Title</label>
+						</div>
+						<form:input path="name" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label>Description</label>
+						</div>
+						<form:textarea path="description" cssClass="form-control" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label>Notification Email</label>
+						</div>
+						<form:input path="notificationEmail" cssClass="form-control" />
+					</div>
+					<div class="form-group">
+						<form:checkbox path="enabled" label="Enable" />
+					</div>
+	
+					<button type="submit" class="btn btn-raised btn-info btn-sm">
+						<span class="glyphicon glyphicon-floppy-disk"></span> SAVE
+					</button>
+				</form:form>
+				</div>
+				<hr />
 				<p class="text-center">Click here to add field to the form.</p>
 				<div>
 					<a href="addTextQuestion.html?id=${param.id}&pageNum=${param.pageNum}&type=text"><button type="button" class="btn btn-info btn-sm custom">
