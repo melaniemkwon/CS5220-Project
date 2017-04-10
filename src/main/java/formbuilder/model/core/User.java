@@ -3,6 +3,7 @@ package formbuilder.model.core;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -70,6 +71,7 @@ public class User implements Serializable, UserDetails {
 	public User() {
 		enabled = true;
 		roles = new HashSet<String>();
+		roles.add("ROLE_USER");
 		forms = new HashSet<Form>();
 	}
 
@@ -206,6 +208,17 @@ public class User implements Serializable, UserDetails {
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
+	}
+
+	public String getRole() {
+		Iterator<String> iterator = roles.iterator();
+
+		return iterator.next();
+	}
+
+	public void setRole(String role) {
+		roles.clear();
+		roles.add(role);
 	}
 
 }

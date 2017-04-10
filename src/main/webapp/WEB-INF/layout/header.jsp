@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+
+<security:authentication var="principal" property="principal" />
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
@@ -32,9 +35,9 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 	            <li class="dropdown">
-	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span></span> Profile <span class="caret"></span></a>
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> ${principal.username }'s Profile <span class="caret"></span></a>
 	              <ul class="dropdown-menu">
-	                <li><a href="#">Your Account</a></li>
+	                <li><a href="/formbuilder/user/edit.html?id=${principal.id }">Your Account</a></li>
 	                <li class="disabled"><a href="#">Settings</a></li>
 	                <li role="separator" class="divider"></li>
 	                <li id="logoutDropdownLink" onclick="$('#logout').submit()"><a>Sign Out</a></li>
