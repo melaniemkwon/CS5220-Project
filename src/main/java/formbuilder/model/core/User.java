@@ -14,7 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +29,7 @@ import formbuilder.model.questionform.Form;
 public class User implements Serializable, UserDetails {
 
 	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@GeneratedValue
@@ -42,12 +46,15 @@ public class User implements Serializable, UserDetails {
 	@Column(name = "role")
 	private Set<String> roles;
 
+	@Email(message = " (enter a valid email please) ")
 	@Column(nullable = false, unique = true)
 	private String email;
 
+	@NotNull
 	@Column(name = "last_name")
 	private String lastName;
 
+	@NotNull
 	@Column(name = "first_name")
 	private String firstName;
 
@@ -57,8 +64,10 @@ public class User implements Serializable, UserDetails {
 
 	private String state;
 
+	@Digits(integer = 5, fraction = 0, message = " ( Wrong Zip Code ) ")
 	private String zip;
 
+	@Digits(integer = 10, fraction = 0, message = " ( Phone Number 10 digis ) ")
 	private String phoneNumber;
 
 	@Column(nullable = false)
