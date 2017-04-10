@@ -14,23 +14,61 @@
 			<ul class="nav navbar-nav">
 				<li><a href="/formbuilder/">Home</a></li>
 				
-				<c:choose>
-				  <c:when test="${false}">
-				    <li class="active"><a href="/formbuilder/user/list.html">Users</a></li>
-				  </c:when>
-				  <c:otherwise>
-				    <li><a href="/formbuilder/user/list.html">Users</a></li>
-				  </c:otherwise>
-				</c:choose>
+				<c:forEach items="${principal.roles}" var="role">
+					<c:if test="${role == 'ROLE_ADMIN' || role == 'ROLE_STAFF' }">
+					  
+					  <c:choose>
+						<c:when test="${false}">
+						  <li class="active"><a href="/formbuilder/user/list.html">Users</a></li>
+						</c:when>
+						<c:otherwise>
+						  <li><a href="/formbuilder/user/list.html">Users</a></li>
+						</c:otherwise>
+			  	      </c:choose>
+			  	      
+			  	      <c:choose>
+					    <c:when test="${false}">
+					      <li class="active"><a href="/formbuilder/form/listForm.html">Forms</a></li>
+					    </c:when>
+					    <c:otherwise>
+					      <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
+					    </c:otherwise>
+					  </c:choose>
 				
-				<c:choose>
-				  <c:when test="${false}">
-				    <li class="active"><a href="/formbuilder/form/listForm.html">Forms</a></li>
-				  </c:when>
-				  <c:otherwise>
-				    <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
-				  </c:otherwise>
-				</c:choose>
+					</c:if>
+					
+					<c:if test="${role == 'ROLE_USER' }">
+					  
+					  <c:choose>
+						<c:when test="${false}">
+						  <li class="active"><a href="#">My Forms</a></li>
+						</c:when>
+						<c:otherwise>
+						  <li><a href="#">My Forms</a></li>
+						</c:otherwise>
+			  	      </c:choose>
+			  	      
+			  	      <c:choose>
+					    <c:when test="${false}">
+					      <li class="active"><a href="#">Download PDFs</a></li>
+					    </c:when>
+					    <c:otherwise>
+					      <li><a href="#">Download PDFs</a></li>
+					    </c:otherwise>
+					  </c:choose>
+					  
+					  <c:choose>
+					    <c:when test="${false}">
+					      <li class="active"><a href="#">Help</a></li>
+					    </c:when>
+					    <c:otherwise>
+					      <li><a href="#">Help</a></li>
+					    </c:otherwise>
+					  </c:choose>
+				
+					</c:if>
+				</c:forEach>
+				
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
