@@ -34,12 +34,14 @@
 			</c:forEach>
 		</tbody>
 	</table>
-</div>
-<div class="col-md-offset-10">
-	<a href="add.html" id="popupAddUser"><button type="button" class="btn btn-success btn-sm">
+	
+	<div class="col-md-offset-10">
+	<a href="add.html" id="popupAddUser"><button type="button" class="btn btn-success btn-sm btn-raised">
 			<span class="glyphicon glyphicon-plus"></span> ADD NEW USER
 		</button></a>
+	</div>
 </div>
+
 
 
 

@@ -30,9 +30,20 @@
 				</c:choose>
 
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+	            <li class="dropdown">
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span></span> Profile <span class="caret"></span></a>
+	              <ul class="dropdown-menu">
+	                <li><a href="#">Your Account</a></li>
+	                <li class="disabled"><a href="#">Settings</a></li>
+	                <li role="separator" class="divider"></li>
+	                <li id="logoutDropdownLink" onclick="$('#logout').submit()"><a>Sign Out</a></li>
+	              </ul>
+	            </li>
+          	</ul>
 			
-			<form action="<c:url value='/logout'/>" method="POST">
-			  <input name="submit" type="submit" value="Logout" />
+			<form action="<c:url value='/logout'/>" method="POST" id="logout">
+			  <!-- Form is submitted when User clicks dropdown link to 'Sign Out' -->
 			</form>
 		</div>
 	</div>

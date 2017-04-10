@@ -7,7 +7,7 @@
 		<h2>Add New Form</h2>
 	</div>
 
-	<div class="panel panel-primary">
+	<div class="panel panel-success">
 		<div class="panel-heading">
 			<h4 class="panel-title">Enter New Form Information</h4>
 		</div>
@@ -35,7 +35,7 @@
 					<form:checkbox path="enabled" label="Enable" />
 				</div>
 
-				<button type="submit" class="btn btn-success btn-sm">
+				<button type="submit" class="btn btn-success btn-raised">
 					<span class="glyphicon glyphicon-plus-sign"></span> ADD
 				</button>
 			</form:form>
