@@ -14,60 +14,21 @@
 			<ul class="nav navbar-nav">
 				<li><a href="/formbuilder/">Home</a></li>
 				
-				<c:forEach items="${principal.roles}" var="role">
-					<c:if test="${role == 'ROLE_ADMIN' || role == 'ROLE_STAFF' }">
-					  
-					  <c:choose>
-						<c:when test="${false}">
-						  <li class="active"><a href="/formbuilder/user/list.html">Users</a></li>
-						</c:when>
-						<c:otherwise>
-						  <li><a href="/formbuilder/user/list.html">Users</a></li>
-						</c:otherwise>
-			  	      </c:choose>
-			  	      
-			  	      <c:choose>
-					    <c:when test="${false}">
-					      <li class="active"><a href="/formbuilder/form/listForm.html">Forms</a></li>
-					    </c:when>
-					    <c:otherwise>
-					      <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
-					    </c:otherwise>
-					  </c:choose>
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+				  <li><a href="/formbuilder/user/list.html">Users</a></li>
+			  	  <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
+				</security:authorize>
 				
-					</c:if>
-					
-					<c:if test="${role == 'ROLE_USER' }">
-					  
-					  <c:choose>
-						<c:when test="${false}">
-						  <li class="active"><a href="#">My Forms</a></li>
-						</c:when>
-						<c:otherwise>
-						  <li><a href="#">My Forms</a></li>
-						</c:otherwise>
-			  	      </c:choose>
-			  	      
-			  	      <c:choose>
-					    <c:when test="${false}">
-					      <li class="active"><a href="#">Download PDFs</a></li>
-					    </c:when>
-					    <c:otherwise>
-					      <li><a href="#">Download PDFs</a></li>
-					    </c:otherwise>
-					  </c:choose>
-					  
-					  <c:choose>
-					    <c:when test="${false}">
-					      <li class="active"><a href="#">Help</a></li>
-					    </c:when>
-					    <c:otherwise>
-					      <li><a href="#">Help</a></li>
-					    </c:otherwise>
-					  </c:choose>
+				<security:authorize access="hasRole('ROLE_STAFF')">
+				  <li><a href="/formbuilder/user/list.html">Users</a></li>
+			  	  <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
+				</security:authorize>
 				
-					</c:if>
-				</c:forEach>
+				<security:authorize access="hasRole('ROLE_USER')">
+			  	  <li><a href="#">My Forms</a></li>
+		  	      <li><a href="#">Download PDFs</a></li>
+				  <li><a href="#">Help</a></li>
+				</security:authorize>
 				
 			</ul>
 
@@ -89,3 +50,11 @@
 		</div>
 	</div>
 </nav>
+
+<script>
+$(document).ready(function() {
+	// get current URL path and assign 'active' class
+	var pathname = window.location.pathname;
+	$('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
