@@ -31,13 +31,13 @@
 				    <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
 				  </c:otherwise>
 				</c:choose>
-
 			</ul>
+
 			<ul class="nav navbar-nav navbar-right">
 	            <li class="dropdown">
-	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> ${principal.username }'s Profile <span class="caret"></span></a>
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> ${principal.id}  's Profile <span class="caret"></span></a>
 	              <ul class="dropdown-menu">
-	                <li><a href="/formbuilder/user/edit.html?id=${principal.id }">Your Account</a></li>
+	                <li><a href="/formbuilder/user/edit.html?id= ${principal.id}">Your Account</a></li>
 	                <li class="disabled"><a href="#">Settings</a></li>
 	                <li role="separator" class="divider"></li>
 	                <li id="logoutDropdownLink" onclick="$('#logout').submit()"><a>Sign Out</a></li>
