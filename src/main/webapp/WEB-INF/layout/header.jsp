@@ -14,30 +14,29 @@
 			<ul class="nav navbar-nav">
 				<li><a href="/formbuilder/">Home</a></li>
 				
-				<c:choose>
-				  <c:when test="${false}">
-				    <li class="active"><a href="/formbuilder/user/list.html">Users</a></li>
-				  </c:when>
-				  <c:otherwise>
-				    <li><a href="/formbuilder/user/list.html">Users</a></li>
-				  </c:otherwise>
-				</c:choose>
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+				  <li><a href="/formbuilder/user/list.html">Users</a></li>
+			  	  <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
+				</security:authorize>
 				
-				<c:choose>
-				  <c:when test="${false}">
-				    <li class="active"><a href="/formbuilder/form/listForm.html">Forms</a></li>
-				  </c:when>
-				  <c:otherwise>
-				    <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
-				  </c:otherwise>
-				</c:choose>
-
+				<security:authorize access="hasRole('ROLE_STAFF')">
+				  <li><a href="/formbuilder/user/list.html">Users</a></li>
+			  	  <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
+				</security:authorize>
+				
+				<security:authorize access="hasRole('ROLE_USER')">
+			  	  <li><a href="#">My Forms</a></li>
+		  	      <li><a href="#">Download PDFs</a></li>
+				  <li><a href="#">Help</a></li>
+				</security:authorize>
+				
 			</ul>
+
 			<ul class="nav navbar-nav navbar-right">
 	            <li class="dropdown">
-	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> ${principal.username }'s Profile <span class="caret"></span></a>
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> ${principal.id}  's Profile <span class="caret"></span></a>
 	              <ul class="dropdown-menu">
-	                <li><a href="/formbuilder/user/edit.html?id=${principal.id }">Your Account</a></li>
+	                <li><a href="/formbuilder/user/edit.html?id= ${principal.id}">Your Account</a></li>
 	                <li class="disabled"><a href="#">Settings</a></li>
 	                <li role="separator" class="divider"></li>
 	                <li id="logoutDropdownLink" onclick="$('#logout').submit()"><a>Sign Out</a></li>
@@ -51,3 +50,11 @@
 		</div>
 	</div>
 </nav>
+
+<script>
+$(document).ready(function() {
+	// get current URL path and assign 'active' class
+	var pathname = window.location.pathname;
+	$('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
