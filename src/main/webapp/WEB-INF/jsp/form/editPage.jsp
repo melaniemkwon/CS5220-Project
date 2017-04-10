@@ -42,7 +42,7 @@
 			</div>
 			<div class="panel-body">
 			
-				<a href="#editForm" class="btn btn-raised btn-info btn-sm" data-toggle="collapse">Edit Form Properties</a>
+				<a href="#editForm" class="btn btn-info btn-sm" data-toggle="collapse">Edit Form Properties</a>
 				<div id="editForm" class="collapse">
 
 				<form:form modelAttribute="form" class="form">
