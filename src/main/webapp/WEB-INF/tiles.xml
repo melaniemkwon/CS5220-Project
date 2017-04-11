@@ -55,6 +55,11 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/form/viewPage.jsp" />
 	</definition>
 	
+	<definition name="form/listAssignForm" extends="template">
+		<put-attribute name="title" value="List Form" />
+		<put-attribute name="content" value="/WEB-INF/jsp/form/listAssignForm.jsp" />
+	</definition>
+	
 	<!-- ======== -->
     <!--   User   -->
     <!-- ======== -->
@@ -77,15 +82,6 @@
 	<definition name="user/view" extends="template">
 		<put-attribute name="title" value="View User" />
 		<put-attribute name="content" value="/WEB-INF/jsp/user/view.jsp" />
-	</definition>
-
-	<!-- ============= -->
-    <!--   User Form   -->
-    <!-- ============= -->
-    
-    <definition name="user/listForm" extends="template">
-		<put-attribute name="title" value="list Form" />
-		<put-attribute name="content" value="/WEB-INF/jsp/userForm/listForm.jsp" />
 	</definition>
 	
 </tiles-definitions>

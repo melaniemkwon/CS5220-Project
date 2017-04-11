@@ -4,7 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="formbuilder" uri="http://formbuilder.com/formbuilder"%>
 
-<div class="row  col-md-offset-3 col-md-6">
+<div class="row">
+<div class="col-md-offset-3 col-md-6">
 
 	<div class="text-center">
 		<nav aria-label="Page navigation">
@@ -68,4 +69,5 @@
 		</nav>
 	</div>
 
+</div>
 </div>
