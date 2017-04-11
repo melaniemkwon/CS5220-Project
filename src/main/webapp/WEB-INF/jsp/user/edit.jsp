@@ -179,13 +179,13 @@
 			<div>
 				<label for="role">Role</label>
 			</div>
-			<form:select path="role" cssClass="form-control">
-				<form:option value="ROLE_USER">USER</form:option>
-				<form:option value="ROLE_STAFF">STAFF</form:option>
 				<security:authorize access="hasRole('ROLE_ADMIN')">
-					<form:option value="ROLE_ADMIN">ADMIN</form:option>
+					<form:select path="role" cssClass="form-control">
+						<form:option value="ROLE_USER">USER</form:option>
+						<form:option value="ROLE_STAFF">STAFF</form:option>
+						<form:option value="ROLE_ADMIN">ADMIN</form:option>
+					</form:select>
 				</security:authorize>
-			</form:select>
 		</div>
         
         <button type="submit" class="btn btn-raised btn-primary">
