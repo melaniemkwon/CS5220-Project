@@ -1,5 +1,5 @@
  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
-    <footer class="footer">
+<!--     <footer class="footer">
       <div class="container">
       	<div class="row">
 
@@ -25,10 +25,10 @@
         </div>
         
       </div>
-    </footer>
+    </footer> -->
     
     <div class="footer-copyright">
         <div class="container text-center">
-            <p class="footer-copyright-text">© 2017 Copyright: <a href="#"> FormBuilder.com </a></p>
+            <p class="footer-copyright-text">© 2017 Copyright FormBuilder.com</p>
         </div>
     </div>
