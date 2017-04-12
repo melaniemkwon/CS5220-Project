@@ -68,7 +68,8 @@ public class UserController {
 
 		user = userDao.saveUser(user);
 		sessionStatus.setComplete();
-		return "redirect:list.html";
+		
+		return "redirect:/user/edit.html?id=" + user.getId();
 	}
 
 	@RequestMapping(value = "/user/add.html", method = RequestMethod.GET)
