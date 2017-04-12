@@ -106,6 +106,8 @@
 				</div>
 			</div>
 		</div>
+		<a href="javascript:deletePage()">deletePage</a>
+		
 		<div class="text-center">
 			<nav aria-label="Page navigation">
 				<ul class="pagination">
@@ -159,7 +161,14 @@
 	</div>
 </div>
 </div>
-
+<script>
+function deletePage()
+{
+    var msg = "Are you sure you want to delete this page?";
+    if( confirm(msg) )
+        window.location.href = "deletePage.html?id=${param.id}&pageNum=${param.pageNum}";
+}
+</script>
 <script>
    $(function () {
        $('[data-toggle="tooltip"]').tooltip({delay: 500});
