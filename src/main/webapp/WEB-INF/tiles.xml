@@ -12,8 +12,14 @@
 	</definition>
 	
 	<definition name="home" extends="template">
+		<put-attribute name="header" value="" />
         <put-attribute name="title" value="FormBuilder" />
         <put-attribute name="content" value="/WEB-INF/jsp/home.jsp" />
+    </definition>
+    
+    <definition name="userHome" extends="template">
+        <put-attribute name="title" value="Welcome to FormBuilder" />
+        <put-attribute name="content" value="/WEB-INF/jsp/userHome.jsp" />
     </definition>
 	
 	<!-- ======== -->
@@ -82,6 +88,15 @@
 	<definition name="user/view" extends="template">
 		<put-attribute name="title" value="View User" />
 		<put-attribute name="content" value="/WEB-INF/jsp/user/view.jsp" />
+	</definition>
+	
+	<!-- ============= -->
+    <!--   User Form   -->
+    <!-- ============= -->
+    
+    <definition name="userForm/listForm" extends="template">
+		<put-attribute name="title" value="List User Form" />
+		<put-attribute name="content" value="/WEB-INF/jsp/userForm/listForm.jsp" />
 	</definition>
 	
 </tiles-definitions>
