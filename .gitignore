@@ -2,7 +2,6 @@
 /MANIFEST.MF
 /pom.properties
 *.class
-applicationContext.xml
 build.properties
 
 # Mobile Tools for Java (J2ME)
