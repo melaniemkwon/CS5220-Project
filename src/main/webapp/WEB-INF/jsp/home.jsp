@@ -20,17 +20,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Lancar - Bootstrap One-Page Portfolio Template</title>
-
+ 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">        
-        <link rel="stylesheet" href="/formbuilder/src/main/webapp/WEB-INF/home/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/formbuilder/src/main/webapp/WEB-INF/home/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/formbuilder/src/main/webapp/WEB-INF/home/elegant-font/code/style.css">
-        <link rel="stylesheet" href="/formbuilder/src/main/webapp/WEB-INF/home/css/animate.css">
-        <link rel="stylesheet" href="/formbuilder/src/main/webapp/WEB-INF/home/css/magnific-popup.css">
-		<link rel="stylesheet" href="/formbuilder/src/main/webapp/WEB-INF/home/css/form-elements.css">
-        <link rel="stylesheet" href="/formbuilder/src/main/webapp/WEB-INF/home/css/style.css">
-        <link rel="stylesheet" href="/formbuilder/src/main/webapp/WEB-INF/home/css/media-queries.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/home/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/home/elegant-font/code/style.css">
+        <link rel="stylesheet" href="/home/css/animate.css">
+        <link rel="stylesheet" href="/formbuilder/src/main/webapp/home/css/magnific-popup.css">
+		<link rel="stylesheet" href="/formbuilder/src/main/webapp/home/css/form-elements.css">
+        <link rel="stylesheet" href="/formbuilder/src/main/webapp/home/css/style.css">
+        <link rel="stylesheet" href="/formbuilder/src/main/webapp/home/css/media-queries.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -148,16 +148,16 @@
 	            	</div>
 	            	<div class="col-sm-10 clients wow fadeInUp">
                     	<a href="https://wrapbootstrap.com/theme/trilli-bi-fullscreen-landing-page-WB000X02N?ref=azmind" target="_blank" rel="nofollow">
-                    		<img src="assets/img/clients/1.png" alt="" data-at2x="assets/img/clients/1.png">
+                    		<img src="home/img/clients/1.png" alt="" data-at2x="home/img/clients/1.png">
                     	</a>
                     	<a href="https://wrapbootstrap.com/theme/areta-agency-portfolio-template-WB0L5XF38?ref=azmind" target="_blank" rel="nofollow">
-                    		<img src="assets/img/clients/2.png" alt="" data-at2x="assets/img/clients/2.png">
+                    		<img src="home/img/clients/2.png" alt="" data-at2x="home/img/clients/2.png">
                     	</a>
                     	<a href="https://wrapbootstrap.com/theme/seria-coming-soon-landing-page-WB05D4591?ref=azmind" target="_blank" rel="nofollow">
-                    		<img src="assets/img/clients/3.png" alt="" data-at2x="assets/img/clients/3.png">
+                    		<img src="home/img/clients/3.png" alt="" data-at2x="home/img/clients/3.png">
                     	</a>
                     	<a href="https://wrapbootstrap.com/theme/jesis-responsive-app-landing-page-WB085528N?ref=azmind" target="_blank" rel="nofollow">
-                    		<img src="assets/img/clients/4.png" alt="" data-at2x="assets/img/clients/4.png">
+                    		<img src="home/img/clients/4.png" alt="" data-at2x="home/img/clients/4.png">
                     	</a>
 	            	</div>
 	            </div>
@@ -796,22 +796,21 @@
         
 
         <!-- Javascript -->
-        <script src="src/main/webapp/WEB-INF/home/js/jquery-1.11.1.min.js"></script>
-        <script src="src/main/webapp/WEB-INF/home/bootstrap/js/bootstrap.min.js"></script>
-        <script src="src/main/webapp/WEB-INF/home/js/jquery.backstretch.min.js"></script>
-        <script src="src/main/webapp/WEB-INF/home/js/wow.min.js"></script>
-        <script src="src/main/webapp/WEB-INF/home/js/retina-1.1.0.min.js"></script>
-        <script src="src/main/webapp/WEB-INF/home/js/jquery.magnific-popup.min.js"></script>
-        <script src="src/main/webapp/WEB-INF/home/js/waypoints.min.js"></script>
-        <script src="src/main/webapp/WEB-INF/home/js/jquery.countTo.js"></script>
-        <script src="src/main/webapp/WEB-INF/home/js/masonry.pkgd.min.js"></script>
-        <script src="src/main/webapp/WEB-INF/home/js/scripts.js"></script>
+        <script src="home/js/jquery-1.11.1.min.js"></script>
+        <script src="home/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/formbuilder/src/main/webapp/home/js/jquery.backstretch.min.js"></script>
+        <script src="/formbuilder/src/main/webapp/home/js/wow.min.js"></script>
+        <script src="/formbuilder/src/main/webapp/home/js/retina-1.1.0.min.js"></script>
+        <script src="/formbuilder/src/main/webapp/home/js/jquery.magnific-popup.min.js"></script>
+        <script src="/formbuilder/src/main/webapp/home/js/waypoints.min.js"></script>
+        <script src="/formbuilder/src/main/webapp/home/js/jquery.countTo.js"></script>
+        <script src="/formbuilder/src/main/webapp/home/js/masonry.pkgd.min.js"></script>
+        <script src="/formbuilder/src/main/webapp/home/js/scripts.js"></script>
         
         <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
         <![endif]-->
 
-    </body>
+  </body>
 
 </html>
- 
