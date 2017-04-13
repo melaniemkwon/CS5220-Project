@@ -13,13 +13,19 @@ create sequence hibernate_sequence start 1 increment 1;
     );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> backupnaifbranch
     create table authorities (
         user_id int4 not null,
         role varchar(255)
     );
 
+<<<<<<< HEAD
 >>>>>>> Naifbranch
+=======
+>>>>>>> backupnaifbranch
     create table forms (
         id int4 not null,
         description varchar(255),
@@ -87,9 +93,12 @@ create sequence hibernate_sequence start 1 increment 1;
         password varchar(255) not null,
         phoneNumber varchar(255),
 <<<<<<< HEAD
+<<<<<<< HEAD
         role varchar(255),
 =======
 >>>>>>> Naifbranch
+=======
+>>>>>>> backupnaifbranch
         state varchar(255),
         street varchar(255),
         username varchar(255) not null,
@@ -114,13 +123,19 @@ create sequence hibernate_sequence start 1 increment 1;
         references users;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> backupnaifbranch
     alter table authorities 
         add constraint FKk91upmbueyim93v469wj7b2qh 
         foreign key (user_id) 
         references users;
 
+<<<<<<< HEAD
 >>>>>>> Naifbranch
+=======
+>>>>>>> backupnaifbranch
     alter table forms_users 
         add constraint FKhp0dk6l6s1p5c2mcew1md2yph 
         foreign key (users_id) 
@@ -151,7 +166,10 @@ create sequence hibernate_sequence start 1 increment 1;
         foreign key (form_id) 
         references forms;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> backupnaifbranch
 
 insert into users (id, username, password, last_name, first_name, email, enabled) values (1000, 'admin', 'abcd', 'System', 'Administrator', 'formbuilderadmin@localhost.localdomain', TRUE);
 insert into authorities (user_id, role) values (1000, 'ROLE_ADMIN');
@@ -159,4 +177,7 @@ insert into users (id, username, password, last_name, first_name, email, enabled
 insert into authorities (user_id, role) values (1001, 'ROLE_STAFF');
 insert into users (id, username, password, last_name, first_name, email, enabled) values (1002, 'user', 'abcd', 'System', 'User', 'formbuilderuser@localhost.localdomain', TRUE);
 insert into authorities (user_id, role) values (1002, 'ROLE_USER');
+<<<<<<< HEAD
 >>>>>>> Naifbranch
+=======
+>>>>>>> backupnaifbranch

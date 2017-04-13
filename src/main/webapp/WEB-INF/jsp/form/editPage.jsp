@@ -148,6 +148,7 @@
 				</div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<div class="modal-footer ">
 					<a href="deletePage.html?id=${param.id}&pageNum=${param.pageNum}">
 						<button type="button" class="btn btn-danger">
@@ -162,11 +163,13 @@
 =======
 				
 >>>>>>> Naifbranch
+=======
+				
+>>>>>>> backupnaifbranch
 			<div class="modal-footer ">
 				<a href="deletePage.html?id=${param.id}&pageNum=${param.pageNum}">
 					<button type="button" class="btn btn-danger">
 						<span class="glyphicon glyphicon-ok-sign"></span> Yes
->>>>>>> 2310b2b7c2fceb2322280d1f2c26e2a0b95e02f0
 					</button>
 				</a>
 				<button type="button" class="btn btn-default" data-dismiss="modal">
