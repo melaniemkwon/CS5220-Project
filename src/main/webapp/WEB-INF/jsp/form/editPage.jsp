@@ -146,14 +146,15 @@
 				<div class="alert alert-danger">
 					<span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Page?
 				</div>
+				
 			<div class="modal-footer ">
 				<a href="deletePage.html?id=${param.id}&pageNum=${param.pageNum}">
 					<button type="button" class="btn btn-danger">
-						<span class="glyphicon glyphicon-ok-sign"></span> Yes
+						<span class="glyphicon glyphicon-ok-sign"></span> Yes
 					</button>
 				</a>
 				<button type="button" class="btn btn-default" data-dismiss="modal">
-					<span class="glyphicon glyphicon-remove"></span> No
+					<span class="glyphicon glyphicon-remove"></span> No
 				</button>
 			</div>
 		</div>
@@ -173,4 +174,3 @@ function deletePage()
        $('[data-toggle="tooltip"]').tooltip({delay: 500});
    });
  </script>
-
