@@ -12,6 +12,7 @@
 				<th>ID</th>
 				<th>First Name</th>
 				<th>Last Name</th>
+				<th>Username</th>
 				<th>Role</th>
 				<th>Operations</th>
 			</tr>
@@ -20,15 +21,14 @@
 			<c:forEach items="${users}" var="user">
 				<tr>
 					<td class="col-md-1">${user.id}</td>
-					<td class="col-md-2">${user.firstName}</td>
-					<td class="col-md-2">${user.lastName}</td>
-					<td class="col-md-1"></td>
-					<td class="col-md-1">
-						<security:authorize access="hasRole('ROLE_ADMIN') or principal.username == '${user.username }'">
-							<a class="btn" href="view.html?id=${user.id}" data-toggle="tooltip" title="View User"><i class="glyphicon glyphicon-eye-open"></i></a> <a class="btn"
+					<td class="col-md-1">${user.firstName}</td>
+					<td class="col-md-1">${user.lastName}</td>
+					<td class="col-md-1">${user.username }</td>
+					<td class="col-md-1">${user.role }</td>
+					<td class="col-md-2">
+						<a class="btn" href="view.html?id=${user.id}" data-toggle="tooltip" title="View User"><i class="glyphicon glyphicon-eye-open"></i></a> <a class="btn"
 							href="edit.html?id=${user.id}" data-toggle="tooltip" title="Edit User Information"><i class="glyphicon glyphicon-pencil"></i></a> <a class="btn" href="delete.html?id=${user.id}"
-							data-toggle="tooltip" title="Delete User"><i class="glyphicon glyphicon-trash"></i></a>
-						</security:authorize>	
+							data-toggle="tooltip" title="Delete User"><i class="glyphicon glyphicon-trash"></i></a>				
 					</td>
 				</tr>
 			</c:forEach>
@@ -41,9 +41,6 @@
 		</button></a>
 	</div>
 </div>
-
-
-
 
 
 <script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/jquery.dataTables.min.js' />"></script>

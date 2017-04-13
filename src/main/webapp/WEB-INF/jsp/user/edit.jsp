@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <%-- <div class="row">
 <div class="col-md-6 col-md-offset-3">
@@ -159,15 +160,33 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Username:</label>
           <div class="col-md-8">
-            <form:input path="username" maxlength="12" cssClass="form-control" required="required" />
+				<security:authorize access="hasRole('ROLE_ADMIN')">		
+	            	<form:input path="username" maxlength="12" cssClass="form-control" required="required" />
+				</security:authorize>
+				<security:authorize access="!hasRole('ROLE_ADMIN')">
+					<form:input path="username" maxlength="12" cssClass="form-control" required="required" disabled="true"/>
+				</security:authorize>
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Password:</label>
           <div class="col-md-8">
-            <form:password path="password" maxlength="12" cssClass="form-control" required="required" />
+            <form:password path="password" maxlength="12" cssClass="form-control" showPassword="true" required="required" />
           </div>
         </div>
+        
+        <div class="form-group">
+			<div>
+				<label for="role">Role</label>
+			</div>
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+					<form:select path="role" cssClass="form-control">
+						<form:option value="ROLE_USER">USER</form:option>
+						<form:option value="ROLE_STAFF">STAFF</form:option>
+						<form:option value="ROLE_ADMIN">ADMIN</form:option>
+					</form:select>
+				</security:authorize>
+		</div>
         
         <button type="submit" class="btn btn-raised btn-primary">
 		<span class="glyphicon glyphicon-floppy-disk"></span> SAVE </button>
@@ -178,3 +197,4 @@
     
   </div>
 
+</div>

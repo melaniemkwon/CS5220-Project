@@ -20,11 +20,11 @@
 						<c:forEach items="${questionsPage}" var="question">
 							<formbuilder:fieldDisplay question="${question }"></formbuilder:fieldDisplay>
 							<div class="btn-group btn-group-sm" role="group" aria-label="..." style="margin-left: 10px;">
-								<a href="copyQuestion.html?qId=${question.id}" class="btn btn-success" data-toggle="tooltip" title="Duplicate this question"><span class="glyphicon glyphicon-plus-sign"></span></a> <a
-									href="deleteQuestion.html?qId=${question.id}" class="btn btn-danger" data-toggle="tooltip" title="Remove this question"><span class="glyphicon glyphicon-minus-sign"></span></a> <a
-									href="moveUpQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" title="Move this question up"><span class="glyphicon glyphicon-arrow-up"></span></a> <a
-									href="editQuestion.html?qId=${question.id}" class="btn btn-default" data-toggle="tooltip" title="Edit this question"><span class="glyphicon glyphicon-pencil"></span></a> <a
-									href="moveDownQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" title="Move this question down"><span class="glyphicon glyphicon-arrow-down"></span></a>
+								<a href="copyQuestion.html?qId=${question.id}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Duplicate this question"><span class="glyphicon glyphicon-plus-sign"></span></a> <a
+									href="deleteQuestion.html?qId=${question.id}" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete question"><span class="glyphicon glyphicon-minus-sign"></span></a> <a
+									href="moveUpQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Move question up"><span class="glyphicon glyphicon-arrow-up"></span></a> <a
+									href="editQuestion.html?qId=${question.id}" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Edit this question"><span class="glyphicon glyphicon-pencil"></span></a> <a
+									href="moveDownQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Move question down"><span class="glyphicon glyphicon-arrow-down"></span></a>
 							</div>
 							<hr />
 						</c:forEach>
@@ -106,6 +106,8 @@
 				</div>
 			</div>
 		</div>
+		<a href="javascript:deletePage()">deletePage</a>
+		
 		<div class="text-center">
 			<nav aria-label="Page navigation">
 				<ul class="pagination">
@@ -145,6 +147,7 @@
 					<span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Page?
 				</div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<div class="modal-footer ">
 					<a href="deletePage.html?id=${param.id}&pageNum=${param.pageNum}">
 						<button type="button" class="btn btn-danger">
@@ -156,6 +159,9 @@
 =======
 
 			</div>
+=======
+				
+>>>>>>> Naifbranch
 			<div class="modal-footer ">
 				<a href="deletePage.html?id=${param.id}&pageNum=${param.pageNum}">
 					<button type="button" class="btn btn-danger">
@@ -170,4 +176,18 @@
 		</div>
 	</div>
 </div>
+</div>
+<script>
+function deletePage()
+{
+    var msg = "Are you sure you want to delete this page?";
+    if( confirm(msg) )
+        window.location.href = "deletePage.html?id=${param.id}&pageNum=${param.pageNum}";
+}
+</script>
+<script>
+   $(function () {
+       $('[data-toggle="tooltip"]').tooltip({delay: 500});
+   });
+ </script>
 

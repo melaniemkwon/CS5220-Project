@@ -31,4 +31,9 @@ public class HomeController {
 		return model;
 
 	}
+
+	@RequestMapping("/userHome.html")
+	public String userHome() {
+		return "userHome";
+	}
 }

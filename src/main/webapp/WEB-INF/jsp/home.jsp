@@ -5,4 +5,6 @@
 	<div class="jumbotron">
 		<h2>Welcome to Formbuilder</h2>
 	</div>
+	<a href="/formbuilder/login"><button type="submit" class="btn btn-raised btn-primary">
+		 Login </button></a>
 </div>
