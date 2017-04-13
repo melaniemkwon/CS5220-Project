@@ -63,7 +63,6 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<!-- <a href="index.html">Formbuilder</a> -->
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="top-navbar-1">
@@ -433,7 +432,7 @@
 	        </div>
         </div>
 
-       <!--  <!-- Testimonials -->
+       <!-- <!--  Testimonials
         <div class="testimonials-container section-container section-container-gray">
 	        <div class="container">
 	            <div class="row">
@@ -494,7 +493,7 @@
             		<span aria-hidden="true" class="icon_chat"></span>
             	</div>
 	        </div>
-        </div> -->
+        </div> --> -->
         
         <!-- About us -->
         <div class="about-container section-container">
@@ -504,7 +503,7 @@
 	                    <h2>About us</h2>
 	                    <div class="divider-1 wow fadeInUp"><span></span></div>
 	                    <p>
-	                    	Group of graduate students at CSULA ( California State University - Los Angeles)
+	                    	Group of graduate students at CSULA ( California State University - Los Angeles) class CS5220, Dr.Sun 
 	                    </p>
 	                </div>
 	            </div>
@@ -524,7 +523,7 @@
 	            		</div>
 	            	</div>
 	            	<div class="col-sm-8 block-2-box block-2-right wow fadeInUp">
-	            		<h3>Jane Doe / <span>Our CEO</span></h3>
+	            		<h3> Member 1 / <span> Our CEO </span></h3>
 	            		<p>
 	            			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
 	            			labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
@@ -561,14 +560,12 @@
 	            		<h3>Login</h3>
 	                    <form name='loginForm' action="<c:url value='/login' />" method='post'>
 	                    	
-	                    	<div class="form-group">
-	                    		<label class="sr-only" >Username</label>
-	                        	<input type="text" name="username" placeholder="Username.."  id="contact-email">
+	                    	<div class="form-group"> 
+	                        	<input type="text" name="username" placeholder="Username... ">
 	                        </div>
 	                       
 	                        <div class="form-group">
-	                        	<label class="sr-only" >Password</label>
-	                        	<input type="password" style="color: black;" name='password' placeholder="Password..."  id="contact-subject">
+	                        	<input type="password" style="color: black;" name='password' placeholder="Password..." >
 	                        </div>
 	                        
 	                        <input class="btn" name="submit" type="submit" value="submit" />
@@ -576,7 +573,7 @@
 	            	</div>
 	            	<div class="col-sm-4 block-2-box block-2-right contact-address wow fadeInUp">
 	            		<h3>Visit us</h3>
-	                    <p><span aria-hidden="true" class="icon_pin"></span>Via Principe Amedeo 9, Torino, Italy</p>
+	                    <p><span aria-hidden="true" class="icon_pin"></span>Cal state LA</p>
 	                    <p><span aria-hidden="true" class="icon_phone"></span>Phone: 0039 333 12 68 347</p>
 	                    <p><span aria-hidden="true" class="icon_mail"></span>Email: <a href="">hi@yourdomain.com</a></p>
 	            	</div>
@@ -587,18 +584,7 @@
 	        </div>
         </div>
 				
-					<%-- <form name='loginForm' action="<c:url value='/login' />" method='post'>
-		  						
-							<label> Username : </label>
-							<input type='text' name='username' value=''><br />
-							
-							<label> Password: </label>  <br />
-							<input style="color: black;" type='password' name='password' /><br />
-							<input class="btn" name="submit" type="submit" value="submit" />
-							
-					</form> 
-					
-	           --%>
+				
 
 	        
 	        
@@ -614,7 +600,7 @@
 		        </div>
 	            <div class="row">
                     <div class="col-sm-7 footer-copyright">
-                    	&copy; Lancar Bootstrap Template by <a href="http://azmind.com/free-bootstrap-themes-templates/">Azmind</a>.
+                    	&copy;  <a href="http://azmind.com/free-bootstrap-themes-templates/"> Company's name </a>.
                     </div>
                     <div class="col-sm-5 footer-social">
                     	<a href="#"><i class="fa fa-facebook"></i></a>
@@ -640,9 +626,6 @@
         <script src="assets/js/masonry.pkgd.min.js"></script>
         <script src="assets/js/scripts.js"></script>
         
-        <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
 
     </body>
 
