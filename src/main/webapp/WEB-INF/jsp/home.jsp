@@ -28,11 +28,11 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">        
-        <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/elegant-font/code/style.css">
-        <link rel="stylesheet" href="assets/css/animate.css">
-        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/css/animate.css">
+        <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/css/magnific-popup.css">
 		<link rel="stylesheet" href="assets/css/form-elements.css">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/media-queries.css">
