@@ -6,11 +6,13 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<div class="row">
-	<c:forEach items="${forms}" var="form">
-		<div>
-			<a href="#"><img src="<c:url value='/assets/resources/img/form.png' />"></a>
-			<p>${form.name }
-		</div>
-	</c:forEach>
+<div class="container">
+	<div class="row">
+		<c:forEach items="${forms}" var="form">
+			<div>
+				<a href="#"><img src="<c:url value='/assets/resources/img/form.png' />"></a>
+				<p>${form.name }
+			</div>
+		</c:forEach>
+	</div>
 </div>
