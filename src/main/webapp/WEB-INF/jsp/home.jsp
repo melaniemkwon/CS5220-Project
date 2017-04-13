@@ -9,353 +9,642 @@
 		 Login </button></a>
 </div>
  --%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+ 
  
  <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Formbuilder Home Page</title>
 
-    <title>Stylish Portfolio - Start Bootstrap Theme</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">        
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/elegant-font/code/style.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/media-queries.css">
+        
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="hpage/css/bootstrap.min.css" rel="stylesheet">
+    </head>
 
-    <!-- Custom CSS -->
-    <link href="hpage/css/stylish-portfolio.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="hpage/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="#top" onclick=$("#menu-close").click();>Start Bootstrap</a>
-            </li>
-            <li>
-                <a href="#top" onclick=$("#menu-close").click();>Home</a>
-            </li>
-            <li>
-                <a href="#about" onclick=$("#menu-close").click();>About</a>
-            </li>
-            <li>
-                <a href="#services" onclick=$("#menu-close").click();>Services</a>
-            </li>
-            <li>
-                <a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
-            </li>
-            <li>
-                <a href="#contact" onclick=$("#menu-close").click();>Contact</a>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- Header -->
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>Start Bootstrap</h1>
-            <h3>Free Bootstrap Themes &amp; Templates</h3>
-            <br>
-            <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
-        </div>
-    </header>
-
-    <!-- About -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-                    <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
-                </div>
+    <body>
+    
+        <!-- Loader -->
+		 <div class="loader">
+    		<div class="loader-img"></div>
+    	</div> 
+		
+		<!-- Top menu -->
+		<nav class="navbar navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- <a href="index.html">Formbuilder</a> -->
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="top-navbar-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a class="scroll-link" href="#top-content">home</a></li>
+						<li><a class="scroll-link" href="#what-we-do">Services</a></li>
+						<!-- <li><a class="scroll-link" href="#portfolio">Portfolio</a></li> -->
+						<li><a class="scroll-link" href="#about">About</a></li>
+						<!-- <li><a class="scroll-link" href="#contact">Login</a></li> -->
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+        <!-- Page title -->
+        <div class="page-title top-content">
+            <div class="page-title-text wow fadeInUp">
+            	<h1>Welcome to Form Builder website</h1>
+            	<!-- <p>Thank you for choosing us</p> -->
+            	<div class="page-title-bottom-link">
+            		<!-- <a class="big-link-1 btn scroll-link" href="#pricing-2">Start now</a> -->
+            		<a class="big-link-1 btn scroll-link" href="#contact">Login</a>
+            	</div>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container -->
-    </section>
 
-    <!-- Services -->
-    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="services" class="services bg-primary">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h2>Our Services</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
+		<!-- What we do -->
+        <div class="block-3-container section-container what-we-do-container">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12 block-3 section-description wow fadeIn">
+	                    <h2>What we do</h2>
+	                    <div class="divider-1 wow fadeInUp"><span></span></div>
+	                    <p>
+	                    	Our website helps orgnizations and company agents to reduce user work by creating online forms from PDF forms
+	                    </p>
+	                </div>
+	            </div>
+	            <div class="row">
+                	<div class="col-sm-3 block-3-box wow fadeInUp">
+	                	<div class="block-3-box-icon">
+	                		<span aria-hidden="true" class="icon_pencil"></span>
+	                	</div>
+	                    <h3>User</h3>
+	                    <p>User will fill once and never again</p>
                     </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
-    <!-- Callout -->
-    <aside class="callout">
-        <div class="text-vertical-center">
-            <h1>Vertically Centered Text</h1>
-        </div>
-    </aside>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>Our Work</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
-                                </a>
-                            </div>
-                        </div>
+                    <div class="col-sm-3 block-3-box wow fadeInDown">
+	                	<div class="block-3-box-icon">
+	                		<span aria-hidden="true" class="icon_cogs"></span>
+	                	</div>
+	                    <h3>Forms</h3>
+	                    <p>You can create multiple forms for different users</p>
                     </div>
-                    <!-- /.row (nested) -->
-                    <a href="#" class="btn btn-dark">View More Items</a>
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
+                   <!--  <div class="col-sm-3 block-3-box wow fadeInUp">
+	                	<div class="block-3-box-icon">
+	                		<span aria-hidden="true" class="social_twitter"></span>
+	                	</div>
+	                    <h3>Social Media</h3>
+	                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                    </div>
+                    <div class="col-sm-3 block-3-box wow fadeInDown">
+	                	<div class="block-3-box-icon">
+	                		<span aria-hidden="true" class="icon_lightbulb"></span>
+	                	</div>
+	                    <h3>Branding</h3>
+	                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                    </div> -->
+	            </div>
+	        </div>
         </div>
-        <!-- /.container -->
-    </section>
-
-    <!-- Call to Action -->
-    <aside class="call-to-action bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h3>The buttons below are impossible to resist.</h3>
-                    <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-                    <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
-                </div>
-            </div>
+        
+        <!-- Clients -->
+        <div class="clients-container section-container section-container-gray">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-sm-2 clients-text wow fadeInLeft">
+                    	<h3>We've worked with these guys:</h3>
+	            	</div>
+	            	<div class="col-sm-10 clients wow fadeInUp">
+                    	<a href="https://wrapbootstrap.com/theme/trilli-bi-fullscreen-landing-page-WB000X02N?ref=azmind" target="_blank" rel="nofollow">
+                    		<img src="assets/img/clients/1.png" alt="" data-at2x="assets/img/clients/1.png">
+                    	</a>
+                    	<a href="https://wrapbootstrap.com/theme/areta-agency-portfolio-template-WB0L5XF38?ref=azmind" target="_blank" rel="nofollow">
+                    		<img src="assets/img/clients/2.png" alt="" data-at2x="assets/img/clients/2.png">
+                    	</a>
+                    	<a href="https://wrapbootstrap.com/theme/seria-coming-soon-landing-page-WB05D4591?ref=azmind" target="_blank" rel="nofollow">
+                    		<img src="assets/img/clients/3.png" alt="" data-at2x="assets/img/clients/3.png">
+                    	</a>
+                    	<a href="https://wrapbootstrap.com/theme/jesis-responsive-app-landing-page-WB085528N?ref=azmind" target="_blank" rel="nofollow">
+                    		<img src="assets/img/clients/4.png" alt="" data-at2x="assets/img/clients/4.png">
+                    	</a>
+	            	</div>
+	            </div>
+        	</div>
         </div>
-    </aside>
 
-    <!-- Map -->
-    <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-        <br />
-        <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-        </small>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Start Bootstrap</strong>
-                    </h4>
-                    <p>3481 Melrose Place
-                        <br>Beverly Hills, CA 90210</p>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="hpage/mailto:name@example.com">name@example.com</a>
-                        </li>
-                    </ul>
-                    <br>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                        </li>
-                    </ul>
-                    <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
+		<!-- Block 2 -->
+        <div class="block-2-container section-container">
+	        <div class="container">
+	            <div class="row">
+	            	<div class="col-sm-6 block-2-box block-2-left block-2-media wow fadeInLeft">
+	            		<div class="block-2-img-container">
+	            			<img src="assets/img/about/4.jpg" alt="" data-at2x="assets/img/about/4.jpg">
+	            			<div class="img-container-line line-1"></div>
+	            			<div class="img-container-line line-2"></div>
+	            			<div class="img-container-line line-3"></div>
+	            		</div>
+	            	</div>
+	            	<div class="col-sm-6 block-2-box block-2-right wow fadeInUp">	            		
+	            		<h3>We love web design</h3>
+	            		<p>
+	            			Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
+	            			lobortis nisl ut aliquip ex ea commodo consequat.
+	            		</p>
+	            		<ul>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_check list-icon"></span> Etiam processus dynamicus qui
+	            			</li>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_check list-icon"></span> Quam nunc putamus Photoshop
+	            			</li>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_check list-icon"></span> Mutationem consuetudium WordPress
+	            			</li>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_check list-icon"></span> Exerci tation ullamcorper
+	            			</li>
+	            		</ul>
+	            	</div>
+	            </div>
+	        </div>
         </div>
-        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
-    </footer>
+        
+        <!-- Block 2 -->
+        <!-- <div class="block-2-container section-container section-container-gray">
+	        <div class="container">
+	            <div class="row">
+	            	<div class="col-sm-6 block-2-box block-2-left wow fadeInLeft">
+	            		<h3>We design interfaces</h3>
+	            		<p>
+	            			Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
+	            			lobortis nisl ut aliquip ex ea commodo consequat.
+	            		</p>
+	            		<ul>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_check list-icon"></span> Etiam processus dynamicus qui
+	            			</li>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_check list-icon"></span> Quam nunc putamus Photoshop
+	            			</li>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_check list-icon"></span> Mutationem consuetudium WordPress
+	            			</li>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_check list-icon"></span> Exerci tation ullamcorper
+	            			</li>
+	            		</ul>
+	            	</div>
+	            	<div class="col-sm-6 block-2-box block-2-right block-2-media wow fadeInUp">
+	            		<div class="block-2-img-container">
+	            			<img src="assets/img/about/5.jpg" alt="" data-at2x="assets/img/about/5.jpg">
+	            			<div class="img-container-line line-1"></div>
+	            			<div class="img-container-line line-2"></div>
+	            			<div class="img-container-line line-3"></div>
+	            		</div>
+	            	</div>
+	            </div>
+	        </div>
+        </div>
+        
+        Counters
+        <div class="counters-container section-container section-container-full-bg">
+        	<div class="container">
+        		<div class="row">
+	            	<div class="col-sm-3 counter-box wow fadeInUp">
+                    	<h4 data-from="0" data-to="12">0</h4>
+                    	<p>Years of experience</p>
+	            	</div>
+	            	<div class="col-sm-3 counter-box wow fadeInDown">
+                    	<h4 data-from="0" data-to="274">0</h4>
+                    	<p>Projects completed</p>
+	            	</div>
+	            	<div class="col-sm-3 counter-box wow fadeInUp">
+                    	<h4 data-from="0" data-to="19295">0</h4>
+                    	<p>Lines of code</p>
+	            	</div>
+	            	<div class="col-sm-3 counter-box wow fadeInDown">
+                    	<h4 data-from="0" data-to="8296">0</h4>
+                    	<p>Cups of coffee</p>
+	            	</div>
+	            </div>
+        	</div>
+        </div>
+        
+        Portfolio
+        <div class="portfolio-container section-container">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12 portfolio section-description wow fadeIn">
+	                	<h2>Our portfolio</h2>
+	                    <div class="divider-1 wow fadeInUp"><span></span></div>
+	                    <p>
+	                    	Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum 
+	                    	est notare quam littera gothica, quam nunc putamus parum claram lorem.
+	                    </p>
+	                </div>
+	            </div>
+	            <div class="row">
+	            	<div class="col-sm-12 portfolio-filters wow fadeInUp">
+	            		<a href="#" class="filter-all active">All</a> / 
+	            		<a href="#" class="filter-design">Design</a> / 
+	            		<a href="#" class="filter-development">Development</a> / 
+	            		<a href="#" class="filter-branding">Branding</a>
+	            	</div>
+	            </div>
+	            <div class="row">
+	            	<div class="col-sm-12 portfolio-masonry">
+		                <div class="portfolio-box design">
+		                	<img src="assets/img/portfolio/1.jpg" alt="" data-at2x="assets/img/portfolio/1.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>Trilli Bi template</p>
+		                		</div>
+		                	</div>
+		                </div>
+		                <div class="portfolio-box development">
+		                	<img src="assets/img/portfolio/2.jpg" alt="" data-at2x="assets/img/portfolio/2.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>Sit amet logo</p>
+		                		</div>
+		                	</div>
+		                </div>
+		                <div class="portfolio-box branding">
+		                	<img src="assets/img/portfolio/3.jpg" alt="" data-at2x="assets/img/portfolio/3.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>Aeria app page</p>
+		                		</div>
+		                	</div>
+		                </div>
+		                <div class="portfolio-box development">
+		                	<img src="assets/img/portfolio/4.jpg" alt="" data-at2x="assets/img/portfolio/4.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>Etiam processus dynamicus</p>
+		                		</div>
+		                	</div>
+		                </div>
+		                <div class="portfolio-box design">
+		                	<img src="assets/img/portfolio/5.jpg" alt="" data-at2x="assets/img/portfolio/5.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>March notare site</p>
+		                		</div>
+		                	</div>
+		                </div>
+		                <div class="portfolio-box development">
+		                	<img src="assets/img/portfolio/6.jpg" alt="" data-at2x="assets/img/portfolio/6.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>Mirum est notare</p>
+		                		</div>
+		                	</div>
+		                </div>
+		                <div class="portfolio-box design">
+		                	<img src="assets/img/portfolio/7.jpg" alt="" data-at2x="assets/img/portfolio/7.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>Celic template</p>
+		                		</div>
+		                	</div>
+		                </div>
+		                <div class="portfolio-box development">
+		                	<img src="assets/img/portfolio/8.jpg" alt="" data-at2x="assets/img/portfolio/8.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>Sit amet logo</p>
+		                		</div>
+		                	</div>
+		                </div>
+		                <div class="portfolio-box branding">
+		                	<img src="assets/img/portfolio/9.jpg" alt="" data-at2x="assets/img/portfolio/9.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>Jalia business</p>
+		                		</div>
+		                	</div>
+		                </div>
+		                <div class="portfolio-box design">
+		                	<img src="assets/img/portfolio/10.jpg" alt="" data-at2x="assets/img/portfolio/10.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>Mirum est notare</p>
+		                		</div>
+		                	</div>
+		                </div>
+		                <div class="portfolio-box development">
+		                	<img src="assets/img/portfolio/11.jpg" alt="" data-at2x="assets/img/portfolio/11.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>Etiam processus social</p>
+		                		</div>
+		                	</div>
+		                </div>
+		                <div class="portfolio-box branding">
+		                	<img src="assets/img/portfolio/12.jpg" alt="" data-at2x="assets/img/portfolio/12.jpg">
+		                	<div class="portfolio-box-text-container">
+		                		<div class="portfolio-box-text">
+		                			<p>Sit website logo</p>
+		                		</div>
+		                	</div>
+		                </div>
+	                </div>
+	            </div>
+	        </div>
+        </div>
+        
+		Block 2
+        <div class="block-2-container section-container section-container-gray">
+	        <div class="container">
+	            <div class="row">
+	            	<div class="col-sm-6 block-2-box block-2-left wow fadeInLeft">
+	            		<h3>How we do it?</h3>
+	            		<p>
+	            			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+	            			incididunt ut labore et dolore magna.
+	            		</p>
+	            		<ul>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_plus list-icon"></span> Etiam processus dynamicus qui
+	            			</li>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_plus list-icon"></span> Quam nunc putamus Photoshop
+	            			</li>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_plus list-icon"></span> Mutationem consuetudium WordPress
+	            			</li>
+	            			<li>
+	            				<span aria-hidden="true" class="icon_plus list-icon"></span> Exerci tation ullamcorper
+	            			</li>
+	            		</ul>
+	            	</div>
+	            	<div class="col-sm-6 block-2-box block-2-right block-2-media wow fadeInUp">
+	            		<div class="video-box">
+		                    <div class="embed-responsive embed-responsive-16by9">
+		                    	<iframe class="embed-responsive-item" src="//player.vimeo.com/video/115014610?title=0&amp;byline=0&amp;portrait=0&amp;badge=0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		                    </div>
+	                    </div>
+	            	</div>
+	            </div>
+	        </div>
+        </div> -->
 
-    <!-- jQuery -->
-    <script src="hpage/js/jquery.js"></script>
+		<!-- Our motto -->
+        <div class="our-motto-container section-container section-container-full-bg">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12 our-motto section-description wow fadeInLeftBig">
+	                    <p>
+	                    	"Success is not the key to happiness. Happiness is the key to success. 
+	                    	If you love what you are doing, you will be successful."
+	                    </p>
+	                    <div class="our-motto-author">ALBERT SCHWEITZER</div>
+	                </div>
+	            </div>
+	        </div>
+        </div>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="hpage/js/bootstrap.min.js"></script>
+       <!--  <!-- Testimonials -->
+        <div class="testimonials-container section-container section-container-gray">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-8 testimonials section-description wow fadeInLeft">
+	                    <h3>Listen to our clients</h3>
+	                    <div class="testimonial-active"></div>
+	                    <div class="testimonial-single">
+	                    	<p>
+	                    		Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
+	                    		lobortis nisl ut aliquip ex ea commodo consequat. Ut wisi enim ad minim veniam, 
+	                    		quis nostrud exerci tation ullamcorper suscipit lobortis nisl.
+	                    		<br>
+	                    		<a href="">John Doe, johndoe.com</a>
+	                    	</p>
+	                    	<div class="testimonial-single-image">
+	                    		<img src="assets/img/testimonials/1.jpg" alt="" data-at2x="assets/img/testimonials/1.jpg">
+	                    	</div>
+	                    </div>
+	                    <div class="testimonial-single">
+	                    	<p>
+	                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt 
+	                    		ut labore et. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+	                    		incididunt ut labore et.
+	                    		<br>
+	                    		<a href="">Jane Jonsson, blog.jane.com</a>
+	                    	</p>
+	                    	<div class="testimonial-single-image">
+	                    		<img src="assets/img/testimonials/2.jpg" alt="" data-at2x="assets/img/testimonials/2.jpg">
+	                    	</div>
+	                    </div>
+	                    <div class="testimonial-single">
+	                    	<p>
+	                    		Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
+	                    		lobortis nisl ut aliquip ex ea commodo consequat. Ut wisi enim ad minim veniam, 
+	                    		quis nostrud exerci tation ullamcorper suscipit lobortis nisl.
+	                    		<br>
+	                    		<a href="">John Doe, johndoe.com</a>
+	                    	</p>
+	                    	<div class="testimonial-single-image">
+	                    		<img src="assets/img/testimonials/3.jpg" alt="" data-at2x="assets/img/testimonials/3.jpg">
+	                    	</div>
+	                    </div>
+	                    <div class="testimonial-single">
+	                    	<p>
+	                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt 
+	                    		ut labore et. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+	                    		incididunt ut labore et.
+	                    		<br>
+	                    		<a href="">Jane Jonsson, blog.jane.com</a>
+	                    	</p>
+	                    	<div class="testimonial-single-image">
+	                    		<img src="assets/img/testimonials/4.jpg" alt="" data-at2x="assets/img/testimonials/4.jpg">
+	                    	</div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="testimonials-icon-container">
+            		<span aria-hidden="true" class="icon_chat"></span>
+            	</div>
+	        </div>
+        </div> -->
+        
+        <!-- About us -->
+        <div class="about-container section-container">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12 about section-description wow fadeIn">
+	                    <h2>About us</h2>
+	                    <div class="divider-1 wow fadeInUp"><span></span></div>
+	                    <p>
+	                    	Group of graduate students at CSULA ( California State University - Los Angeles)
+	                    </p>
+	                </div>
+	            </div>
+	        </div>
+        </div>
+        
+        <!-- Block 2 (team member) -->
+        <div class="block-2-container section-container about-block-2-container">
+	        <div class="container">
+	            <div class="row">
+	            	<div class="col-sm-4 block-2-box block-2-left block-2-media wow fadeInLeft">
+	            		<div class="block-2-img-container">
+	            			<img src="assets/img/about/1.jpg" alt="" data-at2x="assets/img/about/1.jpg">
+	            			<div class="img-container-line line-1"></div>
+	            			<div class="img-container-line line-2"></div>
+	            			<div class="img-container-line line-3"></div>
+	            		</div>
+	            	</div>
+	            	<div class="col-sm-8 block-2-box block-2-right wow fadeInUp">
+	            		<h3>Jane Doe / <span>Our CEO</span></h3>
+	            		<p>
+	            			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
+	            			labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+	            		</p>
+	            		<p>
+	            			Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. 
+	            			Mirum est notare quam littera gothica, quam nunc putamus parum claram lorem.
+	            		</p>
+	            		<h3>Follow Her:</h3>
+	            		<div class="about-social">
+		                	<a href="#"><i class="fa fa-facebook"></i></a>
+		                	<a href="#"><i class="fa fa-dribbble"></i></a>
+		                    <a href="#"><i class="fa fa-twitter"></i></a>
+		                    <a href="#"><i class="fa fa-pinterest"></i></a>
+		                </div>
+	            	</div>
+	            </div>
+	        </div>
+        </div>
 
-    <!-- Custom Theme JavaScript -->
-    <script>
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    // Scrolls to the selected menu item on the page
-    $(function() {
-        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
-        });
-    });
-    //#to-top button appears after scrolling
-    var fixed = false;
-    $(document).scroll(function() {
-        if ($(this).scrollTop() > 250) {
-            if (!fixed) {
-                fixed = true;
-                // $('#to-top').css({position:'fixed', display:'block'});
-                $('#to-top').show("slow", function() {
-                    $('#to-top').css({
-                        position: 'fixed',
-                        display: 'block'
-                    });
-                });
-            }
-        } else {
-            if (fixed) {
-                fixed = false;
-                $('#to-top').hide("slow", function() {
-                    $('#to-top').css({
-                        display: 'none'
-                    });
-                });
-            }
-        }
-    });
-    // Disable Google Maps scrolling
-    // See http://stackoverflow.com/a/25904582/1607849
-    // Disable scroll zooming and bind back the click event
-    var onMapMouseleaveHandler = function(event) {
-        var that = $(this);
-        that.on('click', onMapClickHandler);
-        that.off('mouseleave', onMapMouseleaveHandler);
-        that.find('iframe').css("pointer-events", "none");
-    }
-    var onMapClickHandler = function(event) {
-            var that = $(this);
-            // Disable the click handler until the user leaves the map area
-            that.off('click', onMapClickHandler);
-            // Enable scrolling zoom
-            that.find('iframe').css("pointer-events", "auto");
-            // Handle the mouse leave event
-            that.on('mouseleave', onMapMouseleaveHandler);
-        }
-        // Enable map zooming with mouse scroll when the user clicks the map
-    $('.map').on('click', onMapClickHandler);
-    </script>
+<div class="block-2-container section-container contact-container">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-sm-12 block-2 section-description wow fadeIn">
+	                	<h2>Login</h2>
+	                	<div class="divider-1 wow fadeInUp"><span></span></div>
+	                    <p>
+	                    	Thank you for being a member in our team
+	                    </p>
+	                </div>
+	            </div>
+	            <div class="row">
+	            	<div class="col-sm-4 block-2-box block-2-left  wow fadeInLeft">
+	            		<h3>Login</h3>
+	                    <form name='loginForm' action="<c:url value='/login' />" method='post'>
+	                    	
+	                    	<div class="form-group">
+	                    		<label class="sr-only" >Username</label>
+	                        	<input type="text" name="username" placeholder="Username.."  id="contact-email">
+	                        </div>
+	                       
+	                        <div class="form-group">
+	                        	<label class="sr-only" >Password</label>
+	                        	<input type="password" style="color: black;" name='password' placeholder="Password..."  id="contact-subject">
+	                        </div>
+	                        
+	                        <input class="btn" name="submit" type="submit" value="submit" />
+	                    </form>
+	            	</div>
+	            	<div class="col-sm-4 block-2-box block-2-right contact-address wow fadeInUp">
+	            		<h3>Visit us</h3>
+	                    <p><span aria-hidden="true" class="icon_pin"></span>Via Principe Amedeo 9, Torino, Italy</p>
+	                    <p><span aria-hidden="true" class="icon_phone"></span>Phone: 0039 333 12 68 347</p>
+	                    <p><span aria-hidden="true" class="icon_mail"></span>Email: <a href="">hi@yourdomain.com</a></p>
+	            	</div>
+	            </div>
+	            <div class="contact-icon-container">
+            		<span aria-hidden="true" class="icon_mail"></span>
+            	</div>
+	        </div>
+        </div>
+				
+					<%-- <form name='loginForm' action="<c:url value='/login' />" method='post'>
+		  						
+							<label> Username : </label>
+							<input type='text' name='username' value=''><br />
+							
+							<label> Password: </label>  <br />
+							<input style="color: black;" type='password' name='password' /><br />
+							<input class="btn" name="submit" type="submit" value="submit" />
+							
+					</form> 
+					
+	           --%>
 
-</body>
+	        
+	        
+        <!-- Footer -->
+        <footer>
+	        <div class="container">
+	        	<div class="row">
+		        	<div class="col-sm-12">
+		        		<div class="scroll-to-top">
+		        			<a href="#"><i class="fa fa-chevron-up"></i></a>
+		        		</div>
+		        	</div>
+		        </div>
+	            <div class="row">
+                    <div class="col-sm-7 footer-copyright">
+                    	&copy; Lancar Bootstrap Template by <a href="http://azmind.com/free-bootstrap-themes-templates/">Azmind</a>.
+                    </div>
+                    <div class="col-sm-5 footer-social">
+                    	<a href="#"><i class="fa fa-facebook"></i></a>
+	                	<a href="#"><i class="fa fa-dribbble"></i></a>
+	                    <a href="#"><i class="fa fa-twitter"></i></a>
+	                    <a href="#"><i class="fa fa-google-plus"></i></a>
+	                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div>
+	            </div>
+	        </div>
+        </footer>
+        
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/retina-1.1.0.min.js"></script>
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="assets/js/waypoints.min.js"></script>
+        <script src="assets/js/jquery.countTo.js"></script>
+        <script src="assets/js/masonry.pkgd.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
 
 </html>
  
