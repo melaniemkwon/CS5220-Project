@@ -107,7 +107,7 @@ public class UserController {
 			return "user/add";
 
 		user = userDao.saveUserSignup(user);
-		return "/login";
+		return "/home";
 	}
 
 	@RequestMapping(value = "/user/delete.html")
