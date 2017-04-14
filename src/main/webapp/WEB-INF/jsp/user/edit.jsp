@@ -134,6 +134,41 @@
 					<form:form modelAttribute="user" class="form" cssClass="form-horizontal">
 
 						<div class="form-group">
+							<label class="col-md-3 control-label">Username:</label>
+							<div class="col-md-8">
+								<security:authorize access="hasRole('ROLE_ADMIN')">
+									<form:input path="username" maxlength="12" cssClass="form-control" required="required" />
+								</security:authorize>
+								<security:authorize access="!hasRole('ROLE_ADMIN')">
+									<form:input path="username" maxlength="12" cssClass="form-control" required="required" disabled="true" />
+								</security:authorize>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">Password:</label>
+							<div class="col-md-8">
+								<form:password path="password" maxlength="12" cssClass="form-control" showPassword="true" required="required" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<security:authorize access="hasRole('ROLE_ADMIN')">
+								<div>
+									<label for="role" class="col-md-3 control-label">Role</label>
+								</div>
+								<div class="col-md-8">
+									<form:select path="role" cssClass="form-control">
+										<form:option value="ROLE_USER">USER</form:option>
+										<form:option value="ROLE_STAFF">STAFF</form:option>
+										<form:option value="ROLE_ADMIN">ADMIN</form:option>
+									</form:select>
+								</div>
+							</security:authorize>
+						</div>
+
+						<hr>
+
+						<div class="form-group">
 							<label class="col-lg-3 control-label">First name:</label>
 							<div class="col-lg-8">
 								<form:input path="firstName" maxlength="12" cssClass="form-control" required="required" />
@@ -175,45 +210,6 @@
 							<div class="col-lg-8">
 								<form:input path="zip" cssClass="form-control" />
 							</div>
-						</div>
-
-<%-- 						<div class="form-group">
-							<label class="col-lg-3 control-label">Phone Number:</label>
-							<form:errors class="error" path="phoneNumber" />
-							<div class="col-lg-8">
-								<form:input path="phoneNumber" maxlength="12" cssClass="form-control" required="required" />
-							</div>
-						</div> --%>
-
-						<div class="form-group">
-							<label class="col-md-3 control-label">Username:</label>
-							<div class="col-md-8">
-								<security:authorize access="hasRole('ROLE_ADMIN')">
-									<form:input path="username" maxlength="12" cssClass="form-control" required="required" />
-								</security:authorize>
-								<security:authorize access="!hasRole('ROLE_ADMIN')">
-									<form:input path="username" maxlength="12" cssClass="form-control" required="required" disabled="true" />
-								</security:authorize>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">Password:</label>
-							<div class="col-md-8">
-								<form:password path="password" maxlength="12" cssClass="form-control" showPassword="true" required="required" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<security:authorize access="hasRole('ROLE_ADMIN')">
-								<div>
-									<label for="role">Role</label>
-								</div>
-								<form:select path="role" cssClass="form-control">
-									<form:option value="ROLE_USER">USER</form:option>
-									<form:option value="ROLE_STAFF">STAFF</form:option>
-									<form:option value="ROLE_ADMIN">ADMIN</form:option>
-								</form:select>
-							</security:authorize>
 						</div>
 
 						<div class="text-center">
