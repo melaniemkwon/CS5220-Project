@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 	private EntityManager entityManager;
 
 	@Override
-	@PostAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or principal.username == #user.username")
+	@PostAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or principal.username == returnObject.username")
 	public User getUser(Integer id) {
 		return entityManager.find(User.class, id);
 	}
