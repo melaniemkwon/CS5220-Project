@@ -36,39 +36,40 @@
 </head>
 <body onload='document.loginForm.username.focus();'>
 
-	<h1>Spring Security Custom Login Form (XML)</h1>
+<div class="container">
 
-	<div id="login-box">
+	<div class="col-md-offset-3 col-md-6">
+		<h1>Spring Security Custom Login Form (XML)</h1>
+		
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4 class="panel-title">Login</h4>
+			</div>
+			<div class="panel-body">
+				<c:if test="${not empty error}">
+					<div class="error">${error}</div>
+				</c:if>
+				<c:if test="${not empty msg}">
+					<div class="msg">${msg}</div>
+				</c:if>
+				
+				<form name='loginForm' action="<c:url value='/login' />" method='POST'>
 
-		<h2>Login with Username and Password</h2>
-
-		<c:if test="${not empty error}">
-			<div class="error">${error}</div>
-		</c:if>
-		<c:if test="${not empty msg}">
-			<div class="msg">${msg}</div>
-		</c:if>
-
-		<form name='loginForm'
-		  action="<c:url value='/login' />" method='POST'>
-
-		  <table>
-			<tr>
-				<td>User:</td>
-				<td><input type='text' name='username' value=''></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type='password' name='password' /></td>
-			</tr>
-			<tr>
-				<td colspan='2'><input name="submit" type="submit"
-					value="submit" /></td>
-			</tr>
-		  </table>
-
-		</form>
+					<div class="form-group label-static">
+						<label for="username" class="control-label">Username</label>
+						<input type='text' name='username' class="form-control" value='' id='username'>
+					</div>
+					
+					<div class="form-group label-static">
+						<label for="password" class="control-label">Password</label>
+						<input type='password' name='password' class="form-control" id='password'/>
+					</div>
+					
+					<input name="submit" type="submit" value="Login" class="btn btn-raised btn-primary"/>
+				</form>
+			</div>
+		</div>
 	</div>
-
+</div>
 </body>
 </html>
