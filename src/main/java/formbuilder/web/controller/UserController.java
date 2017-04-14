@@ -99,15 +99,15 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/signup.html", method = RequestMethod.POST)
-	public String signup(@ModelAttribute User user, BindingResult result) {
+	public String signup(@ModelAttribute @Valid User user, BindingResult result) {
 
 		userValidator.validate(user, result);
 
 		if (result.hasErrors())
 			return "user/add";
 
-		user = userDao.saveUser(user);
-		return "redirect:login.html";
+		user = userDao.saveUserSignup(user);
+		return "/login";
 	}
 
 	@RequestMapping(value = "/user/delete.html")

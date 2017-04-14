@@ -39,7 +39,7 @@
 				<h4 class="panel-title">Sign up</h4>
 			</div>
 				
-				<form:form modelAttribute="user" class="form" method="post" cssClass="form-horizontal">
+				<form:form modelAttribute="user" class="User" method="post" cssClass="form-horizontal">
 				
 				<div class="col-md-8 col-md-offset-2">
 					<div class="form-group">
@@ -54,6 +54,70 @@
 						</div>
 						<form:password path="password" maxlength="12" cssClass="form-control" required="required" />
 					</div>
+					<%-- <div class="form-group">
+						<div>
+							<label for="role">Role</label>
+						</div>
+						<form:select path="role" cssClass="form-control">
+							<form:option selected="selected" value="ROLE_USER">USER</form:option>
+							<form:option value="ROLE_STAFF">STAFF</form:option>
+							<form:option value="ROLE_ADMIN">ADMIN</form:option>
+						</form:select>
+					</div> --%>
+					<%-- <div class="form-group">
+						<div class="togglebutton">
+							<form:checkbox path="enabled" label=" Enable" />
+						</div>
+					</div>
+					<hr> --%>
+					<div class="form-group">
+						<div>
+							<label for="email">Email </label> <form:errors class="error" path="email" />
+						</div>
+						<form:input path="email" cssClass="form-control" required="required" />
+					</div> 
+					<div class="form-group"> 
+						<div>
+							<label for="firstName">First Name</label>
+						</div>
+						<form:input path="firstName" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="lastName">Last Name</label>
+						</div>
+						<form:input path="lastName" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					 <div class="form-group">
+						<div>
+							<label for="phoneNumber">Phone Number</label> <form:errors class="error" path="phoneNumber" />
+						</div>
+						<form:input path="phoneNumber" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="street">Street</label>
+						</div>
+						<form:input path="street" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="city">City</label>
+						</div>
+						<form:input path="city" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="state">State</label>
+						</div>
+						<form:input path="state" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="zip">Zipcode</label> <form:errors class="error" path="zip" />
+						</div>
+						<form:input path="zip" maxlength="12" cssClass="form-control" required="required" />
+					</div> 
 					
 					<button type="submit" class="btn btn-raised btn-primary">
 						<span class="glyphicon glyphicon-plus-sign"></span> ADD NEW USER

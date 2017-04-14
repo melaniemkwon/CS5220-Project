@@ -41,7 +41,7 @@
   </security:authentication-manager>
   <security:http use-expressions="true">
     <security:csrf disabled="true"/>
-    <security:form-login login-page="/" 
+    <security:form-login login-page="/login" 
       authentication-success-handler-ref="authenticationSuccessHandler" />
     <security:logout logout-success-url="/" />
     <security:intercept-url pattern="/user/edit.html" access="authenticated" />
