@@ -141,9 +141,9 @@ create sequence hibernate_sequence start 1 increment 1;
         foreign key (form_id) 
         references forms;
 
-insert into users (id, username, password, last_name, first_name, phonenumber, email, enabled) values (1000, 'admin', 'abcd', 'System', 'Administrator', '1231231234', 'formbuilderadmin@localhost.localdomain', TRUE);
+insert into users (id, username, password, last_name, first_name, email, enabled) values (1000, 'admin', 'abcd', 'System', 'Administrator', 'formbuilderadmin@localhost.localdomain', TRUE);
 insert into authorities (user_id, role) values (1000, 'ROLE_ADMIN');
-insert into users (id, username, password, last_name, first_name, phonenumber, email, enabled) values (1001, 'staff', 'abcd', 'System', 'Staff', '1231231234', 'formbuilderstaff@localhost.localdomain', TRUE);
+insert into users (id, username, password, last_name, first_name, email, enabled) values (1001, 'staff', 'abcd', 'System', 'Staff', 'formbuilderstaff@localhost.localdomain', TRUE);
 insert into authorities (user_id, role) values (1001, 'ROLE_STAFF');
-insert into users (id, username, password, last_name, first_name, phonenumber, email, enabled) values (1002, 'user', 'abcd', 'System', 'User', '1231231234', 'formbuilderuser@localhost.localdomain', TRUE);
+insert into users (id, username, password, last_name, first_name, email, enabled) values (1002, 'user', 'abcd', 'System', 'User', 'formbuilderuser@localhost.localdomain', TRUE);
 insert into authorities (user_id, role) values (1002, 'ROLE_USER');

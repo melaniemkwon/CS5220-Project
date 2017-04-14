@@ -3,6 +3,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
+<style>
+    .error {
+        color: red; font-weight: bold;
+        size: 50px;
+    }
+</style>
 <%-- <div class="row">
 <div class="col-md-6 col-md-offset-3">
 	<div class="page-header">
@@ -116,7 +122,7 @@
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
-        <img src="http://sun.calstatela.edu/~cysun/www/img/cysun3.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
+        <img src="http://placehold.it/350x150" class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Upload a different photo...</h6>
         <input type="file" class="text-center center-block well well-sm">
       </div>
@@ -146,16 +152,47 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">Phone Number:</label>
+          <label class="col-lg-3 control-label">Phone Number:</label> <form:errors class="error" path="phoneNumber" />
           <div class="col-lg-8">
-           <form:input path="phoneNumber" maxlength="12" cssClass="form-control" required="required" />
+           <form:input path="phoneNumber" maxlength="12" cssClass="form-control" required="required"/>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">Email:</label>
+          <label class="col-lg-3 control-label">Street:</label> 
           <div class="col-lg-8">
-           <form:input path="email" cssClass="form-control" required="required" />
+           <form:input path="street" cssClass="form-control" />
           </div>
+          <div class="form-group">
+          <label class="col-lg-3 control-label">City:</label> 
+          <div class="col-lg-8">
+           <form:input path="city" cssClass="form-control" />
+          </div>
+          <div class="form-group">
+          <label class="col-lg-3 control-label">State:</label> 
+          <div class="col-lg-8">
+           <form:input path="state" cssClass="form-control" />
+          </div>
+          <div class="form-group">
+          <label class="col-lg-3 control-label">Zip code:</label> 
+          <div class="col-lg-8">
+           <form:input path="zip" cssClass="form-control" />
+          </div>
+          
+          
+          
+          <div class="form-group">
+          <label class="col-lg-3 control-label">Phone Number:</label> <form:errors class="error" path="phoneNumber" />
+          <div class="col-lg-8">
+           <form:input path="phoneNumber" maxlength="12" cssClass="form-control" required="required"/>
+          </div>
+        </div>
+          
+          
+          
+          
+          
+          
+          
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Username:</label>
@@ -176,10 +213,11 @@
         </div>
         
         <div class="form-group">
-			<div>
-				<label for="role">Role</label>
-			</div>
+			
 				<security:authorize access="hasRole('ROLE_ADMIN')">
+					<div>
+						<label for="role">Role</label>
+					</div>
 					<form:select path="role" cssClass="form-control">
 						<form:option value="ROLE_USER">USER</form:option>
 						<form:option value="ROLE_STAFF">STAFF</form:option>
