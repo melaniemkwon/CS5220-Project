@@ -558,6 +558,7 @@
 	            <div class="row">
 	            	<div class="col-sm-4 block-2-box block-2-left  wow fadeInLeft">
 	            		<h3>Login</h3>
+<<<<<<< HEAD
 	            		
 	            		<c:if test="${not empty error}">
 							<div class="error">${error}</div>
@@ -576,6 +577,15 @@
 	                       
 	                        <div class="form-group">
 	                       
+=======
+	                    <form name='loginForm' action="<c:url value='/login' />" method='post'>
+	                    	
+	                    	<div class="form-group"> 
+	                        	<input type="text" name="username" placeholder="Username... ">
+	                        </div>
+	                       
+	                        <div class="form-group">
+>>>>>>> d86d4c210805a4b60d3b3540306f064357aab6bc
 	                        	<input type="password" style="color: black;" name='password' placeholder="Password..." >
 	                        </div>
 	                        
@@ -595,6 +605,7 @@
 	        </div>
         </div>
 				
+<<<<<<< HEAD
 				<!-- user signup  -->
 				
 <%-- <form:form modelAttribute="user" class="form" cssClass="form-horizontal">
@@ -680,6 +691,10 @@
 					</button>
 				</div>
 			</form:form> --%>
+=======
+				
+
+>>>>>>> d86d4c210805a4b60d3b3540306f064357aab6bc
 	        
 	        
         <!-- Footer -->

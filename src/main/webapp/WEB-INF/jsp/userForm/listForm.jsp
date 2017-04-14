@@ -6,11 +6,32 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<div class="row">
+<div class="container">
+	<c:set var="count" value="0" scope="page" />
 	<c:forEach items="${forms}" var="form">
-		<div>
-			<a href="#"><img src="<c:url value='/assets/resources/img/form.png' />"></a>
-			<p>${form.name }
+			
+		<c:if test="${count % 3 == 0}">
+			<div class="row">	
+		</c:if>
+
+	   	<div class="col-md-4">
+			<a href="/formbuilder/userForm/fillForm.html?id=${principal.id}"><img src="<c:url value='/assets/resources/img/form.png' />"></a>
+			<div><a href="/formbuilder/userForm/fillForm.html?id=${principal.id}">${form.name}</a></div>
+			<span>${form.description}</span>
 		</div>
+		
+		<c:choose>
+		    <c:when test="${count % 3 == 2}">
+				</div>
+				<c:set var="count" value="${0}" scope="page"/>
+		    </c:when>
+		    <c:otherwise>
+		        <c:set var="count" value="${count + 1}" scope="page"/>
+		    </c:otherwise>
+		</c:choose>
+		
 	</c:forEach>
+	
+	</div>
+
 </div>
