@@ -12,9 +12,9 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="/formbuilder/">Home</a></li>
 				
 				<security:authorize access="hasRole('ROLE_ADMIN')">
+				  <li><a href="/formbuilder/">Home</a></li>
 				  <li><a href="/formbuilder/user/list.html">Users</a></li>
 			  	  <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
 				</security:authorize>
@@ -25,7 +25,8 @@
 				</security:authorize>
 				
 				<security:authorize access="hasRole('ROLE_USER')">
-			  	  <li><a href="#">My Forms</a></li>
+				  <li><a href="/formbuilder/userHome.html">Home</a></li>
+			  	  <li><a href="/formbuilder/userForm/listForm.html?id=${principal.id}">My Forms</a></li>
 		  	      <li><a href="#">Download PDFs</a></li>
 				  <li><a href="#">Help</a></li>
 				</security:authorize>

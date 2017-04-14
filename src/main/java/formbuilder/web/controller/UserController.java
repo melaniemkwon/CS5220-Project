@@ -68,6 +68,7 @@ public class UserController {
 
 		user = userDao.saveUser(user);
 		sessionStatus.setComplete();
+
 		return "redirect:/user/edit.html?id=" + user.getId();
 	}
 
