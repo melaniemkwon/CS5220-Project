@@ -90,6 +90,26 @@ public class UserController {
 		return "redirect:list.html";
 	}
 
+
+	@RequestMapping(value = "/signup.html", method = RequestMethod.GET)
+	public String signup(ModelMap models) {
+
+		models.put("user", new User());
+		return "/signup";
+	}
+
+	@RequestMapping(value = "/signup.html", method = RequestMethod.POST)
+	public String signup(@ModelAttribute User user, BindingResult result) {
+
+		userValidator.validate(user, result);
+
+		if (result.hasErrors())
+			return "user/add";
+
+		user = userDao.saveUser(user);
+		return "redirect:login.html";
+	}
+
 	@RequestMapping(value = "/user/delete.html")
 	public String deleteUser(@RequestParam int id, HttpServletResponse response) {
 		userDao.delete(id);

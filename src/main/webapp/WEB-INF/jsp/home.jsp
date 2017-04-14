@@ -69,6 +69,7 @@
             	<h1>Welcome to FormBuilder</h1>
             	<div class="page-title-bottom-link">
             		<a class="big-link-1 btn" href="login.html">Login</a>
+            		<a class="big-link-1 btn" href="signup.html">Signup</a>
             	</div>
             </div>
         </div>
