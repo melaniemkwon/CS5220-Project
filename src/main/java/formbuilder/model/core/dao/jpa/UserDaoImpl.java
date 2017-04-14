@@ -39,6 +39,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	@Transactional
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void delete(int id) {
 		entityManager.remove(getUser(id));
 	}
