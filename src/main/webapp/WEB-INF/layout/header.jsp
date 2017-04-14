@@ -13,13 +13,8 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				
-				<security:authorize access="hasRole('ROLE_ADMIN')">
-				  <li><a href="/formbuilder/">Home</a></li>
-				  <li><a href="/formbuilder/user/list.html">Users</a></li>
-			  	  <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
-				</security:authorize>
-				
-				<security:authorize access="hasRole('ROLE_STAFF')">
+				<security:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_STAFF')">
+				  <li><a href="/formbuilder/staffHome.html">Home</a></li>
 				  <li><a href="/formbuilder/user/list.html">Users</a></li>
 			  	  <li><a href="/formbuilder/form/listForm.html">Forms</a></li>
 				</security:authorize>
