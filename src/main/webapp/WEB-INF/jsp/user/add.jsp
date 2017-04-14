@@ -34,7 +34,7 @@
 						</div>
 						<form:password path="password" maxlength="12" cssClass="form-control" required="required" />
 					</div>
-					<%-- <div class="form-group">
+					<div class="form-group">
 						<div>
 							<label for="role">Role</label>
 						</div>
@@ -43,7 +43,7 @@
 							<form:option value="ROLE_STAFF">STAFF</form:option>
 							<form:option value="ROLE_ADMIN">ADMIN</form:option>
 						</form:select>
-					</div> --%>
+					</div>
 					<div class="form-group">
 						<div class="togglebutton">
 							<form:checkbox path="enabled" label=" Enable" />
