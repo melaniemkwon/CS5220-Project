@@ -181,6 +181,13 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-lg-3 control-label">Email:</label>
+							<form:errors class="error" path="email" />
+							<div class="col-lg-8">
+								<form:input path="email" maxlength="12" cssClass="form-control" required="required" />
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-lg-3 control-label">Phone Number:</label>
 							<form:errors class="error" path="phoneNumber" />
 							<div class="col-lg-8">
