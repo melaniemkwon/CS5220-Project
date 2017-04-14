@@ -122,11 +122,7 @@
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
-<<<<<<< HEAD
-        <img src="http://i.dailymail.co.uk/i/pix/2017/01/16/20/332EE38400000578-4125738-image-a-132_1484600112489.jpg" style="width: 60%;" class="avatar img-circle img-thumbnail " alt="avatar">
-=======
         <img src="http://placehold.it/350x150" class="avatar img-circle img-thumbnail" alt="avatar">
->>>>>>> d86d4c210805a4b60d3b3540306f064357aab6bc
         <h6>Upload a different photo...</h6>
         <input type="file" class="text-center center-block well well-sm">
       </div>
