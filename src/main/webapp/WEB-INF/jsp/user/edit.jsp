@@ -116,7 +116,7 @@
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
-        <img src="http://sun.calstatela.edu/~cysun/www/img/cysun3.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
+        <img src="http://i.dailymail.co.uk/i/pix/2017/01/16/20/332EE38400000578-4125738-image-a-132_1484600112489.jpg" style="width: 60%;" class="avatar img-circle img-thumbnail " alt="avatar">
         <h6>Upload a different photo...</h6>
         <input type="file" class="text-center center-block well well-sm">
       </div>

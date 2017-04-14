@@ -558,13 +558,24 @@
 	            <div class="row">
 	            	<div class="col-sm-4 block-2-box block-2-left  wow fadeInLeft">
 	            		<h3>Login</h3>
-	                    <form name='loginForm' action="<c:url value='/login' />" method='post'>
+	            		
+	            		<c:if test="${not empty error}">
+							<div class="error">${error}</div>
+							</c:if>
+							<c:if test="${not empty msg}">
+							<div class="msg">${msg}</div>
+							</c:if>
+		
+	                    <form name='loginForm' action="<c:url value='/' />" method='post'>
 	                    	
 	                    	<div class="form-group"> 
-	                        	<input type="text" name="username" placeholder="Username... ">
+	                    	
+	                    	 
+	                        	<input type="text" name="username" placeholder="Username... ${error} ">
 	                        </div>
 	                       
 	                        <div class="form-group">
+	                       
 	                        	<input type="password" style="color: black;" name='password' placeholder="Password..." >
 	                        </div>
 	                        
@@ -584,8 +595,91 @@
 	        </div>
         </div>
 				
+				<!-- user signup  -->
 				
-
+<%-- <form:form modelAttribute="user" class="form" cssClass="form-horizontal">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="form-group">
+						<div>
+							<label for="username">Username</label>
+						</div>
+						<form:input path="username" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="password">Password</label>
+						</div>
+						<form:password path="password" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="role">Role</label>
+						</div>
+						<form:select path="role" cssClass="form-control">
+							<form:option selected="selected" value="ROLE_USER">USER</form:option>
+							<form:option value="ROLE_STAFF">STAFF</form:option>
+							<form:option value="ROLE_ADMIN">ADMIN</form:option>
+						</form:select>
+					</div>
+					<div class="form-group">
+						<div class="togglebutton">
+							<form:checkbox path="enabled" label=" Enable" />
+						</div>
+					</div>
+					<hr>
+					<div class="form-group">
+						<div>
+							<label for="email">Email </label> <form:errors class="error" path="email" />
+						</div>
+						<form:input path="email" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="firstName">First Name</label>
+						</div>
+						<form:input path="firstName" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="lastName">Last Name</label>
+						</div>
+						<form:input path="lastName" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="phoneNumber">Phone Number</label> <form:errors class="error" path="phoneNumber" />
+						</div>
+						<form:input path="phoneNumber" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="street">Street</label>
+						</div>
+						<form:input path="street" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="city">City</label>
+						</div>
+						<form:input path="city" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="state">State</label>
+						</div>
+						<form:input path="state" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<div class="form-group">
+						<div>
+							<label for="zip">Zipcode</label> <form:errors class="error" path="zip" />
+						</div>
+						<form:input path="zip" maxlength="12" cssClass="form-control" required="required" />
+					</div>
+					<button type="submit" class="btn btn-raised btn-primary">
+						<span class="glyphicon glyphicon-plus-sign"></span> ADD NEW USER
+					</button>
+				</div>
+			</form:form> --%>
 	        
 	        
         <!-- Footer -->
