@@ -3,7 +3,7 @@
 <%@ attribute name="question" required="true" type="formbuilder.model.questionform.Question"%>
 <%@ tag body-content="scriptless"%>
 
-<form:form  modelAttribute="userAnswer" class = "form" >
+<form:form  modelAttribute="form" class = "form" >
 <div class="form-group row" style="margin-left: 10px; margin-top: 10px;">
 
 	<c:choose>
@@ -31,7 +31,7 @@
 					<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
 				</c:when>
 			</c:choose>	
-				<form:input class="form-control" path="answers[${question.questionNumber}]"/>
+				<form:input class="form-control" path="questions[${question.questionNumber}]" value=""/>
 			</div>
 		</c:when>
 
@@ -43,7 +43,7 @@
 			</div>
 			<div class="${question.tagAttribute.size }">
 				<form:input class="form-control"
-					path="questions[${question.questionNumber}]" 
+					path="questions[${question.questionNumber}].answer" 
 					min="${question.tagAttribute.min}" max="${question.tagAttribute.max}"
 					step="${question.tagAttribute.step}"
 					placeholder="${question.tagAttribute.placeholder }"/>
@@ -57,7 +57,7 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-				<form:textarea class="form-control" path="answers[${question.questionNumber}]"  rows="${question.tagAttribute.rows}"/>
+				<form:textarea class="form-control" path="questions[${question.questionNumber}]" value="" rows="${question.tagAttribute.rows}"/>
 			</div>
 		</c:when>
 
@@ -69,7 +69,7 @@
 			</div>
 			<c:forEach items="${question.choices}" var="choice">
 				<div class="checkbox">
-					<label> <checkbox path="answers[${question.questionNumber}]" value="${choiceStatus.index}"/> ${choice }</label>
+					<label> <checkbox path="questions[${question.questionNumber}]" value="${choiceStatus.index}"/> ${choice }</label>
 				</div>
 			</c:forEach>
 		</c:when>
@@ -82,7 +82,7 @@
 			</div>
 			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
 				<div class="radio">
-					<label> <form:radiobutton path="answers[${question.questionNumber}]" 
+					<label> <form:radiobutton path="questions[${question.questionNumber}]" 
 					value="${loop.index}"/> ${choice }
 						
 					</label>
