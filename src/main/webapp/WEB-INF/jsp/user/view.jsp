@@ -10,8 +10,8 @@
 	<div class="col-md-4 col-sm-6 col-xs-12">
 		<div class="text-center">
 			<img src="http://placehold.it/150x150" class="avatar img-circle img-thumbnail" alt="avatar">
-			<h6>Upload a different photo...</h6>
-			<input type="file" class="text-center center-block panel panel-default">
+			<h5>${user.username}</h5>
+			<h6>${user.role}</h6>
 		</div>
 	</div>
 	<div class="col-md-8 col-sm-6 col-xs-12 personal-info">
