@@ -19,9 +19,9 @@
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">        
         <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/elegant-font/code/style.css">
+<!--         <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/elegant-font/code/style.css">
         <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/css/animate.css">
-        <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/css/magnific-popup.css">
+        <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/css/magnific-popup.css"> -->
 		<link rel="stylesheet" href="assets/css/form-elements.css">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/media-queries.css">
@@ -68,7 +68,7 @@
             <div class="page-title-text wow fadeInUp" style="background-color:rgba(0, 0, 0, .25);">
             	<h1>Welcome to FormBuilder</h1>
             	<div class="page-title-bottom-link">
-            		<a class="big-link-1 btn scroll-link" href="#contact">Login</a>
+            		<a class="big-link-1 btn" href="login.html">Login</a>
             	</div>
             </div>
         </div>
@@ -255,11 +255,7 @@
             	</div>
 	        </div>
         </div>
-				
-				
-
-	        
-	        
+ 
         <!-- Footer -->
         <footer>
 	        <div class="container">
@@ -284,11 +280,10 @@
 	            </div>
 	        </div>
         </footer>
-        
 
         <!-- Javascript -->
         <script src="assets/js/jquery-1.11.1.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/vendors/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.backstretch.min.js"></script>
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/retina-1.1.0.min.js"></script>
@@ -298,7 +293,6 @@
         <script src="assets/js/masonry.pkgd.min.js"></script>
         <script src="assets/js/scripts.js"></script>
         
-
     </body>
 
 </html>
