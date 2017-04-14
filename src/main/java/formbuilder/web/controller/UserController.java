@@ -60,7 +60,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/edit.html", method = RequestMethod.POST)
-	public String edit(@ModelAttribute User user, BindingResult result, SessionStatus sessionStatus) {
+	public String edit(@ModelAttribute @Valid User user, BindingResult result, SessionStatus sessionStatus) {
 
 		userValidator.validate(user, result);
 		if (result.hasErrors())
@@ -68,7 +68,7 @@ public class UserController {
 
 		user = userDao.saveUser(user);
 		sessionStatus.setComplete();
-		
+
 		return "redirect:/user/edit.html?id=" + user.getId();
 	}
 
