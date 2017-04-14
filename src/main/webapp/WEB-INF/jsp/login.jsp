@@ -2,6 +2,26 @@
 <html>
 <head>
 <title>Login Page</title>
+<style>
+.error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+.msg {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+</style>
 </head>
 <body onload='document.loginForm.username.focus();'>
 
@@ -19,7 +39,7 @@
 					<div class="error">${error}</div>
 				</c:if>
 				<c:if test="${not empty msg}">
-					<div class="msg">${msg}</div>
+					<div class="fade in">${msg}</div>
 				</c:if>
 				
 				<form name='loginForm' action="<c:url value='/login' />" method='POST'>
