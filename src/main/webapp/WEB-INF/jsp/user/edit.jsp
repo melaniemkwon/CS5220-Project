@@ -3,6 +3,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
+<style>
+    .error {
+        color: red; font-weight: bold;
+        size: 50px;
+    }
+</style>
 <%-- <div class="row">
 <div class="col-md-6 col-md-offset-3">
 	<div class="page-header">
@@ -146,13 +152,13 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">Phone Number:</label>
+          <label class="col-lg-3 control-label">Phone Number:</label> <form:errors class="error" path="phoneNumber" />
           <div class="col-lg-8">
-           <form:input path="phoneNumber" maxlength="12" cssClass="form-control" required="required" />
+           <form:input path="phoneNumber" maxlength="12" cssClass="form-control" required="required"/>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">Email:</label>
+          <label class="col-lg-3 control-label">Email:</label> <form:errors class="error" path="email" />
           <div class="col-lg-8">
            <form:input path="email" cssClass="form-control" required="required" />
           </div>
@@ -176,10 +182,11 @@
         </div>
         
         <div class="form-group">
-			<div>
-				<label for="role">Role</label>
-			</div>
+			
 				<security:authorize access="hasRole('ROLE_ADMIN')">
+					<div>
+						<label for="role">Role</label>
+					</div>
 					<form:select path="role" cssClass="form-control">
 						<form:option value="ROLE_USER">USER</form:option>
 						<form:option value="ROLE_STAFF">STAFF</form:option>

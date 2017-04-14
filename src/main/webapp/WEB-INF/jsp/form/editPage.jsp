@@ -106,7 +106,7 @@
 				</div>
 			</div>
 		</div>
-		<a href="javascript:deletePage()">deletePage</a>
+<!-- 		<a href="javascript:deletePage()">deletePage</a> -->
 		
 		<div class="text-center">
 			<nav aria-label="Page navigation">
