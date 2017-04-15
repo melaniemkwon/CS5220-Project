@@ -33,7 +33,7 @@
 				<h4 class="panel-title">Signup</h4>
 			</div>
 				
-				<form:form modelAttribute="user" class="User" method="post" cssClass="form-horizontal">
+				<form:form modelAttribute="user" class="User" method="post" >
 				
 				
 						<div class="form-group label-static">
