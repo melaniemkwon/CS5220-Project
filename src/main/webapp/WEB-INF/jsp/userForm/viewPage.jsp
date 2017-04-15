@@ -40,6 +40,8 @@
 				</c:when>
 				<c:otherwise>
 				    <form:form  modelAttribute="userAnswer" class = "form" action="/formbuilder/userForm/fillForm.html">
+					<input type="hidden" name="id" value=${id}>
+					<input type="hidden" name="pageNum" value=${pageNum}>
 					<c:forEach items="${questionsPage}" var="question">
 						<formbuilder:fillFormDisplay question="${question}"></formbuilder:fillFormDisplay>
 						<hr />

@@ -30,9 +30,9 @@
 					<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
 				</c:when>
 			</c:choose>
-			<c:if test="${question.type eq 'TEXT'}">	
+				
 				<form:input class="form-control" path="answers[${question.questionNumber}]" value=""/>
-			</c:if>
+			
 			</div>
 		</c:when>
 

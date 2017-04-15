@@ -30,4 +30,12 @@ public class ChoiceAnswer extends Answer {
 		this.selected = selected;
 	}
 
+	public List<ChoiceQuestion> getChoices() {
+		return choices;
+	}
+
+	public void setChoices(List<ChoiceQuestion> choices) {
+		this.choices = choices;
+	}
+
 }

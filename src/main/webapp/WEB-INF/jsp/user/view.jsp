@@ -4,55 +4,64 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<div class="container">
+<div class="row">
+	<!-- left column -->
+	<div class="col-md-4 col-sm-6 col-xs-12">
+		<div class="text-center">
+			<img src="http://placehold.it/150x150" class="avatar img-circle img-thumbnail" alt="avatar">
+			<h5>${user.username}</h5>
+			<h6>${user.role}</h6>
+		</div>
+	</div>
+	<div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+		<div class="panel panel-default">
+			<div class="panel-heading">View Account Details</div>
+			<div class="panel-body">
+			<div style="white-space: nowrap;">
 
-	<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/formbuilder/">Formbuilder</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li><a href="/formbuilder/">Home</a></li>
-						<li class="active"><a href="/formbuilder/user/list.html">Users</a></li>
-						<li><a href="/formbuilder/form/listForm.html">Forms</a></li>
-					</ul>
-				</div>
+				<table id="userTable" class="table">
+					<tr>
+						<th>ID</th>
+						<td><div class="col-md-1">${user.id}</div></td>
+					</tr>
+					<tr>
+						<th>Username</th>
+						<td><div class="col-md-1">${user.username}</div></td>
+					</tr>
+					<tr>
+						<th>Role</th>
+						<td><div class="col-md-1">${user.role}</div></td>
+					</tr>
+					<tr>
+						<th>Account Enabled</th>
+						<td><div class="col-md-1">${user.enabled}</div></td>
+					</tr>
+					<tr><td></td><td></td></tr>
+					<tr>
+						<th>Name</th>
+						<td><div class="col-md-1">${user.firstName} ${user.lastName}</div></td>
+					</tr>
+					<tr>
+						<th>Email</th>
+						<td><div class="col-md-1">${user.email}</div></td>
+					</tr>
+					<tr>
+						<th>Phone Number</th>
+						<td><div class="col-md-1">${user.phoneNumber}</div></td>
+					</tr>
+					<tr>
+						<th>Address</th>
+						<td><div class="col-md-1">${user.street}, ${user.city} ${user.state} ${user.zip}</div></td>
+					</tr>
+				</table>
+			
 			</div>
-		</nav>
-		
-	
-	<div class="container" style="white-space: nowrap;">
-		
-		<table id="userTable" class="table table-striped table-bordered">
-			<tr> <th> Name </th>  <td><div class="col-md-1">${user.firstName} ${user.lastName}</div></td> </tr>
-			<tr> <th> Email </th> <td><div class="col-md-1">${user.email} </div></td> </tr>
-			<tr> <th> Address </th> <td><div class="col-md-1">${user.street}, ${user.city} ${user.state}  ${user.zip} </div></td></tr>
-		</table>
-		
-	</div>       
-	
-	<script src="<c:url value='/assets/vendors/jquery/jquery-3.2.0.min.js' />"></script>
-	<script src="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/js/bootstrap.min.js' />"></script>  
-	<script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/jquery.dataTables.min.js' />"></script>
-	<script src="<c:url value='/assets/vendors/DataTables-1.10.13/js/dataTables.bootstrap.min.js' />"></script>	
-	
-<script>
-  $(document).ready(function(){
-	    $('#userTable').DataTable();
-	});
-</script>
-
-<!--  *****************************************  -->
-
-
-
+			</div>
+		</div>
+	</div>
+</div>
+</div>
 
 
 

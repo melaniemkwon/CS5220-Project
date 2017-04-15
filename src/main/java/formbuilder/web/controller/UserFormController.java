@@ -19,6 +19,7 @@ import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
 import formbuilder.model.questionform.Answer;
 import formbuilder.model.questionform.ChoiceAnswer;
+import formbuilder.model.questionform.ChoiceQuestion;
 import formbuilder.model.questionform.Form;
 import formbuilder.model.questionform.Question;
 import formbuilder.model.questionform.TextAnswer;
@@ -27,7 +28,7 @@ import formbuilder.model.questionform.dao.AnswerDao;
 import formbuilder.model.questionform.dao.FormDao;
 
 @Controller
-@SessionAttributes({ "form", "question", "questionsPage" })
+@SessionAttributes({ "form", "question", "questionsPage","user" })
 public class UserFormController {
 	@Autowired
 	private FormDao formDao;
@@ -55,6 +56,8 @@ public class UserFormController {
 		
 		Form form = formDao.getForm(id);
 		models.put("form", form);
+		models.put("id", id);
+		models.put("pageNum", pageNum);
 		List<Question> questionsPage = form.getQuestionsPage(pageNum);
 		models.put("questionsPage", questionsPage);
 		UserAnswers userAnswer = new UserAnswers();
@@ -64,24 +67,29 @@ public class UserFormController {
 	}
 	
 	@RequestMapping(value="/userForm/fillForm.html", method = RequestMethod.POST)
-	public String fillForm(@ModelAttribute UserAnswers userAnswer, @ModelAttribute List<Question> questionsPage, @ModelAttribute User user, SessionStatus status){
+	public String fillForm(@ModelAttribute UserAnswers userAnswer, @RequestParam Integer id, @RequestParam Integer pageNum, @ModelAttribute User user, SessionStatus status){
+		ArrayList<String> answers = (ArrayList<String>) userAnswer.getAnswers();
+		Form form = formDao.getForm(id);
+		List<Question> questionsPage = form.getQuestionsPage(pageNum);
 		
-		ArrayList<Answer> answers = (ArrayList<Answer>) userAnswer.getAnswers();
 		for(int i=1;i<=answers.size();i++){
-			
 			for (Question q : questionsPage){
 				//find out which question it's for
-				if(q.getQuestionNumber()== i){
+				if(q.getQuestionNumber() == i){
 					if(q.getType().equals("TEXT")){
-						TextAnswer ans = (TextAnswer) answers.get(i);
+						System.out.println("text " + i);
+						TextAnswer ans = new TextAnswer();
+						ans.setText(answers.get(i));
 						ans.setQuestion(q);
 						ans.setUser(user);
 						answerDao.saveAnswer(ans);
 					}else{
-						ChoiceAnswer ans = (ChoiceAnswer) answers.get(i);
-						ans.setSelected(true);
-						ans.setQuestion(q);
-						ans.setUser(user);
+						//ChoiceAnswer ans = new ChoiceAnswer();
+						//ArrayList<ChoiceQuestion> choices = 
+						//ans.setChoices(choices); 
+						//ans.setSelected(true);
+						//ans.setQuestion(q);
+						//ans.setUser(user);
 					}
 				}
 			}
