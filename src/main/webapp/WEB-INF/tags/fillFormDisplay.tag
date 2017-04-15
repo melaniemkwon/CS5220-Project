@@ -3,7 +3,6 @@
 <%@ attribute name="question" required="true" type="formbuilder.model.questionform.Question"%>
 <%@ tag body-content="scriptless"%>
 
-<form:form  modelAttribute="userAnswer" class = "form" >
 <div class="form-group row" style="margin-left: 10px; margin-top: 10px;">
 
 	<c:choose>
@@ -30,8 +29,10 @@
 				<c:when test="${question.tagAttribute.inputType eq 'date' }">
 					<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
 				</c:when>
-			</c:choose>	
-				<form:input class="form-control" path="answers[${question.questionNumber}]"/>
+			</c:choose>
+			<c:if test="${question.type eq 'TEXT'}">	
+				<form:input class="form-control" path="answers[${question.questionNumber}]" value=""/>
+			</c:if>
 			</div>
 		</c:when>
 
@@ -42,8 +43,8 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-				<form:input class="form-control"
-					path="questions[${question.questionNumber}]" 
+				<input class="form-control"
+					path="answers[${question.questionNumber}]" 
 					min="${question.tagAttribute.min}" max="${question.tagAttribute.max}"
 					step="${question.tagAttribute.step}"
 					placeholder="${question.tagAttribute.placeholder }"/>
@@ -57,7 +58,7 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-				<form:textarea class="form-control" path="answers[${question.questionNumber}]"  rows="${question.tagAttribute.rows}"/>
+				<input type="textarea" class="form-control" name="questions[${question.questionNumber}]" rows="${question.tagAttribute.rows}"/>
 			</div>
 		</c:when>
 
@@ -67,9 +68,9 @@
 					class="control-label">${question.questionNumber}.
 					${question.description }</label>
 			</div>
-			<c:forEach items="${question.choices}" var="choice">
+			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
 				<div class="checkbox">
-					<label> <checkbox path="answers[${question.questionNumber}]" value="${choiceStatus.index}"/> ${choice }</label>
+					<label> <form:checkbox path="answers[${question.questionNumber}]" value="${loop.index}"/> ${choice}</label>
 				</div>
 			</c:forEach>
 		</c:when>
@@ -82,7 +83,7 @@
 			</div>
 			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
 				<div class="radio">
-					<label> <form:radiobutton path="answers[${question.questionNumber}]" 
+					<label> <input type="radio" name="questions[${question.questionNumber}]" 
 					value="${loop.index}"/> ${choice }
 						
 					</label>
@@ -111,4 +112,4 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-</form:form>
+

@@ -22,7 +22,7 @@ import formbuilder.model.pdfform.PdfField;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "answers")
 @DiscriminatorColumn(name = "answer_type")
-public abstract class Answer implements Serializable {
+public class Answer implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

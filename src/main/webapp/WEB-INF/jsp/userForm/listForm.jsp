@@ -9,7 +9,7 @@
 <div class="row">
 	<c:forEach items="${forms}" var="form">
 		<div>
-			<a href="viewForm.html?id=${form.id}&pageNum=1"><img src="<c:url value='/assets/resources/img/form.png' />"></a>
+			<a href="fillForm.html?id=${form.id}&pageNum=1"><img src="<c:url value='/assets/resources/img/form.png' />"></a>
 			<p>${form.name }
 		</div>
 	</c:forEach>

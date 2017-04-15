@@ -39,10 +39,13 @@
 					<h3 class="text-center">There is no question on this page.</h3>
 				</c:when>
 				<c:otherwise>
+				    <form:form  modelAttribute="userAnswer" class = "form" action="/formbuilder/userForm/fillForm.html">
 					<c:forEach items="${questionsPage}" var="question">
 						<formbuilder:fillFormDisplay question="${question}"></formbuilder:fillFormDisplay>
 						<hr />
 					</c:forEach>
+					<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> SAVE</button></button>
+					</form:form>
 				</c:otherwise>
 			</c:choose>
 		</div>
