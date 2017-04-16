@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,6 +39,11 @@ public abstract class Answer implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	protected User user;
+
+	@Column(name = "page_number")
+	protected int pageNumber;
+
+	protected Form form;
 
 	private boolean enabled;
 
@@ -99,6 +105,22 @@ public abstract class Answer implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public int getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+
+	public Form getForm() {
+		return form;
+	}
+
+	public void setForm(Form form) {
+		this.form = form;
 	}
 
 }

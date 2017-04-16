@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 	private EntityManager entityManager;
 
 	@Override
-	@PostAuthorize("hasRole('ROLE_ADMIN') or principal.username == returnObject.username")
+	@PostAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF') or principal.username == returnObject.username")
 	public User getUser(Integer id) {
 		return entityManager.find(User.class, id);
 	}
@@ -39,6 +39,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	@Transactional
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void delete(int id) {
 		entityManager.remove(getUser(id));
 	}

@@ -1,4 +1,5 @@
 drop table users cascade;
+drop table authorities cascade;
 drop table questions cascade;
 drop table question_choices cascade;
 drop table pdfs cascade;

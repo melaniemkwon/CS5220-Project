@@ -1,5 +1,6 @@
 package formbuilder.model.questionform.dao.jpa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,8 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import formbuilder.model.core.User;
+import formbuilder.model.questionform.Answer;
 import formbuilder.model.questionform.ChoiceQuestion;
 import formbuilder.model.questionform.Form;
 import formbuilder.model.questionform.Question;
@@ -68,5 +71,16 @@ public class FormDaoImpl implements FormDao {
 	@Override
 	public ChoiceQuestion getChoiceQuestion(int qId) {
 		return entityManager.find(ChoiceQuestion.class, qId);
+	}
+
+	@Override
+	public List<Answer> getAnswers(User user, Form form) {
+		List<Answer> answers = entityManager
+				.createQuery(
+						"from Answer where user = :user and form = :form order by question.pageNumber, question.questionNumber",
+						Answer.class)
+				.setParameter("user", user)
+				.setParameter("form", form).getResultList();
+		return (answers == null) ? new ArrayList<Answer>() : answers;
 	}
 }
