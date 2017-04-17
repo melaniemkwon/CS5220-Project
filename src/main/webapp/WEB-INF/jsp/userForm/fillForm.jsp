@@ -39,12 +39,15 @@
 					<h3 class="text-center">There is no question on this page.</h3>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="${answers}" var="answer">
-						<c:if test="${answer.question.pageNumber eq param.pageNum }">
-							<formbuilder:answerDisplay answer="${answer }"></formbuilder:answerDisplay>
-							<hr />
-						</c:if>
-					</c:forEach>
+					<form:form  modelAttribute="questions" class = "form" >
+						<c:forEach items="${questions}" var="question">
+							<c:if test="${question.pageNumber eq param.pageNum }">
+								<formbuilder:answerDisplay question="${question }"></formbuilder:answerDisplay>
+								<hr />	
+							</c:if>
+						</c:forEach>
+						<button type="submit" class="btn btn-raised btn-primary">
+					</form:form>	
 				</c:otherwise>
 			</c:choose>
 		</div>

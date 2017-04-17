@@ -1,6 +1,5 @@
 package formbuilder.web.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -47,53 +46,76 @@ public class UserFormController {
 	@RequestMapping(value = "/userForm/fillForm.html", method = RequestMethod.GET)
 	public String fillForm(@RequestParam Integer uId, @RequestParam Integer fId, @RequestParam Integer pageNum,
 			ModelMap models) {
-		System.out.println("fillForm");
+		/*
+		 * User user = userDao.getUser(uId); Form form = formDao.getForm(fId);
+		 * List<Answer> answers = formDao.getAnswers(user, form); List<Question>
+		 * questions = form.getQuestions(); int index = 0;
+		 * 
+		 * 
+		 * if (questions.size() != answers.size()) { List<Answer> addedAnswers =
+		 * new ArrayList<Answer>(); for (Question question : questions) { if
+		 * (index >= answers.size() ||
+		 * !answers.get(index).getQuestion().equals(question)) { if
+		 * (question.getType().equals("TEXT")) { TextAnswer newAnswer = new
+		 * TextAnswer(); newAnswer.setForm(form); newAnswer.setUser(user);
+		 * newAnswer.setPageNumber(pageNum); newAnswer.setQuestion(question);
+		 * addedAnswers.add(newAnswer); } else if
+		 * (question.getType().equals("CHOICE")) { ChoiceAnswer newAnswer = new
+		 * ChoiceAnswer(); newAnswer.setForm(form); newAnswer.setUser(user);
+		 * newAnswer.setPageNumber(pageNum); newAnswer.setQuestion(question);
+		 * addedAnswers.add(newAnswer); } } else index++;
+		 * 
+		 * } models.put("answers", addedAnswers); } else models.put("answers",
+		 * answers);
+		 * 
+		 * models.put("form", form);
+		 */
 		User user = userDao.getUser(uId);
 		Form form = formDao.getForm(fId);
-		List<Answer> answers = formDao.getAnswers(user, form);
 		List<Question> questions = form.getQuestions();
-		int index = 0;
+		for (Question question : questions) {
+			List<Answer> answers = question.getAnswers();
+			boolean found = false;
 
-
-		if (questions.size() != answers.size()) {
-			List<Answer> addedAnswers = new ArrayList<Answer>();
-			for (Question question : questions) {
-				if (index >= answers.size() || !answers.get(index).getQuestion().equals(question)) {
-					if (question.getType().equals("TEXT")) {
-						TextAnswer newAnswer = new TextAnswer();
-						newAnswer.setForm(form);
-						newAnswer.setUser(user);
-						newAnswer.setPageNumber(pageNum);
-						newAnswer.setQuestion(question);
-						addedAnswers.add(newAnswer);
-					} else if (question.getType().equals("CHOICE")) {
-						ChoiceAnswer newAnswer = new ChoiceAnswer();
-						newAnswer.setForm(form);
-						newAnswer.setUser(user);
-						newAnswer.setPageNumber(pageNum);
-						newAnswer.setQuestion(question);
-						addedAnswers.add(newAnswer);
+			if (answers.size() > 0) {
+				for (Answer answer : answers) {
+					if (answer.getUser().equals(user)) {
+						found = true;
+						answers.set(0, answer);
+						break;
 					}
-				} else
-					index++;
-
+				}
 			}
-			models.put("answers", addedAnswers);
-		} else
-			models.put("answers", answers);
+			System.out.println("pass");
+			if (!found) {
+				if (question.getType().equals("TEXT")) {
+					TextAnswer newAnswer = new TextAnswer();
+					newAnswer.setUser(user);
+					newAnswer.setQuestion(question);
+					if (answers.size() > 0)
+						answers.set(0, newAnswer);
+					else
+						answers.add(newAnswer);
+				} else if (question.getType().equals("CHOICE")) {
+					ChoiceAnswer newAnswer = new ChoiceAnswer();
+					newAnswer.setUser(user);
+					newAnswer.setQuestion(question);
+					answers.set(0, newAnswer);
+				}
+			}
+		}
 
 		models.put("form", form);
-
+		models.put("questions", questions);
 
 		return "userForm/fillForm";
 	}
 
 	@RequestMapping(value = "/form/fillForm.html", method = RequestMethod.POST)
-	public String fillForm(@ModelAttribute Form form, @ModelAttribute List<Answer> answers,
-			SessionStatus sessionStatus) {
+	public String fillForm(@ModelAttribute Form form, SessionStatus sessionStatus) {
 
 		formDao.saveForm(form);
 		sessionStatus.setComplete();
-		return "redirect:listForm.html";
+		return "redirect:/userForm/listForm.html";
 	}
 }
