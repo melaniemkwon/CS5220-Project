@@ -35,7 +35,7 @@
 		</div>
 		<div class="panel-body">
 			<c:choose>
-				<c:when test="${false}">
+				<c:when test="${numQuestion eq 0}">
 					<h3 class="text-center">There is no question on this page.</h3>
 				</c:when>
 				<c:otherwise>

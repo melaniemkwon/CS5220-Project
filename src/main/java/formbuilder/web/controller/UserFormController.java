@@ -18,10 +18,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
 import formbuilder.model.questionform.Answer;
-import formbuilder.model.questionform.ChoiceAnswer;
 import formbuilder.model.questionform.Form;
 import formbuilder.model.questionform.Question;
-import formbuilder.model.questionform.TextAnswer;
 import formbuilder.model.questionform.dao.FormDao;
 
 @Controller
@@ -55,10 +53,12 @@ public class UserFormController {
 		User user = userDao.getUser(uId);
 		Form form = formDao.getForm(fId);
 		List<Question> questions = form.getQuestions();
+		// get all questions
 		for (Question question : questions) {
+			// get answers from all users
 			List<Answer> answers = question.getAnswers();
 			boolean found = false;
-
+			// searching for specific user answer and move to index 0
 			if (answers.size() > 0) {
 				for (Answer answer : answers) {
 					if (answer.getUser().equals(user)) {
@@ -68,25 +68,20 @@ public class UserFormController {
 					}
 				}
 			}
+			// not found answer create new one
 			if (!found) {
-				if (question.getType().equals("TEXT")) {
-					TextAnswer newAnswer = new TextAnswer();
-					newAnswer.setUser(user);
-					newAnswer.setQuestion(question);
-					if (answers.size() > 0)
-						answers.set(0, newAnswer);
-					else
-						answers.add(newAnswer);
-				} else if (question.getType().equals("CHOICE")) {
-					ChoiceAnswer newAnswer = new ChoiceAnswer();
-					newAnswer.setUser(user);
-					newAnswer.setQuestion(question);
+				Answer newAnswer = new Answer();
+				newAnswer.setUser(user);
+				newAnswer.setQuestion(question);
+				if (answers.size() > 0)
 					answers.set(0, newAnswer);
-				}
+				else
+					answers.add(newAnswer);
 			}
 		}
 
 		models.put("form", form);
+		models.put("numQuestion", form.getQuestionsPage(pageNum).size());
 
 		models.put("uId", uId);
 		models.put("fId", fId);

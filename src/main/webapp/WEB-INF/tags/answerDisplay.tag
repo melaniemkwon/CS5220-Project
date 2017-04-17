@@ -32,7 +32,7 @@
 				</c:when>
 			</c:choose>	
 				
-				<form:input path="questions[${index }].answers[0].text" maxlength="12" cssClass="form-control" required="required"/>
+				<form:input path="questions[${index }].answers[0].text" cssClass="form-control" required="${question.tagAttribute.required }"/>
 					
 			</div>
 		</c:when>
@@ -44,11 +44,8 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-				<input type="number" class="form-control"
-					id="question${question.questionNumber}"
-					min="${question.tagAttribute.min}" max="${question.tagAttribute.max}"
-					step="${question.tagAttribute.step}"
-					placeholder="${question.tagAttribute.placeholder }">
+				<form:input path="questions[${index }].answers[0].text" cssClass="form-control" required="${question.tagAttribute.required }"/>
+				
 			</div>
 		</c:when>
 
@@ -59,7 +56,9 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-				<textarea class="form-control" rows="${question.tagAttribute.rows}"></textarea>
+				<form:textarea path="questions[${index }].answers[0].text" cssClass="form-control" rows="${question.tagAttribute.rows}" required="${question.tagAttribute.required }"/>
+				
+				
 			</div>
 		</c:when>
 
@@ -69,11 +68,9 @@
 					class="control-label">${question.questionNumber}.
 					${question.description }</label>
 			</div>
-			<c:forEach items="${question.choices}" var="choice">
-				<div class="checkbox">
-					<label> <input type="checkbox" value=""> ${choice }</label>
-				</div>
-			</c:forEach>
+
+			<form:checkboxes path="questions[${index }].answers[0].selections" items="${question.choices }"/>
+
 		</c:when>
 
 		<c:when test="${question.tagAttribute.type eq 'radio'}">
@@ -83,12 +80,7 @@
 					${question.description }</label>
 			</div>
 			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
-				<div class="radio">
-					<label> <input type="radio"
-						name="question${question.questionNumber}"
-						id="optionsRadios${choiceLoop.index }" value=""> ${choice }
-					</label>
-				</div>
+				<form:radiobutton path="questions[${index }].answers[0].selections[0]" value="${choice }" label="${choice }" /> 				
 			</c:forEach>
 		</c:when>
 
@@ -98,14 +90,10 @@
 					class="control-label">${question.questionNumber}.
 					${question.description}</label>
 			</div>
-			<div class="${question.tagAttribute.size }">
-				<select class="form-control">
-					<option label=" "></option>
-					<c:forEach items="${question.choices}" var="choice">
-						<option>${choice }</option>
-					</c:forEach>
-				</select>
-			</div>
+			<form:select path="questions[${index }].answers[0].selections[0]">
+	            <form:option value="0" label="Select" />
+	            <form:options items="${question.choices }"/>
+            </form:select>
 		</c:when>
 		<c:otherwise>
 			<p>QUESTION TYPE NOT FOUND</p>

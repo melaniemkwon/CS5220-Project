@@ -7,6 +7,5 @@ drop table pdf_fields cascade;
 drop table forms_users cascade;
 drop table forms cascade;
 drop table answers cascade;
-drop table authorities cascade;
 
 drop sequence hibernate_sequence;
