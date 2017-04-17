@@ -46,30 +46,7 @@ public class UserFormController {
 	@RequestMapping(value = "/userForm/fillForm.html", method = RequestMethod.GET)
 	public String fillForm(@RequestParam Integer uId, @RequestParam Integer fId, @RequestParam Integer pageNum,
 			ModelMap models) {
-		/*
-		 * User user = userDao.getUser(uId); Form form = formDao.getForm(fId);
-		 * List<Answer> answers = formDao.getAnswers(user, form); List<Question>
-		 * questions = form.getQuestions(); int index = 0;
-		 * 
-		 * 
-		 * if (questions.size() != answers.size()) { List<Answer> addedAnswers =
-		 * new ArrayList<Answer>(); for (Question question : questions) { if
-		 * (index >= answers.size() ||
-		 * !answers.get(index).getQuestion().equals(question)) { if
-		 * (question.getType().equals("TEXT")) { TextAnswer newAnswer = new
-		 * TextAnswer(); newAnswer.setForm(form); newAnswer.setUser(user);
-		 * newAnswer.setPageNumber(pageNum); newAnswer.setQuestion(question);
-		 * addedAnswers.add(newAnswer); } else if
-		 * (question.getType().equals("CHOICE")) { ChoiceAnswer newAnswer = new
-		 * ChoiceAnswer(); newAnswer.setForm(form); newAnswer.setUser(user);
-		 * newAnswer.setPageNumber(pageNum); newAnswer.setQuestion(question);
-		 * addedAnswers.add(newAnswer); } } else index++;
-		 * 
-		 * } models.put("answers", addedAnswers); } else models.put("answers",
-		 * answers);
-		 * 
-		 * models.put("form", form);
-		 */
+
 		User user = userDao.getUser(uId);
 		Form form = formDao.getForm(fId);
 		List<Question> questions = form.getQuestions();
@@ -86,7 +63,6 @@ public class UserFormController {
 					}
 				}
 			}
-			System.out.println("pass");
 			if (!found) {
 				if (question.getType().equals("TEXT")) {
 					TextAnswer newAnswer = new TextAnswer();
@@ -106,16 +82,20 @@ public class UserFormController {
 		}
 
 		models.put("form", form);
-		models.put("questions", questions);
+
+		models.put("uId", uId);
+		models.put("fId", fId);
+		models.put("pageNum", pageNum);
 
 		return "userForm/fillForm";
 	}
 
-	@RequestMapping(value = "/form/fillForm.html", method = RequestMethod.POST)
-	public String fillForm(@ModelAttribute Form form, SessionStatus sessionStatus) {
+	@RequestMapping(value = "/userForm/fillForm.html", method = RequestMethod.POST)
+	public String fillForm(@ModelAttribute Form form, @RequestParam Integer uId, @RequestParam Integer fId,
+			@RequestParam Integer pageNum, SessionStatus sessionStatus) {
 
 		formDao.saveForm(form);
 		sessionStatus.setComplete();
-		return "redirect:/userForm/listForm.html";
+		return "redirect:/userForm/fillForm.html?uId=" + uId + "&fId=" + fId + "&pageNum=" + pageNum;
 	}
 }

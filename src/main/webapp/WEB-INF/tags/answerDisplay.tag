@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ attribute name="question" required="true" type="formbuilder.model.questionform.Question"%>
+<%@ attribute name="index" required="true" type="java.lang.Integer"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ tag body-content="scriptless"%>
 
@@ -31,7 +32,7 @@
 				</c:when>
 			</c:choose>	
 				
-				<form:input path="answers[0].text" maxlength="12" cssClass="form-control" required="required"/>
+				<form:input path="questions[${index }].answers[0].text" maxlength="12" cssClass="form-control" required="required"/>
 					
 			</div>
 		</c:when>
