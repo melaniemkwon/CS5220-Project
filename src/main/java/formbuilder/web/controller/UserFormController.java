@@ -1,5 +1,7 @@
 package formbuilder.web.controller;
 
+
+
 import java.util.List;
 import java.util.Set;
 
@@ -23,13 +25,15 @@ import formbuilder.model.questionform.TextAnswer;
 import formbuilder.model.questionform.dao.FormDao;
 
 @Controller
-@SessionAttributes({ "form", "question" })
+@SessionAttributes({ "form", "question", "questionsPage","user" })
 public class UserFormController {
 	@Autowired
 	private FormDao formDao;
 
 	@Autowired
 	private UserDao userDao;
+	
+
 
 	@RequestMapping("/userForm/listForm.html")
 	public String listForm(@RequestParam Integer id, ModelMap models) {
@@ -42,6 +46,7 @@ public class UserFormController {
 
 		return "userForm/listForm";
 	}
+
 
 	@RequestMapping(value = "/userForm/fillForm.html", method = RequestMethod.GET)
 	public String fillForm(@RequestParam Integer uId, @RequestParam Integer fId, @RequestParam Integer pageNum,
@@ -97,5 +102,6 @@ public class UserFormController {
 		formDao.saveForm(form);
 		sessionStatus.setComplete();
 		return "redirect:/userForm/fillForm.html?uId=" + uId + "&fId=" + fId + "&pageNum=" + pageNum;
+
 	}
 }

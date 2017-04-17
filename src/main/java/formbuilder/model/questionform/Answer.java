@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,7 @@ import formbuilder.model.pdfform.PdfField;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "answers")
 @DiscriminatorColumn(name = "answer_type")
-public abstract class Answer implements Serializable {
+public class Answer implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,19 +30,12 @@ public abstract class Answer implements Serializable {
 	@GeneratedValue
 	protected int id;
 
-	protected int index;
-
 	@ManyToOne
 	protected Question question;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	protected User user;
-
-	@Column(name = "page_number")
-	protected int pageNumber;
-
-	protected Form form;
 
 	private boolean enabled;
 
@@ -63,13 +55,6 @@ public abstract class Answer implements Serializable {
 		this.id = id;
 	}
 
-	public int getIndex() {
-		return index;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
-	}
 
 	public Question getQuestion() {
 		return question;
@@ -107,20 +92,5 @@ public abstract class Answer implements Serializable {
 		this.user = user;
 	}
 
-	public int getPageNumber() {
-		return pageNumber;
-	}
-
-	public void setPageNumber(int pageNumber) {
-		this.pageNumber = pageNumber;
-	}
-
-	public Form getForm() {
-		return form;
-	}
-
-	public void setForm(Form form) {
-		this.form = form;
-	}
 
 }

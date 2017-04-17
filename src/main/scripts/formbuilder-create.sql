@@ -4,14 +4,16 @@ create sequence hibernate_sequence start 1 increment 1;
         answer_type varchar(31) not null,
         id int4 not null,
         enabled boolean not null,
-        form bytea,
-        index int4 not null,
-        page_number int4,
         selected boolean,
         text varchar(255),
         question_id int4,
         user_id int4,
         primary key (id)
+    );
+
+    create table answers_questions (
+        ChoiceAnswer_id int4 not null,
+        choices_id int4 not null
     );
 
     create table authorities (
@@ -92,6 +94,9 @@ create sequence hibernate_sequence start 1 increment 1;
         primary key (id)
     );
 
+    alter table answers_questions 
+        add constraint UK_7yc6a3ye4rgrfgtbd3d2470ma unique (choices_id);
+
     alter table users 
         add constraint UK_6dotkott2kjsp8vw4d0m25fb7 unique (email);
 
@@ -107,6 +112,16 @@ create sequence hibernate_sequence start 1 increment 1;
         add constraint FK5bp3d5loftq2vjn683ephn75a 
         foreign key (user_id) 
         references users;
+
+    alter table answers_questions 
+        add constraint FKadg1j5kpck24s1vh6lfpnaj4d 
+        foreign key (choices_id) 
+        references questions;
+
+    alter table answers_questions 
+        add constraint FKc7bwylfk0bjrkgo9hcsdyvxpe 
+        foreign key (ChoiceAnswer_id) 
+        references answers;
 
     alter table authorities 
         add constraint FKk91upmbueyim93v469wj7b2qh 
