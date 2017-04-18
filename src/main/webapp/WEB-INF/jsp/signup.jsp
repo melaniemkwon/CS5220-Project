@@ -5,27 +5,14 @@
 
 <html>
 <head>
-<title>Sign up Page</title>
 
-<link rel="stylesheet" href="/formbuilder/assets/vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="/formbuilder/assets/vendors/bootstrap-material-design/css/bootstrap-material-design.min.css">
-<link rel="stylesheet" href="/formbuilder/assets/vendors/bootstrap-material-design/css/ripples.min.css">
-<link rel="stylesheet" href="/formbuilder/assets/vendors/DataTables-1.10.13/css/dataTables.bootstrap.css">
-<link rel="stylesheet" href="/formbuilder/assets/resources/css/formbuilder.css">
-
-<script src="/formbuilder/assets/vendors/jquery/jquery-3.2.0.min.js"></script>
-<script src="/formbuilder/assets/vendors/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
-<!-- Material Design for Bootstrap -->
-<script src="/formbuilder/assets/vendors/bootstrap-material-design/js/material.js"></script>
-<script src="/formbuilder/assets/vendors/bootstrap-material-design/js/ripples.min.js"></script>
 </head>
 <body>
 
 <div class="container">
 
 	<div class="col-md-offset-3 col-md-7">
-		<h3>Thank you for being part of our community</h3>
+		<h3>Register New Account</h3>
 		
 		<div class="panel panel-primary">
 		
@@ -45,23 +32,6 @@
 							<label for="password" class="control-label">Password</label>
 							<form:password path="password" maxlength="12" cssClass="form-control" required="required" />
 						</div>
-						
-					<%-- <div class="form-group">
-						<div>
-							<label for="role">Role</label>
-						</div>
-						<form:select path="role" cssClass="form-control">
-							<form:option selected="selected" value="ROLE_USER">USER</form:option>
-							<form:option value="ROLE_STAFF">STAFF</form:option>
-							<form:option value="ROLE_ADMIN">ADMIN</form:option>
-						</form:select>
-					</div> --%>
-					<%-- <div class="form-group">
-						<div class="togglebutton">
-							<form:checkbox path="enabled" label=" Enable" />
-						</div>
-					</div>
-					<hr> --%>
 
 						<div class="form-group label-static">
 							<label for="email" class="control-label">Email </label> <form:errors class="error" path="email" />
@@ -105,7 +75,7 @@
 						</div> 
 					
 					<button type="submit" class="btn btn-raised btn-primary">
-						<span class="glyphicon glyphicon-plus-sign"></span> ADD NEW USER
+						<span class="glyphicon glyphicon-plus-sign"></span> Sign Up
 					</button>
 
 			</form:form>
