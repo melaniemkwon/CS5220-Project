@@ -1,6 +1,14 @@
 <%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+ 
+ 
+ <!DOCTYPE html>
+<html lang="en">
 
+<<<<<<< HEAD
 <div class="container">
 	<div class="jumbotron">
 		<h2>Welcome to Formbuilder</h2>
@@ -19,6 +27,8 @@
  <!DOCTYPE html>
 <html lang="en">
 
+=======
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
     <head>
 
         <meta charset="utf-8">
@@ -28,11 +38,19 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">        
+<<<<<<< HEAD
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="assets/elegant-font/code/style.css">
         <link rel="stylesheet" href="assets/css/animate.css">
         <link rel="stylesheet" href="assets/css/magnific-popup.css">
+=======
+        <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--         <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/elegant-font/code/style.css">
+        <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/css/animate.css">
+        <link rel="stylesheet" href="assets/vendors/bootstrap-3.3.7-dist/css/magnific-popup.css"> -->
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 		<link rel="stylesheet" href="assets/css/form-elements.css">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/media-queries.css">
@@ -69,9 +87,12 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a class="scroll-link" href="#top-content">home</a></li>
 						<li><a class="scroll-link" href="#what-we-do">Services</a></li>
+<<<<<<< HEAD
 						<!-- <li><a class="scroll-link" href="#portfolio">Portfolio</a></li> -->
 						<li><a class="scroll-link" href="#about">About</a></li>
 						<!-- <li><a class="scroll-link" href="#contact">Login</a></li> -->
+=======
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 					</ul>
 				</div>
 			</div>
@@ -79,12 +100,19 @@
 		
         <!-- Page title -->
         <div class="page-title top-content">
+<<<<<<< HEAD
             <div class="page-title-text wow fadeInUp">
             	<h1>Welcome to Form Builder website</h1>
             	<!-- <p>Thank you for choosing us</p> -->
             	<div class="page-title-bottom-link">
             		<!-- <a class="big-link-1 btn scroll-link" href="#pricing-2">Start now</a> -->
             		<a class="big-link-1 btn scroll-link" href="#contact">Login</a>
+=======
+            <div class="page-title-text wow fadeInUp" style="background-color:rgba(0, 0, 0, .25);">
+            	<h1>Welcome to FormBuilder</h1>
+            	<div class="page-title-bottom-link">
+            		<a class="big-link-1 btn" href="login.html">Login</a>
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
             	</div>
             </div>
         </div>
@@ -97,11 +125,16 @@
 	                    <h2>What we do</h2>
 	                    <div class="divider-1 wow fadeInUp"><span></span></div>
 	                    <p>
+<<<<<<< HEAD
 	                    	Our website helps orgnizations and company agents to reduce user work by creating online forms from PDF forms
+=======
+	                    	Our service helps organizations streamline their legal form application process for their clients.
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 	                    </p>
 	                </div>
 	            </div>
 	            <div class="row">
+<<<<<<< HEAD
                 	<div class="col-sm-3 block-3-box wow fadeInUp">
 	                	<div class="block-3-box-icon">
 	                		<span aria-hidden="true" class="icon_pencil"></span>
@@ -130,6 +163,29 @@
 	                    <h3>Branding</h3>
 	                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
                     </div> -->
+=======
+                	<div class="col-sm-4 block-3-box wow fadeInUp">
+	                	<div class="block-3-box-icon">
+	                		<span aria-hidden="true" class="icon_pencil"></span>
+	                	</div>
+	                    <h3>Online Form Management</h3>
+	                    <p>Reduce manual paperwork and cut down on storage space costs.</p>
+                    </div>
+                    <div class="col-sm-4 block-3-box wow fadeInUp">
+	                	<div class="block-3-box-icon">
+	                		<span aria-hidden="true" class="social_twitter"></span>
+	                	</div>
+	                    <h3>Simple and Intuitive</h3>
+	                    <p>With just a few clicks, create a form within minutes.</p>
+                    </div>
+                    <div class="col-sm-4 block-3-box wow fadeInDown">
+	                	<div class="block-3-box-icon">
+	                		<span aria-hidden="true" class="icon_cogs"></span>
+	                	</div>
+	                    <h3>Automated PDF Generation</h3>
+	                    <p>So your clients can conveniently download a copy for their own records.</p>
+                    </div>
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 	            </div>
 	        </div>
         </div>
@@ -139,7 +195,11 @@
         	<div class="container">
         		<div class="row">
         			<div class="col-sm-2 clients-text wow fadeInLeft">
+<<<<<<< HEAD
                     	<h3>We've worked with these guys:</h3>
+=======
+                    	<h3>Customers Served:</h3>
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 	            	</div>
 	            	<div class="col-sm-10 clients wow fadeInUp">
                     	<a href="https://wrapbootstrap.com/theme/trilli-bi-fullscreen-landing-page-WB000X02N?ref=azmind" target="_blank" rel="nofollow">
@@ -160,19 +220,32 @@
         </div>
 
 		<!-- Block 2 -->
+<<<<<<< HEAD
         <div class="block-2-container section-container">
 	        <div class="container">
 	            <div class="row">
 	            	<div class="col-sm-6 block-2-box block-2-left block-2-media wow fadeInLeft">
 	            		<div class="block-2-img-container">
 	            			<img src="assets/img/about/4.jpg" alt="" data-at2x="assets/img/about/4.jpg">
+=======
+        <div class="block-2-container section-container about">
+	        <div class="container about">
+	            <div class="row">
+	            	<div class="col-sm-6 block-2-box block-2-left block-2-media wow fadeInLeft">
+	            		<div class="block-2-img-container">
+	            			<img src="assets/img/backgrounds/1 2.jpg">
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 	            			<div class="img-container-line line-1"></div>
 	            			<div class="img-container-line line-2"></div>
 	            			<div class="img-container-line line-3"></div>
 	            		</div>
 	            	</div>
 	            	<div class="col-sm-6 block-2-box block-2-right wow fadeInUp">	            		
+<<<<<<< HEAD
 	            		<h3>We love web design</h3>
+=======
+	            		<h3>Features</h3>
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 	            		<p>
 	            			Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
 	            			lobortis nisl ut aliquip ex ea commodo consequat.
@@ -196,6 +269,7 @@
 	        </div>
         </div>
         
+<<<<<<< HEAD
         <!-- Block 2 -->
         <!-- <div class="block-2-container section-container section-container-gray">
 	        <div class="container">
@@ -417,20 +491,29 @@
 	        </div>
         </div> -->
 
+=======
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 		<!-- Our motto -->
         <div class="our-motto-container section-container section-container-full-bg">
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-sm-12 our-motto section-description wow fadeInLeftBig">
+<<<<<<< HEAD
 	                    <p>
 	                    	"Success is not the key to happiness. Happiness is the key to success. 
 	                    	If you love what you are doing, you will be successful."
 	                    </p>
 	                    <div class="our-motto-author">ALBERT SCHWEITZER</div>
+=======
+	                    <p style="background-color:rgba(0, 0, 0, .25);">
+	                    	"Thanks to FormBuilder, my firm's efficiency has improved dramatically. In our technology-driven world, our clients demand prompt and reliable service available anywhere."
+	                    </p>
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 	                </div>
 	            </div>
 	        </div>
         </div>
+<<<<<<< HEAD
 
        <!-- <!--  Testimonials
         <div class="testimonials-container section-container section-container-gray">
@@ -510,20 +593,31 @@
 	        </div>
         </div>
         
+=======
+        <hr>
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
         <!-- Block 2 (team member) -->
         <div class="block-2-container section-container about-block-2-container">
 	        <div class="container">
 	            <div class="row">
 	            	<div class="col-sm-4 block-2-box block-2-left block-2-media wow fadeInLeft">
 	            		<div class="block-2-img-container">
+<<<<<<< HEAD
 	            			<img src="assets/img/about/1.jpg" alt="" data-at2x="assets/img/about/1.jpg">
+=======
+	            			<img src="http://placehold.it/350x350" alt="" data-at2x="assets/img/about/1.jpg">
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 	            			<div class="img-container-line line-1"></div>
 	            			<div class="img-container-line line-2"></div>
 	            			<div class="img-container-line line-3"></div>
 	            		</div>
 	            	</div>
 	            	<div class="col-sm-8 block-2-box block-2-right wow fadeInUp">
+<<<<<<< HEAD
 	            		<h3> Member 1 / <span> Our CEO </span></h3>
+=======
+	            		<h3> Free Trial <span> 30 Days </span></h3>
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 	            		<p>
 	            			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
 	            			labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
@@ -532,8 +626,13 @@
 	            			Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. 
 	            			Mirum est notare quam littera gothica, quam nunc putamus parum claram lorem.
 	            		</p>
+<<<<<<< HEAD
 	            		<h3>Follow Her:</h3>
 	            		<div class="about-social">
+=======
+	            		<h3>Follow Us:</h3>
+ 	            		<div class="about-social">
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 		                	<a href="#"><i class="fa fa-facebook"></i></a>
 		                	<a href="#"><i class="fa fa-dribbble"></i></a>
 		                    <a href="#"><i class="fa fa-twitter"></i></a>
@@ -548,6 +647,7 @@
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-sm-12 block-2 section-description wow fadeIn">
+<<<<<<< HEAD
 	                	<h2>Login</h2>
 	                	<div class="divider-1 wow fadeInUp"><span></span></div>
 	                    <p>
@@ -556,6 +656,12 @@
 	                </div>
 	            </div>
 	            <div class="row">
+=======
+	                	<h3>Footer</h3>
+	                </div>
+	            </div>
+<%-- 	            <div class="row">
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 	            	<div class="col-sm-4 block-2-box block-2-left  wow fadeInLeft">
 	            		<h3>Login</h3>
 	                    <form name='loginForm' action="<c:url value='/login' />" method='post'>
@@ -577,17 +683,25 @@
 	                    <p><span aria-hidden="true" class="icon_phone"></span>Phone: 0039 333 12 68 347</p>
 	                    <p><span aria-hidden="true" class="icon_mail"></span>Email: <a href="">hi@yourdomain.com</a></p>
 	            	</div>
+<<<<<<< HEAD
 	            </div>
+=======
+	            </div> --%>
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
 	            <div class="contact-icon-container">
             		<span aria-hidden="true" class="icon_mail"></span>
             	</div>
 	        </div>
         </div>
+<<<<<<< HEAD
 				
 				
 
 	        
 	        
+=======
+ 
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
         <!-- Footer -->
         <footer>
 	        <div class="container">
@@ -600,7 +714,11 @@
 		        </div>
 	            <div class="row">
                     <div class="col-sm-7 footer-copyright">
+<<<<<<< HEAD
                     	&copy;  <a href="http://azmind.com/free-bootstrap-themes-templates/"> Company's name </a>.
+=======
+                    	&copy;  <a href="#"> FormBuilder Inc. </a>
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
                     </div>
                     <div class="col-sm-5 footer-social">
                     	<a href="#"><i class="fa fa-facebook"></i></a>
@@ -612,11 +730,18 @@
 	            </div>
 	        </div>
         </footer>
+<<<<<<< HEAD
         
 
         <!-- Javascript -->
         <script src="assets/js/jquery-1.11.1.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+=======
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/vendors/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
         <script src="assets/js/jquery.backstretch.min.js"></script>
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/retina-1.1.0.min.js"></script>
@@ -626,7 +751,10 @@
         <script src="assets/js/masonry.pkgd.min.js"></script>
         <script src="assets/js/scripts.js"></script>
         
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
     </body>
 
 </html>

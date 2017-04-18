@@ -12,6 +12,11 @@ create sequence hibernate_sequence start 1 increment 1;
         primary key (id)
     );
 
+    create table answers_questions (
+        ChoiceAnswer_id int4 not null,
+        choices_id int4 not null
+    );
+
     create table authorities (
         user_id int4 not null,
         role varchar(255)
@@ -90,6 +95,9 @@ create sequence hibernate_sequence start 1 increment 1;
         primary key (id)
     );
 
+    alter table answers_questions 
+        add constraint UK_7yc6a3ye4rgrfgtbd3d2470ma unique (choices_id);
+
     alter table users 
         add constraint UK_6dotkott2kjsp8vw4d0m25fb7 unique (email);
 
@@ -105,6 +113,16 @@ create sequence hibernate_sequence start 1 increment 1;
         add constraint FK5bp3d5loftq2vjn683ephn75a 
         foreign key (user_id) 
         references users;
+
+    alter table answers_questions 
+        add constraint FKadg1j5kpck24s1vh6lfpnaj4d 
+        foreign key (choices_id) 
+        references questions;
+
+    alter table answers_questions 
+        add constraint FKc7bwylfk0bjrkgo9hcsdyvxpe 
+        foreign key (ChoiceAnswer_id) 
+        references answers;
 
     alter table authorities 
         add constraint FKk91upmbueyim93v469wj7b2qh 
@@ -141,9 +159,9 @@ create sequence hibernate_sequence start 1 increment 1;
         foreign key (form_id) 
         references forms;
 
-insert into users (id, username, password, last_name, first_name, phonenumber, email, enabled) values (1000, 'admin', 'abcd', 'System', 'Administrator', '1231231234', 'formbuilderadmin@localhost.localdomain', TRUE);
+insert into users (id, username, password, last_name, first_name, email, enabled) values (1000, 'admin', 'abcd', 'System', 'Administrator', 'formbuilderadmin@localhost.localdomain', TRUE);
 insert into authorities (user_id, role) values (1000, 'ROLE_ADMIN');
-insert into users (id, username, password, last_name, first_name, phonenumber, email, enabled) values (1001, 'staff', 'abcd', 'System', 'Staff', '1231231234', 'formbuilderstaff@localhost.localdomain', TRUE);
+insert into users (id, username, password, last_name, first_name, email, enabled) values (1001, 'staff', 'abcd', 'System', 'Staff', 'formbuilderstaff@localhost.localdomain', TRUE);
 insert into authorities (user_id, role) values (1001, 'ROLE_STAFF');
-insert into users (id, username, password, last_name, first_name, phonenumber, email, enabled) values (1002, 'user', 'abcd', 'System', 'User', '1231231234', 'formbuilderuser@localhost.localdomain', TRUE);
+insert into users (id, username, password, last_name, first_name, email, enabled) values (1002, 'user', 'abcd', 'System', 'User', 'formbuilderuser@localhost.localdomain', TRUE);
 insert into authorities (user_id, role) values (1002, 'ROLE_USER');
