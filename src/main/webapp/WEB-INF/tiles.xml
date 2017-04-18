@@ -16,8 +16,6 @@
         <put-attribute name="title" value="FormBuilder" />
         <put-attribute name="content" value="/WEB-INF/jsp/home.jsp" />
     </definition> -->
-<<<<<<< HEAD
-=======
     
     <definition name="login" template="/WEB-INF/layout/lpanel.jsp">
         <put-attribute name="title" value="Login" />
@@ -29,9 +27,8 @@
         <put-attribute name="title" value="Welcome to FormBuilder" />
         <put-attribute name="content" value="/WEB-INF/jsp/staffHome.jsp" />
     </definition> 
->>>>>>> 1472a1796ab8c6cf0c1da4b137045e5e4202af57
     
-     <definition name="userHome" extends="template">
+    <definition name="userHome" extends="template">
         <put-attribute name="title" value="Welcome to FormBuilder" />
         <put-attribute name="content" value="/WEB-INF/jsp/userHome.jsp" />
     </definition> 
