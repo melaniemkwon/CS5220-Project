@@ -58,7 +58,7 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-				<input type="textarea" class="form-control" name="questions[${question.questionNumber}]" rows="${question.tagAttribute.rows}"/>
+				<input type="textarea" class="form-control" name="answers[${question.questionNumber}]" rows="${question.tagAttribute.rows}"/>
 			</div>
 		</c:when>
 
@@ -83,7 +83,7 @@
 			</div>
 			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
 				<div class="radio">
-					<label> <input type="radio" name="questions[${question.questionNumber}]" 
+					<label> <input type="radio" name="answers[${question.questionNumber}]" 
 					value="${loop.index}"/> ${choice }
 						
 					</label>

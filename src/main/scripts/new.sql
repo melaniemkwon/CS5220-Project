@@ -12,14 +12,14 @@ create sequence hibernate_sequence start 1 increment 1;
         primary key (id)
     );
 
-    create table answers_questions (
-        ChoiceAnswer_id int4 not null,
-        choices_id int4 not null
-    );
-
     create table authorities (
         user_id int4 not null,
         role varchar(255)
+    );
+
+    create table ChoiceAnswer_choices (
+        ChoiceAnswer_id int4 not null,
+        choices varchar(255)
     );
 
     create table forms (
@@ -95,9 +95,6 @@ create sequence hibernate_sequence start 1 increment 1;
         primary key (id)
     );
 
-    alter table answers_questions 
-        add constraint UK_7yc6a3ye4rgrfgtbd3d2470ma unique (choices_id);
-
     alter table users 
         add constraint UK_6dotkott2kjsp8vw4d0m25fb7 unique (email);
 
@@ -114,20 +111,15 @@ create sequence hibernate_sequence start 1 increment 1;
         foreign key (user_id) 
         references users;
 
-    alter table answers_questions 
-        add constraint FKadg1j5kpck24s1vh6lfpnaj4d 
-        foreign key (choices_id) 
-        references questions;
-
-    alter table answers_questions 
-        add constraint FKc7bwylfk0bjrkgo9hcsdyvxpe 
-        foreign key (ChoiceAnswer_id) 
-        references answers;
-
     alter table authorities 
         add constraint FKk91upmbueyim93v469wj7b2qh 
         foreign key (user_id) 
         references users;
+
+    alter table ChoiceAnswer_choices 
+        add constraint FK64j2s4uifc83dkgfm1g1g4h0x 
+        foreign key (ChoiceAnswer_id) 
+        references answers;
 
     alter table forms_users 
         add constraint FKhp0dk6l6s1p5c2mcew1md2yph 

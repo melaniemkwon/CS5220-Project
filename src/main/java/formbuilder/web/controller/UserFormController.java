@@ -56,26 +56,53 @@ public class UserFormController {
 	public String viewForm(@RequestParam Integer id, @RequestParam Integer pageNum, @ModelAttribute User user, ModelMap models){
 		
 		Form form = formDao.getForm(id);
+		
 		models.put("form", form);
 		models.put("id", id);
 		models.put("pageNum", pageNum);
 		List<Question> questionsPage = form.getQuestionsPage(pageNum);
-		models.put("questionsPage", questionsPage);
 		UserAnswers userAnswer = new UserAnswers();
-		models.addAttribute("userAnswer", userAnswer);
+		ArrayList<String> answers = new ArrayList<>();
+		
+		for(Question q : questionsPage){
+			//get all answers for this question
+			List<Answer> ans = q.getAnswers();
+			for (Answer a : ans){
+				//get the answer from this user
+				if(a.getUser().equals(user)){
+					if(q.getType().equals("TEXT")){
+						TextAnswer ta = (TextAnswer) a;
+						answers.add(ta.getText());
+					}else{
+						ChoiceAnswer ca = (ChoiceAnswer) a;
+						for(String c : ca.getChoices()){
+							answers.add(c);
+						}
+					}
+				}else{
+					//no answer from this user
+				}
+			}
+		}
+		userAnswer.setAnswers(answers);
+		models.put("questionsPage", questionsPage);
+		//models.addAttribute("userAnswer", userAnswer);
+		models.put("userAnswer",userAnswer);
 		models.put("user", user);
 		
 		return "userForm/viewPage";
 	}
 	
 	@RequestMapping(value="/userForm/fillForm.html", method = RequestMethod.POST)
-	public String fillForm(@ModelAttribute UserAnswers userAnswer, @RequestParam Integer id, @RequestParam Integer pageNum, SessionStatus status){
+	public String fillForm(@ModelAttribute UserAnswers userAnswer, @RequestParam Integer id, @RequestParam Integer pageNum, SessionStatus status, ModelMap models){
 		ArrayList<String> answers = (ArrayList<String>) userAnswer.getAnswers();
 		Form form = formDao.getForm(id);
 		List<Question> questionsPage = form.getQuestionsPage(pageNum);
+		User user = SecurityUtils.getUser();
 		
 		//loop through every answer
 		for(int i=1;i<=answers.size();i++){
+			//System.out.println("answer:" + i + " " + answers.get(i) + " end");
 			for (Question q : questionsPage){
 				//find out which question it's for
 				if(q.getQuestionNumber() == i){
@@ -83,25 +110,27 @@ public class UserFormController {
 						TextAnswer ans = new TextAnswer();
 						ans.setText(answers.get(i));
 						ans.setQuestion(q);
-						User user = SecurityUtils.getUser();
 						ans.setUser(user);
 						answerDao.saveAnswer(ans);
+						
 					}else{
 						ChoiceAnswer ans = new ChoiceAnswer();
 						ArrayList<String> selectedChoices = new ArrayList<>();
-						//select 1,2
-						int selectedNum =Integer.parseInt(answers.get(i));
-						ChoiceQuestion cq = (ChoiceQuestion) q;
-						//loop through all choices of this question
-						for(int j=0; j< cq.getChoices().size();j++){
-							if(j == selectedNum){
-								selectedChoices.add(cq.getChoices().get(j));
+						//split by "," for multiple answers
+						String[] answerlist =  answers.get(i).split(",");
+						if(answerlist.length > 1){
+							for(int n=0; n<answerlist.length; n++){
+								System.out.println("list" + i + " " + answerlist[n]);
+								selectedChoices.add(answerlist[n]);
 							}
+							
+						}else{
+							selectedChoices.add(answerlist[0]);
 						}
-						//ans.setChoices(choices); 
-						//ans.setSelected(true);
-						//ans.setQuestion(q);
-						//ans.setUser(user);
+						ans.setChoices(selectedChoices); 
+						ans.setQuestion(q);
+						ans.setUser(user);
+						answerDao.saveAnswer(ans);
 					}
 				}
 			}
