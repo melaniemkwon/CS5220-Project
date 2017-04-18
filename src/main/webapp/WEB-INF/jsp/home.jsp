@@ -58,6 +58,8 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a class="scroll-link" href="#top-content">home</a></li>
 						<li><a class="scroll-link" href="#what-we-do">Services</a></li>
+						<li><a class="link" href="login.html">Login</a></li>
+						<li><a class="link" href="signup.html">Signup</a></li>
 					</ul>
 				</div>
 			</div>
@@ -67,10 +69,10 @@
         <div class="page-title top-content">
             <div class="page-title-text wow fadeInUp" style="background-color:rgba(0, 0, 0, .25);">
             	<h1>Welcome to FormBuilder</h1>
-            	<div class="page-title-bottom-link">
-            		<a class="big-link-1 btn" href="login.html">Login</a>
-            		<a class="big-link-1 btn" href="signup.html">Signup</a>
-            	</div>
+            	 <!--<div class="page-title-bottom-link">
+            		 <a class="big-link-1 btn" href="login.html">Login</a>
+            		<a class="big-link-1 btn" href="signup.html">Signup</a> 
+            	</div> -->
             </div>
         </div>
 

@@ -28,7 +28,7 @@
 <div class="container">
 
 	<div class="col-md-offset-3 col-md-6">
-		<h3>Spring Security Custom Login Form (XML)</h3>
+
 		
 		<div class="panel panel-primary">
 		

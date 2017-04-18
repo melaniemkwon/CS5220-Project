@@ -23,9 +23,8 @@
         <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
     </definition> 
     
-    <definition name="signup" template="/WEB-INF/layout/lpanel.jsp">
+    <definition name="/signup" template="/WEB-INF/layout/lpanel.jsp">
         <put-attribute name="title" value="Signup" />
-        <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
         <put-attribute name="content" value="/WEB-INF/jsp/signup.jsp" />
         <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
     </definition> 
