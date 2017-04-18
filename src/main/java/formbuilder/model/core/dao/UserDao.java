@@ -14,6 +14,8 @@ public interface UserDao {
 
 	void delete(int id);
 
+	User saveUserSignup(User user);
+
     User getUserByUsername( String username );
 
 }
