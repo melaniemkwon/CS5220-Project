@@ -36,6 +36,7 @@ public class ChoiceAnswer extends Answer {
 	}
 
 	public void setChoices(List<String> choices) {
+
 		this.choices = choices;
 	}
 

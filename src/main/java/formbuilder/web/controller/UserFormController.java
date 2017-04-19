@@ -29,7 +29,9 @@ import formbuilder.model.questionform.dao.FormDao;
 import formbuilder.security.SecurityUtils;
 
 @Controller
+
 @SessionAttributes({ "form", "question", "questionsPage","user","userAnswer" })
+
 public class UserFormController {
 	@Autowired
 	private FormDao formDao;
@@ -122,6 +124,7 @@ public class UserFormController {
 	}
 	
 	@RequestMapping(value="/userForm/fillForm.html", method = RequestMethod.POST)
+
 	public String fillForm(@ModelAttribute UserAnswers userAnswer, @RequestParam Integer id, @RequestParam Integer pageNum, SessionStatus status, ModelMap models){
 		ArrayList<String> answers = (ArrayList<String>) userAnswer.getAnswers();
 		Form form = formDao.getForm(id);
@@ -131,6 +134,7 @@ public class UserFormController {
 		//loop through every answer
 		for(int i=1;i<=answers.size();i++){
 			//System.out.println("answer:" + i + " " + answers.get(i) + " end");
+
 			for (Question q : questionsPage){
 				//find out which question it's for
 				if(q.getQuestionNumber() == i){

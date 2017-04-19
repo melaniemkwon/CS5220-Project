@@ -65,10 +65,10 @@ public class User implements Serializable, UserDetails {
 
 	private String state;
 
-	@Digits(integer = 5, fraction = 0, message = " ( Wrong Zip Code ) ")
+//	@Digits(integer = 5, fraction = 0, message = " ( Wrong Zip Code ) ")
 	private String zip;
 
-	@Digits(integer = 10, fraction = 0, message = " ( Phone Number 10 digis ) ")
+//	@Digits(integer = 10, fraction = 0, message = " ( Phone Number 10 digis ) ")
 	private String phoneNumber;
 
 	@Column(nullable = false)

@@ -31,9 +31,11 @@
 		<h3>Spring Security Custom Login Form (XML)</h3>
 		
 		<div class="panel panel-primary">
+		
 			<div class="panel-heading">
 				<h4 class="panel-title">Login</h4>
 			</div>
+			
 			<div class="panel-body">
 				<c:if test="${not empty error}">
 					<div class="error">${error}</div>

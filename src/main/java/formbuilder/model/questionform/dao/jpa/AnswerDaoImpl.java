@@ -36,8 +36,5 @@ public class AnswerDaoImpl implements AnswerDao{
 		
 		return answers.size() == 0 ? null :answers.get(0);
 	}
-	
-	
-	
 
 }

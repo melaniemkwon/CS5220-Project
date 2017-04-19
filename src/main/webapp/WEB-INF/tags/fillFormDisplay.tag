@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ attribute name="question" required="true" type="formbuilder.model.questionform.Question"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%@ tag body-content="scriptless"%>
 
 <div class="form-group row" style="margin-left: 10px; margin-top: 10px;">
@@ -30,17 +31,9 @@
 				<c:when test="${question.tagAttribute.inputType eq 'date' }">
 					<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
 				</c:when>
-			</c:choose>
-			<c:set var="counter" value="${counter + 1}" scope="page" />
-			    	<c:forEach items="${answerlist}" var="ans" varStatus="loop">
-			    		${loop.index}-${ans}-${counter}
-			    		<c:choose>
-			    			<c:when test="${loop.index eq counter }">
-								<form:input class="form-control" path="answers[${question.questionNumber}]" value="ans" />test
-								
-							</c:when>
-			    		</c:choose>
-			</c:forEach>
+			</c:choose>	
+				<form:input class="form-control" path="answers[${question.questionNumber}]" value=""/>
+			
 			</div>
 		</c:when>
 
@@ -66,7 +59,11 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
+<<<<<<< HEAD
 				<input type="textarea" class="form-control" name="answers[${question.questionNumber}]" rows="${question.tagAttribute.rows}"/>
+=======
+				<input type="textarea" class="form-control" name="questions[${question.questionNumber}]" rows="${question.tagAttribute.rows}"/>
+>>>>>>> master
 			</div>
 		</c:when>
 
@@ -78,14 +75,7 @@
 			</div>
 			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
 				<div class="checkbox">
-					<label> <form:checkbox path="answers[${question.questionNumber}]" value="${loop.index}"/> ${choice}
-					<c:forEach items="${answerlist}" var="ans" varStatus="loop">
-					<c:when test="${loop.index == counter }">
-						<form:input class="form-control" path="answers[${question.questionNumber}]" value="ans" />
-						<c:set var="counter" value="${counter + 1}"/>
-					</c:when>
-					</c:forEach>
-					</label>
+					<label> <form:checkbox path="answers[${question.questionNumber}]" value="${loop.index}"/> ${choice}</label>
 				</div>
 			</c:forEach>
 		</c:when>
@@ -98,7 +88,7 @@
 			</div>
 			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
 				<div class="radio">
-					<label> <input type="radio" name="answers[${question.questionNumber}]" 
+					<label> <input type="radio" name="questions[${question.questionNumber}]" 
 					value="${loop.index}"/> ${choice }
 						
 					</label>

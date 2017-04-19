@@ -9,4 +9,5 @@ public interface AnswerDao {
 	Answer saveAnswer(Answer answer);
 	
 	Answer getAnswers(Question question, User user);
+
 }
