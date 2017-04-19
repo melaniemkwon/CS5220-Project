@@ -29,7 +29,7 @@ import formbuilder.model.questionform.dao.FormDao;
 import formbuilder.security.SecurityUtils;
 
 @Controller
-@SessionAttributes({ "form", "question", "questionsPage","user" })
+@SessionAttributes({ "form", "question", "questionsPage","user","userAnswer" })
 public class UserFormController {
 	@Autowired
 	private FormDao formDao;
@@ -53,23 +53,42 @@ public class UserFormController {
 	}
 	
 	@RequestMapping(value="/userForm/fillForm.html", method = RequestMethod.GET)
-	public String viewForm(@RequestParam Integer id, @RequestParam Integer pageNum, @ModelAttribute User user, ModelMap models){
+	public String viewForm(@RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models){
 		
 		Form form = formDao.getForm(id);
-		
+		User user = SecurityUtils.getUser();
 		models.put("form", form);
 		models.put("id", id);
 		models.put("pageNum", pageNum);
 		List<Question> questionsPage = form.getQuestionsPage(pageNum);
 		UserAnswers userAnswer = new UserAnswers();
 		ArrayList<String> answers = new ArrayList<>();
+		boolean started = false;
 		
 		for(Question q : questionsPage){
 			//get all answers for this question
-			List<Answer> ans = q.getAnswers();
-			for (Answer a : ans){
+			//List<Answer> ans = q.getAnswers();
+			Answer ans = answerDao.getAnswers(q, user);
+			if(ans != null){
+				System.out.println("test");
+				started = true;
+				if(q.getType().equals("TEXT")){
+					TextAnswer ta = (TextAnswer) ans;
+					answers.add(ta.getText());
+				}else{
+					ChoiceAnswer ca = (ChoiceAnswer) ans;
+					for(String c : ca.getChoices()){
+						answers.add(c);
+					}
+				}
+			}else{
+				answers.add(" ");
+			}
+			/*for (Answer a : ans){
 				//get the answer from this user
 				if(a.getUser().equals(user)){
+					System.out.println("test");
+					started = true;
 					if(q.getType().equals("TEXT")){
 						TextAnswer ta = (TextAnswer) a;
 						answers.add(ta.getText());
@@ -81,14 +100,23 @@ public class UserFormController {
 					}
 				}else{
 					//no answer from this user
+					System.out.println("null " + user.getId());
+					answers.add(" ");
 				}
-			}
+			}*/
 		}
+		System.out.println("size " + answers.size() + " " + answers.get(0) + ' ' + started);
 		userAnswer.setAnswers(answers);
 		models.put("questionsPage", questionsPage);
-		//models.addAttribute("userAnswer", userAnswer);
-		models.put("userAnswer",userAnswer);
+		models.addAttribute("userAnswer", userAnswer);
+		models.put("answerlist",answers);
 		models.put("user", user);
+		
+		if(started == false){
+			models.put("size", 0);
+		}else{
+			models.put("size", answers.size());
+		}
 		
 		return "userForm/viewPage";
 	}
