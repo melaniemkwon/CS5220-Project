@@ -43,9 +43,9 @@ public class UserDaoImpl implements UserDao {
 		return entityManager.merge(user);
 	}
 
+
 	@Override
 	@Transactional
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void delete(int id) {
 		entityManager.remove(getUser(id));
 	}
