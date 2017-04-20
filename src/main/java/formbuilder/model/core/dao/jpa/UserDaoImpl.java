@@ -43,12 +43,6 @@ public class UserDaoImpl implements UserDao {
 		return entityManager.merge(user);
 	}
 
-	@Override
-	@Transactional
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public User saveUserSignup(User user) {
-		return entityManager.merge(user);
-	}
 
 	@Override
 	@Transactional

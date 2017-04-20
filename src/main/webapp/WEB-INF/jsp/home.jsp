@@ -69,17 +69,6 @@
         <div class="page-title top-content">
             <div class="page-title-text wow fadeInUp" style="background-color:rgba(0, 0, 0, .25);">
             	<h1>Welcome to FormBuilder</h1>
-<<<<<<< HEAD
-            	 <!--<div class="page-title-bottom-link">
-            		 <a class="big-link-1 btn" href="login.html">Login</a>
-            		<a class="big-link-1 btn" href="signup.html">Signup</a> 
-            	</div> -->
-=======
-            	<div class="page-title-bottom-link">
-            		<a class="big-link-1 btn" href="login.html">Login</a>
-            		<a class="big-link-1 btn" href="signup.html">Signup</a>
-            	</div>
->>>>>>> a804ea5c9eb98b80cfef6171e799600f0417974f
             </div>
         </div>
 
