@@ -1,13 +1,11 @@
 package formbuilder.model.uploadfile;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "FILES_UPLOAD")
+//@Entity
+//@Table(name = "FILES_UPLOAD")
 public class UploadFile {
 
 	@Id

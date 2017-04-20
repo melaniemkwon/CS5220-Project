@@ -17,6 +17,11 @@ create sequence hibernate_sequence start 1 increment 1;
         role varchar(255)
     );
 
+    create table ChoiceAnswer_choices (
+        ChoiceAnswer_id int4 not null,
+        choices varchar(255)
+    );
+
     create table forms (
         id int4 not null,
         description varchar(255),
@@ -110,6 +115,11 @@ create sequence hibernate_sequence start 1 increment 1;
         add constraint FKk91upmbueyim93v469wj7b2qh 
         foreign key (user_id) 
         references users;
+
+    alter table ChoiceAnswer_choices 
+        add constraint FK64j2s4uifc83dkgfm1g1g4h0x 
+        foreign key (ChoiceAnswer_id) 
+        references answers;
 
     alter table forms_users 
         add constraint FKhp0dk6l6s1p5c2mcew1md2yph 
