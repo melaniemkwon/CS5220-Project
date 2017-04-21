@@ -40,7 +40,6 @@
     <definition name="userHome" extends="template">
         <put-attribute name="title" value="Welcome to FormBuilder" />
         <put-attribute name="content" value="/WEB-INF/jsp/userHome.jsp" />
-
     </definition> 
 
 	
@@ -121,5 +120,11 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/userForm/listForm.jsp" />
 	</definition>
 
+	
+	<definition name="userForm/fillForm" extends="template">
+		<put-attribute name="title" value="Fill User Form" />
+		<put-attribute name="content" value="/WEB-INF/jsp/userForm/fillForm.jsp" />
+	</definition>
+	
 </tiles-definitions>
 

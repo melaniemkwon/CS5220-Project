@@ -106,11 +106,6 @@
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
-		<a href="javascript:deletePage()">deletePage</a>
-=======
-<!-- 		<a href="javascript:deletePage()">deletePage</a> -->
->>>>>>> master
 		
 		<div class="text-center">
 			<nav aria-label="Page navigation">
