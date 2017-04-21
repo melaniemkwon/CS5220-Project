@@ -20,12 +20,13 @@ public class HomeController {
 
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
-			model.addObject("error", "Invalid username and password!");
+			model.addObject("error", "Invalid username and password.");
 		}
 
 		if (logout != null) {
 			model.addObject("msg", "You've been logged out successfully.");
 		}
+
 		model.setViewName("login");
 
 		return model;
@@ -35,5 +36,10 @@ public class HomeController {
 	@RequestMapping("/userHome.html")
 	public String userHome() {
 		return "userHome";
+	}
+	
+	@RequestMapping("/staffHome.html")
+	public String staffHome() {
+		return "staffHome";
 	}
 }

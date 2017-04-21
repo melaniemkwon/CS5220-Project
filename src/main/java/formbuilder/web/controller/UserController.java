@@ -60,7 +60,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/edit.html", method = RequestMethod.POST)
-	public String edit(@ModelAttribute User user, BindingResult result, SessionStatus sessionStatus) {
+	public String edit(@ModelAttribute @Valid User user, BindingResult result, SessionStatus sessionStatus) {
 
 		userValidator.validate(user, result);
 		if (result.hasErrors())
@@ -68,7 +68,8 @@ public class UserController {
 
 		user = userDao.saveUser(user);
 		sessionStatus.setComplete();
-		return "redirect:list.html";
+
+		return "redirect:/user/edit.html?id=" + user.getId();
 	}
 
 	@RequestMapping(value = "/user/add.html", method = RequestMethod.GET)
@@ -87,6 +88,26 @@ public class UserController {
 
 		user = userDao.saveUser(user);
 		return "redirect:list.html";
+	}
+
+
+	@RequestMapping(value = "/signup.html", method = RequestMethod.GET)
+	public String signup(ModelMap models) {
+
+		models.put("user", new User());
+		return "/signup";
+	}
+
+	@RequestMapping(value = "/signup.html", method = RequestMethod.POST)
+	public String signup(@ModelAttribute @Valid User user, BindingResult result) {
+
+		userValidator.validate(user, result);
+
+		if (result.hasErrors())
+			return "user/add";
+
+		user = userDao.saveUserSignup(user);
+		return "/home";
 	}
 
 	@RequestMapping(value = "/user/delete.html")

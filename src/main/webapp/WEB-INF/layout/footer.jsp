@@ -1,3 +1,5 @@
-<footer class="container-fluid text-center footer">
-  <p>Copyright &copy; CompanyName Inc.</p>
-</footer>
+ <div class="footer-copyright">
+     <div class="container text-center">
+         <p class="footer-copyright-text">© 2017 Copyright FormBuilder.com</p>
+     </div>
+ </div>
