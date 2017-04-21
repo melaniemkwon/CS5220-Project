@@ -56,9 +56,7 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-				<form:textarea path="questions[${index }].answers[0].text" cssClass="form-control" rows="${question.tagAttribute.rows}" required="${question.tagAttribute.required }"/>
-				
-				
+				<form:textarea path="questions[${index }].answers[0].text" cssClass="form-control" rows="${question.tagAttribute.rows}" required="${question.tagAttribute.required }"/>			
 			</div>
 		</c:when>
 
@@ -68,9 +66,13 @@
 					class="control-label">${question.questionNumber}.
 					${question.description }</label>
 			</div>
-
-			<form:checkboxes path="questions[${index }].answers[0].selections" items="${question.choices }"/>
-
+			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
+				<div class="checkbox">
+	    			<label>
+						<form:checkbox path="questions[${index }].answers[0].selections[${loop.index }]" value="${choice }" label="${choice }"/>
+	    			</label>
+	  			</div>			
+			</c:forEach>
 		</c:when>
 
 		<c:when test="${question.tagAttribute.type eq 'radio'}">
@@ -90,10 +92,12 @@
 					class="control-label">${question.questionNumber}.
 					${question.description}</label>
 			</div>
-			<form:select path="questions[${index }].answers[0].selections[0]">
-	            <form:option value="0" label="Select" />
-	            <form:options items="${question.choices }"/>
-            </form:select>
+			<div class="${question.tagAttribute.size }">
+				<form:select path="questions[${index }].answers[0].selections[0]" class="form-control">
+		            <form:option value="NONE" label="--- Select ---" />
+		            <form:options items="${question.choices }"/>
+	            </form:select>
+            </div>
 		</c:when>
 		<c:otherwise>
 			<p>QUESTION TYPE NOT FOUND</p>
