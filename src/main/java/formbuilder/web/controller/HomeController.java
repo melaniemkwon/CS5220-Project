@@ -55,12 +55,12 @@ public class HomeController {
 
 	// ############### file upload controllers ######################
 
-	@RequestMapping(value = "/upload", method = RequestMethod.GET)
+	@RequestMapping(value = "/upload.html", method = RequestMethod.GET)
 	public String showUploadForm(HttpServletRequest request) {
-		return "Upload";
+		return "upload";
 	}
 
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/upload.html", method = RequestMethod.POST)
 	public String handleFileUpload(HttpServletRequest request, @RequestParam CommonsMultipartFile[] fileUpload)
 			throws Exception {
 
@@ -76,7 +76,7 @@ public class HomeController {
 			}
 		}
 
-		return "Success";
+		return "success";
 	}
 
 }
