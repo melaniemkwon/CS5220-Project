@@ -52,6 +52,7 @@ public class UserFormController {
 		User user = userDao.getUser(uId);
 		Form form = formDao.getForm(fId);
 		List<Question> questionsPage = form.getQuestionsPage(pageNum);
+		int numQuestion = questionsPage.size();
 		// get all questions
 		for (Question question : questionsPage) {
 			// get answers from all users
@@ -64,7 +65,6 @@ public class UserFormController {
 						found = true;
 						answers.set(0, answer);
 						break;
-
 					}
 				}
 			}
@@ -91,7 +91,7 @@ public class UserFormController {
 		}
 
 		models.put("form", form);
-		models.put("numQuestion", form.getQuestionsPage(pageNum).size());
+		models.put("numQuestion", numQuestion);
 
 		models.put("uId", uId);
 		models.put("fId", fId);

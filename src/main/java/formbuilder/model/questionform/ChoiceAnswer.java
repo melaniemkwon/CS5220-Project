@@ -23,5 +23,4 @@ public class ChoiceAnswer extends Answer {
 		this.selections = selections;
 	}
 
-
 }
