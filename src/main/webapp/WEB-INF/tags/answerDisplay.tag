@@ -1,12 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ attribute name="question" required="true" type="formbuilder.model.questionform.Question"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ attribute name="index" required="true" type="java.lang.Integer"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ tag body-content="scriptless"%>
 
-<div class="form-group row" style="margin-left: 10px; margin-top: 10px;">
 
+<div class="form-group row" style="margin-left: 10px; margin-top: 10px;">
 	<c:choose>
 		<c:when test="${question.tagAttribute.type eq 'text'}">
 			<div>
@@ -32,8 +31,11 @@
 					<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
 				</c:when>
 			</c:choose>	
-				<form:input class="form-control" path="answers[${question.questionNumber}]" value=""/>
-			
+
+				
+				<form:input path="questions[${index }].answers[0].text" cssClass="form-control" required="${question.tagAttribute.required }"/>
+					
+
 			</div>
 		</c:when>
 
@@ -44,11 +46,8 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-				<input class="form-control"
-					path="answers[${question.questionNumber}]" 
-					min="${question.tagAttribute.min}" max="${question.tagAttribute.max}"
-					step="${question.tagAttribute.step}"
-					placeholder="${question.tagAttribute.placeholder }"/>
+				<form:input path="questions[${index }].answers[0].text" cssClass="form-control" required="${question.tagAttribute.required }"/>
+				
 			</div>
 		</c:when>
 
@@ -59,11 +58,9 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-<<<<<<< HEAD
-				<input type="textarea" class="form-control" name="answers[${question.questionNumber}]" rows="${question.tagAttribute.rows}"/>
-=======
-				<input type="textarea" class="form-control" name="questions[${question.questionNumber}]" rows="${question.tagAttribute.rows}"/>
->>>>>>> master
+
+				<form:textarea path="questions[${index }].answers[0].text" cssClass="form-control" rows="${question.tagAttribute.rows}" required="${question.tagAttribute.required }"/>			
+
 			</div>
 		</c:when>
 
@@ -75,8 +72,10 @@
 			</div>
 			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
 				<div class="checkbox">
-					<label> <form:checkbox path="answers[${question.questionNumber}]" value="${loop.index}"/> ${choice}</label>
-				</div>
+	    			<label>
+						<form:checkbox path="questions[${index }].answers[0].selections[${loop.index }]" value="${choice }" label="${choice }"/>
+	    			</label>
+	  			</div>			
 			</c:forEach>
 		</c:when>
 
@@ -87,12 +86,7 @@
 					${question.description }</label>
 			</div>
 			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
-				<div class="radio">
-					<label> <input type="radio" name="questions[${question.questionNumber}]" 
-					value="${loop.index}"/> ${choice }
-						
-					</label>
-				</div>
+				<form:radiobutton path="questions[${index }].answers[0].selections[0]" value="${choice }" label="${choice }" /> 				
 			</c:forEach>
 		</c:when>
 
@@ -103,13 +97,11 @@
 					${question.description}</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-				<select class="form-control">
-					<option label=" "></option>
-					<c:forEach items="${question.choices}" var="choice">
-						<option>${choice }</option>
-					</c:forEach>
-				</select>
-			</div>
+				<form:select path="questions[${index }].answers[0].selections[0]" class="form-control">
+		            <form:option value="NONE" label="--- Select ---" />
+		            <form:options items="${question.choices }"/>
+	            </form:select>
+            </div>
 		</c:when>
 		<c:otherwise>
 			<p>QUESTION TYPE NOT FOUND</p>
@@ -117,4 +109,3 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-

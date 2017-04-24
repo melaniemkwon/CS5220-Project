@@ -2,6 +2,8 @@ package formbuilder.model.questionform.dao;
 
 import java.util.List;
 
+import formbuilder.model.core.User;
+import formbuilder.model.questionform.Answer;
 import formbuilder.model.questionform.ChoiceQuestion;
 import formbuilder.model.questionform.Form;
 import formbuilder.model.questionform.Question;
@@ -26,5 +28,7 @@ public interface FormDao {
 	TextQuestion getTextQuestion(int qId);
 
 	ChoiceQuestion getChoiceQuestion(int qId);
+
+	List<Answer> getAnswers(User user, Form form);
 
 }

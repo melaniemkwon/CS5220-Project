@@ -11,6 +11,7 @@
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
 	</definition> 
 	
+
 	<!-- <definition name="home" extends="template">
 		<put-attribute name="header" value="" />
         <put-attribute name="title" value="FormBuilder" />
@@ -34,11 +35,13 @@
         <put-attribute name="title" value="Welcome to FormBuilder" />
         <put-attribute name="content" value="/WEB-INF/jsp/staffHome.jsp" />
     </definition> 
+
     
     <definition name="userHome" extends="template">
         <put-attribute name="title" value="Welcome to FormBuilder" />
         <put-attribute name="content" value="/WEB-INF/jsp/userHome.jsp" />
     </definition> 
+
 	
 	<!-- ======== -->
     <!--   Form   -->
@@ -116,5 +119,12 @@
 		<put-attribute name="title" value="List User Form" />
 		<put-attribute name="content" value="/WEB-INF/jsp/userForm/listForm.jsp" />
 	</definition>
+
+	
+	<definition name="userForm/fillForm" extends="template">
+		<put-attribute name="title" value="Fill User Form" />
+		<put-attribute name="content" value="/WEB-INF/jsp/userForm/fillForm.jsp" />
+	</definition>
 	
 </tiles-definitions>
+

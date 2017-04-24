@@ -15,8 +15,8 @@
 		</c:if>
 
 	   	<div class="col-md-4">
-			<a href="/formbuilder/userForm/fillForm.html?id=${form.id}&pageNum=1"><img src="<c:url value='/assets/resources/img/form.png' />"></a>
-			<div><a href="/formbuilder/userForm/fillForm.html?id=${form.id}&pageNum=1">${form.name}</a></div>
+			<a href="/formbuilder/userForm/fillForm.html?uId=${user.id}&fId=${form.id}&pageNum=1"><img src="<c:url value='/assets/resources/img/form.png' />"></a>
+			<div><a href="/formbuilder/userForm/fillForm.html?uId=${user.id}&fId=${form.id}&pageNum=1">${form.name}</a></div>
 			<span>${form.description}</span>
 		</div>
 		
