@@ -30,7 +30,7 @@ public class TagAttribute {
 		type = "text";
 		inputType = "text";
 		size = "col-lg-6";
-		placeholder = "";
+		placeholder = "Type answer here";
 		rows = "3";
 		min = "0";
 		max = "100";

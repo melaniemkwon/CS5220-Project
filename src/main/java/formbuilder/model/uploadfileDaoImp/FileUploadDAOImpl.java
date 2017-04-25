@@ -1,7 +1,8 @@
 package formbuilder.model.uploadfileDaoImp;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,19 +12,19 @@ import formbuilder.model.uploadfile.UploadFile;
 @Repository
 public class FileUploadDAOImpl implements FileUploadDAO {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	public FileUploadDAOImpl() {
 	}
 
-	public FileUploadDAOImpl(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+	// public FileUploadDAOImpl(SessionFactory sessionFactory) {
+	// this.sessionFactory = sessionFactory;
+	// }
 
 	@Override
 	@Transactional
-	public void save(UploadFile uploadFile) {
-		sessionFactory.getCurrentSession().save(uploadFile);
+	public UploadFile save(UploadFile uploadFile) {
+		return entityManager.merge(uploadFile);
 	}
 }

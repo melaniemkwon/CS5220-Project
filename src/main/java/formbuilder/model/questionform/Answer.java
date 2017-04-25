@@ -30,8 +30,6 @@ public class Answer implements Serializable {
 	@GeneratedValue
 	protected int id;
 
-	protected int index;
-
 	@ManyToOne
 	protected Question question;
 
@@ -57,13 +55,6 @@ public class Answer implements Serializable {
 		this.id = id;
 	}
 
-	public int getIndex() {
-		return index;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
-	}
 
 	public Question getQuestion() {
 		return question;
@@ -100,5 +91,6 @@ public class Answer implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 
 }

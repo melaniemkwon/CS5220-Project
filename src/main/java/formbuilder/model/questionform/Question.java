@@ -15,7 +15,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
@@ -33,7 +32,6 @@ public abstract class Question implements Serializable {
 	protected String description;
 
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-	@OrderBy("index asc")
 	protected List<Answer> answers;
 
 	@Column(name = "question_number")

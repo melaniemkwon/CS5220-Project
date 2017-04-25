@@ -33,14 +33,6 @@ public class ChoiceQuestion extends Question {
 		return "CHOICE";
 	}
 
-	public List<Boolean> getChoiceSelections() {
-		List<Boolean> choiceSelections = new ArrayList<Boolean>();
-
-		for (Answer answer : answers)
-			choiceSelections.add(((ChoiceAnswer) answer).isSelected());
-
-		return choiceSelections;
-	}
 
 	public int getNumOfChoices() {
 		return choices.size();
