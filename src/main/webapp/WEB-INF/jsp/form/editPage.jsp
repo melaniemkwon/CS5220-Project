@@ -4,6 +4,19 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="formbuilder" uri="http://formbuilder.com/formbuilder"%>
 
+<style>
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+#sortable li span { position: absolute; margin-left: -1.3em; }
+</style>
+
+<script>
+$( function() {
+  $( "#sortable" ).sortable();
+  $( "#sortable" ).disableSelection();
+} );
+</script>
+
 <div class="row">
 	<div class="col-md-offset-1 col-md-7">
 		<H3>FORM LIVE PREVIEW</H3>
@@ -17,7 +30,10 @@
 						<h3 class="text-center">There is no question on this page.</h3>
 					</c:when>
 					<c:otherwise>
+						<div id="sortable">
+						
 						<c:forEach items="${questionsPage}" var="question">
+							<div class="sort-item">
 							<formbuilder:fieldDisplay question="${question }"></formbuilder:fieldDisplay>
 							<div class="btn-group btn-group-sm" role="group" aria-label="..." style="margin-left: 10px;">
 								<a href="copyQuestion.html?qId=${question.id}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Duplicate this question"><span class="glyphicon glyphicon-plus-sign"></span></a> <a
@@ -27,7 +43,10 @@
 									href="moveDownQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Move question down"><span class="glyphicon glyphicon-arrow-down"></span></a>
 							</div>
 							<hr />
+							</div>
 						</c:forEach>
+						
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>
