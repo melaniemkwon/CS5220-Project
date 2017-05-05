@@ -5,9 +5,13 @@
 <%@ taglib prefix="formbuilder" uri="http://formbuilder.com/formbuilder"%>
 
 <style>
-#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-#sortable li span { position: absolute; margin-left: -1.3em; }
+.sort-item {
+	background-color: #fff;
+    border: 1.5px solid #eee;
+    border-radius: 5px;
+/* 	border-bottom: 1px solid #eee;
+	border-left: 3px solid #eee; */
+}
 </style>
 
 <script>
@@ -31,10 +35,10 @@ $( function() {
 					</c:when>
 					<c:otherwise>
 						<div id="sortable">
-						
+
 						<c:forEach items="${questionsPage}" var="question">
 							<div class="sort-item">
-							<formbuilder:fieldDisplay question="${question }"></formbuilder:fieldDisplay>
+							<formbuilder:fieldDisplay question="${question}"></formbuilder:fieldDisplay>
 							<div class="btn-group btn-group-sm" role="group" aria-label="..." style="margin-left: 10px;">
 								<a href="copyQuestion.html?qId=${question.id}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Duplicate this question"><span class="glyphicon glyphicon-plus-sign"></span></a> <a
 									href="deleteQuestion.html?qId=${question.id}" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete question"><span class="glyphicon glyphicon-minus-sign"></span></a> <a
@@ -42,8 +46,8 @@ $( function() {
 									href="editQuestion.html?qId=${question.id}" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Edit this question"><span class="glyphicon glyphicon-pencil"></span></a> <a
 									href="moveDownQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Move question down"><span class="glyphicon glyphicon-arrow-down"></span></a>
 							</div>
-							<hr />
 							</div>
+							
 						</c:forEach>
 						
 						</div>
