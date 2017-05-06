@@ -77,14 +77,14 @@
  
     </bean>
      
-    <!-- <bean
+    <bean
         class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
                 <prop key="java.lang.Exception">Error</prop>
             </props>
         </property>
-    </bean>  -->  
+    </bean>    
   
   
   
