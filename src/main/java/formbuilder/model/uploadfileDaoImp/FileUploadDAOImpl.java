@@ -15,6 +15,7 @@ public class FileUploadDAOImpl implements FileUploadDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+
 	public FileUploadDAOImpl() {
 	}
 
@@ -26,5 +27,16 @@ public class FileUploadDAOImpl implements FileUploadDAO {
 	@Transactional
 	public UploadFile save(UploadFile uploadFile) {
 		return entityManager.merge(uploadFile);
+	}
+
+	
+	public UploadFile getFile(String fileName) {
+		return entityManager.find(UploadFile.class, fileName);
+	}
+
+	@Override
+	@Transactional
+	public void deleteFile(String fileName) {
+		entityManager.remove(getFile(fileName));
 	}
 }
