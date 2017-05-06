@@ -9,14 +9,27 @@
 	background-color: #fff;
     border: 1.5px solid #eee;
     border-radius: 5px;
-/* 	border-bottom: 1px solid #eee;
-	border-left: 3px solid #eee; */
 }
 </style>
 
 <script>
 $( function() {
-  $( "#sortable" ).sortable();
+  $( "#sortable" ).sortable({
+	  update: function( event, ui ) {
+		  $.ajax({
+			  url: "editQuestion",
+			  data: {
+	                id: "${question.id}",
+	                field: $(this).attr("name"),
+	                value: $(this).prop("checked")
+	            },
+			  context: document.body,
+			  success: function(){
+			    // success
+			  }
+			});
+	  }
+  });
   $( "#sortable" ).disableSelection();
 } );
 </script>
@@ -35,21 +48,18 @@ $( function() {
 					</c:when>
 					<c:otherwise>
 						<div id="sortable">
-
-						<c:forEach items="${questionsPage}" var="question">
-							<div class="sort-item">
-							<formbuilder:fieldDisplay question="${question}"></formbuilder:fieldDisplay>
-							<div class="btn-group btn-group-sm" role="group" aria-label="..." style="margin-left: 10px;">
-								<a href="copyQuestion.html?qId=${question.id}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Duplicate this question"><span class="glyphicon glyphicon-plus-sign"></span></a> <a
-									href="deleteQuestion.html?qId=${question.id}" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete question"><span class="glyphicon glyphicon-minus-sign"></span></a> <a
-									href="moveUpQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Move question up"><span class="glyphicon glyphicon-arrow-up"></span></a> <a
-									href="editQuestion.html?qId=${question.id}" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Edit this question"><span class="glyphicon glyphicon-pencil"></span></a> <a
-									href="moveDownQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Move question down"><span class="glyphicon glyphicon-arrow-down"></span></a>
-							</div>
-							</div>
-							
-						</c:forEach>
-						
+							<c:forEach items="${questionsPage}" var="question">
+								<div class="sort-item">
+									<formbuilder:fieldDisplay question="${question}"></formbuilder:fieldDisplay>
+									<div class="btn-group btn-group-sm" role="group" aria-label="..." style="margin-left: 10px;">
+										<a href="copyQuestion.html?qId=${question.id}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Duplicate this question"><span class="glyphicon glyphicon-plus-sign"></span></a> <a
+											href="deleteQuestion.html?qId=${question.id}" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete question"><span class="glyphicon glyphicon-minus-sign"></span></a> <a
+											href="moveUpQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Move question up"><span class="glyphicon glyphicon-arrow-up"></span></a> <a
+											href="editQuestion.html?qId=${question.id}" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Edit this question"><span class="glyphicon glyphicon-pencil"></span></a> <a
+											href="moveDownQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Move question down"><span class="glyphicon glyphicon-arrow-down"></span></a>
+									</div>
+								</div>
+							</c:forEach>
 						</div>
 					</c:otherwise>
 				</c:choose>
