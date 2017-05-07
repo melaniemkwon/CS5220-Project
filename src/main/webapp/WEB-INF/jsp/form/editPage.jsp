@@ -16,15 +16,15 @@
 $(function() {
 	$("#sortable").sortable({
 		update : function(event, ui) {
-			var order = $(this).sortable("toArray", {
+			const order = $(this).sortable("toArray", {
 				attribute: "data-qid"
 			});
-			console.log(order)
+			console.log("Order:" + order)
+			
 			$.ajax({
-				url : "editQuestion",
+				url : "editQuestionOrder",
 				data : {
-					qid : $(this).attr("data-qid"),
-					qnum : $(this).attr("data-qnum")
+					questionOrder : order.toString()
 				},
 				context : document.body,
 				success : function() {
@@ -32,8 +32,6 @@ $(function() {
 				},
 				error : function() {
 					console.log("sortable ajax fail")
-					/* console.log($(this).attr("data-qid"))
-					console.log($(this).attr("data-qnum")) */
 				}
 			});
 		}
@@ -64,7 +62,7 @@ $(function() {
 					<c:otherwise>
 						<div id="sortable">
 							<c:forEach items="${questionsPage}" var="question">
-								<div class="sort-item" data-qid="${question.id}" data-qnum="${question.questionNumber}">
+								<div class="sort-item" data-qid="${question.id}">
 									<formbuilder:fieldDisplay question="${question}"></formbuilder:fieldDisplay>
 									<div class="btn-group btn-group-sm" role="group" aria-label="..." style="margin-left: 10px;">
 										<a href="copyQuestion.html?qId=${question.id}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Duplicate this question"><span

@@ -1,5 +1,6 @@
 package formbuilder.web.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -337,6 +339,20 @@ public class FormController {
 		formDao.saveQuestion(question);
 
 		return "redirect:/form/editQuestion.html?qId=" + qId;
+	}
+	
+	@RequestMapping(value = "/form/editQuestionOrder", params = "questionOrder")
+	@ResponseBody
+	public void editQuestionOrder(@RequestParam String questionOrder) {
+		System.out.println("DEBUG: " + questionOrder);
+		List<String> questionsList = Arrays.asList(questionOrder.split(","));
+		
+		for (int i = 0; i < questionsList.size(); i++) {
+			Question question = formDao.getQuestion(Integer.parseInt(questionsList.get(i)));
+			question.setQuestionNumber(i+1);
+			formDao.saveQuestion(question);
+			System.out.println("Setting question " + question.getId() + " to number " + question.getQuestionNumber());
+		}
 	}
 
 	@RequestMapping(value = "/form/addChoice.html")
