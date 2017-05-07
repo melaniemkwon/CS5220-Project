@@ -249,5 +249,13 @@ public class HomeController {
 		return "redirect:/upload.html";
 	}
 
+	@RequestMapping(value = "upload/edit.html", method = RequestMethod.GET)
+	public String editFile(@RequestParam String fileName, @RequestParam String userName) {
+
+		File f = new File(fileName);
+		File newName = new File(f.getParentFile() + "/" + userName + ".pdf");
+		f.renameTo(newName);
+		return "redirect:/upload.html";
+	}
 
 }
