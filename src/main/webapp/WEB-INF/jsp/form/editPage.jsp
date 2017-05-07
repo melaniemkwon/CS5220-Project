@@ -19,7 +19,7 @@ $(function() {
 			const order = $(this).sortable("toArray", {
 				attribute: "data-qid"
 			});
-			console.log("Order:" + order)
+			console.log("Order in sortable:" + order)
 			
 			$.ajax({
 				url : "editQuestionOrder",
@@ -28,7 +28,12 @@ $(function() {
 				},
 				context : document.body,
 				success : function() {
-					console.log("sortable ajax success")
+					/* console.log("sortable ajax success") */
+ 					$('.question-number:first-child').each(function(index) {
+						$qDescription = $(this).find('span').text()
+						console.log($qDescription)
+						$(this).replaceWith('<label for="question"' + (index+1) + ' class="control-label">' + (index+1) + '. ' + $qDescription + '</label>')
+					}) 
 				},
 				error : function() {
 					console.log("sortable ajax fail")
@@ -38,11 +43,16 @@ $(function() {
 	});
 	$("#sortable").disableSelection();
 /* 	$(".sort-item").mouseup(function() {
-		var a = $("#sortable").sortable("serialize", {
-            attribute: "data-qid"
-        });
-		console.log("sort");
-        console.log(a);
+		console.log("mouseup")
+		const order = $("#sortable").sortable("toArray", {
+			attribute: "data-qid"
+		});
+		console.log("Order:" + order)
+		$('.question-number:first-child').each(function(index) {
+			$qDescription = $(this).find('span').text()
+			console.log($qDescription)
+			$(this).replaceWith('<label for="question"' + (index+1) + ' class="control-label">' + (index+1) + '. ' + $qDescription + '</label>')
+		})
 	}) */
 });
 </script>

@@ -6,8 +6,8 @@
 <div class="form-group row" style="margin-left: 10px; margin-top: 10px;">
 	<c:choose>
 		<c:when test="${question.tagAttribute.type eq 'text'}">
-			<div>
-				<label for="question${question.questionNumber }" class="control-label">${question.questionNumber}. ${question.description }</label>
+			<div class="question-number">
+				<label for="question${question.questionNumber }" class="control-label">${question.questionNumber}. <span>${question.description }</span></label>
 			</div>
 			<div class="${question.tagAttribute.size } input-group">
 				<c:choose>
@@ -40,8 +40,8 @@
 		</c:when>
 
 		<c:when test="${question.tagAttribute.type eq 'number'}">
-			<div>
-				<label for="question${question.questionNumber}" class="control-label">${question.questionNumber}. ${question.description }</label>
+			<div class="question-number">
+				<label for="question${question.questionNumber}" class="control-label">${question.questionNumber}. <span>${question.description }</span></label>
 			</div>
 			<div class="${question.tagAttribute.size }">
 				<input type="number" class="form-control" id="question${question.questionNumber}" min="${question.tagAttribute.min}" max="${question.tagAttribute.max}" step="${question.tagAttribute.step}"
@@ -50,8 +50,8 @@
 		</c:when>
 
 		<c:when test="${question.tagAttribute.type eq 'textarea'}">
-			<div>
-				<label for="question${question.questionNumber}" class="control-label">${question.questionNumber}. ${question.description }</label>
+			<div class="question-number">
+				<label for="question${question.questionNumber}" class="control-label">${question.questionNumber}. <span>${question.description }</span></label>
 			</div>
 			<div class="${question.tagAttribute.size }">
 				<textarea class="form-control" rows="${question.tagAttribute.rows}"></textarea>
@@ -59,8 +59,8 @@
 		</c:when>
 
 		<c:when test="${question.tagAttribute.type eq 'checkbox'}">
-			<div>
-				<label for="question${question.questionNumber}" class="control-label">${question.questionNumber}. ${question.description }</label>
+			<div class="question-number">
+				<label for="question${question.questionNumber}" class="control-label">${question.questionNumber}. <span>${question.description }</span></label>
 			</div>
 			<c:forEach items="${question.choices}" var="choice">
 				<div class="checkbox">
@@ -71,8 +71,8 @@
 		</c:when>
 
 		<c:when test="${question.tagAttribute.type eq 'radio'}">
-			<div>
-				<label for="question${question.questionNumber}" class="control-label">${question.questionNumber}. ${question.description }</label>
+			<div class="question-number">
+				<label for="question${question.questionNumber}" class="control-label">${question.questionNumber}. <span>${question.description }</span></label>
 			</div>
 			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
 				<div class="radio">
@@ -83,8 +83,8 @@
 		</c:when>
 
 		<c:when test="${question.tagAttribute.type eq 'options'}">
-			<div>
-				<label for="question${question.questionNumber}" class="control-label">${question.questionNumber}. ${question.description}</label>
+			<div class="question-number">
+				<label for="question${question.questionNumber}" class="control-label">${question.questionNumber}. <span>${question.description }</span></label>
 			</div>
 			<div class="${question.tagAttribute.size }">
 				<select class="form-control">
