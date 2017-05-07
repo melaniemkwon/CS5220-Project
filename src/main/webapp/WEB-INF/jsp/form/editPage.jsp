@@ -28,11 +28,11 @@ $(function() {
 				},
 				context : document.body,
 				success : function() {
-					/* console.log("sortable ajax success") */
+					console.log("success!")
  					$('.question-number:first-child').each(function(index) {
 						$qDescription = $(this).find('span').text()
-						console.log($qDescription)
-						$(this).replaceWith('<label for="question"' + (index+1) + ' class="control-label">' + (index+1) + '. ' + $qDescription + '</label>')
+						console.log('<label for="question' + (index+1) + '" class="control-label">' + (index+1) + '. <span>' + $qDescription + '</span></label>')
+						$(this).replaceWith('<div class="question-number"><label for="question' + (index+1) + '" class="control-label">' + (index+1) + '. <span>' + $qDescription + '</span></label></div>')
 					}) 
 				},
 				error : function() {
@@ -42,18 +42,6 @@ $(function() {
 		}
 	});
 	$("#sortable").disableSelection();
-/* 	$(".sort-item").mouseup(function() {
-		console.log("mouseup")
-		const order = $("#sortable").sortable("toArray", {
-			attribute: "data-qid"
-		});
-		console.log("Order:" + order)
-		$('.question-number:first-child').each(function(index) {
-			$qDescription = $(this).find('span').text()
-			console.log($qDescription)
-			$(this).replaceWith('<label for="question"' + (index+1) + ' class="control-label">' + (index+1) + '. ' + $qDescription + '</label>')
-		})
-	}) */
 });
 </script>
 
