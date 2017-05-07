@@ -1,17 +1,31 @@
 package formbuilder.web.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
@@ -39,14 +53,14 @@ public class FormController {
 		return "form/listForm";
 	}
 
-	@RequestMapping(value = "/form/addForm.html", method = RequestMethod.GET)
+	@GetMapping("/form/addForm.html")
 	public String addForm(ModelMap models) {
 		models.put("form", new Form());
 
 		return "form/addForm";
 	}
 
-	@RequestMapping(value = "/form/addForm.html", method = RequestMethod.POST)
+	@PostMapping("/form/addForm.html")
 	public String addForm(@ModelAttribute Form form, SessionStatus status) {
 
 		form.setTotalPages(1);
@@ -55,7 +69,7 @@ public class FormController {
 		return "redirect:/form/listForm.html";
 	}
 
-	@RequestMapping(value = "/form/editForm.html", method = RequestMethod.GET)
+	@GetMapping("/form/editForm.html")
 	public String editForm(@RequestParam Integer id, ModelMap models) {
 
 		Form form = formDao.getForm(id);
@@ -64,7 +78,7 @@ public class FormController {
 		return "form/editForm";
 	}
 
-	@RequestMapping(value = "/form/editForm.html", method = RequestMethod.POST)
+	@PostMapping("/form/editForm.html")
 	public String editForm(@ModelAttribute Form form, SessionStatus sessionStatus) {
 
 		formDao.saveForm(form);
@@ -79,7 +93,7 @@ public class FormController {
 		return "redirect:listForm.html";
 	}
 
-	@RequestMapping("/form/listAssignForm.html")
+	@GetMapping("/form/listAssignForm.html")
 	public String listAssignForm(@RequestParam Integer id, ModelMap models) {
 
 		// Set<User> users = form.getUsers();
@@ -88,7 +102,7 @@ public class FormController {
 		return "form/listAssignForm";
 	}
 
-	@RequestMapping(value = "/form/assignForm.html")
+	@GetMapping("/form/assignForm.html")
 	public String assignForm(@RequestParam Integer id, @RequestParam Integer uId) {
 
 		Form form = formDao.getForm(id);
@@ -100,7 +114,7 @@ public class FormController {
 		return "redirect:/form/listAssignForm.html?id=" + id;
 	}
 
-	@RequestMapping(value = "/form/deassignForm.html")
+	@GetMapping("/form/deassignForm.html")
 	public String deassignForm(@RequestParam Integer id, @RequestParam Integer uId) {
 
 		Form form = formDao.getForm(id);
@@ -112,7 +126,7 @@ public class FormController {
 		return "redirect:/form/listAssignForm.html?id=" + id;
 	}
 
-	@RequestMapping(value = "/form/viewPage.html")
+	@GetMapping("/form/viewPage.html")
 	public String viewPage(@RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models) {
 
 		Form form = formDao.getForm(id);
@@ -124,7 +138,7 @@ public class FormController {
 		return "form/viewPage";
 	}
 
-	@RequestMapping(value = "/form/editPage.html", method = RequestMethod.GET)
+	@GetMapping("/form/editPage.html")
 	public String editPage(@RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models) {
 
 		Form form = formDao.getForm(id);
@@ -136,7 +150,7 @@ public class FormController {
 		return "form/editPage";
 	}
 	
-	@RequestMapping(value = "/form/editPage.html", method = RequestMethod.POST)
+	@PostMapping("/form/editPage.html")
 	public String editPage(@RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models, @ModelAttribute Form form) {
 		formDao.saveForm(form);
 		if (pageNum > form.getTotalPages())
@@ -147,7 +161,7 @@ public class FormController {
 		return "form/editPage";
 	}
 
-	@RequestMapping(value = "/form/addPage.html")
+	@GetMapping("/form/addPage.html")
 	public String addPage(@RequestParam Integer id) {
 
 		Form form = formDao.getForm(id);
@@ -157,7 +171,7 @@ public class FormController {
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + newPageNum;
 	}
 
-	@RequestMapping("/form/deletePage.html")
+	@GetMapping("/form/deletePage.html")
 	public String deletePage(@RequestParam Integer id, @RequestParam Integer pageNum) {
 	
 		Form form = formDao.getForm(id);
@@ -180,7 +194,7 @@ public class FormController {
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=1";
 	}
 
-	@RequestMapping(value = "/form/addTextQuestion.html")
+	@GetMapping("/form/addTextQuestion.html")
 	public String addTextQuestion(@RequestParam Integer id, @RequestParam Integer pageNum, @RequestParam String type) {
 
 		Form form = formDao.getForm(id);
@@ -200,7 +214,7 @@ public class FormController {
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
-	@RequestMapping(value = "/form/addChoiceQuestion.html")
+	@GetMapping("/form/addChoiceQuestion.html")
 	public String addChoiceQuestion(@RequestParam Integer id, @RequestParam Integer pageNum,
 			@RequestParam String type) {
 
@@ -221,7 +235,7 @@ public class FormController {
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
-	@RequestMapping("/form/deleteQuestion.html")
+	@GetMapping("/form/deleteQuestion.html")
 	public String deleteQuestion(@RequestParam Integer qId) {
 
 		Question deleteQuestion = formDao.getQuestion(qId);
@@ -243,7 +257,7 @@ public class FormController {
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
-	@RequestMapping("/form/copyQuestion.html")
+	@GetMapping("/form/copyQuestion.html")
 	public String copyQuestion(@RequestParam Integer qId) {
 
 		Question originalQuestion = formDao.getQuestion(qId);
@@ -266,7 +280,7 @@ public class FormController {
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
-	@RequestMapping("/form/moveUpQuestion.html")
+	@GetMapping("/form/moveUpQuestion.html")
 	public String moveUpQuestion(@RequestParam Integer qId) {
 
 		Question question = formDao.getQuestion(qId);
@@ -291,7 +305,7 @@ public class FormController {
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
-	@RequestMapping("/form/moveDownQuestion.html")
+	@GetMapping("/form/moveDownQuestion.html")
 	public String moveDownQuestion(@RequestParam Integer qId) {
 
 		Question question = formDao.getQuestion(qId);
@@ -319,7 +333,7 @@ public class FormController {
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
-	@RequestMapping(value = "/form/editQuestion.html", method = RequestMethod.GET)
+	@GetMapping("/form/editQuestion.html")
 	public String editQuestion(@RequestParam Integer qId, ModelMap models) {
 
 		Question question = formDao.getQuestion(qId);
@@ -331,7 +345,7 @@ public class FormController {
 		return "form/editQuestion";
 	}
 
-	@RequestMapping(value = "/form/editQuestion.html", method = RequestMethod.POST)
+	@PostMapping("/form/editQuestion.html")
 	public String editQuestion(@ModelAttribute Question question, SessionStatus status) {
 		Integer qId = question.getId();
 		formDao.saveQuestion(question);
@@ -339,7 +353,7 @@ public class FormController {
 		return "redirect:/form/editQuestion.html?qId=" + qId;
 	}
 
-	@RequestMapping(value = "/form/addChoice.html")
+	@GetMapping(value = "/form/addChoice.html")
 	public String addChoice(@RequestParam Integer qId, @RequestParam Integer choiceIndex) {
 
 		ChoiceQuestion question = (ChoiceQuestion) formDao.getQuestion(qId);
@@ -351,7 +365,7 @@ public class FormController {
 		return "redirect:/form/editQuestion.html?qId=" + qId;
 	}
 
-	@RequestMapping(value = "/form/deleteChoice.html")
+	@GetMapping(value = "/form/deleteChoice.html")
 	public String deleteChoice(@RequestParam Integer qId, @RequestParam Integer choiceIndex) {
 
 		ChoiceQuestion question = (ChoiceQuestion) formDao.getQuestion(qId);
@@ -362,6 +376,65 @@ public class FormController {
 		formDao.saveQuestion(question);
 
 		return "redirect:/form/editQuestion.html?qId=" + qId;
+	}
+
+	@GetMapping("/upload")
+	public String singleFileUpload() {
+		return "upload";
+	}
+
+	@PostMapping("/upload")
+	public String singleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+
+		if (file.isEmpty()) {
+			redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+			return "redirect:uploadStatus";
+		}
+
+		try {
+
+			// Get the file and save it somewhere
+			byte[] bytes = file.getBytes();
+			Path path = Paths.get("C:/temp/" + file.getOriginalFilename());
+			Files.write(path, bytes);
+
+			redirectAttributes.addFlashAttribute("message",
+					"You successfully uploaded '" + file.getOriginalFilename() + "'");
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/uploadStatus";
+	}
+
+	@GetMapping("/uploadStatus")
+	public String uploadStatus() {
+		return "uploadStatus";
+	}
+
+	@GetMapping("/download")
+	public String downloadPage() {
+		return "download";
+	}
+
+	@GetMapping(value = "/downloadFile")
+	public void getLogFile(HttpSession session, HttpServletResponse response) throws Exception {
+		try {
+			String filePathToBeServed = "C:/temp/command.txt";// complete file
+																// name with
+																// path;
+			File fileToDownload = new File(filePathToBeServed);
+			InputStream inputStream = new FileInputStream(fileToDownload);
+			response.setContentType("application/force-download");
+			response.setHeader("Content-Disposition", "attachment; filename=command.txt");
+			IOUtils.copy(inputStream, response.getOutputStream());
+			response.flushBuffer();
+			inputStream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }
