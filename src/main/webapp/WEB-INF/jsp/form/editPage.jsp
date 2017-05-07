@@ -7,32 +7,46 @@
 <style>
 .sort-item {
 	background-color: #fff;
-    border: 1.5px solid #eee;
-    border-radius: 5px;
+	border: 1.5px solid #eee;
+	border-radius: 5px;
 }
 </style>
 
 <script>
-$( function() {
-  $( "#sortable" ).sortable({
-	  update: function( event, ui ) {
-		  $.ajax({
-			  url: "editQuestion",
-			  data: {
-	                id: "${question.id}",
-	                field: $(this).attr("name"),
-	                value: $(this).prop("checked")
-	            },
-			  context: document.body,
-			  success: function(){
-			    // success
-			    console.log("sortable ajax success")
-			  }
+$(function() {
+	$("#sortable").sortable({
+		update : function(event, ui) {
+			var order = $(this).sortable("toArray", {
+				attribute: "data-qid"
 			});
-	  }
-  });
-  $( "#sortable" ).disableSelection();
-} );
+			console.log(order)
+			$.ajax({
+				url : "editQuestion",
+				data : {
+					qid : $(this).attr("data-qid"),
+					qnum : $(this).attr("data-qnum")
+				},
+				context : document.body,
+				success : function() {
+					console.log("sortable ajax success")
+				},
+				error : function() {
+					console.log("sortable ajax fail")
+					/* console.log($(this).attr("data-qid"))
+					console.log($(this).attr("data-qnum")) */
+				}
+			});
+		}
+	});
+	$("#sortable").disableSelection();
+/* 	$(".sort-item").mouseup(function() {
+		var a = $("#sortable").sortable("serialize", {
+            attribute: "data-qid"
+        });
+		console.log("sort");
+        console.log(a);
+	}) */
+});
 </script>
 
 <div class="row">
@@ -50,14 +64,15 @@ $( function() {
 					<c:otherwise>
 						<div id="sortable">
 							<c:forEach items="${questionsPage}" var="question">
-								<div class="sort-item">
+								<div class="sort-item" data-qid="${question.id}" data-qnum="${question.questionNumber}">
 									<formbuilder:fieldDisplay question="${question}"></formbuilder:fieldDisplay>
 									<div class="btn-group btn-group-sm" role="group" aria-label="..." style="margin-left: 10px;">
-										<a href="copyQuestion.html?qId=${question.id}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Duplicate this question"><span class="glyphicon glyphicon-plus-sign"></span></a> <a
-											href="deleteQuestion.html?qId=${question.id}" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete question"><span class="glyphicon glyphicon-minus-sign"></span></a> <a
-											href="moveUpQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Move question up"><span class="glyphicon glyphicon-arrow-up"></span></a> <a
-											href="editQuestion.html?qId=${question.id}" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Edit this question"><span class="glyphicon glyphicon-pencil"></span></a> <a
-											href="moveDownQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Move question down"><span class="glyphicon glyphicon-arrow-down"></span></a>
+										<a href="copyQuestion.html?qId=${question.id}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Duplicate this question"><span
+											class="glyphicon glyphicon-plus-sign"></span></a> <a href="deleteQuestion.html?qId=${question.id}" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete question"><span
+											class="glyphicon glyphicon-minus-sign"></span></a> <a href="moveUpQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"
+											title="Move question up"><span class="glyphicon glyphicon-arrow-up"></span></a> <a href="editQuestion.html?qId=${question.id}" class="btn btn-default" data-toggle="tooltip"
+											data-placement="bottom" title="Edit this question"><span class="glyphicon glyphicon-pencil"></span></a> <a href="moveDownQuestion.html?qId=${question.id}" class="btn btn-warning"
+											data-toggle="tooltip" data-placement="bottom" title="Move question down"><span class="glyphicon glyphicon-arrow-down"></span></a>
 									</div>
 								</div>
 							</c:forEach>
@@ -75,37 +90,37 @@ $( function() {
 				<h4 class="panel-title">FORM CONTROL</h4>
 			</div>
 			<div class="panel-body">
-			
+
 				<a href="#editForm" class="btn btn-info btn-sm" data-toggle="collapse">Edit Form Properties</a>
 				<div id="editForm" class="collapse">
 
-				<form:form modelAttribute="form" class="form">
-					<div class="form-group">
-						<div>
-							<label>Form Title</label>
+					<form:form modelAttribute="form" class="form">
+						<div class="form-group">
+							<div>
+								<label>Form Title</label>
+							</div>
+							<form:input path="name" cssClass="form-control" required="required" />
 						</div>
-						<form:input path="name" cssClass="form-control" required="required" />
-					</div>
-					<div class="form-group">
-						<div>
-							<label>Description</label>
+						<div class="form-group">
+							<div>
+								<label>Description</label>
+							</div>
+							<form:textarea path="description" cssClass="form-control" />
 						</div>
-						<form:textarea path="description" cssClass="form-control" />
-					</div>
-					<div class="form-group">
-						<div>
-							<label>Notification Email</label>
+						<div class="form-group">
+							<div>
+								<label>Notification Email</label>
+							</div>
+							<form:input path="notificationEmail" cssClass="form-control" />
 						</div>
-						<form:input path="notificationEmail" cssClass="form-control" />
-					</div>
-					<div class="form-group">
-						<form:checkbox path="enabled" label="Enable" />
-					</div>
-	
-					<button type="submit" class="btn btn-raised btn-info btn-sm">
-						<span class="glyphicon glyphicon-floppy-disk"></span> SAVE
-					</button>
-				</form:form>
+						<div class="form-group">
+							<form:checkbox path="enabled" label="Enable" />
+						</div>
+
+						<button type="submit" class="btn btn-raised btn-info btn-sm">
+							<span class="glyphicon glyphicon-floppy-disk"></span> SAVE
+						</button>
+					</form:form>
 				</div>
 				<hr />
 				<p class="text-center">Click here to add field to the form.</p>
@@ -140,7 +155,7 @@ $( function() {
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="text-center">
 			<nav aria-label="Page navigation">
 				<ul class="pagination">
@@ -179,31 +194,32 @@ $( function() {
 				<div class="alert alert-danger">
 					<span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Page?
 				</div>
-				
-			<div class="modal-footer ">
-				<a href="deletePage.html?id=${param.id}&pageNum=${param.pageNum}">
-					<button type="button" class="btn btn-danger">
-						<span class="glyphicon glyphicon-ok-sign"></span> Yes
+
+				<div class="modal-footer ">
+					<a href="deletePage.html?id=${param.id}&pageNum=${param.pageNum}">
+						<button type="button" class="btn btn-danger">
+							<span class="glyphicon glyphicon-ok-sign"></span> Yes
+						</button>
+					</a>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span> No
 					</button>
-				</a>
-				<button type="button" class="btn btn-default" data-dismiss="modal">
-					<span class="glyphicon glyphicon-remove"></span> No
-				</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-</div>
 <script>
-function deletePage()
-{
-    var msg = "Are you sure you want to delete this page?";
-    if( confirm(msg) )
-        window.location.href = "deletePage.html?id=${param.id}&pageNum=${param.pageNum}";
-}
+	function deletePage() {
+		var msg = "Are you sure you want to delete this page?";
+		if (confirm(msg))
+			window.location.href = "deletePage.html?id=${param.id}&pageNum=${param.pageNum}";
+	}
 </script>
 <script>
-   $(function () {
-       $('[data-toggle="tooltip"]').tooltip({delay: 500});
-   });
- </script>
+	$(function() {
+		$('[data-toggle="tooltip"]').tooltip({
+			delay : 500
+		});
+	});
+</script>

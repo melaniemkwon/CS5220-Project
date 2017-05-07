@@ -3,7 +3,7 @@
 <%@ tag body-content="scriptless"%>
 
 
-<div class="form-group row" style="margin-left: 10px; margin-top: 10px;" data-qid="${question.id}" data-qnum="${question.questionNumber}">
+<div class="form-group row" style="margin-left: 10px; margin-top: 10px;">
 	<c:choose>
 		<c:when test="${question.tagAttribute.type eq 'text'}">
 			<div>
