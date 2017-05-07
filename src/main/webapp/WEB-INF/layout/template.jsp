@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="<c:url value='/assets/resources/css/formbuilder.css' />">
 
 <script src="<c:url value='/assets/vendors/jquery/jquery-3.2.0.min.js' />"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="<c:url value='/assets/vendors/bootstrap-3.3.7-dist/js/bootstrap.min.js' />"></script>
 
 <!-- Material Design for Bootstrap -->
