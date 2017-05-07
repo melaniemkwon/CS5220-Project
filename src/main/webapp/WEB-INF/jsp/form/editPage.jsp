@@ -26,6 +26,7 @@ $( function() {
 			  context: document.body,
 			  success: function(){
 			    // success
+			    console.log("sortable ajax success")
 			  }
 			});
 	  }
