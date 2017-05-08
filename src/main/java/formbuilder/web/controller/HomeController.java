@@ -74,20 +74,22 @@ public class HomeController {
 
 	// ############### file upload controllers ######################
 
-	@RequestMapping(value = "/upload.html", method = RequestMethod.GET)
-	public String showUploadForm(HttpServletRequest request) {
-		System.out.println("reach");
+
+	@RequestMapping(value = "/pdf/upload.html", method = RequestMethod.GET)
+	public String showUploadForm(HttpServletRequest request) throws IOException {
+
 		String realPath = context.getServletContext().getRealPath("/PDFresource");
 		File dir = new File(realPath);
+		dir.createNewFile();
 		request.setAttribute("path", dir);
 		File[] files = dir.listFiles();
 		if (files.length > 0) {
 			request.setAttribute("files", files);
 		}
-		return "/upload";
+		return "/pdf/upload";
 	}
 
-	@RequestMapping(value = "/upload.html", method = RequestMethod.POST)
+	@RequestMapping(value = "/pdf/upload.html", method = RequestMethod.POST)
 	public String handleFileUpload(HttpServletRequest request,
 			@RequestParam CommonsMultipartFile[] fileUpload) throws Exception {
 
@@ -124,12 +126,12 @@ public class HomeController {
 		}
 
 
-		return "redirect:/upload.html";
+		return "redirect:/pdf/upload.html";
 	}
 	
 	// ###################### view file ####################
 
-	@RequestMapping(value = "upload/view.html", method = RequestMethod.GET)
+	@RequestMapping(value = "/pdf/upload/view.html", method = RequestMethod.GET)
 	public void viewFile(HttpServletResponse response, @RequestParam File f) throws IOException {
 
 
@@ -183,7 +185,7 @@ public class HomeController {
 	
 	
 	// ################### Download #####################
-	@RequestMapping(value = "upload/download.html", method = RequestMethod.GET)
+	@RequestMapping(value = "/pdf/upload/download.html", method = RequestMethod.GET)
 	public void downloadFile(HttpServletResponse response, @RequestParam File f) throws IOException {
 
 		// String realPath =
@@ -239,23 +241,23 @@ public class HomeController {
 
 	// ###################### delete file ####################
 
-	@RequestMapping(value = "upload/delete.html", method = RequestMethod.GET)
+	@RequestMapping(value = "/pdf/upload/delete.html", method = RequestMethod.GET)
 	public String deleteFile(@RequestParam File f) {
 
 		System.out.println("delete" + f.getAbsolutePath());
 		File file = new File(f.getAbsolutePath());
 		file.delete();
 
-		return "redirect:/upload.html";
+		return "redirect:/pdf/upload.html";
 	}
 
-	@RequestMapping(value = "upload/edit.html", method = RequestMethod.GET)
+	@RequestMapping(value = "/pdf/upload/edit.html", method = RequestMethod.GET)
 	public String editFile(@RequestParam String fileName, @RequestParam String userName) {
 
 		File f = new File(fileName);
 		File newName = new File(f.getParentFile() + "/" + userName + ".pdf");
 		f.renameTo(newName);
-		return "redirect:/upload.html";
+		return "redirect:/pdf/upload.html";
 	}
 
 }

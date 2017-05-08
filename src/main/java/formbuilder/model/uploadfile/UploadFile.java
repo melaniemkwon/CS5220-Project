@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "FILES_UPLOAD")
+@Table(name = "files_upload")
 public class UploadFile {
 
 	@Id

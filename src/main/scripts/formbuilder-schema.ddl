@@ -4,8 +4,7 @@ create sequence hibernate_sequence start 1 increment 1;
         answer_type varchar(31) not null,
         id int4 not null,
         enabled boolean not null,
-        index int4 not null,
-        selected boolean,
+        selections bytea,
         text varchar(255),
         question_id int4,
         user_id int4,
@@ -17,12 +16,7 @@ create sequence hibernate_sequence start 1 increment 1;
         role varchar(255)
     );
 
-    create table ChoiceAnswer_choices (
-        ChoiceAnswer_id int4 not null,
-        choices varchar(255)
-    );
-
-    create table FILES_UPLOAD (
+    create table files_upload (
         FILE_ID int8 not null,
         FILE_DATA bytea,
         FILE_NAME varchar(255),
@@ -122,11 +116,6 @@ create sequence hibernate_sequence start 1 increment 1;
         add constraint FKk91upmbueyim93v469wj7b2qh 
         foreign key (user_id) 
         references users;
-
-    alter table ChoiceAnswer_choices 
-        add constraint FK64j2s4uifc83dkgfm1g1g4h0x 
-        foreign key (ChoiceAnswer_id) 
-        references answers;
 
     alter table forms_users 
         add constraint FKhp0dk6l6s1p5c2mcew1md2yph 

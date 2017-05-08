@@ -9,6 +9,7 @@
 		<ul>
 			<li><a href="/formbuilder/form/listForm.html">Forms Management</a></li>
 			<li><a href="/formbuilder/user/list.html">User Management</a></li>
+			<li><a href="pdf/upload.html">Upload PDF</a></li>
 		</ul>
 	</div>
 </div>
