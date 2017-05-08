@@ -105,6 +105,23 @@
 				</select>
 			</div>
 		</c:when>
+		
+		<c:when test="${question.tagAttribute.type eq 'file'}">
+			<div>
+				<label for="question${question.questionNumber}"
+					class="control-label">${question.questionNumber}.
+					${question.description}</label>
+			</div>
+			<form method="POST"
+				action="${pageContext.request.contextPath}/upload"
+				enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" name="file"> <input type="text"
+						class="form-control" placeholder="Browse or Drag your file to here" readonly>
+				</div>
+				<button type="submit" class="btn btn-raised btn-primary">Submit</button>
+			</form>
+		</c:when>
 		<c:otherwise>
 			<p>QUESTION TYPE NOT FOUND</p>
 			<p>${question.tagAttribute.type }</p>

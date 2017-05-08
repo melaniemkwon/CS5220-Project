@@ -30,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
 import formbuilder.model.questionform.ChoiceQuestion;
+import formbuilder.model.questionform.FileQuestion;
 import formbuilder.model.questionform.Form;
 import formbuilder.model.questionform.Question;
 import formbuilder.model.questionform.TagAttribute;
@@ -220,6 +221,26 @@ public class FormController {
 
 		Form form = formDao.getForm(id);
 		ChoiceQuestion question = new ChoiceQuestion();
+		question.setPageNumber(pageNum);
+		// set tag attribute
+		TagAttribute tagAttribute = question.getTagAttribute();
+		tagAttribute.setType(type);
+		question.setTagAttribute(tagAttribute);
+
+		question.setQuestionNumber(form.getQuestionsPage(pageNum).size() + 1);
+
+		form.addQuestion(question);
+
+		formDao.saveForm(form);
+
+		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
+	}
+
+	@GetMapping("/form/addFileQuestion.html")
+	public String addFileQuestion(@RequestParam Integer id, @RequestParam Integer pageNum, @RequestParam String type) {
+
+		Form form = formDao.getForm(id);
+		FileQuestion question = new FileQuestion();
 		question.setPageNumber(pageNum);
 		// set tag attribute
 		TagAttribute tagAttribute = question.getTagAttribute();
