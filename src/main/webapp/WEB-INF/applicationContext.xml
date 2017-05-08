@@ -52,7 +52,7 @@
     <security:intercept-url pattern="/user/edit.html" access="authenticated" />
     <security:intercept-url pattern="/user/**" access="authenticated and hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF')" />
     <security:intercept-url pattern="/form/**" access="authenticated and hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF')" />
-     <security:intercept-url pattern="/pdf/upload.html" access="authenticated and hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF')" />
+     <security:intercept-url pattern="/pdf/**" access="authenticated and hasRole('ROLE_ADMIN') or hasRole('ROLE_STAFF')" />
     <security:intercept-url pattern="/userForm/**" access="authenticated" />
   </security:http>
   

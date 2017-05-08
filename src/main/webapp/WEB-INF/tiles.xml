@@ -24,9 +24,9 @@
         <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
     </definition> 
     
-    <definition name="pdf/upload" extends="template">
+    <definition name="/upload" extends="template">
 		<put-attribute name="title" value="File Management" />
-		<put-attribute name="content" value="/WEB-INF/jsp/upload.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/pdf/upload.jsp" />
 	</definition>
     
 
