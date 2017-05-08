@@ -16,6 +16,13 @@ create sequence hibernate_sequence start 1 increment 1;
         role varchar(255)
     );
 
+    create table FILES_UPLOAD (
+        FILE_ID int8 not null,
+        FILE_DATA bytea,
+        FILE_NAME varchar(255),
+        primary key (FILE_ID)
+    );
+
     create table forms (
         id int4 not null,
         description varchar(255),

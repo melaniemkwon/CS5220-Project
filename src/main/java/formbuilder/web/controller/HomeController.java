@@ -76,7 +76,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/upload.html", method = RequestMethod.GET)
 	public String showUploadForm(HttpServletRequest request) {
-
+		System.out.println("reach");
 		String realPath = context.getServletContext().getRealPath("/PDFresource");
 		File dir = new File(realPath);
 		request.setAttribute("path", dir);
