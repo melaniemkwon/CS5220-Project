@@ -16,7 +16,7 @@ create sequence hibernate_sequence start 1 increment 1;
         role varchar(255)
     );
 
-    create table FILES_UPLOAD (
+    create table files_upload (
         FILE_ID int8 not null,
         FILE_DATA bytea,
         FILE_NAME varchar(255),
