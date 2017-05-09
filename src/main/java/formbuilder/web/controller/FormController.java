@@ -9,14 +9,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.StringJoiner;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +43,7 @@ import formbuilder.model.questionform.dao.FormDao;
 
 @Controller
 @SessionAttributes({ "form", "question" })
+@PropertySource("WEB-INF/formbuilder.properties")
 public class FormController {
 
 	@Autowired
@@ -46,6 +51,9 @@ public class FormController {
 
 	@Autowired
 	private UserDao userDao;
+
+	@Value("${upload.location}")
+	private String uploadLocation;
 
 	@RequestMapping("/form/listForm.html")
 	public String listForm(ModelMap models) {
@@ -404,26 +412,38 @@ public class FormController {
 		return "upload";
 	}
 
-	@PostMapping("/upload")
-	public String singleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+	@PostMapping("/uploadX.html")
+	public String upload(@RequestParam("file") MultipartFile[] files, @RequestParam Integer qId,
+			RedirectAttributes redirectAttributes) {
 
-		if (file.isEmpty()) {
-			redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-			return "redirect:uploadStatus";
+		StringJoiner sj = new StringJoiner(" , ");
+		System.out.println("qId " + qId);
+		for (MultipartFile file : files) {
+
+			if (file.isEmpty()) {
+				continue; // next pls
+			}
+
+			try {
+
+				byte[] bytes = file.getBytes();
+				Path path = Paths.get(uploadLocation + "testCreateDir/" + file.getOriginalFilename());
+				Files.createDirectories(path.getParent());
+				Files.write(path, bytes);
+
+				sj.add(file.getOriginalFilename());
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 
-		try {
-
-			// Get the file and save it somewhere
-			byte[] bytes = file.getBytes();
-			Path path = Paths.get("C:/temp/" + file.getOriginalFilename());
-			Files.write(path, bytes);
-
-			redirectAttributes.addFlashAttribute("message",
-					"You successfully uploaded '" + file.getOriginalFilename() + "'");
-
-		} catch (IOException e) {
-			e.printStackTrace();
+		String uploadedFileName = sj.toString();
+		if (StringUtils.isEmpty(uploadedFileName)) {
+			redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+		} else {
+			redirectAttributes.addFlashAttribute("message", "You successfully uploaded '" + uploadedFileName + "'");
 		}
 
 		return "redirect:/uploadStatus";
@@ -457,5 +477,7 @@ public class FormController {
 		}
 
 	}
+
+
 
 }
