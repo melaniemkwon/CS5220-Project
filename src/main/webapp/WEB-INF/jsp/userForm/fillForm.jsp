@@ -28,7 +28,14 @@
 		</nav>
 	</div>
 
-	<H2>FORM : ${form.name}</H2>
+	<H2>FORM : ${form.name}
+	<c:choose>
+	<c:when test="${finished eq '1'}">
+	( Completed )
+	</c:when>
+	</c:choose>
+	</H2>
+	
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h4 class="panel-title">PAGE ${param.pageNum}</h4>
@@ -47,7 +54,20 @@
 								<hr />	
 							</c:if>
 						</c:forEach>
-						<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> SAVE</button>	
+						<c:choose>
+							<c:when test="${finished eq '1'}">
+								
+								<a href="listForm.html?id=${param.uId}"><button type="button" class="btn btn-warning btn-sm">
+						<span class="glyphicon glyphicon-arrow-left"></span> RETURN TO FORM LIST
+					</button></a>
+							</c:when>
+							<c:otherwise>
+							<div><label class="control-label">Please check when filling is completed.</label></div>
+							<div class="checkbox">
+							<label><input type="checkbox" name='finished' label="Completed" value="1"/></label></div>
+							<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> SAVE</button>	
+							</c:otherwise>
+						</c:choose>
 					</form:form>	
 				</c:otherwise>
 			</c:choose>

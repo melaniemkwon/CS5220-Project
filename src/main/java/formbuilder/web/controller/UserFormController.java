@@ -20,7 +20,9 @@ import formbuilder.model.questionform.ChoiceAnswer;
 import formbuilder.model.questionform.Form;
 import formbuilder.model.questionform.Question;
 import formbuilder.model.questionform.TextAnswer;
+import formbuilder.model.questionform.UserFormStatus;
 import formbuilder.model.questionform.dao.FormDao;
+import formbuilder.model.questionform.dao.FormStatusDao;
 
 @Controller
 
@@ -32,6 +34,9 @@ public class UserFormController {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private FormStatusDao formStatusDao;
 
 	@RequestMapping("/userForm/listForm.html")
 	public String listForm(@RequestParam Integer id, ModelMap models) {
@@ -51,6 +56,7 @@ public class UserFormController {
 
 		User user = userDao.getUser(uId);
 		Form form = formDao.getForm(fId);
+		UserFormStatus formStatus = formStatusDao.getFormStatus(user, form);
 		List<Question> questionsPage = form.getQuestionsPage(pageNum);
 		int numQuestion = questionsPage.size();
 		// get all questions
@@ -68,6 +74,13 @@ public class UserFormController {
 					}
 				}
 			}
+			//if the form is filled completely
+			if(formStatus != null){
+				if(formStatus.isFinished()){
+					models.put("finished", "1");
+				}
+			}
+			
 			// not found answer create new one
 			if (!found) {
 				if (question.getType().equals("TEXT")) {
@@ -102,9 +115,20 @@ public class UserFormController {
 
 	@RequestMapping(value = "/userForm/fillForm.html", method = RequestMethod.POST)
 	public String fillForm(@ModelAttribute Form form, @RequestParam Integer uId, @RequestParam Integer fId,
-			@RequestParam Integer pageNum, SessionStatus sessionStatus) {
+			@RequestParam Integer pageNum, @RequestParam(required=false) Integer finished, SessionStatus sessionStatus) {
 
 		formDao.saveForm(form);
+		if(finished != null){
+			if(finished == 1){
+				UserFormStatus formStatus = new UserFormStatus();
+				formStatus.setForm(form);
+				formStatus.setUser(userDao.getUser(uId));
+				formStatus.setFinished(true);
+				formStatusDao.saveFormStatus(formStatus);
+			}
+		}
+		
+		System.out.println("finished" + finished);
 		sessionStatus.setComplete();
 		return "redirect:/userForm/fillForm.html?uId=" + uId + "&fId=" + fId + "&pageNum=" + pageNum;
 
