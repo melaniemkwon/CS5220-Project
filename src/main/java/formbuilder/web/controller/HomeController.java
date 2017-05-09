@@ -80,7 +80,8 @@ public class HomeController {
 
 		String realPath = context.getServletContext().getRealPath("/PDFresource");
 		File dir = new File(realPath);
-		dir.createNewFile();
+		dir.mkdir();
+
 		request.setAttribute("path", dir);
 		File[] files = dir.listFiles();
 		if (files.length > 0) {
