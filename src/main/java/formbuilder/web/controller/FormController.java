@@ -268,59 +268,6 @@ public class FormController {
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
-	@RequestMapping("/form/moveUpQuestion.html")
-	public String moveUpQuestion(@RequestParam Integer qId) {
-
-		Question question = formDao.getQuestion(qId);
-		Form form = question.getForm();
-		int id = form.getId();
-		int pageNum = question.getPageNumber();
-		int questionNumber = question.getQuestionNumber();
-
-		if (questionNumber > 1) {
-			Question priorQuestion = formDao.getQuestion(questionNumber - 1, pageNum);
-			System.out.println(question.getQuestionNumber());
-			System.out.println(priorQuestion.getQuestionNumber());
-			// Update question number
-			question.setQuestionNumber(questionNumber - 1);
-			priorQuestion.setQuestionNumber(questionNumber);
-
-			System.out.println(question.getQuestionNumber());
-			System.out.println(priorQuestion.getQuestionNumber());
-
-			formDao.saveForm(form);
-		}
-		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
-	}
-
-	@RequestMapping("/form/moveDownQuestion.html")
-	public String moveDownQuestion(@RequestParam Integer qId) {
-
-		Question question = formDao.getQuestion(qId);
-		Form form = question.getForm();
-		int id = form.getId();
-		int pageNum = question.getPageNumber();
-		int questionNumber = question.getQuestionNumber();
-
-		Question nextQuestion = formDao.getQuestion(questionNumber + 1, pageNum);
-
-		System.out.println(question.getQuestionNumber());
-		System.out.println(nextQuestion.getQuestionNumber());
-
-		if (nextQuestion != null) {
-
-			// Update question number
-			question.setQuestionNumber(questionNumber + 1);
-			nextQuestion.setQuestionNumber(questionNumber);
-
-			System.out.println(question.getQuestionNumber());
-			System.out.println(nextQuestion.getQuestionNumber());
-
-			formDao.saveForm(form);
-		}
-		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
-	}
-
 	@RequestMapping(value = "/form/editQuestion.html", method = RequestMethod.GET)
 	public String editQuestion(@RequestParam Integer qId, ModelMap models) {
 
