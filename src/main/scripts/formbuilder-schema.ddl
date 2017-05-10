@@ -1,10 +1,5 @@
 create sequence hibernate_sequence start 1 increment 1;
 
-    create table answer_files (
-        answer_id int4 not null,
-        files varchar(255)
-    );
-
     create table answers (
         answer_type varchar(31) not null,
         id int4 not null,
@@ -106,11 +101,6 @@ create sequence hibernate_sequence start 1 increment 1;
 
     alter table users 
         add constraint UK_r43af9ap4edm43mmtq01oddj6 unique (username);
-
-    alter table answer_files 
-        add constraint FK5g6hgn3rar9j281mttpamfv5r 
-        foreign key (answer_id) 
-        references answers;
 
     alter table answers 
         add constraint FK3erw1a3t0r78st8ty27x6v3g1 

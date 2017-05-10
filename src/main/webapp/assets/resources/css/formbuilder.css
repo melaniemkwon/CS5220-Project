@@ -49,10 +49,8 @@ body {
 
 #logoutDropdownLink { cursor: pointer; cursor: hand; }
 
-
-/* .custom {
-	width: 100px !important;
-	margin-right: 5px;
-	margin-top: 5px;
-	border-radius: 24px;
+/* .sort-item {
+	background-color: #fff;
+	border: 1.5px solid #eee;
+	border-radius: 5px;
 } */
