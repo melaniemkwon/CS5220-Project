@@ -65,10 +65,8 @@ $(function() {
 									<div class="btn-group btn-group-sm" role="group" aria-label="..." style="margin-left: 10px;">
 										<a href="copyQuestion.html?qId=${question.id}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Duplicate this question"><span
 											class="glyphicon glyphicon-plus-sign"></span></a> <a href="deleteQuestion.html?qId=${question.id}" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete question"><span
-											class="glyphicon glyphicon-minus-sign"></span></a> <a href="moveUpQuestion.html?qId=${question.id}" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"
-											title="Move question up"><span class="glyphicon glyphicon-arrow-up"></span></a> <a href="editQuestion.html?qId=${question.id}" class="btn btn-default" data-toggle="tooltip"
-											data-placement="bottom" title="Edit this question"><span class="glyphicon glyphicon-pencil"></span></a> <a href="moveDownQuestion.html?qId=${question.id}" class="btn btn-warning"
-											data-toggle="tooltip" data-placement="bottom" title="Move question down"><span class="glyphicon glyphicon-arrow-down"></span></a>
+											class="glyphicon glyphicon-minus-sign"></span></a> <a href="editQuestion.html?qId=${question.id}" class="btn btn-default" data-toggle="tooltip"
+											data-placement="bottom" title="Edit this question"><span class="glyphicon glyphicon-pencil"></span></a> 
 									</div>
 								</div>
 							</c:forEach>
