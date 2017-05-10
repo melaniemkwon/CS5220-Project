@@ -32,9 +32,14 @@
 				</c:when>
 			</c:choose>	
 
-				
-				<form:input path="questions[${index }].answers[0].text" cssClass="form-control" required="${question.tagAttribute.required }"/>
-					
+			<c:choose>
+				<c:when test="${finished eq '1'}">
+					<form:input path="questions[${index }].answers[0].text" cssClass="form-control" required="${question.tagAttribute.required }" readonly="true"/>
+				</c:when>
+				<c:otherwise>
+					<form:input path="questions[${index }].answers[0].text" cssClass="form-control" required="${question.tagAttribute.required }"/>
+				</c:otherwise>
+			</c:choose>	
 
 			</div>
 		</c:when>
@@ -46,7 +51,15 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-				<form:input path="questions[${index }].answers[0].text" cssClass="form-control" required="${question.tagAttribute.required }"/>
+			<c:choose>
+				<c:when test="${finished eq '1'}">
+					<form:input path="questions[${index }].answers[0].text" cssClass="form-control" required="${question.tagAttribute.required }" readonly="true"/>
+				</c:when>
+				<c:otherwise>
+					<form:input path="questions[${index }].answers[0].text" cssClass="form-control" required="${question.tagAttribute.required }"/>
+				</c:otherwise>
+			</c:choose>	
+				
 				
 			</div>
 		</c:when>
@@ -58,8 +71,15 @@
 					${question.description }</label>
 			</div>
 			<div class="${question.tagAttribute.size }">
-
-				<form:textarea path="questions[${index }].answers[0].text" cssClass="form-control" rows="${question.tagAttribute.rows}" required="${question.tagAttribute.required }"/>			
+			<c:choose>
+				<c:when test="${finished eq '1'}">
+					<form:textarea path="questions[${index }].answers[0].text" cssClass="form-control" rows="${question.tagAttribute.rows}" required="${question.tagAttribute.required }" readonly="true"/>
+				</c:when>
+				<c:otherwise>
+					<form:textarea path="questions[${index }].answers[0].text" cssClass="form-control" rows="${question.tagAttribute.rows}" required="${question.tagAttribute.required }"/>
+				</c:otherwise>
+			</c:choose>
+							
 
 			</div>
 		</c:when>
@@ -73,7 +93,14 @@
 			<c:forEach items="${question.choices}" var="choice" varStatus="loop">
 				<div class="checkbox">
 	    			<label>
-						<form:checkbox path="questions[${index }].answers[0].selections[${loop.index }]" value="${choice }" label="${choice }"/>
+	    			<c:choose>
+	    				<c:when test="${finished eq '1'}">
+	    					<form:checkbox path="questions[${index }].answers[0].selections[${loop.index }]" value="${choice }" label="${choice }" onclick="return false"/>
+	    				</c:when>
+	    				<c:otherwise>
+							<form:checkbox path="questions[${index }].answers[0].selections[${loop.index }]" value="${choice }" label="${choice }"/>
+	    				</c:otherwise>
+	    			</c:choose>
 	    			</label>
 	  			</div>			
 			</c:forEach>
@@ -108,4 +135,6 @@
 			<p>${question.tagAttribute.type }</p>
 		</c:otherwise>
 	</c:choose>
+	
+	
 </div>
