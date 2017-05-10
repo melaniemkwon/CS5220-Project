@@ -90,18 +90,17 @@ public class HomeController {
 
 	@RequestMapping(value = "/pdf/upload.html", method = RequestMethod.POST)
 	public String handleFileUpload(HttpServletRequest request,
-			@RequestParam CommonsMultipartFile[] fileUpload) throws Exception {
+			@RequestParam CommonsMultipartFile fileUpload) throws Exception {
 
-		if (fileUpload != null && fileUpload.length > 0) {
-			for (CommonsMultipartFile aFile : fileUpload) {
+		if (fileUpload != null) {
 
-				System.out.println("Saving file: " + aFile.getOriginalFilename());
+				System.out.println("Saving file: " + fileUpload.getOriginalFilename());
 				UploadFile uploadFile = new UploadFile();
-				uploadFile.setFileName(aFile.getOriginalFilename());
-				uploadFile.setData(aFile.getBytes());
+				uploadFile.setFileName(fileUpload.getOriginalFilename());
+				uploadFile.setData(fileUpload.getBytes());
 				fileUploadDao.save(uploadFile);
 
-				if (!aFile.isEmpty()) {
+				if (!fileUpload.isEmpty()) {
 					try {
 						// Creating the directory to store file
 						String realPath = context.getServletContext().getRealPath("/PDFresource");
@@ -110,19 +109,18 @@ public class HomeController {
 							dir.mkdirs();
 
 						// Create the file on server
-						aFile.transferTo(new File(dir, aFile.getOriginalFilename()));
-						System.out.println("You successfully uploaded file=" + aFile.getOriginalFilename());
+						fileUpload.transferTo(new File(dir, fileUpload.getOriginalFilename()));
+						System.out.println("You successfully uploaded file=" + fileUpload.getOriginalFilename());
 					} catch (Exception e) {
 						System.out.println(
-								"You failed to upload " + aFile.getOriginalFilename() + " => " + e.getMessage());
+								"You failed to upload " + fileUpload.getOriginalFilename() + " => " + e.getMessage());
 					}
 				} else {
 					System.out.println(
-							"You failed to upload " + aFile.getOriginalFilename() + " because the file was empty.");
+							"You failed to upload " + fileUpload.getOriginalFilename() + " because the file was empty.");
 				}
 
 			}
-		}
 
 
 		return "redirect:/pdf/upload.html";
