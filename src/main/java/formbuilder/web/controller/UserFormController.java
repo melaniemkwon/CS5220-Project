@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -54,8 +55,8 @@ public class UserFormController {
 	@Autowired
 	private UserDao userDao;
 
-	// @Autowired
-	// private MultipartResolver resolver;
+	@Autowired
+	private WebApplicationContext context;
 
 	@Value("${upload.location}")
 	private String uploadLocation;
@@ -157,7 +158,8 @@ public class UserFormController {
 						byte[] bytes = file.getBytes();
 						// Path is C:/temp/formbuilder/uId_XX/qId_YY/FILE
 						Path path = Paths
-								.get(uploadLocation + "uId_" + uId + "/qId_" + qId + "/" + file.getOriginalFilename());
+								.get(context.getServletContext().getRealPath("/FileAnswer") + "/uId_" + uId + "/qId_"
+										+ qId + "/" + file.getOriginalFilename());
 						Files.createDirectories(path.getParent());
 						Files.write(path, bytes);
 						answer.getFiles().add(file.getOriginalFilename());
@@ -181,7 +183,8 @@ public class UserFormController {
 	public void viewFileAnswer(HttpServletResponse response, @RequestParam Integer uId, @RequestParam Integer qId,
 			@RequestParam String filename) throws IOException {
 
-		String path = uploadLocation + "uId_" + uId + "/qId_" + qId + "/" + filename;
+		String path = context.getServletContext().getRealPath("/FileAnswer") + "/uId_" + uId + "/qId_" + qId + "/"
+				+ filename;
 		File file = new File(path);
 
 		if (!file.exists()) {
@@ -215,7 +218,8 @@ public class UserFormController {
 	public String deleteFileAnswer(@RequestParam Integer uId, @RequestParam Integer fId, @RequestParam Integer pageNum,
 			@RequestParam Integer qId, @RequestParam String filename) {
 
-		String path = uploadLocation + "uId_" + uId + "/qId_" + qId + "/" + filename;
+		String path = context.getServletContext().getRealPath("/FileAnswer") + "/uId_" + uId + "/qId_" + qId + "/"
+				+ filename;
 		System.out.println("delete " + path);
 		File file = new File(path);
 		file.delete();
