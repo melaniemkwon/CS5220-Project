@@ -112,16 +112,13 @@
 					class="control-label">${question.questionNumber}.
 					${question.description}</label>
 			</div>
-			<form method="POST"
-				action="${pageContext.request.contextPath}/uploadAnswer.html"
-				enctype="multipart/form-data">
-				<div class="form-group">
-					<input type="file" name="file" multiple> <input type="text"
-						class="form-control" placeholder="Browse or Drag your file to here" readonly>
-				</div>
-				<input type="hidden" name="qId" value="${question.id} " >
-				<button type="submit" class="btn btn-raised btn-primary">Submit</button>
-			</form>
+			<div class="form-group">
+				<input type="file" name="file" multiple> <input type="text"
+					class="form-control"
+					placeholder="Browse or Drag your file here to upload" readonly>
+			</div>
+
+
 		</c:when>
 		<c:otherwise>
 			<p>QUESTION TYPE NOT FOUND</p>

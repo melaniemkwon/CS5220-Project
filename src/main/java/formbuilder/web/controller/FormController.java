@@ -1,26 +1,13 @@
 package formbuilder.web.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.StringJoiner;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
@@ -406,78 +391,6 @@ public class FormController {
 
 		return "redirect:/form/editQuestion.html?qId=" + qId;
 	}
-
-	@GetMapping("/upload")
-	public String singleFileUpload() {
-		return "upload";
-	}
-
-	@PostMapping("/uploadX.html")
-	public String upload(@RequestParam("file") MultipartFile[] files, @RequestParam Integer qId,
-			RedirectAttributes redirectAttributes) {
-
-		StringJoiner sj = new StringJoiner(" , ");
-		System.out.println("qId " + qId);
-		for (MultipartFile file : files) {
-
-			if (file.isEmpty()) {
-				continue; // next pls
-			}
-
-			try {
-
-				byte[] bytes = file.getBytes();
-				Path path = Paths.get(uploadLocation + "testCreateDir/" + file.getOriginalFilename());
-				Files.createDirectories(path.getParent());
-				Files.write(path, bytes);
-
-				sj.add(file.getOriginalFilename());
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		}
-
-		String uploadedFileName = sj.toString();
-		if (StringUtils.isEmpty(uploadedFileName)) {
-			redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-		} else {
-			redirectAttributes.addFlashAttribute("message", "You successfully uploaded '" + uploadedFileName + "'");
-		}
-
-		return "redirect:/uploadStatus";
-	}
-
-	@GetMapping("/uploadStatus")
-	public String uploadStatus() {
-		return "uploadStatus";
-	}
-
-	@GetMapping("/download")
-	public String downloadPage() {
-		return "download";
-	}
-
-	@GetMapping(value = "/downloadFile")
-	public void getLogFile(HttpSession session, HttpServletResponse response) throws Exception {
-		try {
-			String filePathToBeServed = "C:/temp/command.txt";// complete file
-																// name with
-																// path;
-			File fileToDownload = new File(filePathToBeServed);
-			InputStream inputStream = new FileInputStream(fileToDownload);
-			response.setContentType("application/force-download");
-			response.setHeader("Content-Disposition", "attachment; filename=command.txt");
-			IOUtils.copy(inputStream, response.getOutputStream());
-			response.flushBuffer();
-			inputStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
 
 
 }
