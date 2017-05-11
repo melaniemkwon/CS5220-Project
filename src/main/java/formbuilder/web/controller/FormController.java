@@ -121,6 +121,15 @@ public class FormController {
 		userDao.saveUser(user);
 		return "redirect:/form/listAssignForm.html?id=" + id;
 	}
+	
+	@RequestMapping(value = "/form/publishForm.html")
+	public String publishForm(@RequestParam Integer id){
+		Form form = formDao.getForm(id);
+		form.setPublished(true);
+		formDao.saveForm(form);
+		return "redirect:/form/listForm.html";
+	}
+	
 
 	@GetMapping("/form/viewPage.html")
 	public String viewPage(@RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models) {

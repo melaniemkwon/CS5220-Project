@@ -34,6 +34,8 @@ public class Form implements Serializable {
 	private String description;
 
 	private boolean enabled;
+	
+	private boolean published;
 
 	@OneToMany(mappedBy = "form", cascade = CascadeType.ALL, orphanRemoval = true)
 	@OrderBy("pageNumber, questionNumber")
@@ -137,5 +139,13 @@ public class Form implements Serializable {
 		if (question != null) {
 			question.setForm(null);
 		}
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
 	}
 }
