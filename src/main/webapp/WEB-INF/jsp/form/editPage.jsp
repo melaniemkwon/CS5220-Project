@@ -116,6 +116,11 @@ $(function() {
 						</button>
 					</form:form>
 				</div>
+				
+				<a href="#mapPDF" class="btn btn-danger btn-sm" data-toggle="collapse">Map PDF</a>
+				<div id="mapPDF" class="collapse">
+					Choose a PDF.
+				</div>
 				<hr />
 				<p class="text-center">Click here to add field to the form.</p>
 				<div>

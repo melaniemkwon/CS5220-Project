@@ -1,8 +1,11 @@
 package formbuilder.web.controller;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.WebApplicationContext;
 
 import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
@@ -38,6 +42,9 @@ public class FormController {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private WebApplicationContext context;
 
 	@Value("${upload.location}")
 	private String uploadLocation;
@@ -144,7 +151,7 @@ public class FormController {
 	}
 
 	@GetMapping("/form/editPage.html")
-	public String editPage(@RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models) {
+	public String editPage(HttpServletRequest request, @RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models) {
 
 		Form form = formDao.getForm(id);
 		if (pageNum > form.getTotalPages())
@@ -152,6 +159,10 @@ public class FormController {
 		List<Question> questionsPage = form.getQuestionsPage(pageNum);
 		models.put("form", form);
 		models.put("questionsPage", questionsPage);
+		
+		// If mapped PDF form exists, get all of its fields
+
+		
 		return "form/editPage";
 	}
 	

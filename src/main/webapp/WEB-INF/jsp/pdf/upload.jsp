@@ -38,23 +38,33 @@
 					<th>View</th>
 					<th>Download</th>
 					<th>Delete</th>
-					<th>Rename File</th>
+					<th>Map to Application Form</th>
 				</tr>
 			</thead>
 			<c:forEach items="${files}" var="file">
 				<tbody>
 					<tr>
-						<td align=center valign="middle">${file.name}</td>
-						<td><a class="btn" href="upload/view.html?f=${file}" data-toggle="tooltip" title="Open"> <i class="glyphicon glyphicon-eye-open"></i></a></td>
-						<td><a class="btn" href="upload/download.html?f=${file}" data-toggle="tooltip" title="Download"> <i class="glyphicon glyphicon-open-file"></i></a></td>
-						<td><a class="btn" href="upload/delete.html?f=${file}" data-toggle="tooltip" title="Delete"> <i class="glyphicon glyphicon-trash"></i>
-						</a></td>
-						<td>
+						<td align=center valign="middle">${file.name}
 							<div align=center style="valign: middle;">
 								<form method="get" action="upload/edit.html">
 									<input type="text" name="userName" /> <input type="hidden" value="${file}" name="fileName" /> <input type="submit" value="Rename" />
 								</form>
 							</div>
+						</td>
+						<td><a class="btn" href="upload/view.html?f=${file}" data-toggle="tooltip" title="Open"> <i class="glyphicon glyphicon-eye-open"></i></a></td>
+						<td><a class="btn" href="upload/download.html?f=${file}" data-toggle="tooltip" title="Download"> <i class="glyphicon glyphicon-open-file"></i></a></td>
+						<td><a class="btn" href="upload/delete.html?f=${file}" data-toggle="tooltip" title="Delete"> <i class="glyphicon glyphicon-trash"></i>
+						</a></td>
+						<td>
+							<select name="map">
+							<c:forEach items="${forms}" var="form">
+								<form method="get" action="">
+								  <option value="${form.id}">${form.name}</option>
+								  <br><br>
+								  <input type="submit" value="Map">
+								</form>
+							</c:forEach>
+							</select>
 						</td>
 					</tr>
 				</tbody>

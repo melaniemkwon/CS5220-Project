@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import formbuilder.model.questionform.dao.FormDao;
 import formbuilder.model.uploadFileDao.FileUploadDAO;
 import formbuilder.model.uploadfile.UploadFile;
 
@@ -37,6 +39,9 @@ public class HomeController {
 
 	@Autowired
 	private WebApplicationContext context;
+	
+	@Autowired
+	private FormDao formDao;
 
 	@RequestMapping({ "/index.html", "/home.html" })
 	public String home() {
@@ -76,7 +81,7 @@ public class HomeController {
 
 
 	@RequestMapping(value = "/pdf/upload.html", method = RequestMethod.GET)
-	public String showUploadForm(HttpServletRequest request) throws IOException {
+	public String showUploadForm(HttpServletRequest request, ModelMap models) throws IOException {
 
 		String realPath = context.getServletContext().getRealPath("/PDFresource");
 		System.out.println(realPath);
@@ -87,6 +92,9 @@ public class HomeController {
 		if (files.length > 0) {
 			request.setAttribute("files", files);
 		}
+		
+		models.put("forms", formDao.getForms());
+		
 		return "/pdf/upload";
 	}
 
