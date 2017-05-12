@@ -52,6 +52,6 @@ public class FileUploadDAOImpl implements FileUploadDAO {
 
 	@Override
 	public List<UploadFile> getFiles() {
-		return entityManager.createQuery("from files_upload order by id", UploadFile.class).getResultList();
+		return entityManager.createQuery("from UploadFile order by id", UploadFile.class).getResultList();
 	}
 }

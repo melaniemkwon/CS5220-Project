@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -101,7 +102,7 @@ public class HomeController {
 		models.put("forms", formDao.getForms());
 		
 		// UploadFiles
-		models.put("uploadFiles", fileUploadDao.getFiles());
+//		models.put("uploadFiles", fileUploadDao.getFiles());
 		
 		return "/pdf/upload";
 	}
@@ -239,14 +240,28 @@ public class HomeController {
 		System.out.println("DEBUG: File f= " + fileName.getName());
 		System.out.println("DEBUG: formID= " + formId);
 		
-		Form form = formDao.getForm(formId);
-		UploadFile uploadFile = fileUploadDao.getFile(8);
+		List<UploadFile> uploadFiles = fileUploadDao.getFiles();
+		for (UploadFile u : uploadFiles) {
+			if (u.getFileName().equals(fileName.getName())) {
+				Form form = formDao.getForm(formId);
+				form.setUploadFile(u);
+				u.setForm(form);
+				
+				fileUploadDao.save(u);
+				formDao.saveForm(form);
+				
+				break;
+			}
+		}
 		
-		uploadFile.setForm(form);				
-		form.setUploadFile(uploadFile);
-		
-		fileUploadDao.save(uploadFile);
-		formDao.saveForm(form);
+//		Form form = formDao.getForm(formId);
+//		UploadFile uploadFile = fileUploadDao.getFile(8);
+//		
+//		uploadFile.setForm(form);				
+//		form.setUploadFile(uploadFile);
+//		
+//		fileUploadDao.save(uploadFile);
+//		formDao.saveForm(form);
 		
 		return "redirect:/pdf/upload.html";
 	}
