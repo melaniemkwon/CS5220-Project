@@ -13,10 +13,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import formbuilder.model.core.User;
+import formbuilder.model.uploadfile.UploadFile;
 
 @Entity
 @Table(name = "forms")
@@ -27,7 +29,6 @@ public class Form implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
-
 
 	private String name;
 
@@ -49,6 +50,9 @@ public class Form implements Serializable {
 
 	@Column(name = "total_pages")
 	private int totalPages;
+	
+	@OneToOne
+	private UploadFile uploadFile;
 
 	public Form() {
 		enabled = true;
@@ -148,4 +152,13 @@ public class Form implements Serializable {
 	public void setPublished(boolean published) {
 		this.published = published;
 	}
+
+	public UploadFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(UploadFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	
 }
