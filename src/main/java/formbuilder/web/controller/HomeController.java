@@ -272,14 +272,15 @@ public class HomeController {
 	}
 	
 	// ##### Map an 'Application Form' to the 'PDF Form' #####
-	@GetMapping("/pdf/map.html")
-	public String mapPDFtoForm(@RequestParam File f, @RequestParam Integer formId) {
+	@RequestMapping(value = "/pdf/upload/map", method = RequestMethod.GET)
+	public String mapPDFtoForm(@RequestParam Integer formId, @RequestParam File fileName) {
 
-		System.out.println("DEBUG: File f= " + f);
+		System.out.println("DEBUG: File f= " + fileName);
 		System.out.println("DEBUG: formID= " + formId);
 		
 		Form form = formDao.getForm(formId);
-		File file = new File(f.getAbsolutePath());
+		File file = new File(fileName.getAbsolutePath());
+//		File f = new File(fileName);
 
 //		form.getUsers().add(user);
 //		user.getForms().add(form);

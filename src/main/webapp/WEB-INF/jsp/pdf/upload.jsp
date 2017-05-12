@@ -56,7 +56,7 @@
 						<td><a class="btn" href="upload/delete.html?f=${file}" data-toggle="tooltip" title="Delete"> <i class="glyphicon glyphicon-trash"></i>
 						</a></td>
 						<td>
-							<form method="get" action="map">
+							<form method="get" action="upload/map">
 								<c:if test="not empty ${form.uploadFile}">Mapped Form: ${form.uploadFile.name}</c:if>
 								<select name="formId">
 									<option disabled selected value> -- select mapped form -- </option>
@@ -65,7 +65,7 @@
 									  <br><br>
 									</c:forEach>
 								</select>
-								<input type="hidden" name="f" value="${file}">
+								<input type="hidden" name="fileName" value="${file}">
 								<input type="submit" value="Map">
 							</form>
 						</td>
