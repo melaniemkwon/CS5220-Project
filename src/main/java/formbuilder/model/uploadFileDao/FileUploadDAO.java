@@ -6,5 +6,7 @@ public interface FileUploadDAO {
 	UploadFile save(UploadFile uploadFile);
 
 	void deleteFile(String fileName);
+	
+	UploadFile getFile(String fileName);
 
 }

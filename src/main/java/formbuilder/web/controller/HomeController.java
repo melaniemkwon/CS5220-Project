@@ -97,6 +97,7 @@ public class HomeController {
 			request.setAttribute("files", files);
 		}
 		
+		// Application forms
 		models.put("forms", formDao.getForms());
 		
 		return "/pdf/upload";
@@ -275,12 +276,17 @@ public class HomeController {
 	@RequestMapping(value = "/pdf/upload/map", method = RequestMethod.GET)
 	public String mapPDFtoForm(@RequestParam Integer formId, @RequestParam File fileName) {
 
-		System.out.println("DEBUG: File f= " + fileName);
+		System.out.println("DEBUG: File f= " + fileName.getName());
 		System.out.println("DEBUG: formID= " + formId);
 		
 		Form form = formDao.getForm(formId);
-		File file = new File(fileName.getAbsolutePath());
-//		File f = new File(fileName);
+		UploadFile uploadFile = fileUploadDao.getFile(fileName.getName());
+		
+		uploadFile.setForm(form);				
+		form.setUploadFile(uploadFile);
+		
+		fileUploadDao.save(uploadFile);
+		formDao.saveForm(form);
 
 //		form.getUsers().add(user);
 //		user.getForms().add(form);
