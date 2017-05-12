@@ -34,6 +34,7 @@ create sequence hibernate_sequence start 1 increment 1;
         enabled boolean not null,
         name varchar(255),
         notification_email varchar(255),
+        published boolean not null,
         total_pages int4,
         primary key (id)
     );
