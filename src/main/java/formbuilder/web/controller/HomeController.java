@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import formbuilder.model.core.User;
+import formbuilder.model.questionform.Form;
 import formbuilder.model.questionform.dao.FormDao;
 import formbuilder.model.uploadFileDao.FileUploadDAO;
 import formbuilder.model.uploadfile.UploadFile;
@@ -264,6 +267,21 @@ public class HomeController {
 		File f = new File(fileName);
 		File newName = new File(f.getParentFile() + "/" + userName + ".pdf");
 		f.renameTo(newName);
+		return "redirect:/pdf/upload.html";
+	}
+	
+	// ##### Map an 'Application Form' to the 'PDF Form'
+	@GetMapping("/pdf/map.html")
+	public String mapPDFtoForm(@RequestParam File f, @RequestParam Integer formId) {
+
+		Form form = formDao.getForm(formId);
+		File file = new File(f.getAbsolutePath());
+
+//		form.getUsers().add(user);
+//		user.getForms().add(form);
+//		formDao.saveForm(form);
+//		userDao.saveUser(user);
+		
 		return "redirect:/pdf/upload.html";
 	}
 

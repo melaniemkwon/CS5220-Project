@@ -57,15 +57,16 @@
 						</a></td>
 						<td>
 							<form method="get" action="">
-							<c:if test="not empty ${form.uploadFile}">Mapped Form: ${form.uploadFile.name}</c:if>
-							<select name="map">
-								<option disabled selected value> -- select mapped form -- </option>
-								<c:forEach items="${forms}" var="form">
-								  <option value="${form.id}">${form.name}</option>
-								  <br><br>
-								</c:forEach>
-							</select>
-							<input type="submit" value="Map">
+								<c:if test="not empty ${form.uploadFile}">Mapped Form: ${form.uploadFile.name}</c:if>
+								<select name="map">
+									<option disabled selected value> -- select mapped form -- </option>
+									<c:forEach items="${forms}" var="form">
+									  <option value="${form.id}">${form.name}</option>
+									  <br><br>
+									</c:forEach>
+								</select>
+								<input type="hidden" name="pdf" value="${file}">
+								<input type="submit" value="Map">
 							</form>
 						</td>
 					</tr>
