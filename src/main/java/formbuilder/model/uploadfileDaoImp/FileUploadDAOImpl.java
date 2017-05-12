@@ -1,5 +1,7 @@
 package formbuilder.model.uploadfileDaoImp;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -33,13 +35,23 @@ public class FileUploadDAOImpl implements FileUploadDAO {
 	@Override
 	@Transactional
 	public UploadFile getFile(String fileName) {
-//		return entityManager.find(UploadFile.class, fileName);
-		return entityManager.createQuery("from Form order by id", UploadFile.class);
+		return entityManager.find(UploadFile.class, fileName);
+	}
+	
+	@Override
+	@Transactional
+	public UploadFile getFile(long id) {
+		return entityManager.find(UploadFile.class, id);
 	}
 
 	@Override
 	@Transactional
 	public void deleteFile(String fileName) {
 		entityManager.remove(getFile(fileName));
+	}
+
+	@Override
+	public List<UploadFile> getFiles() {
+		return entityManager.createQuery("from files_upload order by id", UploadFile.class).getResultList();
 	}
 }

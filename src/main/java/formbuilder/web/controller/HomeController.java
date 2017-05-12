@@ -100,6 +100,9 @@ public class HomeController {
 		// Application forms
 		models.put("forms", formDao.getForms());
 		
+		// UploadFiles
+		models.put("uploadFiles", fileUploadDao.getFiles());
+		
 		return "/pdf/upload";
 	}
 
@@ -146,9 +149,6 @@ public class HomeController {
 	@RequestMapping(value = "/pdf/upload/view.html", method = RequestMethod.GET)
 	public void viewFile(HttpServletResponse response, @RequestParam File f) throws IOException {
 
-
-		// String realPath =
-		// context.getServletContext().getRealPath("/PDFresource");
 		File file = new File(f.getAbsolutePath());
 
 		if (!file.exists()) {
@@ -171,20 +171,7 @@ public class HomeController {
 
 		response.setContentType(mimeType);
 
-		/*
-		 * "Content-Disposition : inline" will show viewable types [like
-		 * images/text/pdf/anything viewable by browser] right on browser while
-		 * others(zip e.g) will be directly downloaded [may provide save as
-		 * popup, based on your browser setting.]
-		 */
 		response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() + "\""));
-
-		/*
-		 * "Content-Disposition : attachment" will be directly download, may
-		 * provide save as popup, based on your browser setting
-		 */
-		// response.setHeader("Content-Disposition", String.format("attachment;
-		// filename=\"%s\"", file.getName()));
 
 		response.setContentLength((int) file.length());
 
@@ -200,21 +187,8 @@ public class HomeController {
 	@RequestMapping(value = "/pdf/upload/download.html", method = RequestMethod.GET)
 	public void downloadFile(HttpServletResponse response, @RequestParam File f) throws IOException {
 
-		// String realPath =
-		// context.getServletContext().getRealPath("/PDFresource");
 		File file = new File(f.getAbsolutePath());
-		//
-		// if (!file.exists()) {
-		// String errorMessage = "Sorry. The file you are looking for does not
-		// exist";
-		// System.out.println("Sorry. The file you are looking for does not
-		// exist");
-		// OutputStream outputStream = response.getOutputStream();
-		// outputStream.write(errorMessage.getBytes(Charset.forName("UTF-8")));
-		// outputStream.close();
-		// return;
-		// }
-		//
+
 		 String mimeType =
 		 URLConnection.guessContentTypeFromName(file.getName());
 		 if (mimeType == null) {
@@ -222,25 +196,10 @@ public class HomeController {
 					"mimetype is not detectable, will take default" + file.getName() + " " + file.getAbsolutePath());
 		 mimeType = "application/octet-stream";
 		 }
-		//
-		// System.out.println("mimetype : " + mimeType);
 
 		response.setContentType(mimeType);
 
-		/*
-		 * "Content-Disposition : inline" will show viewable types [like
-		 * images/text/pdf/anything viewable by browser] right on browser while
-		 * others(zip e.g) will be directly downloaded [may provide save as
-		 * popup, based on your browser setting.]
-		 */
 		response.setHeader("Content-Disposition", String.format("atachment; filename=\"" + file.getName() + "\""));
-
-		/*
-		 * "Content-Disposition : attachment" will be directly download, may
-		 * provide save as popup, based on your browser setting
-		 */
-		// response.setHeader("Content-Disposition", String.format("attachment;
-		// filename=\"%s\"", file.getName()));
 
 		response.setContentLength((int) file.length());
 
@@ -273,6 +232,7 @@ public class HomeController {
 	}
 	
 	// ##### Map an 'Application Form' to the 'PDF Form' #####
+	// -------------------------------------------------------
 	@RequestMapping(value = "/pdf/upload/map", method = RequestMethod.GET)
 	public String mapPDFtoForm(@RequestParam Integer formId, @RequestParam File fileName) {
 
@@ -280,18 +240,13 @@ public class HomeController {
 		System.out.println("DEBUG: formID= " + formId);
 		
 		Form form = formDao.getForm(formId);
-		UploadFile uploadFile = fileUploadDao.getFile(fileName.getName());
+		UploadFile uploadFile = fileUploadDao.getFile(8);
 		
 		uploadFile.setForm(form);				
 		form.setUploadFile(uploadFile);
 		
 		fileUploadDao.save(uploadFile);
 		formDao.saveForm(form);
-
-//		form.getUsers().add(user);
-//		user.getForms().add(form);
-//		formDao.saveForm(form);
-//		userDao.saveUser(user);
 		
 		return "redirect:/pdf/upload.html";
 	}
