@@ -237,7 +237,7 @@ public class HomeController {
 	@RequestMapping(value = "/pdf/upload/map", method = RequestMethod.GET)
 	public String mapPDFtoForm(@RequestParam Integer formId, @RequestParam File fileName) {
 
-		System.out.println("DEBUG: File f= " + fileName.getName());
+		System.out.println("DEBUG: File f= " + fileName);
 		System.out.println("DEBUG: formID= " + formId);
 		
 		List<UploadFile> uploadFiles = fileUploadDao.getFiles();

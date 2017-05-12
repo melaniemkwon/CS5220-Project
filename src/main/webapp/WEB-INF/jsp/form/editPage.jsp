@@ -117,9 +117,15 @@ $(function() {
 					</form:form>
 				</div>
 				
-				<a href="#mapPDF" class="btn btn-danger btn-sm" data-toggle="collapse">Map PDF</a>
+				<a href="#mapPDF" class="btn btn-danger btn-sm" data-toggle="collapse">Map PDF Fields</a>
 				<div id="mapPDF" class="collapse">
-					Choose a PDF.
+					Map PDF fields.
+					<ul>
+					<c:forEach items="${pdfFields}" var="pdfField">
+						<li>${pdfField}</li>
+					</c:forEach>
+					</ul>
+					
 				</div>
 				<hr />
 				<p class="text-center">Click here to add field to the form.</p>

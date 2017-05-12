@@ -1,12 +1,17 @@
 package formbuilder.web.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
+import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -31,6 +36,7 @@ import formbuilder.model.questionform.Question;
 import formbuilder.model.questionform.TagAttribute;
 import formbuilder.model.questionform.TextQuestion;
 import formbuilder.model.questionform.dao.FormDao;
+import formbuilder.model.uploadfile.UploadFile;
 
 @Controller
 @SessionAttributes({ "form", "question" })
@@ -151,7 +157,7 @@ public class FormController {
 	}
 
 	@GetMapping("/form/editPage.html")
-	public String editPage(HttpServletRequest request, @RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models) {
+	public String editPage(HttpServletRequest request, @RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models) throws IOException {
 
 		Form form = formDao.getForm(id);
 		if (pageNum > form.getTotalPages())
@@ -161,7 +167,29 @@ public class FormController {
 		models.put("questionsPage", questionsPage);
 		
 		// TODO: If mapped PDF form exists, get all of its fields
-
+		UploadFile uploadFile = form.getUploadFile();
+		
+		// hardcoded for now
+		String filePath = "/Users/melaniekwon/Dropbox/School/cs5220/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/FormBuilder/PDFresource/"; 
+		System.out.println("opening: " + filePath + uploadFile.getFileName());
+		
+		File file = new File(filePath + uploadFile.getFileName());
+		PDDocument pdfTemplate = PDDocument.load(file);
+		PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog();
+		PDAcroForm acroForm = docCatalog.getAcroForm();
+		
+		// Get field names
+		List<PDField> fieldList = acroForm.getFields();
+		
+		// String the object array
+		String[] fieldArray = new String[fieldList.size()];
+		int i = 0;
+		for (PDField sField : fieldList) {
+			fieldArray[i] = sField.getFullyQualifiedName();
+			i++;
+		}
+		
+		models.put("pdfFields", fieldArray);
 		
 		return "form/editPage";
 	}

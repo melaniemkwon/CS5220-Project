@@ -45,11 +45,11 @@
 				<tbody>
 					<tr>
 						<td align=center valign="middle">${file.name}
-							<div align=center style="valign: middle;">
+<%-- 							<div align=center style="valign: middle;">
 								<form method="get" action="upload/edit.html">
 									<input type="text" name="userName" /> <input type="hidden" value="${file}" name="fileName" /> <input type="submit" value="Rename" />
 								</form>
-							</div>
+							</div> --%>
 						</td>
 						<td><a class="btn" href="upload/view.html?f=${file}" data-toggle="tooltip" title="Open"> <i class="glyphicon glyphicon-eye-open"></i></a></td>
 						<td><a class="btn" href="upload/download.html?f=${file}" data-toggle="tooltip" title="Download"> <i class="glyphicon glyphicon-open-file"></i></a></td>
