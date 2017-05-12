@@ -62,20 +62,10 @@
 								<option disabled selected value> -- select mapped form -- </option>
 								<c:forEach items="${forms}" var="form">
 								  <option value="${form.id}">${form.name}</option>
-								
-<%-- 								  <c:choose>
-									<c:when test="${form.uploadFile.id == form.id}">
-										<option value="${form.id} selected">${form.name}</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${form.id}">${form.name}</option>
-									</c:otherwise>
-								  </c:choose> --%>
-								  
 								  <br><br>
-								  <input type="submit" value="Map">
 								</c:forEach>
 							</select>
+							<input type="submit" value="Map">
 							</form>
 						</td>
 					</tr>
