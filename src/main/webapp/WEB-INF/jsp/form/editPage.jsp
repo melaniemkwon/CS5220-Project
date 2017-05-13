@@ -10,6 +10,10 @@
 	border: 1.5px solid #eee;
 	border-radius: 5px;
 }
+/* #sortable-pdf {
+	z-index: 10; 
+	position:relative; 
+} */
 </style>
 
 <script>
@@ -40,6 +44,13 @@ $(function() {
 				}
 			});
 		}
+	});
+	$("#sortable-pdf").sortable({
+		stack: "li",
+		helper: 'clone',
+	    revert: 'invalid',
+	    appendTo: 'body'
+		
 	});
 	$("#sortable").disableSelection();
 });
@@ -120,9 +131,9 @@ $(function() {
 				<a href="#mapPDF" class="btn btn-danger btn-sm" data-toggle="collapse">Map PDF Fields</a>
 				<div id="mapPDF" class="collapse">
 					Map PDF fields.
-					<ul>
+					<ul id = "sortable-pdf">
 					<c:forEach items="${pdfFields}" var="pdfField">
-						<li>${pdfField}</li>
+						<li data-pdf="${pdfField}">${pdfField}</li>
 					</c:forEach>
 					</ul>
 					

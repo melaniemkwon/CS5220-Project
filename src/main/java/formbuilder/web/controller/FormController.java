@@ -187,8 +187,7 @@ public class FormController {
 		for (PDField sField : fieldList) {
 			fieldArray[i] = sField.getFullyQualifiedName();
 			i++;
-		}
-		
+		}		
 		models.put("pdfFields", fieldArray);
 		
 		return "form/editPage";
