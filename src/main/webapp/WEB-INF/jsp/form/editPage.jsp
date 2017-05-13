@@ -128,26 +128,45 @@ $(function() {
 				<div id="mapPDF" class="collapse">
 					<c:choose>
 						<c:when test="${empty pdfFields }"><b>PDF file has not yet been mapped.</b></c:when>
-						<c:otherwise><b>Map each PDF field to a question number.</b></c:otherwise>
-					</c:choose>
-					<br>
-			<!-- 		<ul id = "sortable-pdf"> -->
-					<c:forEach items="${pdfFields}" var="pdfField">
-						<c:if test="${empty pdfField.question }">
-							<span data-pdf="${pdfField}">${pdfField.fieldName}</span>
-						</c:if>
-						<form method="get" action="upload/map" style="display: inline;">
-							<select name="mapQuestion">
-							<c:forEach items="${questionsPage}" var="question">
-								<option value="${question.id }">${question.questionNumber }</option>
+						<c:otherwise>
+							<!-- <b>Map each PDF field to a question number.</b> -->
+							<table class="table">
+							<tr>
+								<th>PDF Field</th>
+								<th>Question Map</th>
+								<th>Action</th>
+							</tr>
+							
+							<c:forEach items="${pdfFields}" var="pdfField">
+								<tr>
+								<c:if test="${empty pdfField.question }">
+									<td><span data-pdf="${pdfField}">${pdfField.fieldName}</span></td>
+									<c:choose>
+										<c:when test="${not empty pdfField.question }">
+											<td>${pdfField.question }</td>
+										</c:when>
+										<c:otherwise>
+											<td>Not yet mapped.</td>
+										</c:otherwise>
+									</c:choose>
+									
+								</c:if>
+								<td>
+								<form method="get" action="upload/map" style="display: inline;">
+									<select name="mapQuestion">
+									<c:forEach items="${questionsPage}" var="question">
+										<option value="${question.id }">${question.questionNumber }</option>
+									</c:forEach>
+									</select>
+									<input type="submit" value="Map field" class="btn btn-sm btn-primary">
+								</form>
+								</td>
+								</tr>
 							</c:forEach>
-							</select>
-							<input type="submit" value="Map field" class="btn btn-sm btn-primary">
-						</form>
-						<br>
-					</c:forEach>
-					<!-- </ul> -->
-					
+							</table>
+						</c:otherwise>
+					</c:choose>
+
 				</div>
 				<hr />
 				<p class="text-center">Click here to add field to the form.</p>
