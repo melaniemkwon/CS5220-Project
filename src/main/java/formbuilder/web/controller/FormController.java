@@ -178,36 +178,13 @@ public class FormController {
 		models.put("form", form);
 		models.put("questionsPage", questionsPage);
 		
-		// TODO: If mapped PDF form exists, get all of its fields
-		UploadFile uploadFile = form.getUploadFile();
-		
-		if (uploadFile != null) {
-			// hardcoded for now
-			String filePath = "/Users/melaniekwon/Dropbox/School/cs5220/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/FormBuilder/PDFresource/"; 
-			System.out.println("opening: " + filePath + uploadFile.getFileName());
-			
-			File file = new File(filePath + uploadFile.getFileName());
-			PDDocument pdfTemplate = PDDocument.load(file);
-			PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog();
-			PDAcroForm acroForm = docCatalog.getAcroForm();
-			
-			// Get field names
-			List<PDField> fieldList = acroForm.getFields();
-			
-			// String the object array
-			String[] fieldArray = new String[fieldList.size()];
-			int i = 0;
-			for (PDField sField : fieldList) {
-				fieldArray[i] = sField.getFullyQualifiedName();
-				i++;
-			}		
-			models.put("pdfFields", fieldArray);
-		}
+		// If mapped PDF form exists, get all of its fields
 		
 		System.out.println("DEBUG editPage: " );
-		UploadFile pdf = form.getUploadFile();
-		if (pdf != null) {
-			for (PdfMap pdfMap : pdf.getPdfMaps()) {
+		UploadFile uploadFile = form.getUploadFile();
+		if (uploadFile != null) {
+			models.put("pdfFields", uploadFile.getPdfMaps());
+			for (PdfMap pdfMap : uploadFile.getPdfMaps()) {
 				System.out.println(pdfMap.getFieldName());
 			}
 		} else {

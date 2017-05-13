@@ -258,6 +258,7 @@ public class HomeController {
 				
 				
 				// Clear all old pdf mappings
+				// TODO: have all old pdfmaps delete from database. Right now they're just nulled.
 				List<PdfMap> pdfMaps = u.getPdfMaps();
 				for (PdfMap pdfMap : pdfMaps) {
 					pdfMap.setUploadFile(null);

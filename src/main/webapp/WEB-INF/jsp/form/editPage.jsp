@@ -129,7 +129,7 @@ $(function() {
 					<b>Drag the below to map PDF fields.</b>
 					<ul id = "sortable-pdf">
 					<c:forEach items="${pdfFields}" var="pdfField">
-						<li data-pdf="${pdfField}">${pdfField}</li>
+						<li data-pdf="${pdfField}">${pdfField.fieldName}</li>
 					</c:forEach>
 					</ul>
 					
