@@ -15,4 +15,6 @@ public interface FileUploadDAO {
 	
 	List<UploadFile> getFiles();
 
+	void delete(long id);
+
 }

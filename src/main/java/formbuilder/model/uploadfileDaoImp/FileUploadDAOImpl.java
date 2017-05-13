@@ -49,6 +49,12 @@ public class FileUploadDAOImpl implements FileUploadDAO {
 	public void deleteFile(String fileName) {
 		entityManager.remove(getFile(fileName));
 	}
+	
+	@Override
+	@Transactional
+	public void delete(long id) {
+		entityManager.remove(getFile(id));
+	}
 
 	@Override
 	public List<UploadFile> getFiles() {

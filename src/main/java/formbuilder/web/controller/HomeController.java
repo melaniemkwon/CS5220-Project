@@ -251,19 +251,23 @@ public class HomeController {
 				form.setUploadFile(u);
 				u.setForm(form);
 				
-//				// Get PDF fields
-//				PDDocument pdfTemplate = PDDocument.load(fileName);
-//				PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog();
-//				PDAcroForm acroForm = docCatalog.getAcroForm();
-//				List<PDField> fieldList = acroForm.getFields();
-//				
-//				// String the object array
-//				String[] fieldArray = new String[fieldList.size()];
-//				int i = 0;
-//				for (PDField sField : fieldList) {
-//					fieldArray[i] = sField.getFullyQualifiedName();
-//					i++;
-//				}
+				// Get PDF fields
+				PDDocument pdfTemplate = PDDocument.load(fileName);
+				PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog();
+				PDAcroForm acroForm = docCatalog.getAcroForm();
+				List<PDField> fieldList = acroForm.getFields();
+				
+				// String the object array
+				String[] fieldArray = new String[fieldList.size()];
+				int i = 0;
+				for (PDField sField : fieldList) {
+					fieldArray[i] = sField.getFullyQualifiedName();
+					i++;
+				}
+				
+				if (form.getUploadFile() != null) {
+					fileUploadDao.deleteFile(fileName.getName());
+				}
 				
 				fileUploadDao.save(u);
 				formDao.saveForm(form);
