@@ -66,5 +66,25 @@ public class UploadFile {
 	public void setForm(Form form) {
 		this.form = form;
 	}
+
+	public List<PdfMap> getPdfMaps() {
+		return pdfMaps;
+	}
+
+	public void setPdfMaps(List<PdfMap> pdfMaps) {
+		this.pdfMaps = pdfMaps;
+	}
+	
+	public void addPdfMap(PdfMap pdfMap) {
+		pdfMap.setUploadFile(this);
+		pdfMaps.add(pdfMap);
+	}
+	
+	public void removePdfMap(PdfMap pdfMap) {
+		pdfMaps.remove(pdfMap);
+		if (pdfMap != null) {
+			pdfMap.setUploadFile(null);
+		}
+	}
 	
 }

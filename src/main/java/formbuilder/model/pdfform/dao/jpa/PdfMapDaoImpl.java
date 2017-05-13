@@ -5,7 +5,6 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import formbuilder.model.core.User;
 import formbuilder.model.pdfform.PdfMap;
 import formbuilder.model.pdfform.dao.PdfMapDao;
 
