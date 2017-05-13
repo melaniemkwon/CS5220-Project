@@ -354,6 +354,7 @@ public class FormController {
 		Question question = formDao.getQuestion(questionId);
 		PdfMap pdfMap = pdfMapDao.getPdfMap(pdfMapId);
 		pdfMap.setQuestion(question);
+		System.out.println("DEBUG pdfMap saving: " + pdfMap.getId());
 		pdfMapDao.save(pdfMap);
 		Form form = formDao.getForm(formId);
 		
