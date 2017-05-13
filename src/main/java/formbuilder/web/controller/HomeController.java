@@ -33,6 +33,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import formbuilder.model.core.User;
+import formbuilder.model.pdfform.PdfMap;
 import formbuilder.model.questionform.Form;
 import formbuilder.model.questionform.dao.FormDao;
 import formbuilder.model.uploadFileDao.FileUploadDAO;
@@ -250,6 +251,7 @@ public class HomeController {
 				Form form = formDao.getForm(formId);
 				form.setUploadFile(u);
 				u.setForm(form);
+				u.resetPdfMaps();
 				
 				// Get PDF fields
 				PDDocument pdfTemplate = PDDocument.load(fileName);
@@ -257,16 +259,10 @@ public class HomeController {
 				PDAcroForm acroForm = docCatalog.getAcroForm();
 				List<PDField> fieldList = acroForm.getFields();
 				
-				// String the object array
-				String[] fieldArray = new String[fieldList.size()];
-				int i = 0;
 				for (PDField sField : fieldList) {
-					fieldArray[i] = sField.getFullyQualifiedName();
-					i++;
-				}
-				
-				if (form.getUploadFile() != null) {
-					fileUploadDao.deleteFile(fileName.getName());
+					PdfMap pdfMap = new PdfMap();
+					pdfMap.setFieldName(sField.getFullyQualifiedName());
+					u.addPdfMap(pdfMap);
 				}
 				
 				fileUploadDao.save(u);

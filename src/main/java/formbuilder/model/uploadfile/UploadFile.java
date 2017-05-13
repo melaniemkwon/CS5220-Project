@@ -87,4 +87,8 @@ public class UploadFile {
 		}
 	}
 	
+	public void resetPdfMaps() {
+		pdfMaps.clear();
+	}
+	
 }

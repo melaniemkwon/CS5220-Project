@@ -169,26 +169,30 @@ public class FormController {
 		// TODO: If mapped PDF form exists, get all of its fields
 		UploadFile uploadFile = form.getUploadFile();
 		
-		// hardcoded for now
-		String filePath = "/Users/melaniekwon/Dropbox/School/cs5220/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/FormBuilder/PDFresource/"; 
-		System.out.println("opening: " + filePath + uploadFile.getFileName());
+		if (uploadFile != null) {
+			// hardcoded for now
+			String filePath = "/Users/melaniekwon/Dropbox/School/cs5220/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/FormBuilder/PDFresource/"; 
+			System.out.println("opening: " + filePath + uploadFile.getFileName());
+			
+			File file = new File(filePath + uploadFile.getFileName());
+			PDDocument pdfTemplate = PDDocument.load(file);
+			PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog();
+			PDAcroForm acroForm = docCatalog.getAcroForm();
+			
+			// Get field names
+			List<PDField> fieldList = acroForm.getFields();
+			
+			// String the object array
+			String[] fieldArray = new String[fieldList.size()];
+			int i = 0;
+			for (PDField sField : fieldList) {
+				fieldArray[i] = sField.getFullyQualifiedName();
+				i++;
+			}		
+			models.put("pdfFields", fieldArray);
+		}
 		
-		File file = new File(filePath + uploadFile.getFileName());
-		PDDocument pdfTemplate = PDDocument.load(file);
-		PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog();
-		PDAcroForm acroForm = docCatalog.getAcroForm();
 		
-		// Get field names
-		List<PDField> fieldList = acroForm.getFields();
-		
-		// String the object array
-		String[] fieldArray = new String[fieldList.size()];
-		int i = 0;
-		for (PDField sField : fieldList) {
-			fieldArray[i] = sField.getFullyQualifiedName();
-			i++;
-		}		
-		models.put("pdfFields", fieldArray);
 		
 		return "form/editPage";
 	}

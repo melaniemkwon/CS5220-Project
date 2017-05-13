@@ -56,6 +56,14 @@ create sequence hibernate_sequence start 1 increment 1;
         primary key (id)
     );
 
+    create table pdf_map (
+        id int4 not null,
+        fieldName varchar(255),
+        question_id int4,
+        uploadFile_FILE_ID int8,
+        primary key (id)
+    );
+
     create table pdfs (
         id int4 not null,
         enabled boolean not null,
@@ -159,6 +167,16 @@ create sequence hibernate_sequence start 1 increment 1;
         add constraint FKlsgntpf4rsms7ibkw5e1qsmpd 
         foreign key (pdf_id) 
         references pdfs;
+
+    alter table pdf_map 
+        add constraint FKa67c5vnr7tf8219a2u4bfqvri 
+        foreign key (question_id) 
+        references questions;
+
+    alter table pdf_map 
+        add constraint FKcw062q818omubbidbqlfu1epo 
+        foreign key (uploadFile_FILE_ID) 
+        references files_upload;
 
     alter table question_choices 
         add constraint FK77biojwg2xd8kc8a2odnx3ld4 
