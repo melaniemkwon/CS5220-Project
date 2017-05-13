@@ -153,11 +153,13 @@ $(function() {
 								</c:if>
 								<td>
 								<form method="get" action="upload/map" style="display: inline;">
-									<select name="mapQuestion">
+									<select name="questionId">
 									<c:forEach items="${questionsPage}" var="question">
 										<option value="${question.id }">${question.questionNumber }</option>
 									</c:forEach>
 									</select>
+									<input type="hidden" name="pdfMapId" value="${pdfField.id}">
+									<input type="hidden" name="formId" value="${form.id}">
 									<input type="submit" value="Map field" class="btn btn-sm btn-primary">
 								</form>
 								</td>

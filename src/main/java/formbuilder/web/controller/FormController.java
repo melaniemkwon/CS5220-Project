@@ -30,6 +30,7 @@ import org.springframework.web.context.WebApplicationContext;
 import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
 import formbuilder.model.pdfform.PdfMap;
+import formbuilder.model.pdfform.dao.PdfMapDao;
 import formbuilder.model.questionform.ChoiceQuestion;
 import formbuilder.model.questionform.FileQuestion;
 import formbuilder.model.questionform.Form;
@@ -53,6 +54,9 @@ public class FormController {
 	
 	@Autowired
 	private FileUploadDAO fileUploadDao;
+	
+	@Autowired
+	private PdfMapDao pdfMapDao;
 	
 	@Autowired
 	private WebApplicationContext context;
@@ -344,6 +348,14 @@ public class FormController {
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
+	@GetMapping("form/map")
+	public String mapQuestion(@RequestParam Integer questionId, @RequestParam Integer pdfMapId, @RequestParam Integer formId) {
+		Question question = formDao.getQuestion(questionId);
+		PdfMap pdfMap = pdfMapDao.getPdfMap(pdfMapId);
+		Form form = formDao.getForm(formId);
+		
+		return "redirect:/form/editPage.html?id=" + formId + "&pageNum=" + question.getPageNumber();
+	}
 
 	@GetMapping("/form/editQuestion.html")
 	public String editQuestion(@RequestParam Integer qId, ModelMap models) {
