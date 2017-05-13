@@ -3,11 +3,13 @@ package formbuilder.model.pdfform.dao.jpa;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import formbuilder.model.pdfform.PdfMap;
 import formbuilder.model.pdfform.dao.PdfMapDao;
 
+@Repository
 public class PdfMapDaoImpl implements PdfMapDao{
 	
 	@PersistenceContext

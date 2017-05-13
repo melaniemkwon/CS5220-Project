@@ -29,6 +29,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
+import formbuilder.model.pdfform.PdfMap;
 import formbuilder.model.questionform.ChoiceQuestion;
 import formbuilder.model.questionform.FileQuestion;
 import formbuilder.model.questionform.Form;
@@ -203,7 +204,15 @@ public class FormController {
 			models.put("pdfFields", fieldArray);
 		}
 		
-		
+		System.out.println("DEBUG editPage: " );
+		UploadFile pdf = form.getUploadFile();
+		if (pdf != null) {
+			for (PdfMap pdfMap : pdf.getPdfMaps()) {
+				System.out.println(pdfMap.getFieldName());
+			}
+		} else {
+			System.out.println("No UploadFile associated with this Application Form.");
+		}
 		
 		return "form/editPage";
 	}

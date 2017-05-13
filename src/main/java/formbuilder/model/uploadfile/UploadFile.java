@@ -88,6 +88,9 @@ public class UploadFile {
 	}
 	
 	public void resetPdfMaps() {
+//		for (PdfMap pdfMap : pdfMaps) {
+//			pdfMap.setUploadFile(null);
+//		}
 		pdfMaps.clear();
 	}
 	

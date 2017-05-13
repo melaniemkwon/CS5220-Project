@@ -34,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import formbuilder.model.core.User;
 import formbuilder.model.pdfform.PdfMap;
+import formbuilder.model.pdfform.dao.PdfMapDao;
 import formbuilder.model.questionform.Form;
 import formbuilder.model.questionform.dao.FormDao;
 import formbuilder.model.uploadFileDao.FileUploadDAO;
@@ -52,6 +53,9 @@ public class HomeController {
 	
 	@Autowired
 	private FormDao formDao;
+	
+	@Autowired
+	private PdfMapDao pdfMapDao;
 
 	@RequestMapping({ "/index.html", "/home.html" })
 	public String home() {
@@ -251,7 +255,21 @@ public class HomeController {
 				Form form = formDao.getForm(formId);
 				form.setUploadFile(u);
 				u.setForm(form);
+				
+				
+				// Clear all old pdf mappings
+				List<PdfMap> pdfMaps = u.getPdfMaps();
+				for (PdfMap pdfMap : pdfMaps) {
+					pdfMap.setUploadFile(null);
+					pdfMapDao.save(pdfMap);
+					pdfMapDao.delete(pdfMap.getId());
+				}
 				u.resetPdfMaps();
+				fileUploadDao.save(u);
+//				pdfMaps.remove(pdfMap);
+				
+				System.out.println("DEBUG: list of pdfmaps reset");
+				System.out.println(u.getPdfMaps());
 				
 				// Get PDF fields
 				PDDocument pdfTemplate = PDDocument.load(fileName);
