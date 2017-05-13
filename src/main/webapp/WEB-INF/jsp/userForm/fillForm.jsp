@@ -48,6 +48,7 @@
 							</c:if>
 						</c:forEach>
 						<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> SAVE</button>	
+						<a href="" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-download"></span> DOWNLOAD PDF</a>
 					</form:form>	
 				</c:otherwise>
 			</c:choose>
