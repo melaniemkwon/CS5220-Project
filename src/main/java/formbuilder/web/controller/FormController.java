@@ -352,6 +352,8 @@ public class FormController {
 	public String mapQuestion(@RequestParam Integer questionId, @RequestParam Integer pdfMapId, @RequestParam Integer formId) {
 		Question question = formDao.getQuestion(questionId);
 		PdfMap pdfMap = pdfMapDao.getPdfMap(pdfMapId);
+		pdfMap.setQuestion(question);
+		pdfMapDao.save(pdfMap);
 		Form form = formDao.getForm(formId);
 		
 		return "redirect:/form/editPage.html?id=" + formId + "&pageNum=" + question.getPageNumber();

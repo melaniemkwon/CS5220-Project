@@ -139,20 +139,17 @@ $(function() {
 							
 							<c:forEach items="${pdfFields}" var="pdfField">
 								<tr>
-								<c:if test="${empty pdfField.question }">
-									<td><span data-pdf="${pdfField}">${pdfField.fieldName}</span></td>
-									<c:choose>
-										<c:when test="${not empty pdfField.question }">
-											<td>${pdfField.question }</td>
-										</c:when>
-										<c:otherwise>
-											<td>Not yet mapped.</td>
-										</c:otherwise>
-									</c:choose>
-									
-								</c:if>
+								<td><span data-pdf="${pdfField}">${pdfField.fieldName}</span></td>
+								<c:choose>
+									<c:when test="${not empty pdfField.question }">
+										<td>${pdfField.question.questionNumber }</td>
+									</c:when>
+									<c:otherwise>
+										<td>Not yet mapped.</td>
+									</c:otherwise>
+								</c:choose>
 								<td>
-								<form method="get" action="upload/map" style="display: inline;">
+								<form method="get" action="map" style="display: inline;">
 									<select name="questionId">
 									<c:forEach items="${questionsPage}" var="question">
 										<option value="${question.id }">${question.questionNumber }</option>
