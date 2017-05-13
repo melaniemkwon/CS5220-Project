@@ -15,7 +15,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import formbuilder.model.pdfform.PdfMap;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -47,6 +50,9 @@ public abstract class Question implements Serializable {
 
 	@Embedded
 	protected TagAttribute tagAttribute;
+	
+	@OneToOne
+	protected PdfMap pdfMap;
 
 	public Question() {
 		enabled = true;
