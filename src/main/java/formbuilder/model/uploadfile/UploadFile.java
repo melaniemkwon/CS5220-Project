@@ -1,5 +1,7 @@
 package formbuilder.model.uploadfile;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -68,7 +70,17 @@ public class UploadFile {
 	}
 
 	public List<PdfMap> getPdfMaps() {
+		sortPdfMaps();
 		return pdfMaps;
+	}
+	
+	public void sortPdfMaps() {
+		//Sort by order number then return
+		Collections.sort(pdfMaps, new Comparator<PdfMap>() {
+			public int compare(PdfMap p1, PdfMap p2) {
+				return p1.getOrderNum() - p2.getOrderNum();
+			}
+		});
 	}
 
 	public void setPdfMaps(List<PdfMap> pdfMaps) {

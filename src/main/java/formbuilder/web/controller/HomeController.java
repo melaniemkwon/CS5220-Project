@@ -256,7 +256,6 @@ public class HomeController {
 				form.setUploadFile(u);
 				u.setForm(form);
 				
-				
 				// Clear all old pdf mappings
 				// TODO: have all old pdfmaps delete from database. Right now they're just nulled.
 				List<PdfMap> pdfMaps = u.getPdfMaps();
@@ -278,10 +277,13 @@ public class HomeController {
 				PDAcroForm acroForm = docCatalog.getAcroForm();
 				List<PDField> fieldList = acroForm.getFields();
 				
+				int index = 0;
 				for (PDField sField : fieldList) {
 					PdfMap pdfMap = new PdfMap();
 					pdfMap.setFieldName(sField.getFullyQualifiedName());
+					pdfMap.setOrderNum(index);
 					u.addPdfMap(pdfMap);
+					index++;
 				}
 				
 				fileUploadDao.save(u);

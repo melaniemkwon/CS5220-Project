@@ -23,6 +23,8 @@ public class PdfMap implements Serializable {
 	
 	String fieldName;
 	
+	int orderNum;
+	
 	@OneToOne
 	Question question;
 	
@@ -59,6 +61,14 @@ public class PdfMap implements Serializable {
 
 	public void setUploadFile(UploadFile uploadFile) {
 		this.uploadFile = uploadFile;
+	}
+
+	public int getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(int orderNum) {
+		this.orderNum = orderNum;
 	}
 	
 	

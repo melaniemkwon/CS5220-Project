@@ -59,6 +59,7 @@ create sequence hibernate_sequence start 1 increment 1;
     create table pdf_map (
         id int4 not null,
         fieldName varchar(255),
+        orderNum int4 not null,
         question_id int4,
         uploadFile_FILE_ID int8,
         primary key (id)

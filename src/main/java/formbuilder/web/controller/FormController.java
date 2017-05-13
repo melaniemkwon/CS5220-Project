@@ -188,6 +188,7 @@ public class FormController {
 		UploadFile uploadFile = form.getUploadFile();
 		if (uploadFile != null) {
 			models.put("pdfFields", uploadFile.getPdfMaps());
+//			models.put("pdfFields", pdfMapDao.getPdfMapsByUploadFile(uploadFile));
 			for (PdfMap pdfMap : uploadFile.getPdfMaps()) {
 				System.out.println(pdfMap.getFieldName());
 			}
