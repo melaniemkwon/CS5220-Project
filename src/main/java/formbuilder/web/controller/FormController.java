@@ -36,6 +36,7 @@ import formbuilder.model.questionform.Question;
 import formbuilder.model.questionform.TagAttribute;
 import formbuilder.model.questionform.TextQuestion;
 import formbuilder.model.questionform.dao.FormDao;
+import formbuilder.model.uploadFileDao.FileUploadDAO;
 import formbuilder.model.uploadfile.UploadFile;
 
 @Controller
@@ -48,6 +49,9 @@ public class FormController {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private FileUploadDAO fileUploadDao;
 	
 	@Autowired
 	private WebApplicationContext context;
@@ -97,7 +101,14 @@ public class FormController {
 
 	@RequestMapping("/form/deleteForm.html")
 	public String deleteForm(@RequestParam Integer id) {
-
+		Form form = formDao.getForm(id);
+		UploadFile uploadFile = form.getUploadFile();
+		
+		uploadFile.setForm(null);
+		form.setUploadFile(null);
+		fileUploadDao.save(uploadFile);
+		formDao.saveForm(form);
+		
 		formDao.deleteForm(id);
 		return "redirect:listForm.html";
 	}
