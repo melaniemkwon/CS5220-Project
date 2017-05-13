@@ -13,6 +13,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
+import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -235,7 +239,7 @@ public class HomeController {
 	// ##### Map an 'Application Form' to the 'PDF Form' #####
 	// -------------------------------------------------------
 	@RequestMapping(value = "/pdf/upload/map", method = RequestMethod.GET)
-	public String mapPDFtoForm(@RequestParam Integer formId, @RequestParam File fileName) {
+	public String mapPDFtoForm(@RequestParam Integer formId, @RequestParam File fileName) throws IOException {
 
 		System.out.println("DEBUG: File f= " + fileName);
 		System.out.println("DEBUG: formID= " + formId);
@@ -246,6 +250,20 @@ public class HomeController {
 				Form form = formDao.getForm(formId);
 				form.setUploadFile(u);
 				u.setForm(form);
+				
+//				// Get PDF fields
+//				PDDocument pdfTemplate = PDDocument.load(fileName);
+//				PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog();
+//				PDAcroForm acroForm = docCatalog.getAcroForm();
+//				List<PDField> fieldList = acroForm.getFields();
+//				
+//				// String the object array
+//				String[] fieldArray = new String[fieldList.size()];
+//				int i = 0;
+//				for (PDField sField : fieldList) {
+//					fieldArray[i] = sField.getFullyQualifiedName();
+//					i++;
+//				}
 				
 				fileUploadDao.save(u);
 				formDao.saveForm(form);

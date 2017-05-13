@@ -10,10 +10,6 @@
 	border: 1.5px solid #eee;
 	border-radius: 5px;
 }
-/* #sortable-pdf {
-	z-index: 10; 
-	position:relative; 
-} */
 </style>
 
 <script>
@@ -130,7 +126,7 @@ $(function() {
 				
 				<a href="#mapPDF" class="btn btn-danger btn-sm" data-toggle="collapse">Map PDF Fields</a>
 				<div id="mapPDF" class="collapse">
-					Map PDF fields.
+					<b>Drag the below to map PDF fields.</b>
 					<ul id = "sortable-pdf">
 					<c:forEach items="${pdfFields}" var="pdfField">
 						<li data-pdf="${pdfField}">${pdfField}</li>

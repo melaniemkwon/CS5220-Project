@@ -1,12 +1,17 @@
 package formbuilder.model.uploadfile;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import formbuilder.model.pdfform.PdfMap;
 import formbuilder.model.questionform.Form;
 
 @Entity
@@ -26,6 +31,9 @@ public class UploadFile {
 	
 	@OneToOne
 	private Form form;
+	
+	@OneToMany(mappedBy = "uploadFile", cascade = CascadeType.ALL)
+	private List<PdfMap> pdfMaps;
 
 	public long getId() {
 		return id;
