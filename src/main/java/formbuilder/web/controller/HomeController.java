@@ -266,7 +266,6 @@ public class HomeController {
 				}
 				u.resetPdfMaps();
 				fileUploadDao.save(u);
-//				pdfMaps.remove(pdfMap);
 				
 				System.out.println("DEBUG: list of pdfmaps reset");
 				System.out.println(u.getPdfMaps());

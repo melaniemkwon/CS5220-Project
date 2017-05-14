@@ -128,4 +128,12 @@ public abstract class Question implements Serializable {
 		this.tagAttribute = tagAttribute;
 	}
 
+	public PdfMap getPdfMap() {
+		return pdfMap;
+	}
+
+	public void setPdfMap(PdfMap pdfMap) {
+		this.pdfMap = pdfMap;
+	}
+
 }

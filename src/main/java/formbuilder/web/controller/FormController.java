@@ -187,7 +187,6 @@ public class FormController {
 		UploadFile uploadFile = form.getUploadFile();
 		if (uploadFile != null) {
 			models.put("pdfFields", uploadFile.getPdfMaps());
-//			models.put("pdfFields", pdfMapDao.getPdfMapsByUploadFile(uploadFile));
 			for (PdfMap pdfMap : uploadFile.getPdfMaps()) {
 				System.out.println(pdfMap.getFieldName());
 			}
@@ -353,9 +352,12 @@ public class FormController {
 		Question question = formDao.getQuestion(questionId);
 		PdfMap pdfMap = pdfMapDao.getPdfMap(pdfMapId);
 		pdfMap.setQuestion(question);
+		question.setPdfMap(pdfMap);
+		
 		System.out.println("DEBUG pdfMap saving: " + pdfMap.getId());
+		
 		pdfMapDao.save(pdfMap);
-		Form form = formDao.getForm(formId);
+		formDao.saveQuestion(question);
 		
 		return "redirect:/form/editPage.html?id=" + formId + "&pageNum=" + question.getPageNumber();
 	}
