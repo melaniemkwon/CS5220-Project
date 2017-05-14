@@ -195,7 +195,7 @@ public class UserFormController {
 						
 			for (Answer answer : answers) {					// Get answer from a specific user
 				if (answer.getUser().getId() == userId) {
-					System.out.println("DEBUG what type: " + answer.getQuestion().getType());
+					System.out.println("DEBUG what answer type: " + answer.getQuestion().getType());
 					if (answer.getQuestion().getType().equals("TEXT")) {
 						System.out.println("DEBUG get text answer: " + ((TextAnswer)answer).getText());
 					}
