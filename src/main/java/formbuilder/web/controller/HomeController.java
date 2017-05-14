@@ -117,39 +117,38 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/pdf/upload.html", method = RequestMethod.POST)
-	public String handleFileUpload(HttpServletRequest request,
-			@RequestParam CommonsMultipartFile fileUpload) throws Exception {
+	public String handleFileUpload(HttpServletRequest request, @RequestParam CommonsMultipartFile fileUpload)
+			throws Exception {
 
 		if (fileUpload != null) {
 
-				System.out.println("Saving file: " + fileUpload.getOriginalFilename());
-				UploadFile uploadFile = new UploadFile();
-				uploadFile.setFileName(fileUpload.getOriginalFilename());
-				uploadFile.setData(fileUpload.getBytes());
-				fileUploadDao.save(uploadFile);
+			System.out.println("Saving file: " + fileUpload.getOriginalFilename());
+			UploadFile uploadFile = new UploadFile();
+			uploadFile.setFileName(fileUpload.getOriginalFilename());
+			uploadFile.setData(fileUpload.getBytes());
+			fileUploadDao.save(uploadFile);
 
-				if (!fileUpload.isEmpty()) {
-					try {
-						// Creating the directory to store file
-						String realPath = context.getServletContext().getRealPath("/PDFresource");
-						File dir = new File(realPath);
-						if (!dir.exists())
-							dir.mkdirs();
+			if (!fileUpload.isEmpty()) {
+				try {
+					// Creating the directory to store file
+					String realPath = context.getServletContext().getRealPath("/PDFresource");
+					File dir = new File(realPath);
+					if (!dir.exists())
+						dir.mkdirs();
 
-						// Create the file on server
-						fileUpload.transferTo(new File(dir, fileUpload.getOriginalFilename()));
-						System.out.println("You successfully uploaded file=" + fileUpload.getOriginalFilename());
-					} catch (Exception e) {
-						System.out.println(
-								"You failed to upload " + fileUpload.getOriginalFilename() + " => " + e.getMessage());
-					}
-				} else {
+					// Create the file on server
+					fileUpload.transferTo(new File(dir, fileUpload.getOriginalFilename()));
+					System.out.println("You successfully uploaded file=" + fileUpload.getOriginalFilename());
+				} catch (Exception e) {
 					System.out.println(
-							"You failed to upload " + fileUpload.getOriginalFilename() + " because the file was empty.");
+							"You failed to upload " + fileUpload.getOriginalFilename() + " => " + e.getMessage());
 				}
-
+			} else {
+				System.out.println(
+						"You failed to upload " + fileUpload.getOriginalFilename() + " because the file was empty.");
 			}
 
+		}
 
 		return "redirect:/pdf/upload.html";
 	}

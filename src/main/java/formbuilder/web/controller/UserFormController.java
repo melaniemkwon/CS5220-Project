@@ -195,11 +195,14 @@ public class UserFormController {
 		List<Question> questions = form.getQuestions();
 		
 		// Get acroForm object
-		File file = new File("");
+		String realPath = context.getServletContext().getRealPath("/PDFresource");
+		System.out.println("DEBUG realPath: " + realPath);
+		System.out.println("DEBUG uploadFile: " + uploadFile.getFileName());
+		File file = new File(realPath + "/" + uploadFile.getFileName());
 		PDDocument pdfTemplate = PDDocument.load(file);
 		PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog();
 		PDAcroForm acroForm = docCatalog.getAcroForm();
-//		List<PDField> fieldList = acroForm.getFields();
+		List<PDField> fieldList = acroForm.getFields();
 		
 		for (Question question : questions) {
 			List<Answer> answers = question.getAnswers(); 	// Get answers from all users
@@ -210,7 +213,9 @@ public class UserFormController {
 					boolean fieldNameFound = false;
 					
 					String fieldName = answer.getQuestion().getPdfMap().getFieldName();
-					if (fieldName != null) {fieldNameFound = true;}
+					if (fieldName != null) {
+						fieldNameFound = true;
+					}
 					
 					PDField field = acroForm.getField(fieldName);
 					System.out.println("DEBUG what PdfMap: " + fieldName);
@@ -218,7 +223,7 @@ public class UserFormController {
 					if (answer.getQuestion().getType().equals("TEXT")) {
 						System.out.println("DEBUG get text answer: " + ((TextAnswer)answer).getText());
 						if (fieldNameFound) {
-							field.setValue(((TextAnswer)answer).getText());
+							field.setValue( ((TextAnswer)answer).getText() );
 						}
 					}
 					else if (answer.getQuestion().getType().equals("CHOICE")) {
@@ -226,15 +231,31 @@ public class UserFormController {
 						if (fieldNameFound) {
 							((PDCheckBox) field).check();
 						}
-						for (String selection : ((ChoiceAnswer)answer).getSelections()) {
-							System.out.println(selection);
-						}
+//						for (String selection : ((ChoiceAnswer)answer).getSelections()) {
+//							System.out.println(selection);
+//						}
 					}
 					
+					// Save filled pdf
+					System.out.println("DEBUG save filled pdf: " + realPath + "/" + userId + uploadFile.getFileName());
+					File filledPDF = new File(realPath + "/" + userId + uploadFile.getFileName());
+//					pdfTemplate.save(filledPDF);
+					pdfTemplate.close();
 					break;
 				}
 			}
 		}
+		
+//		 String mimeType = URLConnection.guessContentTypeFromName(file.getName());
+//		 if (mimeType == null) {
+//			 System.out.println("mimetype is not detectable, will take default" + file.getName() + " " + file.getAbsolutePath());
+//			 mimeType = "application/octet-stream";
+//		 }
+//		 response.setContentType(mimeType);
+//		 response.setHeader("Content-Disposition", String.format("attachment; filename=\"" + file.getName() + "\""));
+//		 response.setContentLength((int) file.length());
+//		 InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
+//		 FileCopyUtils.copy(inputStream, response.getOutputStream());
 		
 		System.out.println("DEBUG downloadPdf controller: " + form.getName() + " " + user.getUsername());
 	}
