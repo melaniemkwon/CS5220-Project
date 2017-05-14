@@ -3,6 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="formbuilder" uri="http://formbuilder.com/formbuilder"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<security:authentication var="principal" property="principal" />
 
 <div class="row">
 <div class="col-md-offset-3 col-md-6">
@@ -51,7 +53,8 @@
 					</form:form>	
 					<!-- ########### TO DO ########## -->
 					<form method="get" action="downloadPDF">
-						<input type="hidden" name="form" value="${form}">
+						<input type="hidden" name="formId" value="${form.id}">
+						<input type="hidden" name="userId" value="${principal.id}">
 						<button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-download"></span> DOWNLOAD PDF</button>
 					</form>
 				</c:otherwise>

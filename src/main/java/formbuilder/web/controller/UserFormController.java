@@ -43,6 +43,7 @@ import formbuilder.model.questionform.Form;
 import formbuilder.model.questionform.Question;
 import formbuilder.model.questionform.TextAnswer;
 import formbuilder.model.questionform.dao.FormDao;
+import formbuilder.model.uploadfile.UploadFile;
 
 @Controller
 
@@ -180,9 +181,34 @@ public class UserFormController {
 	}
 	
 //	##### TODO: SHOW FILLED PDF #####
-	@RequestMapping(value = "userForm/downloadPdf", method = RequestMethod.GET)
-	public void downloadPdf(HttpServletResponse response, @RequestParam Form form) throws IOException {
-		System.out.println("DEBUG downloadPdf controller: " + form.getName());
+	@RequestMapping(value = "userForm/downloadPDF", method = RequestMethod.GET)
+	public void downloadPdf(HttpServletResponse response, @RequestParam Integer formId, @RequestParam Integer userId) throws IOException {
+		Form form = formDao.getForm(formId);
+		User user = userDao.getUser(userId);
+		
+		UploadFile uploadFile = form.getUploadFile();
+
+		List<Question> questions = form.getQuestions();
+		
+		for (Question question : questions) {
+			List<Answer> answers = question.getAnswers(); 	// Get answers from all users
+						
+			for (Answer answer : answers) {					// Get answer from a specific user
+				if (answer.getUser().getId() == userId) {
+					System.out.println("DEBUG what type: " + answer.getQuestion().getType());
+					if (answer.getQuestion().getType().equals("TEXT")) {
+						System.out.println("DEBUG get text answer: " + ((TextAnswer)answer).getText());
+					}
+					else if (answer.getQuestion().getType().equals("CHOICE")) {
+						System.out.println("DEBUG get choice answer: ");
+						for (String selection : ((ChoiceAnswer)answer).getSelections()) {
+							System.out.println(selection);
+						}
+					}
+				}
+			}
+		}
+		System.out.println("DEBUG downloadPdf controller: " + form.getName() + " " + user.getUsername());
 	}
 
 	@RequestMapping(value = "userForm/viewFileAnswer.html", method = RequestMethod.GET)
