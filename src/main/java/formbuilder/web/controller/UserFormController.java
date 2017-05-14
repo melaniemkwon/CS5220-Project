@@ -18,6 +18,11 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
+import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDCheckBox;
+import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -187,27 +192,50 @@ public class UserFormController {
 		User user = userDao.getUser(userId);
 		
 		UploadFile uploadFile = form.getUploadFile();
-
 		List<Question> questions = form.getQuestions();
+		
+		// Get acroForm object
+		File file = new File("");
+		PDDocument pdfTemplate = PDDocument.load(file);
+		PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog();
+		PDAcroForm acroForm = docCatalog.getAcroForm();
+//		List<PDField> fieldList = acroForm.getFields();
 		
 		for (Question question : questions) {
 			List<Answer> answers = question.getAnswers(); 	// Get answers from all users
 						
 			for (Answer answer : answers) {					// Get answer from a specific user
 				if (answer.getUser().getId() == userId) {
-					System.out.println("DEBUG what answer type: " + answer.getQuestion().getType());
+					
+					boolean fieldNameFound = false;
+					
+					String fieldName = answer.getQuestion().getPdfMap().getFieldName();
+					if (fieldName != null) {fieldNameFound = true;}
+					
+					PDField field = acroForm.getField(fieldName);
+					System.out.println("DEBUG what PdfMap: " + fieldName);
+					
 					if (answer.getQuestion().getType().equals("TEXT")) {
 						System.out.println("DEBUG get text answer: " + ((TextAnswer)answer).getText());
+						if (fieldNameFound) {
+							field.setValue(((TextAnswer)answer).getText());
+						}
 					}
 					else if (answer.getQuestion().getType().equals("CHOICE")) {
 						System.out.println("DEBUG get choice answer: ");
+						if (fieldNameFound) {
+							((PDCheckBox) field).check();
+						}
 						for (String selection : ((ChoiceAnswer)answer).getSelections()) {
 							System.out.println(selection);
 						}
 					}
+					
+					break;
 				}
 			}
 		}
+		
 		System.out.println("DEBUG downloadPdf controller: " + form.getName() + " " + user.getUsername());
 	}
 

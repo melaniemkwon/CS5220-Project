@@ -75,7 +75,7 @@ public class UploadFile {
 	}
 	
 	public void sortPdfMaps() {
-		//Sort by order number then return
+		//Sort by order number
 		Collections.sort(pdfMaps, new Comparator<PdfMap>() {
 			public int compare(PdfMap p1, PdfMap p2) {
 				return p1.getOrderNum() - p2.getOrderNum();

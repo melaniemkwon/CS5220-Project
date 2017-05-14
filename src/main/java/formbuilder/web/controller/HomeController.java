@@ -292,15 +292,6 @@ public class HomeController {
 			}
 		}
 		
-//		Form form = formDao.getForm(formId);
-//		UploadFile uploadFile = fileUploadDao.getFile(8);
-//		
-//		uploadFile.setForm(form);				
-//		form.setUploadFile(uploadFile);
-//		
-//		fileUploadDao.save(uploadFile);
-//		formDao.saveForm(form);
-		
 		return "redirect:/pdf/upload.html";
 	}
 
