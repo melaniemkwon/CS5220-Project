@@ -199,10 +199,11 @@ public class UserFormController {
 		System.out.println("DEBUG realPath: " + realPath);
 		System.out.println("DEBUG uploadFile: " + uploadFile.getFileName());
 		File file = new File(realPath + "/" + uploadFile.getFileName());
+		
 		PDDocument pdfTemplate = PDDocument.load(file);
 		PDDocumentCatalog docCatalog = pdfTemplate.getDocumentCatalog();
 		PDAcroForm acroForm = docCatalog.getAcroForm();
-		List<PDField> fieldList = acroForm.getFields();
+//		List<PDField> fieldList = acroForm.getFields();
 		
 		for (Question question : questions) {
 			List<Answer> answers = question.getAnswers(); 	// Get answers from all users
@@ -239,12 +240,11 @@ public class UserFormController {
 					// Save filled pdf
 					System.out.println("DEBUG save filled pdf: " + realPath + "/" + userId + uploadFile.getFileName());
 					File filledPDF = new File(realPath + "/" + userId + uploadFile.getFileName());
-//					pdfTemplate.save(filledPDF);
-					pdfTemplate.close();
-					break;
+					pdfTemplate.save(filledPDF);
 				}
 			}
 		}
+		pdfTemplate.close();
 		
 //		 String mimeType = URLConnection.guessContentTypeFromName(file.getName());
 //		 if (mimeType == null) {
