@@ -239,23 +239,25 @@ public class UserFormController {
 					
 					// Save filled pdf
 					System.out.println("DEBUG save filled pdf: " + realPath + "/" + userId + uploadFile.getFileName());
-					File filledPDF = new File(realPath + "/" + userId + uploadFile.getFileName());
-					pdfTemplate.save(filledPDF);
+//					File filledPDF = new File(realPath + "/" + userId + uploadFile.getFileName());
+//					pdfTemplate.save(filledPDF);
 				}
 			}
 		}
+		File filledPDF = new File(realPath + "/" + userId + uploadFile.getFileName());
+		pdfTemplate.save(filledPDF);
 		pdfTemplate.close();
 		
-//		 String mimeType = URLConnection.guessContentTypeFromName(file.getName());
-//		 if (mimeType == null) {
-//			 System.out.println("mimetype is not detectable, will take default" + file.getName() + " " + file.getAbsolutePath());
-//			 mimeType = "application/octet-stream";
-//		 }
-//		 response.setContentType(mimeType);
-//		 response.setHeader("Content-Disposition", String.format("attachment; filename=\"" + file.getName() + "\""));
-//		 response.setContentLength((int) file.length());
-//		 InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
-//		 FileCopyUtils.copy(inputStream, response.getOutputStream());
+		String mimeType = URLConnection.guessContentTypeFromName(filledPDF.getName());
+		if (mimeType == null) {
+			System.out.println("mimetype is not detectable, will take default" + filledPDF.getName() + " " + filledPDF.getAbsolutePath());
+			mimeType = "application/octet-stream";
+		}
+		response.setContentType(mimeType);
+		response.setHeader("Content-Disposition", String.format("attachment; filename=\"" + filledPDF.getName() + "\""));
+		response.setContentLength((int) filledPDF.length());
+		InputStream inputStream = new BufferedInputStream(new FileInputStream(filledPDF));
+		FileCopyUtils.copy(inputStream, response.getOutputStream());
 		
 		System.out.println("DEBUG downloadPdf controller: " + form.getName() + " " + user.getUsername());
 	}
