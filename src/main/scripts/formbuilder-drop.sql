@@ -9,6 +9,6 @@ drop table pdfs cascade;
 drop table question_choices cascade;
 drop table questions cascade;
 drop table users cascade;
-drop table answer_files cascade;
+drop table pdf_map cascade;
 
 drop sequence hibernate_sequence;

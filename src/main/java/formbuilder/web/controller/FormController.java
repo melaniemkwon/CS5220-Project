@@ -183,7 +183,6 @@ public class FormController {
 		models.put("questionsPage", questionsPage);
 		
 		// If mapped PDF form exists, get all of its fields
-		
 		System.out.println("DEBUG editPage: " );
 		UploadFile uploadFile = form.getUploadFile();
 		if (uploadFile != null) {

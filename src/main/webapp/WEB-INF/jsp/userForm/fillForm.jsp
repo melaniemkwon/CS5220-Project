@@ -40,7 +40,7 @@
 				</c:when>
 				<c:otherwise>
 
-					<form:form  modelAttribute="form" class = "form" enctype="multipart/form-data">
+					<form:form modelAttribute="form" class = "form" enctype="multipart/form-data">
 						<c:forEach items="${form.questions}" var="question" varStatus="status">
 							<c:if test="${question.pageNumber eq param.pageNum }">
 								<formbuilder:answerDisplay question="${question }" index="${status.index }"></formbuilder:answerDisplay>
@@ -49,8 +49,9 @@
 						</c:forEach>
 						<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> SAVE</button>	
 					</form:form>	
+					<!-- ########### TO DO ########## -->
 					<form method="get" action="downloadPDF">
-						
+						<input type="hidden" name="form" value="${form}">
 						<button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-download"></span> DOWNLOAD PDF</button>
 					</form>
 				</c:otherwise>

@@ -178,6 +178,12 @@ public class UserFormController {
 		return "redirect:/userForm/fillForm.html?uId=" + uId + "&fId=" + fId + "&pageNum=" + pageNum;
 
 	}
+	
+//	##### TODO: SHOW FILLED PDF #####
+	@RequestMapping(value = "userForm/downloadPdf", method = RequestMethod.GET)
+	public void downloadPdf(HttpServletResponse response, @RequestParam Form form) throws IOException {
+		System.out.println("DEBUG downloadPdf controller: " + form.getName());
+	}
 
 	@RequestMapping(value = "userForm/viewFileAnswer.html", method = RequestMethod.GET)
 	public void viewFileAnswer(HttpServletResponse response, @RequestParam Integer uId, @RequestParam Integer qId,
