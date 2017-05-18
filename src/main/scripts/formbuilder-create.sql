@@ -25,6 +25,7 @@ create sequence hibernate_sequence start 1 increment 1;
         FILE_ID int8 not null,
         FILE_DATA bytea,
         FILE_NAME varchar(255),
+        form_id int4,
         primary key (FILE_ID)
     );
 
@@ -36,6 +37,7 @@ create sequence hibernate_sequence start 1 increment 1;
         notification_email varchar(255),
         published boolean not null,
         total_pages int4,
+        uploadFile_FILE_ID int8,
         primary key (id)
     );
 
@@ -51,6 +53,16 @@ create sequence hibernate_sequence start 1 increment 1;
         name varchar(255),
         answer_id int4,
         pdf_id int4,
+        primary key (id)
+    );
+
+    create table pdf_map (
+        id int4 not null,
+        choice varchar(255),
+        fieldName varchar(255),
+        orderNum int4 not null,
+        question_id int4,
+        uploadFile_FILE_ID int8,
         primary key (id)
     );
 
@@ -128,6 +140,16 @@ create sequence hibernate_sequence start 1 increment 1;
         foreign key (user_id) 
         references users;
 
+    alter table files_upload 
+        add constraint FKesm09f0r3t8d4tscxkskms62g 
+        foreign key (form_id) 
+        references forms;
+
+    alter table forms 
+        add constraint FKn228c6v1pgg5etp1vaig00dv9 
+        foreign key (uploadFile_FILE_ID) 
+        references files_upload;
+
     alter table forms_users 
         add constraint FKhp0dk6l6s1p5c2mcew1md2yph 
         foreign key (users_id) 
@@ -147,6 +169,16 @@ create sequence hibernate_sequence start 1 increment 1;
         add constraint FKlsgntpf4rsms7ibkw5e1qsmpd 
         foreign key (pdf_id) 
         references pdfs;
+
+    alter table pdf_map 
+        add constraint FKa67c5vnr7tf8219a2u4bfqvri 
+        foreign key (question_id) 
+        references questions;
+
+    alter table pdf_map 
+        add constraint FKcw062q818omubbidbqlfu1epo 
+        foreign key (uploadFile_FILE_ID) 
+        references files_upload;
 
     alter table question_choices 
         add constraint FK77biojwg2xd8kc8a2odnx3ld4 

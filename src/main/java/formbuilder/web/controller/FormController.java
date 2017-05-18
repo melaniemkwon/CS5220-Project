@@ -159,6 +159,14 @@ public class FormController {
 		return "redirect:/form/listForm.html";
 	}
 	
+	@RequestMapping(value = "/form/downloadPdf.html")
+	public String downloadPdf(@RequestParam Integer id, ModelMap models){
+		Form form = formDao.getForm(id);
+		//UploadFile uploadFile = form.getUploadFile();
+		
+		models.put("form", form);
+		return "form/downloadPdf";
+	}
 
 	@GetMapping("/form/viewPage.html")
 	public String viewPage(@RequestParam Integer id, @RequestParam Integer pageNum, ModelMap models) {

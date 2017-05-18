@@ -31,7 +31,7 @@
 						<a class="btn" href="#" data-toggle="tooltip" title="Edit Form Page"><span class="fa-stack fa-lg"><i class="glyphicon glyphicon-pencil" style="color: grey"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></a>
 						<a class="btn" href="deleteForm.html?id=${form.id}" data-toggle="tooltip" title="Delete Form"><i class="glyphicon glyphicon-trash"></i></a>
 						<a class="btn" href="listAssignForm.html?id=${form.id}" data-toggle="tooltip" title="Assign Form"><i class="glyphicon glyphicon-open-file"></i></a>
-						
+						<a class="btn" href="downloadPdf.html?id=${form.id}" data-toggle="tooltip" title="Download PDF"><i class="glyphicon glyphicon-download"></i></a>
 					</c:when>
 					<c:otherwise>
 						<td class="col-md-2">
@@ -39,8 +39,8 @@
 						<a class="btn" href="editPage.html?id=${form.id}&pageNum=1" data-toggle="tooltip" title="Edit Form Page"><i class="glyphicon glyphicon-pencil"></i></a>
 						<a class="btn" href="deleteForm.html?id=${form.id}" data-toggle="tooltip" title="Delete Form"><i class="glyphicon glyphicon-trash"></i></a>
 						<a class="btn" href="listAssignForm.html?id=${form.id}" data-toggle="tooltip" title="Assign Form"><i class="glyphicon glyphicon-open-file"></i></a>
-						<a class="btn" href="publishForm.html?id=${form.id}" data-toggle="tooltip" title="Publish Form" onclick="return confirm('You cannot undo the publish. Are you sure you want to publish this form?');"><i class="glyphicon glyphicon-globe"></i></a></td>
-							
+						<a class="btn" href="publishForm.html?id=${form.id}" data-toggle="tooltip" title="Publish Form" onclick="return confirm('You cannot undo the publish. Are you sure you want to publish this form?');"><i class="glyphicon glyphicon-globe"></i></a>
+						<a class="btn" href="downloadPdf.html?id=${form.id}" data-toggle="tooltip" title="Download PDF"><i class="glyphicon glyphicon-download"></i></a></td>	
 					</c:otherwise>
 					</c:choose>
 				</tr>
