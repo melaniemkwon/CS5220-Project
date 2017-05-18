@@ -30,6 +30,8 @@ public class PdfMap implements Serializable {
 	
 	@ManyToOne
 	UploadFile uploadFile;
+	
+	String choice;
 
 	public Integer getId() {
 		return id;
@@ -69,6 +71,14 @@ public class PdfMap implements Serializable {
 
 	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
+	}
+
+	public String getChoice() {
+		return choice;
+	}
+
+	public void setChoice(String choice) {
+		this.choice = choice;
 	}
 	
 	

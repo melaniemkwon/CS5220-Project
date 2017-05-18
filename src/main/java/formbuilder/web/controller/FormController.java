@@ -183,7 +183,6 @@ public class FormController {
 		models.put("questionsPage", questionsPage);
 		
 		// If mapped PDF form exists, get all of its fields
-		System.out.println("DEBUG editPage: " );
 		UploadFile uploadFile = form.getUploadFile();
 		if (uploadFile != null) {
 			models.put("pdfFields", uploadFile.getPdfMaps());
@@ -347,15 +346,38 @@ public class FormController {
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
 
+//	@GetMapping("form/map")
+//	public String mapQuestion(@RequestParam Integer questionId, @RequestParam Integer pdfMapId, @RequestParam Integer formId) {
+//		Question question = formDao.getQuestion(questionId);
+//		PdfMap pdfMap = pdfMapDao.getPdfMap(pdfMapId);
+//		pdfMap.setQuestion(question);
+//		question.setPdfMap(pdfMap);
+//		
+//		System.out.println("DEBUG pdfMap saving: " + pdfMap.getId());
+//		
+//		pdfMapDao.save(pdfMap);
+//		formDao.saveQuestion(question);
+//		
+//		return "redirect:/form/editPage.html?id=" + formId + "&pageNum=" + question.getPageNumber();
+//	}
+	
 	@GetMapping("form/map")
-	public String mapQuestion(@RequestParam Integer questionId, @RequestParam Integer pdfMapId, @RequestParam Integer formId) {
-		Question question = formDao.getQuestion(questionId);
+	public String mapQuestion(@RequestParam String questionId, @RequestParam Integer pdfMapId, @RequestParam Integer formId) {
+		String[] qIdParts = questionId.split("\\.");
+		System.out.println("questionID: " + questionId);
+		Integer qId = Integer.parseInt(qIdParts[0]);
+		
+		Question question = formDao.getQuestion(qId);
 		PdfMap pdfMap = pdfMapDao.getPdfMap(pdfMapId);
+		
+		if (question.getType().equals("CHOICE")) {
+			System.out.println("DEBUG pdfMap saving CHOICE: " + pdfMap.getId());
+			pdfMap.setChoice(qIdParts[1]);
+		}
+		
 		pdfMap.setQuestion(question);
 		question.setPdfMap(pdfMap);
-		
-		System.out.println("DEBUG pdfMap saving: " + pdfMap.getId());
-		
+
 		pdfMapDao.save(pdfMap);
 		formDao.saveQuestion(question);
 		

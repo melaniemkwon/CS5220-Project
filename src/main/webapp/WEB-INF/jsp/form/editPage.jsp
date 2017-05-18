@@ -142,10 +142,17 @@ $(function() {
 								<td><span data-pdf="${pdfField}">${pdfField.fieldName}</span></td>
 								<c:choose>
 									<c:when test="${not empty pdfField.question }">
-										<td>${pdfField.question.questionNumber }</td>
+										<c:choose>
+											<c:when test="${pdfField.question.type == 'CHOICE'}">
+												<td>${pdfField.question.questionNumber}. ${pdfField.choice }</td>
+											</c:when>
+											<c:otherwise>
+												<td>${pdfField.question.questionNumber }</td>
+											</c:otherwise>
+										</c:choose>
 									</c:when>
 									<c:otherwise>
-										<td>Not yet mapped.</td>
+										<td>-</td>
 									</c:otherwise>
 								</c:choose>
 								<td>
@@ -155,11 +162,12 @@ $(function() {
 										<c:choose>
 										<c:when test="${question.type.equals('CHOICE') }">
 											<c:forEach items="${question.choices}" var="choice">
-												<option value="${question.id }">${question.questionNumber}. ${choice }</option>
+												<option value="${question.id}.${choice}">${question.questionNumber}. ${choice }</option>
+												<%-- <input type="hidden" name="choice" value="${choice }"> --%>
 											</c:forEach>
 										</c:when>
 										<c:otherwise>
-											<option value="${question.id }">${question.questionNumber }</option>
+											<option value="${question.id}._">${question.questionNumber }</option>
 										</c:otherwise>
 										</c:choose>
 									</c:forEach>
