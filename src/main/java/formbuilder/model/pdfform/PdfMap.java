@@ -25,7 +25,7 @@ public class PdfMap implements Serializable {
 	
 	int orderNum;
 	
-	@OneToOne
+	@ManyToOne
 	Question question;
 	
 	@ManyToOne

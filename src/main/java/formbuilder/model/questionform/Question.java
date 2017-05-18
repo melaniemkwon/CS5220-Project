@@ -51,8 +51,8 @@ public abstract class Question implements Serializable {
 	@Embedded
 	protected TagAttribute tagAttribute;
 	
-	@OneToOne
-	protected PdfMap pdfMap;
+	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+	protected List<PdfMap> pdfMaps;
 
 	public Question() {
 		enabled = true;
@@ -128,12 +128,19 @@ public abstract class Question implements Serializable {
 		this.tagAttribute = tagAttribute;
 	}
 
-	public PdfMap getPdfMap() {
-		return pdfMap;
+	public List<PdfMap> getPdfMaps() {
+		return pdfMaps;
 	}
 
-	public void setPdfMap(PdfMap pdfMap) {
-		this.pdfMap = pdfMap;
+	public void setPdfMaps(List<PdfMap> pdfMaps) {
+		this.pdfMaps = pdfMaps;
 	}
 
+	public void addPdfMap(PdfMap pdfMap) { 
+		pdfMaps.add(pdfMap);
+	}
+	
+	public void deletePdfMap(PdfMap pdfMap) {
+		pdfMaps.remove(pdfMap);
+	}
 }

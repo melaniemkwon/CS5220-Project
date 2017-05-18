@@ -214,37 +214,39 @@ public class UserFormController {
 					
 					boolean fieldNameFound = false;
 					
-					PdfMap pdfMap = answer.getQuestion().getPdfMap();
-					String fieldName = pdfMap.getFieldName();
-					if (fieldName != null) {
-						fieldNameFound = true;
-					}
+					List<PdfMap> pdfMaps = answer.getQuestion().getPdfMaps();
 					
-					System.out.println("DEBUG PdfMap fieldName: " + fieldName);
-					PDField field = acroForm.getField(fieldName);
-					
-					if (fieldNameFound && answer.getQuestion().getType().equals("TEXT")) {
-						System.out.println("DEBUG get text answer: " + ((TextAnswer)answer).getText());
-						field.setValue( ((TextAnswer)answer).getText() );
-					}
-					else if (fieldNameFound && answer.getQuestion().getType().equals("CHOICE")) {
-						System.out.println("DEBUG get choice answer: ");
-						for (String selection : ((ChoiceAnswer)answer).getSelections()) {
-							System.out.println("DEBUG answer selection: " + selection);
-							System.out.print("DEBUG pdfMap.getChoice(): ");
-							System.out.print(pdfMap.getChoice());
-							System.out.println();
-							if ( pdfMap.getChoice() != null && selection != null) {
-								if (selection.equals( pdfMap.getChoice() )) {
-									((PDCheckBox) field).check();
+					for (PdfMap pdfMap : pdfMaps) {
+						String fieldName = pdfMap.getFieldName();
+						if (fieldName != null) {
+							fieldNameFound = true;
+						}
+						
+						System.out.println("DEBUG PdfMap fieldName: " + fieldName);
+						PDField field = acroForm.getField(fieldName);
+						
+						if (fieldNameFound && answer.getQuestion().getType().equals("TEXT")) {
+							System.out.println("DEBUG get text answer: " + ((TextAnswer)answer).getText());
+							field.setValue( ((TextAnswer)answer).getText() );
+						}
+						else if (fieldNameFound && answer.getQuestion().getType().equals("CHOICE")) {
+							System.out.println("DEBUG get choice answer: ");
+							for (String selection : ((ChoiceAnswer)answer).getSelections()) {
+								System.out.println("DEBUG answer selection: " + selection);
+								System.out.print("DEBUG pdfMap.getChoice(): ");
+								System.out.print(pdfMap.getChoice());
+								System.out.println();
+								if ( pdfMap.getChoice() != null && selection != null) {
+									if (selection.equals( pdfMap.getChoice() )) {
+										((PDCheckBox) field).check();
+									}
 								}
+//								if (selection.equals( pdfMap.getChoice() )) {
+//									((PDCheckBox) field).check();
+//								}
 							}
-//							if (selection.equals( pdfMap.getChoice() )) {
-//								((PDCheckBox) field).check();
-//							}
 						}
 					}
-
 				}
 			}
 		}

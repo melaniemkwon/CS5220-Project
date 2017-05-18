@@ -95,7 +95,6 @@ create sequence hibernate_sequence start 1 increment 1;
         step varchar(255),
         type varchar(255),
         form_id int4,
-        pdfMap_id int4,
         primary key (id)
     );
 
@@ -190,11 +189,6 @@ create sequence hibernate_sequence start 1 increment 1;
         add constraint FKni5pym5qivhqac03taibcw4dk 
         foreign key (form_id) 
         references forms;
-
-    alter table questions 
-        add constraint FKehy3m8ftfq7i71j8rmhtav9qr 
-        foreign key (pdfMap_id) 
-        references pdf_map;
 
 insert into users (id, username, password, last_name, first_name, email, enabled) values (1000, 'admin', 'abcd', 'System', 'Administrator', 'formbuilderadmin@localhost.localdomain', TRUE);
 insert into authorities (user_id, role) values (1000, 'ROLE_ADMIN');

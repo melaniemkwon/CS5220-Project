@@ -345,21 +345,6 @@ public class FormController {
 
 		return "redirect:/form/editPage.html?id=" + id + "&pageNum=" + pageNum;
 	}
-
-//	@GetMapping("form/map")
-//	public String mapQuestion(@RequestParam Integer questionId, @RequestParam Integer pdfMapId, @RequestParam Integer formId) {
-//		Question question = formDao.getQuestion(questionId);
-//		PdfMap pdfMap = pdfMapDao.getPdfMap(pdfMapId);
-//		pdfMap.setQuestion(question);
-//		question.setPdfMap(pdfMap);
-//		
-//		System.out.println("DEBUG pdfMap saving: " + pdfMap.getId());
-//		
-//		pdfMapDao.save(pdfMap);
-//		formDao.saveQuestion(question);
-//		
-//		return "redirect:/form/editPage.html?id=" + formId + "&pageNum=" + question.getPageNumber();
-//	}
 	
 	@GetMapping("form/map")
 	public String mapQuestion(@RequestParam String questionId, @RequestParam Integer pdfMapId, @RequestParam Integer formId) {
@@ -376,7 +361,7 @@ public class FormController {
 		}
 		
 		pdfMap.setQuestion(question);
-		question.setPdfMap(pdfMap);
+		question.addPdfMap(pdfMap);
 
 		pdfMapDao.save(pdfMap);
 		formDao.saveQuestion(question);
