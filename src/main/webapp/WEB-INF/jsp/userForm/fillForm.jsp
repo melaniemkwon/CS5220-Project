@@ -85,3 +85,11 @@
 
 </div>
 </div>
+
+<script>
+$(function() {
+/* 	$('.form-group').removeClass('is-empty');
+	$('.form-group').removeClass('has-error'); */
+	/* $('div').removeClass('form-group'); */
+})
+</script>

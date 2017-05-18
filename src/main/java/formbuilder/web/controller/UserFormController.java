@@ -227,7 +227,12 @@ public class UserFormController {
 						
 						if (fieldNameFound && answer.getQuestion().getType().equals("TEXT")) {
 							System.out.println("DEBUG get text answer: " + ((TextAnswer)answer).getText());
-							field.setValue( ((TextAnswer)answer).getText() );
+							try {
+								field.setValue( ((TextAnswer)answer).getText() );
+							} catch(NullPointerException npe) {
+								
+							}
+							
 						}
 						else if (fieldNameFound && answer.getQuestion().getType().equals("CHOICE")) {
 							System.out.println("DEBUG get choice answer: ");
@@ -236,11 +241,16 @@ public class UserFormController {
 								System.out.print("DEBUG pdfMap.getChoice(): ");
 								System.out.print(pdfMap.getChoice());
 								System.out.println();
-								if ( pdfMap.getChoice() != null && selection != null) {
-									if (selection.equals( pdfMap.getChoice() )) {
-										((PDCheckBox) field).check();
+								try {
+									if ( pdfMap.getChoice() != null && selection != null) {
+										if (selection.equals( pdfMap.getChoice() )) {
+											((PDCheckBox) field).check();
+										}
 									}
+								} catch(NullPointerException npe) {
+									
 								}
+								
 //								if (selection.equals( pdfMap.getChoice() )) {
 //									((PDCheckBox) field).check();
 //								}
