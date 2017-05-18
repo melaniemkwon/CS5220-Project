@@ -41,6 +41,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import formbuilder.model.core.User;
 import formbuilder.model.core.dao.UserDao;
+import formbuilder.model.pdfform.PdfMap;
 import formbuilder.model.questionform.Answer;
 import formbuilder.model.questionform.ChoiceAnswer;
 import formbuilder.model.questionform.FileAnswer;
@@ -213,27 +214,34 @@ public class UserFormController {
 					
 					boolean fieldNameFound = false;
 					
-					String fieldName = answer.getQuestion().getPdfMap().getFieldName();
+					PdfMap pdfMap = answer.getQuestion().getPdfMap();
+					String fieldName = pdfMap.getFieldName();
 					if (fieldName != null) {
 						fieldNameFound = true;
 					}
 					
+					System.out.println("DEBUG PdfMap fieldName: " + fieldName);
 					PDField field = acroForm.getField(fieldName);
-					System.out.println("DEBUG what PdfMap: " + fieldName);
 					
-					if (answer.getQuestion().getType().equals("TEXT")) {
+					if (fieldNameFound && answer.getQuestion().getType().equals("TEXT")) {
 						System.out.println("DEBUG get text answer: " + ((TextAnswer)answer).getText());
-						if (fieldNameFound) {
-							field.setValue( ((TextAnswer)answer).getText() );
-						}
+						field.setValue( ((TextAnswer)answer).getText() );
 					}
-					else if (answer.getQuestion().getType().equals("CHOICE")) {
+					else if (fieldNameFound && answer.getQuestion().getType().equals("CHOICE")) {
 						System.out.println("DEBUG get choice answer: ");
-//						if (fieldNameFound) {
-//							((PDCheckBox) field).check();
-//						}
 						for (String selection : ((ChoiceAnswer)answer).getSelections()) {
-							System.out.println(selection);
+							System.out.println("DEBUG answer selection: " + selection);
+							System.out.print("DEBUG pdfMap.getChoice(): ");
+							System.out.print(pdfMap.getChoice());
+							System.out.println();
+							if ( pdfMap.getChoice() != null && selection != null) {
+								if (selection.equals( pdfMap.getChoice() )) {
+									((PDCheckBox) field).check();
+								}
+							}
+//							if (selection.equals( pdfMap.getChoice() )) {
+//								((PDCheckBox) field).check();
+//							}
 						}
 					}
 
@@ -272,7 +280,7 @@ public class UserFormController {
 
 		if (!file.exists()) {
 			String errorMessage = "Sorry. The file you are looking for does not exist";
-			System.out.println("Sorry. The file you are looking for does not exist");
+			System.out.println(errorMessage);
 			OutputStream outputStream = response.getOutputStream();
 			outputStream.write(errorMessage.getBytes(Charset.forName("UTF-8")));
 			outputStream.close();
