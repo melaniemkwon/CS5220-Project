@@ -280,6 +280,10 @@ public class HomeController {
 					PdfMap pdfMap = new PdfMap();
 					pdfMap.setFieldName(sField.getFullyQualifiedName());
 					pdfMap.setOrderNum(index);
+					System.out.println("DEBUG MAP CHECKBOX: " + sField.getFieldType());
+					if (sField.getFieldType().equals("Btn")) {
+						System.out.println("checkbox button");
+					}
 					u.addPdfMap(pdfMap);
 					index++;
 				}

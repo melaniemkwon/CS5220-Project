@@ -152,7 +152,16 @@ $(function() {
 								<form method="get" action="map" style="display: inline;">
 									<select name="questionId">
 									<c:forEach items="${questionsPage}" var="question">
-										<option value="${question.id }">${question.questionNumber }</option>
+										<c:choose>
+										<c:when test="${question.type.equals('CHOICE') }">
+											<c:forEach items="${question.choices}" var="choice">
+												<option value="${question.id }">${question.questionNumber}. ${choice }</option>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<option value="${question.id }">${question.questionNumber }</option>
+										</c:otherwise>
+										</c:choose>
 									</c:forEach>
 									</select>
 									<input type="hidden" name="pdfMapId" value="${pdfField.id}">
