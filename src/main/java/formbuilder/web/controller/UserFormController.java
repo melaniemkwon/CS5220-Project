@@ -229,21 +229,19 @@ public class UserFormController {
 					}
 					else if (answer.getQuestion().getType().equals("CHOICE")) {
 						System.out.println("DEBUG get choice answer: ");
-						if (fieldNameFound) {
-							((PDCheckBox) field).check();
-						}
-//						for (String selection : ((ChoiceAnswer)answer).getSelections()) {
-//							System.out.println(selection);
+//						if (fieldNameFound) {
+//							((PDCheckBox) field).check();
 //						}
+						for (String selection : ((ChoiceAnswer)answer).getSelections()) {
+							System.out.println(selection);
+						}
 					}
-					
-					// Save filled pdf
-					System.out.println("DEBUG save filled pdf: " + realPath + "/" + userId + uploadFile.getFileName());
-//					File filledPDF = new File(realPath + "/" + userId + uploadFile.getFileName());
-//					pdfTemplate.save(filledPDF);
+
 				}
 			}
 		}
+		// Save filled pdf
+		System.out.println("DEBUG save filled pdf: " + realPath + "/" + userId + uploadFile.getFileName());
 		File filledPDF = new File(realPath + "/" + userId + uploadFile.getFileName());
 		pdfTemplate.save(filledPDF);
 		pdfTemplate.close();
@@ -258,6 +256,8 @@ public class UserFormController {
 		response.setContentLength((int) filledPDF.length());
 		InputStream inputStream = new BufferedInputStream(new FileInputStream(filledPDF));
 		FileCopyUtils.copy(inputStream, response.getOutputStream());
+		
+		filledPDF.delete(); //just delete the file for now...
 		
 		System.out.println("DEBUG downloadPdf controller: " + form.getName() + " " + user.getUsername());
 	}
